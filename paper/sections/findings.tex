@@ -1,0 +1,61 @@
+\section{Findings}\label{sec:findings}
+
+\begin{table}[t]
+    \centering
+    \caption{Effect of layer-0 suppressor ablations on logit difference (LD). GPT-2 Medium: deterministic point estimates across three seeds (Apple M-series MPS). $^{\dagger}$Mistral-7B: single-seed estimates (seed~0; compute constraints). Positive $\Delta$LD indicates a stronger factual preference.}
+    \label{tab:impact}
+    \begin{tabular}{llcccc}
+        \toprule
+        Model & Task & Baseline LD & Suppressor ablated LD & $\Delta$LD & Heads \\
+        \midrule
+        GPT-2 Medium & Facts          & $1.484$ & $1.882$ & $+0.398$ & 0:2, 0:4, 0:7 \\
+        GPT-2 Medium & Negation       & $1.607$ & $2.449$ & $+0.842$ & 0:2, 0:4, 0:7 \\
+        GPT-2 Medium & Counterfactual & $1.420$ & $2.266$ & $+0.846$ & 0:2, 0:4, 0:7 \\
+        GPT-2 Medium & Logic          & $1.294$ & $1.846$ & $+0.552$ & 0:2, 0:4, 0:7 \\
+        \addlinespace
+        Mistral 7B   & Facts          & $4.933^{\dagger}$ & $4.930^{\dagger}$ & $-0.003^{\dagger}$ & 0:22, 0:23 \\
+        Mistral 7B   & Negation       & $0.384^{\dagger}$ & $0.609^{\dagger}$ & $+0.225^{\dagger}$ & 0:22, 0:23 \\
+        Mistral 7B   & Counterfactual & $3.017^{\dagger}$ & $3.299^{\dagger}$ & $+0.282^{\dagger}$ & 0:22, 0:23 \\
+        Mistral 7B$^{\ddagger}$   & Logic          & $0.335^{\dagger}$ & $0.293^{\dagger}$ & $-0.042^{\dagger}$ & 0:22, 0:23 \\
+        \bottomrule
+    \end{tabular}
+    \vspace{0.5em}
+    \footnotesize{$^{\ddagger}$Head~0:21 opposes heads~0:22/0:23 on the logic probe (net $\Delta$LD combines both effects).}
+\end{table}
+
+\subsection{Foundational signals from cross-task sweeps}
+Before zooming in on individual heads we measured geometry-level invariants.
+Layer-wise activation patches (H2) reveal task-dependent phase shifts: GPT-2 Medium routes factual recall through layer~11, negation through layer~2, counterfactual reasoning through layer~8, and logic through layer~0.
+Despite these shifts, three layer-0 heads---0:2, 0:4, and 0:7---retain high impact across all tasks with rank correlations $\rho \in [0.52,0.97]$ ($p \le 0.04$).
+Rebalancing the corpora to equalise token frequencies \emph{increases} their prominence, indicating the signal is structural rather than a data artefact.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.47\textwidth]{figures/random_l0_baseline.pdf}
+    \caption{Distribution of $\Delta$LD for 1{,}000 random layer-0 ablations. Dotted and dash-dotted lines mark the 95th and 99th percentiles. Suppressor head~0:2 ($+0.406$) lies beyond the 99th percentile, and pairs $\{0{:}2,0{:}4\}$/$\{0{:}2,0{:}7\}$ land alongside the suppressor triplet $\{0{:}2,0{:}4,0{:}7\}$ in the extreme tail.}
+    \label{fig:random-baseline}
+\end{figure}
+
+Figure~\ref{fig:random-baseline} shows head~0:2 producing $\Delta\mathrm{LD}=+0.406$, placing it at the very top of the single-head distribution. Heads~0:4 and 0:7 contribute $+0.130$ and $+0.124$, respectively—both around the 94th percentile while the random baseline’s 95th and 99th percentiles sit at $0.162$ and $0.169$. The suppressor pairs $(0{:}2,0{:}4)$ and $(0{:}2,0{:}7)$ deliver $+0.556$ and $+0.550$ LD shifts, placing them in the extreme tail of the simulated pair distribution (95th percentile $0.186$, 99th percentile $0.243$); the pair $(0{:}4,0{:}7)$ still exceeds the 99th percentile at $+0.253$.
+
+\subsection{GPT-2 layer-0 suppressor}
+Across all four probes the H1 heads-zero battery ranks layer-0 heads 2, 4, and~7 as the most damaging suppressors: ablation increases logit difference by 0.40--0.85 (Table~\ref{tab:impact}) and the trio sits at the top of the per-head tables in every condition.
+The H5 triplet battery confirms destructive cooperation: pairwise ablations such as (0:2, 0:4) and (0:2, 0:7) raise logit difference nearly as much as removing all three, and the full triplet yields the largest gains (e.g., facts $+0.40$, negation $+0.84$).
+H6 reverse patches show that pasting clean residuals into the corrupted run fails to restore factuality (facts $\Delta\mathrm{LD}=-0.048$), whereas the complementary clean$\rightarrow$corrupt patch reproduces suppression (H2 facts $\Delta\mathrm{LD}=+0.863$), indicating the circuit acts early and upstream.
+OV projections reinforce the semantic interpretation: head~0:2 (and its partners) boost hedging/meta tokens such as \emph{perhaps}, \emph{maybe}, and \emph{seems} while suppressing factual continuations like \emph{Recomm}, \emph{trave}, and \emph{advoc}, demonstrating a coherent direction that trades factuality for hedging.
+Lexicon enrichment (Appendix~\ref{app:lexicon}) quantifies this shift: head~0:2 shows log-odds enrichment of $+1.2$ for hedges and $+4.3$ for boosters relative to other layer-0 heads, whereas heads~0:4 and 0:7 show no enrichment, consistent with their secondary role.
+
+\subsection{Mistral layer-0 suppressors}
+On Mistral-7B the H1 battery flags layer-0 heads~22 and~23 as suppressors on counterfactual and negation probes, but the effect is task-contingent: facts show minimal change, and logic improves when either head is zeroed.
+Replicating the H1 batteries at seeds~1 and~2 reproduces the seed~0 logit-difference trajectories to float-level precision (95\%~CI~$\approx 0$), so we continue to report the shared point estimates with a dagger in Table~\ref{tab:impact}.
+H5 experiments isolate the causing pair: \{0:22, 0:23\} raises counterfactual logit difference by $+0.28$ and negation by $+0.23$ yet leaves facts flat ($+0.00$) and pushes logic down ($-0.04$).
+The competition run reveals why logic behaves differently: head~0:21 alone produces a strong negative logit difference ($-0.39$), and pairing it with 0:22 overwhelms the suppressor effect.
+Combined with the prior triplet runs, this indicates Mistral’s layer-0 houses both suppressive and anti-suppressive circuits, with head~21 opposing the \{22, 23\} pair on logical reasoning.
+OV analysis corroborates the behavioral divergence: heads~22/23 suppress factual tokens (\emph{oppon, LIED, trag-}) without boosting hedging vocabulary, instead surfacing multilingual editorial fragments (\emph{acknow, départ, giornata}), so their direction lacks GPT-2’s hedging amplification.
+
+\subsection{Scale robustness}
+Layer-0 suppressors persist across GPT-2 scale. On GPT-2 Small (124M) the layer-0 heads {0:2, 0:4, 0:7} increase logit difference by $+0.38$, $+0.12$, and $+0.11$, respectively. GPT-2 Medium reproduces the same hierarchy with $+0.41$, $+0.13$, and $+0.12$, demonstrating that the circuit is architectural rather than a one-off checkpoint artifact. We report the Medium results in the main text to align with prior GPT-2-Medium analyses while noting that the motif already exists at smaller scale.
+\subsection{Cross-model comparison}
+Both models learn a layer-0 mechanism that degrades factual continuations, and ablations restore performance across multiple tasks, supporting the suppressor motif as a conserved behavioral prior.
+Yet the implementations diverge: GPT-2’s trio jointly suppresses factuality and amplifies hedging, while Mistral’s pair suppresses factuality without a hedging boost and encounters opposition from a neighbouring head on logic.
+The contrast suggests that although transformers converge on early suppressor behavior, the supporting circuitry adapts to architecture and training data, producing task-contingent variants rather than a single universal implementation.

@@ -1,0 +1,29 @@
+{
+  "config": "lab/configs/run_h1_cross_condition_balanced.json",
+  "tag": "cf",
+  "samples": 80,
+  "data_hash": "cbd6871ec739f86db3c0481602d2a330415f50c112b547f95c280c16ad97196d",
+  "results": [
+    {
+      "mean_target": 0.184814453125,
+      "mean_foil": 0.1722412109375,
+      "mean_delta": 0.01256561279296875,
+      "layer": 0,
+      "head": 2
+    },
+    {
+      "mean_target": 0.00785064697265625,
+      "mean_foil": -0.0173797607421875,
+      "mean_delta": 0.025238037109375,
+      "layer": 0,
+      "head": 4
+    },
+    {
+      "mean_target": 0.1907958984375,
+      "mean_foil": 0.166015625,
+      "mean_delta": 0.0247802734375,
+      "layer": 0,
+      "head": 7
+    }
+  ]
+}

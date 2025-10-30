@@ -1,0 +1,22 @@
+{
+  "run_name": "h2_sham_slice",
+  "seed": 0,
+  "device": "mps",
+  "model": {
+    "family": "gpt2",
+    "name": "gpt2-medium",
+    "dtype": "float16"
+  },
+  "dataset": {
+    "id": "facts_single_token_v1",
+    "split": "val",
+    "clean_field": "clean",
+    "corrupt_field": "corrupt",
+    "target_field": "target",
+    "foil_field": "foil"
+  },
+  "battery": "lab/configs/battery_h2_c2x_sham.json",
+  "metrics": ["logit_diff", "acc_flip_rate", "p_drop"],
+  "batch_size": 8,
+  "max_seq_len": 256
+}

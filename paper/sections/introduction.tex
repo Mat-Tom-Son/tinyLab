@@ -1,0 +1,24 @@
+\section{Introduction}
+
+Kalai, Nachum, Vempala, and Zhang recently formalized a stark statistical claim: hallucinations in language models are inevitable under the evaluation regimes we currently impose~\cite{kalai2025why}.
+Binary scoring rewards confident guesses and penalizes calibrated uncertainty, so a model that wishes to maximize benchmark accuracy must learn to \emph{decouple} confidence from ground truth.
+The theorem explains why hallucinations persist even as scale and data improve, but it leaves open the mechanistic question.
+What concrete structures inside a transformer encode this bias?
+How do gradient updates instantiate the learned trade-off between factuality and hedging?
+
+We identify and characterize a family of circuits we call \emph{layer-0 suppressors}.
+Suppressors are small coalitions of attention heads in the very first transformer layer that systematically down-weight factual continuations and boost uncertainty markers or meta-commentary.
+They are not idiosyncratic: ablating them recovers as much as $0.85$ logit-difference points on factual, negation, and counterfactual probes, and analogous motifs appear in both GPT-2 Medium (355\,M) and Mistral-7B despite their architectural differences.
+We operationalize an \emph{attractor} as a regime in which injecting suppressor activations into an otherwise clean run induces a stable hedging pattern that downstream layers do not undo (reverse-patch $\Delta \mathrm{LD} \geq 0.3$ for at least one probe).
+
+Our study contributes four findings.
+\begin{enumerate}
+    \item \textbf{Suppressors are structural.} Cross-task head-ablation sweeps show that the same layer-0 heads remain high-impact across diverse corpora, even after dataset rebalancing removes token-frequency confounds.
+    \item \textbf{They lock in behavioral modes.} Forward/reverse patch experiments demonstrate that suppressors act as entry points to the hedging attractor defined above.
+    \item \textbf{Implementations adapt to architecture.} GPT-2 learns a unified suppressor trio that simultaneously suppresses factuality and boosts hedging, whereas Mistral learns a task-contingent pair opposed by an anti-suppressor on logic tasks and lacking the hedging boost.
+    \item \textbf{The motif is learned.} Suppressors emerge during training as a behavioral prior consistent with Kalai et al.'s incentives; they are neither hard-coded nor artifacts of a single model family.
+\end{enumerate}
+
+By grounding Kalai et al.'s theoretical inevitability in concrete circuits, we bridge statistical and mechanistic interpretability.
+Our results imply that evaluation reform alone may not eliminate hallucinations: once suppressors have crystallised, they steer computation toward hedging by default.
+Direct circuit-level intervention or steering may therefore be required to restore truthful behavior.

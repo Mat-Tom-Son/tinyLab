@@ -1,0 +1,48 @@
+\appendix
+
+\section{Lexicon and enrichment statistics}
+\label{app:lexicon}
+
+The hedge/booster lexicon used in Section~\ref{sec:findings} is stored at \texttt{data/lexicons/hedge\_booster.json}.
+Tokens from the OV projections are normalised by stripping whitespace, punctuation, and byte-pair fragments before lookup.
+We estimate enrichment by comparing the top-$150$ OV tokens for each suppressor head against the pool of other layer-0 heads with 1{,}000 frequency-matched resamples and add-$0.5$ smoothing.
+Table~\ref{tab:lexicon-logodds} summarises the resulting log-odds ratios and the AUC of a single-feature classifier that predicts ``upweighted'' if a token is in the lexicon.
+
+\begin{table}[h]
+    \centering
+    \caption{Lexicon enrichment for suppressor heads (top-$150$ OV tokens).}
+    \label{tab:lexicon-logodds}
+    \begin{tabular}{lccc}
+        \toprule
+        Head & Lexicon & Log-odds & AUC \\
+        \midrule
+        GPT-2\;0:2 & Hedges & $+1.22$ & $0.50$ \\
+        GPT-2\;0:2 & Boosters & $+4.29$ & $0.52$ \\
+        GPT-2\;0:4 & Hedges & $-1.27$ & $0.50$ \\
+        GPT-2\;0:7 & Hedges & $+0.19$ & $0.50$ \\
+        Mistral\;0:22/0:23 & Hedges/Boosters & $\approx 0$ & $0.50$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The enrichment confirms that GPT-2 head~0:2 amplifies both hedges and boosters relative to other layer-0 heads, whereas the remaining GPT-2 heads and the Mistral pair exhibit no measurable enrichment. The AUC values stay near 0.50, as expected for a single-feature sanity check.
+
+\input{generated/token_tables.tex}
+
+\section{Calibration and numerical stability}
+\label{app:calibration}
+
+Reliability diagrams in Figure~\ref{fig:calibration} use 10 bins and probabilities derived from the log-odds between target and foil tokens.
+To avoid numerical overflow we clip logits to the range $[-20,20]$ before applying the softmax, a setting that does not materially change the reported metrics.
+
+\section{Reproducibility checklist}
+\label{app:repro}
+
+\begin{itemize}
+    \item \textbf{Models.} GPT-2 Medium (355\,M) via TransformerLens 2.16.1; Mistral-7B v0.1 via the same interface.
+    \item \textbf{Hardware.} Apple M-series (M3 Max) with macOS; computations run in deterministic mode (no dropout, fixed seeds).
+    \item \textbf{Datasets.} Single-token probe suite (stored under \texttt{lab/data/corpora}); frequency summaries in \texttt{reports/token\_frequency\_summary.json}.
+    \item \textbf{Runs.} Config and data hashes for Table~\ref{tab:impact} appear in \texttt{paper/supplement/supplement.md}; seeds are $\{0,1,2\}$ for GPT-2 and $\{0,1,2\}$ (neg/cf) / $\{0\}$ (facts/logic) for Mistral.
+    \item \textbf{Commands.} \texttt{python -m lab.src.orchestrators.conditions <config>} (see Table~\ref{tab:impact} for the specific JSON files).
+    \item \textbf{Figures.} Scripts in \texttt{paper/scripts/} regenerate the figures.
+\end{itemize}

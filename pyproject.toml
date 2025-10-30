@@ -1,0 +1,45 @@
+[project]
+name = "tiny-ablation-lab"
+version = "0.1.0"
+description = "Local-first mechanistic interpretability lab for Apple Silicon"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+requires-python = ">=3.10"
+dependencies = [
+    "torch==2.9.0",
+    "transformer-lens==2.16.1",
+    "transformers==4.57.1",
+    "datasets==4.3.0",
+    "mlflow==3.5.1",
+    "umap-learn==0.5.9.post2",
+    "plotly==6.3.1",
+    "kaleido==1.1.0",
+    "matplotlib==3.10.7",
+    "pandas==2.3.3",
+    "numpy==2.3.3",
+    "psutil==7.1.2",
+    "orjson==3.11.4",
+    "rich==14.2.0",
+    "pyarrow==21.0.0",
+    "pydantic==2.12.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.0.270",
+]
+
+[build-system]
+requires = ["setuptools>=65.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"

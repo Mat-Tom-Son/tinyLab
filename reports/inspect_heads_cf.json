@@ -1,0 +1,1730 @@
+{
+  "config": "lab/configs/run_h1_cross_condition_balanced.json",
+  "tag": "cf",
+  "dataset_id": "counterfactual_single_token_v1_balanced",
+  "split": "train",
+  "sample_count": 20,
+  "data_hash": "cbd6871ec739f86db3c0481602d2a330415f50c112b547f95c280c16ad97196d",
+  "baseline_logit_diff": 1.7880859375,
+  "heads": [
+    {
+      "layer": 0,
+      "head": 2,
+      "baseline_logit_diff": 1.7880859375,
+      "ablated_logit_diff": 2.228515625,
+      "delta": 0.4404296875,
+      "mean_target_delta": 0.90625,
+      "mean_foil_delta": 0.46630859375,
+      "attention": [
+        {
+          "sequence_index": 0,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.278984010219574
+            },
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.26623061299324036
+            },
+            {
+              "position": 6,
+              "token": " they",
+              "weight": 0.15540583431720734
+            }
+          ]
+        },
+        {
+          "sequence_index": 1,
+          "query_position": 14,
+          "top_attention": [
+            {
+              "position": 13,
+              "token": " is",
+              "weight": 0.23087434470653534
+            },
+            {
+              "position": 7,
+              "token": " is",
+              "weight": 0.1801283061504364
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.1068134605884552
+            }
+          ]
+        },
+        {
+          "sequence_index": 2,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.2951045334339142
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.25191885232925415
+            },
+            {
+              "position": 6,
+              "token": " they",
+              "weight": 0.16807468235492706
+            }
+          ]
+        },
+        {
+          "sequence_index": 3,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.34309858083724976
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.2307383269071579
+            },
+            {
+              "position": 6,
+              "token": " they",
+              "weight": 0.17659862339496613
+            }
+          ]
+        },
+        {
+          "sequence_index": 4,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.38087236881256104
+            },
+            {
+              "position": 6,
+              "token": " they",
+              "weight": 0.19831852614879608
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.16789695620536804
+            }
+          ]
+        },
+        {
+          "sequence_index": 5,
+          "query_position": 12,
+          "top_attention": [
+            {
+              "position": 7,
+              "token": ",",
+              "weight": 0.24115775525569916
+            },
+            {
+              "position": 11,
+              "token": " a",
+              "weight": 0.22989653050899506
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.14708222448825836
+            }
+          ]
+        },
+        {
+          "sequence_index": 6,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 14,
+              "token": " is",
+              "weight": 0.21974731981754303
+            },
+            {
+              "position": 7,
+              "token": " is",
+              "weight": 0.15744614601135254
+            },
+            {
+              "position": 10,
+              "token": ",",
+              "weight": 0.09576679021120071
+            }
+          ]
+        },
+        {
+          "sequence_index": 7,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 14,
+              "token": " is",
+              "weight": 0.21974731981754303
+            },
+            {
+              "position": 7,
+              "token": " is",
+              "weight": 0.15744614601135254
+            },
+            {
+              "position": 10,
+              "token": ",",
+              "weight": 0.09576679021120071
+            }
+          ]
+        },
+        {
+          "sequence_index": 8,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 14,
+              "token": " is",
+              "weight": 0.1683036834001541
+            },
+            {
+              "position": 7,
+              "token": " is",
+              "weight": 0.1283816695213318
+            },
+            {
+              "position": 5,
+              "token": " is",
+              "weight": 0.11968425661325455
+            }
+          ]
+        },
+        {
+          "sequence_index": 9,
+          "query_position": 12,
+          "top_attention": [
+            {
+              "position": 12,
+              "token": " 4",
+              "weight": 0.21012507379055023
+            },
+            {
+              "position": 11,
+              "token": " is",
+              "weight": 0.19035235047340393
+            },
+            {
+              "position": 9,
+              "token": " the",
+              "weight": 0.1799706518650055
+            }
+          ]
+        },
+        {
+          "sequence_index": 10,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.2774012088775635
+            },
+            {
+              "position": 7,
+              "token": " it",
+              "weight": 0.24055905640125275
+            },
+            {
+              "position": 4,
+              "token": "s",
+              "weight": 0.1765923947095871
+            }
+          ]
+        },
+        {
+          "sequence_index": 11,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.2517271935939789
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.2429465800523758
+            },
+            {
+              "position": 6,
+              "token": " they",
+              "weight": 0.15813548862934113
+            }
+          ]
+        },
+        {
+          "sequence_index": 12,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.23975235223770142
+            },
+            {
+              "position": 3,
+              "token": " can",
+              "weight": 0.17107366025447845
+            },
+            {
+              "position": 7,
+              "token": " they",
+              "weight": 0.15300197899341583
+            }
+          ]
+        },
+        {
+          "sequence_index": 13,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 14,
+              "token": " is",
+              "weight": 0.1683036834001541
+            },
+            {
+              "position": 7,
+              "token": " is",
+              "weight": 0.1283816695213318
+            },
+            {
+              "position": 5,
+              "token": " is",
+              "weight": 0.11968425661325455
+            }
+          ]
+        },
+        {
+          "sequence_index": 14,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.31461262702941895
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.2063751369714737
+            },
+            {
+              "position": 7,
+              "token": " they",
+              "weight": 0.18034915626049042
+            }
+          ]
+        },
+        {
+          "sequence_index": 15,
+          "query_position": 13,
+          "top_attention": [
+            {
+              "position": 12,
+              "token": " is",
+              "weight": 0.21431709825992584
+            },
+            {
+              "position": 6,
+              "token": " is",
+              "weight": 0.1355663537979126
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.13152816891670227
+            }
+          ]
+        },
+        {
+          "sequence_index": 16,
+          "query_position": 12,
+          "top_attention": [
+            {
+              "position": 12,
+              "token": " 4",
+              "weight": 0.21012507379055023
+            },
+            {
+              "position": 11,
+              "token": " is",
+              "weight": 0.19035235047340393
+            },
+            {
+              "position": 9,
+              "token": " the",
+              "weight": 0.1799706518650055
+            }
+          ]
+        },
+        {
+          "sequence_index": 17,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.28089624643325806
+            },
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.24538086354732513
+            },
+            {
+              "position": 7,
+              "token": " they",
+              "weight": 0.14542412757873535
+            }
+          ]
+        },
+        {
+          "sequence_index": 18,
+          "query_position": 13,
+          "top_attention": [
+            {
+              "position": 12,
+              "token": " is",
+              "weight": 0.21825799345970154
+            },
+            {
+              "position": 6,
+              "token": " is",
+              "weight": 0.1602029800415039
+            },
+            {
+              "position": 8,
+              "token": ",",
+              "weight": 0.11256878077983856
+            }
+          ]
+        },
+        {
+          "sequence_index": 19,
+          "query_position": 10,
+          "top_attention": [
+            {
+              "position": 6,
+              "token": ",",
+              "weight": 0.3103029727935791
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.18731829524040222
+            },
+            {
+              "position": 8,
+              "token": " they",
+              "weight": 0.1773926019668579
+            }
+          ]
+        }
+      ],
+      "logit_deltas": [
+        {
+          "index": 0,
+          "target_id": 2647,
+          "foil_id": 7815,
+          "target_delta": 0.82763671875,
+          "foil_delta": 0.34326171875
+        },
+        {
+          "index": 1,
+          "target_id": 6076,
+          "foil_id": 6729,
+          "target_delta": 0.491943359375,
+          "foil_delta": 0.33544921875
+        },
+        {
+          "index": 2,
+          "target_id": 5640,
+          "foil_id": 46166,
+          "target_delta": 0.5966796875,
+          "foil_delta": -0.515625
+        },
+        {
+          "index": 3,
+          "target_id": 3049,
+          "foil_id": 991,
+          "target_delta": 0.8408203125,
+          "foil_delta": 1.4375
+        },
+        {
+          "index": 4,
+          "target_id": 1337,
+          "foil_id": 4692,
+          "target_delta": 0.7578125,
+          "foil_delta": 0.68798828125
+        },
+        {
+          "index": 5,
+          "target_id": 3440,
+          "foil_id": 36785,
+          "target_delta": 0.3974609375,
+          "foil_delta": -0.8515625
+        },
+        {
+          "index": 6,
+          "target_id": 3290,
+          "foil_id": 20697,
+          "target_delta": 1.4453125,
+          "foil_delta": 0.712890625
+        },
+        {
+          "index": 7,
+          "target_id": 3290,
+          "foil_id": 17481,
+          "target_delta": 1.4453125,
+          "foil_delta": 0.6640625
+        },
+        {
+          "index": 8,
+          "target_id": 17180,
+          "foil_id": 8887,
+          "target_delta": 1.4609375,
+          "foil_delta": 0.8203125
+        },
+        {
+          "index": 9,
+          "target_id": 604,
+          "foil_id": 807,
+          "target_delta": 2.125,
+          "foil_delta": 1.9296875
+        },
+        {
+          "index": 10,
+          "target_id": 2266,
+          "foil_id": 4171,
+          "target_delta": 1.265625,
+          "foil_delta": 0.9541015625
+        },
+        {
+          "index": 11,
+          "target_id": 1633,
+          "foil_id": 17492,
+          "target_delta": 0.935546875,
+          "foil_delta": -0.37890625
+        },
+        {
+          "index": 12,
+          "target_id": 12098,
+          "foil_id": 11135,
+          "target_delta": 0.05078125,
+          "foil_delta": 0.025390625
+        },
+        {
+          "index": 13,
+          "target_id": 17180,
+          "foil_id": 17135,
+          "target_delta": 1.4609375,
+          "foil_delta": 0.654296875
+        },
+        {
+          "index": 14,
+          "target_id": 7405,
+          "foil_id": 9813,
+          "target_delta": 0.103515625,
+          "foil_delta": 0.158203125
+        },
+        {
+          "index": 15,
+          "target_id": 7374,
+          "foil_id": 6290,
+          "target_delta": 0.380859375,
+          "foil_delta": 0.2314453125
+        },
+        {
+          "index": 16,
+          "target_id": 604,
+          "foil_id": 838,
+          "target_delta": 2.125,
+          "foil_delta": 1.96875
+        },
+        {
+          "index": 17,
+          "target_id": 12498,
+          "foil_id": 20199,
+          "target_delta": 0.3125,
+          "foil_delta": -0.255859375
+        },
+        {
+          "index": 18,
+          "target_id": 2042,
+          "foil_id": 4077,
+          "target_delta": 0.9443359375,
+          "foil_delta": 0.5498046875
+        },
+        {
+          "index": 19,
+          "target_id": 6134,
+          "foil_id": 4020,
+          "target_delta": 0.16015625,
+          "foil_delta": -0.146484375
+        }
+      ]
+    },
+    {
+      "layer": 0,
+      "head": 4,
+      "baseline_logit_diff": 1.7880859375,
+      "ablated_logit_diff": 1.91015625,
+      "delta": 0.1220703125,
+      "mean_target_delta": -0.362060546875,
+      "mean_foil_delta": -0.484375,
+      "attention": [
+        {
+          "sequence_index": 0,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.2997945249080658
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.13084730505943298
+            },
+            {
+              "position": 3,
+              "token": " play",
+              "weight": 0.12825317680835724
+            }
+          ]
+        },
+        {
+          "sequence_index": 1,
+          "query_position": 14,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": " with",
+              "weight": 0.1259785294532776
+            },
+            {
+              "position": 9,
+              "token": ",",
+              "weight": 0.11503318697214127
+            },
+            {
+              "position": 14,
+              "token": " spring",
+              "weight": 0.10995449870824814
+            }
+          ]
+        },
+        {
+          "sequence_index": 2,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.2664163410663605
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.17189420759677887
+            },
+            {
+              "position": 8,
+              "token": " causes",
+              "weight": 0.15727655589580536
+            }
+          ]
+        },
+        {
+          "sequence_index": 3,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 7,
+              "token": " move",
+              "weight": 0.2601885497570038
+            },
+            {
+              "position": 3,
+              "token": " sprint",
+              "weight": 0.14460866153240204
+            },
+            {
+              "position": 8,
+              "token": " fast",
+              "weight": 0.13956548273563385
+            }
+          ]
+        },
+        {
+          "sequence_index": 4,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.21465231478214264
+            },
+            {
+              "position": 5,
+              "token": " then",
+              "weight": 0.1582569181919098
+            },
+            {
+              "position": 7,
+              "token": " give",
+              "weight": 0.11855027079582214
+            }
+          ]
+        },
+        {
+          "sequence_index": 5,
+          "query_position": 12,
+          "top_attention": [
+            {
+              "position": 5,
+              "token": "ist",
+              "weight": 0.32206177711486816
+            },
+            {
+              "position": 4,
+              "token": " ho",
+              "weight": 0.13624714314937592
+            },
+            {
+              "position": 2,
+              "token": " pul",
+              "weight": 0.08681028336286545
+            }
+          ]
+        },
+        {
+          "sequence_index": 6,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 10,
+              "token": ",",
+              "weight": 0.1470625102519989
+            },
+            {
+              "position": 14,
+              "token": " is",
+              "weight": 0.11682211607694626
+            },
+            {
+              "position": 7,
+              "token": " is",
+              "weight": 0.10152586549520493
+            }
+          ]
+        },
+        {
+          "sequence_index": 7,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 10,
+              "token": ",",
+              "weight": 0.1470625102519989
+            },
+            {
+              "position": 14,
+              "token": " is",
+              "weight": 0.11682211607694626
+            },
+            {
+              "position": 7,
+              "token": " is",
+              "weight": 0.10152586549520493
+            }
+          ]
+        },
+        {
+          "sequence_index": 8,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 10,
+              "token": ",",
+              "weight": 0.16725769639015198
+            },
+            {
+              "position": 14,
+              "token": " is",
+              "weight": 0.11628362536430359
+            },
+            {
+              "position": 7,
+              "token": " is",
+              "weight": 0.1035085916519165
+            }
+          ]
+        },
+        {
+          "sequence_index": 9,
+          "query_position": 12,
+          "top_attention": [
+            {
+              "position": 11,
+              "token": " is",
+              "weight": 0.2102954089641571
+            },
+            {
+              "position": 7,
+              "token": ",",
+              "weight": 0.1443517506122589
+            },
+            {
+              "position": 9,
+              "token": " the",
+              "weight": 0.1227753609418869
+            }
+          ]
+        },
+        {
+          "sequence_index": 10,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.22509855031967163
+            },
+            {
+              "position": 8,
+              "token": " turns",
+              "weight": 0.18459957838058472
+            },
+            {
+              "position": 3,
+              "token": " rust",
+              "weight": 0.15719538927078247
+            }
+          ]
+        },
+        {
+          "sequence_index": 11,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.19253778457641602
+            },
+            {
+              "position": 2,
+              "token": " planes",
+              "weight": 0.1376594454050064
+            },
+            {
+              "position": 9,
+              "token": " air",
+              "weight": 0.12777122855186462
+            }
+          ]
+        },
+        {
+          "sequence_index": 12,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 9,
+              "token": " wings",
+              "weight": 0.19355759024620056
+            },
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.19141697883605957
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.14242690801620483
+            }
+          ]
+        },
+        {
+          "sequence_index": 13,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 10,
+              "token": ",",
+              "weight": 0.16725769639015198
+            },
+            {
+              "position": 14,
+              "token": " is",
+              "weight": 0.11628362536430359
+            },
+            {
+              "position": 7,
+              "token": " is",
+              "weight": 0.1035085916519165
+            }
+          ]
+        },
+        {
+          "sequence_index": 14,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.20782500505447388
+            },
+            {
+              "position": 9,
+              "token": " legs",
+              "weight": 0.16680429875850677
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.15654504299163818
+            }
+          ]
+        },
+        {
+          "sequence_index": 15,
+          "query_position": 13,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": " with",
+              "weight": 0.11553960293531418
+            },
+            {
+              "position": 8,
+              "token": ",",
+              "weight": 0.11506456881761551
+            },
+            {
+              "position": 12,
+              "token": " is",
+              "weight": 0.11347927898168564
+            }
+          ]
+        },
+        {
+          "sequence_index": 16,
+          "query_position": 12,
+          "top_attention": [
+            {
+              "position": 11,
+              "token": " is",
+              "weight": 0.2102954089641571
+            },
+            {
+              "position": 7,
+              "token": ",",
+              "weight": 0.1443517506122589
+            },
+            {
+              "position": 9,
+              "token": " the",
+              "weight": 0.1227753609418869
+            }
+          ]
+        },
+        {
+          "sequence_index": 17,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.2540900409221649
+            },
+            {
+              "position": 8,
+              "token": " produce",
+              "weight": 0.14269323647022247
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.1386307179927826
+            }
+          ]
+        },
+        {
+          "sequence_index": 18,
+          "query_position": 13,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": " of",
+              "weight": 0.21873080730438232
+            },
+            {
+              "position": 8,
+              "token": ",",
+              "weight": 0.12590016424655914
+            },
+            {
+              "position": 12,
+              "token": " is",
+              "weight": 0.11835579574108124
+            }
+          ]
+        },
+        {
+          "sequence_index": 19,
+          "query_position": 10,
+          "top_attention": [
+            {
+              "position": 6,
+              "token": ",",
+              "weight": 0.21547718346118927
+            },
+            {
+              "position": 4,
+              "token": " pr",
+              "weight": 0.171914204955101
+            },
+            {
+              "position": 3,
+              "token": "ers",
+              "weight": 0.12187247723340988
+            }
+          ]
+        }
+      ],
+      "logit_deltas": [
+        {
+          "index": 0,
+          "target_id": 2647,
+          "foil_id": 7815,
+          "target_delta": -0.50390625,
+          "foil_delta": -0.5859375
+        },
+        {
+          "index": 1,
+          "target_id": 6076,
+          "foil_id": 6729,
+          "target_delta": -0.43505859375,
+          "foil_delta": -0.478515625
+        },
+        {
+          "index": 2,
+          "target_id": 5640,
+          "foil_id": 46166,
+          "target_delta": -0.65234375,
+          "foil_delta": -0.88671875
+        },
+        {
+          "index": 3,
+          "target_id": 3049,
+          "foil_id": 991,
+          "target_delta": -0.791015625,
+          "foil_delta": -0.41015625
+        },
+        {
+          "index": 4,
+          "target_id": 1337,
+          "foil_id": 4692,
+          "target_delta": -0.8984375,
+          "foil_delta": -0.97216796875
+        },
+        {
+          "index": 5,
+          "target_id": 3440,
+          "foil_id": 36785,
+          "target_delta": -0.5068359375,
+          "foil_delta": -1.27734375
+        },
+        {
+          "index": 6,
+          "target_id": 3290,
+          "foil_id": 20697,
+          "target_delta": 0.296875,
+          "foil_delta": 0.16796875
+        },
+        {
+          "index": 7,
+          "target_id": 3290,
+          "foil_id": 17481,
+          "target_delta": 0.296875,
+          "foil_delta": -0.09765625
+        },
+        {
+          "index": 8,
+          "target_id": 17180,
+          "foil_id": 8887,
+          "target_delta": 0.21875,
+          "foil_delta": 0.12890625
+        },
+        {
+          "index": 9,
+          "target_id": 604,
+          "foil_id": 807,
+          "target_delta": 0.6171875,
+          "foil_delta": 0.5859375
+        },
+        {
+          "index": 10,
+          "target_id": 2266,
+          "foil_id": 4171,
+          "target_delta": -0.6484375,
+          "foil_delta": -0.5068359375
+        },
+        {
+          "index": 11,
+          "target_id": 1633,
+          "foil_id": 17492,
+          "target_delta": -0.60791015625,
+          "foil_delta": -0.99609375
+        },
+        {
+          "index": 12,
+          "target_id": 12098,
+          "foil_id": 11135,
+          "target_delta": -0.8515625,
+          "foil_delta": -1.2578125
+        },
+        {
+          "index": 13,
+          "target_id": 17180,
+          "foil_id": 17135,
+          "target_delta": 0.21875,
+          "foil_delta": 0.11328125
+        },
+        {
+          "index": 14,
+          "target_id": 7405,
+          "foil_id": 9813,
+          "target_delta": -0.80859375,
+          "foil_delta": -0.771484375
+        },
+        {
+          "index": 15,
+          "target_id": 7374,
+          "foil_id": 6290,
+          "target_delta": -0.6015625,
+          "foil_delta": -0.642578125
+        },
+        {
+          "index": 16,
+          "target_id": 604,
+          "foil_id": 838,
+          "target_delta": 0.6171875,
+          "foil_delta": 0.5625
+        },
+        {
+          "index": 17,
+          "target_id": 12498,
+          "foil_id": 20199,
+          "target_delta": -0.6318359375,
+          "foil_delta": -0.9130859375
+        },
+        {
+          "index": 18,
+          "target_id": 2042,
+          "foil_id": 4077,
+          "target_delta": -0.5712890625,
+          "foil_delta": -0.49560546875
+        },
+        {
+          "index": 19,
+          "target_id": 6134,
+          "foil_id": 4020,
+          "target_delta": -0.99609375,
+          "foil_delta": -0.953125
+        }
+      ]
+    },
+    {
+      "layer": 0,
+      "head": 7,
+      "baseline_logit_diff": 1.7880859375,
+      "ablated_logit_diff": 1.9189453125,
+      "delta": 0.130859375,
+      "mean_target_delta": 0.1439208984375,
+      "mean_foil_delta": 0.01245880126953125,
+      "attention": [
+        {
+          "sequence_index": 0,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.4881546199321747
+            },
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.11053860932588577
+            },
+            {
+              "position": 1,
+              "token": "If",
+              "weight": 0.09102103114128113
+            }
+          ]
+        },
+        {
+          "sequence_index": 1,
+          "query_position": 14,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.2933388352394104
+            },
+            {
+              "position": 2,
+              "token": " The",
+              "weight": 0.08350382000207901
+            },
+            {
+              "position": 13,
+              "token": " is",
+              "weight": 0.07496703416109085
+            }
+          ]
+        },
+        {
+          "sequence_index": 2,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.3551695644855499
+            },
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.1530166119337082
+            },
+            {
+              "position": 1,
+              "token": "If",
+              "weight": 0.10480811446905136
+            }
+          ]
+        },
+        {
+          "sequence_index": 3,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.4914323091506958
+            },
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.1176728904247284
+            },
+            {
+              "position": 1,
+              "token": "If",
+              "weight": 0.08642986416816711
+            }
+          ]
+        },
+        {
+          "sequence_index": 4,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.5974319577217102
+            },
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.08792979270219803
+            },
+            {
+              "position": 5,
+              "token": " then",
+              "weight": 0.062624491751194
+            }
+          ]
+        },
+        {
+          "sequence_index": 5,
+          "query_position": 12,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.3222569227218628
+            },
+            {
+              "position": 7,
+              "token": ",",
+              "weight": 0.09547463804483414
+            },
+            {
+              "position": 11,
+              "token": " a",
+              "weight": 0.08813236653804779
+            }
+          ]
+        },
+        {
+          "sequence_index": 6,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.2167544811964035
+            },
+            {
+              "position": 2,
+              "token": " The",
+              "weight": 0.08954868465662003
+            },
+            {
+              "position": 1,
+              "token": "If",
+              "weight": 0.06725415587425232
+            }
+          ]
+        },
+        {
+          "sequence_index": 7,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.2167544811964035
+            },
+            {
+              "position": 2,
+              "token": " The",
+              "weight": 0.08954868465662003
+            },
+            {
+              "position": 1,
+              "token": "If",
+              "weight": 0.06725415587425232
+            }
+          ]
+        },
+        {
+          "sequence_index": 8,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.20636649429798126
+            },
+            {
+              "position": 2,
+              "token": " The",
+              "weight": 0.09140410274267197
+            },
+            {
+              "position": 5,
+              "token": " is",
+              "weight": 0.06741493940353394
+            }
+          ]
+        },
+        {
+          "sequence_index": 9,
+          "query_position": 12,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.38406264781951904
+            },
+            {
+              "position": 11,
+              "token": " is",
+              "weight": 0.0693889632821083
+            },
+            {
+              "position": 12,
+              "token": " 4",
+              "weight": 0.06697092950344086
+            }
+          ]
+        },
+        {
+          "sequence_index": 10,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.5200472474098206
+            },
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.08506680279970169
+            },
+            {
+              "position": 4,
+              "token": "s",
+              "weight": 0.07558324187994003
+            }
+          ]
+        },
+        {
+          "sequence_index": 11,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.4328975975513458
+            },
+            {
+              "position": 4,
+              "token": ",",
+              "weight": 0.09419290721416473
+            },
+            {
+              "position": 8,
+              "token": " through",
+              "weight": 0.08435781300067902
+            }
+          ]
+        },
+        {
+          "sequence_index": 12,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.4170980751514435
+            },
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.10906447470188141
+            },
+            {
+              "position": 1,
+              "token": "If",
+              "weight": 0.08284934610128403
+            }
+          ]
+        },
+        {
+          "sequence_index": 13,
+          "query_position": 15,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.20636649429798126
+            },
+            {
+              "position": 2,
+              "token": " The",
+              "weight": 0.09140410274267197
+            },
+            {
+              "position": 5,
+              "token": " is",
+              "weight": 0.06741493940353394
+            }
+          ]
+        },
+        {
+          "sequence_index": 14,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.4309993386268616
+            },
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.12049093097448349
+            },
+            {
+              "position": 1,
+              "token": "If",
+              "weight": 0.10206706076860428
+            }
+          ]
+        },
+        {
+          "sequence_index": 15,
+          "query_position": 13,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.268520325422287
+            },
+            {
+              "position": 2,
+              "token": " The",
+              "weight": 0.09400945901870728
+            },
+            {
+              "position": 12,
+              "token": " is",
+              "weight": 0.07329613715410233
+            }
+          ]
+        },
+        {
+          "sequence_index": 16,
+          "query_position": 12,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.38406264781951904
+            },
+            {
+              "position": 11,
+              "token": " is",
+              "weight": 0.0693889632821083
+            },
+            {
+              "position": 12,
+              "token": " 4",
+              "weight": 0.06697092950344086
+            }
+          ]
+        },
+        {
+          "sequence_index": 17,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.3396390676498413
+            },
+            {
+              "position": 1,
+              "token": "If",
+              "weight": 0.11856299638748169
+            },
+            {
+              "position": 5,
+              "token": ",",
+              "weight": 0.11627448350191116
+            }
+          ]
+        },
+        {
+          "sequence_index": 18,
+          "query_position": 13,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.2942584156990051
+            },
+            {
+              "position": 2,
+              "token": " The",
+              "weight": 0.07657652348279953
+            },
+            {
+              "position": 12,
+              "token": " is",
+              "weight": 0.07222464680671692
+            }
+          ]
+        },
+        {
+          "sequence_index": 19,
+          "query_position": 10,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.4628956913948059
+            },
+            {
+              "position": 6,
+              "token": ",",
+              "weight": 0.09481305629014969
+            },
+            {
+              "position": 1,
+              "token": "If",
+              "weight": 0.07801363617181778
+            }
+          ]
+        }
+      ],
+      "logit_deltas": [
+        {
+          "index": 0,
+          "target_id": 2647,
+          "foil_id": 7815,
+          "target_delta": 0.111328125,
+          "foil_delta": -0.010986328125
+        },
+        {
+          "index": 1,
+          "target_id": 6076,
+          "foil_id": 6729,
+          "target_delta": -0.018310546875,
+          "foil_delta": -0.04052734375
+        },
+        {
+          "index": 2,
+          "target_id": 5640,
+          "foil_id": 46166,
+          "target_delta": 0.0205078125,
+          "foil_delta": -0.25390625
+        },
+        {
+          "index": 3,
+          "target_id": 3049,
+          "foil_id": 991,
+          "target_delta": 0.1103515625,
+          "foil_delta": 0.294921875
+        },
+        {
+          "index": 4,
+          "target_id": 1337,
+          "foil_id": 4692,
+          "target_delta": -0.00244140625,
+          "foil_delta": 0.00830078125
+        },
+        {
+          "index": 5,
+          "target_id": 3440,
+          "foil_id": 36785,
+          "target_delta": -0.03662109375,
+          "foil_delta": -0.4375
+        },
+        {
+          "index": 6,
+          "target_id": 3290,
+          "foil_id": 20697,
+          "target_delta": 0.3515625,
+          "foil_delta": 0.31640625
+        },
+        {
+          "index": 7,
+          "target_id": 3290,
+          "foil_id": 17481,
+          "target_delta": 0.3515625,
+          "foil_delta": -0.0390625
+        },
+        {
+          "index": 8,
+          "target_id": 17180,
+          "foil_id": 8887,
+          "target_delta": 0.546875,
+          "foil_delta": 0.26953125
+        },
+        {
+          "index": 9,
+          "target_id": 604,
+          "foil_id": 807,
+          "target_delta": 0.484375,
+          "foil_delta": 0.4453125
+        },
+        {
+          "index": 10,
+          "target_id": 2266,
+          "foil_id": 4171,
+          "target_delta": 0.12109375,
+          "foil_delta": 0.093994140625
+        },
+        {
+          "index": 11,
+          "target_id": 1633,
+          "foil_id": 17492,
+          "target_delta": 0.1005859375,
+          "foil_delta": -0.28515625
+        },
+        {
+          "index": 12,
+          "target_id": 12098,
+          "foil_id": 11135,
+          "target_delta": -0.09765625,
+          "foil_delta": -0.197265625
+        },
+        {
+          "index": 13,
+          "target_id": 17180,
+          "foil_id": 17135,
+          "target_delta": 0.546875,
+          "foil_delta": 0.236328125
+        },
+        {
+          "index": 14,
+          "target_id": 7405,
+          "foil_id": 9813,
+          "target_delta": -0.087890625,
+          "foil_delta": -0.064453125
+        },
+        {
+          "index": 15,
+          "target_id": 7374,
+          "foil_id": 6290,
+          "target_delta": -0.0498046875,
+          "foil_delta": -0.0751953125
+        },
+        {
+          "index": 16,
+          "target_id": 604,
+          "foil_id": 838,
+          "target_delta": 0.484375,
+          "foil_delta": 0.42578125
+        },
+        {
+          "index": 17,
+          "target_id": 12498,
+          "foil_id": 20199,
+          "target_delta": 0.0009765625,
+          "foil_delta": -0.2119140625
+        },
+        {
+          "index": 18,
+          "target_id": 2042,
+          "foil_id": 4077,
+          "target_delta": 0.046875,
+          "foil_delta": -0.0174560546875
+        },
+        {
+          "index": 19,
+          "target_id": 6134,
+          "foil_id": 4020,
+          "target_delta": -0.10546875,
+          "foil_delta": -0.2080078125
+        }
+      ]
+    }
+  ]
+}

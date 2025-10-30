@@ -1,0 +1,110 @@
+{
+  "cf": [
+    {
+      "condition": "cf",
+      "head": 2,
+      "value": 1.833984375
+    },
+    {
+      "condition": "cf",
+      "head": 11,
+      "value": 1.5888671875
+    },
+    {
+      "condition": "cf",
+      "head": 4,
+      "value": 1.5576171875
+    },
+    {
+      "condition": "cf",
+      "head": 7,
+      "value": 1.5361328125
+    },
+    {
+      "condition": "cf",
+      "head": 15,
+      "value": 1.4931640625
+    }
+  ],
+  "facts": [
+    {
+      "condition": "facts",
+      "head": 2,
+      "value": 1.748046875
+    },
+    {
+      "condition": "facts",
+      "head": 7,
+      "value": 1.5458984375
+    },
+    {
+      "condition": "facts",
+      "head": 4,
+      "value": 1.5419921875
+    },
+    {
+      "condition": "facts",
+      "head": 3,
+      "value": 1.5068359375
+    },
+    {
+      "condition": "facts",
+      "head": 0,
+      "value": 1.5009765625
+    }
+  ],
+  "logic": [
+    {
+      "condition": "logic",
+      "head": 2,
+      "value": 1.73046875
+    },
+    {
+      "condition": "logic",
+      "head": 11,
+      "value": 1.462890625
+    },
+    {
+      "condition": "logic",
+      "head": 4,
+      "value": 1.4375
+    },
+    {
+      "condition": "logic",
+      "head": 7,
+      "value": 1.4375
+    },
+    {
+      "condition": "logic",
+      "head": 9,
+      "value": 1.3759765625
+    }
+  ],
+  "neg": [
+    {
+      "condition": "neg",
+      "head": 2,
+      "value": 2.1171875
+    },
+    {
+      "condition": "neg",
+      "head": 4,
+      "value": 1.78515625
+    },
+    {
+      "condition": "neg",
+      "head": 7,
+      "value": 1.779296875
+    },
+    {
+      "condition": "neg",
+      "head": 11,
+      "value": 1.7685546875
+    },
+    {
+      "condition": "neg",
+      "head": 9,
+      "value": 1.693359375
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{"clean": "The color of grass is", "corrupt": "The color of coal is", "target": " green", "foil": " black"}
+{"clean": "The animal that barks is the", "corrupt": "The animal that purrs is the", "target": " dog", "foil": " cat"}
+{"clean": "The organ that pumps blood is the", "corrupt": "The organ that controls thought is the", "target": " heart", "foil": " brain"}
+{"clean": "The capital of France is", "corrupt": "The capital of Italy is", "target": " Paris", "foil": " Rome"}
+{"clean": "The season with snow is", "corrupt": "The season with rain showers is", "target": " winter", "foil": " spring"}
+{"clean": "The color of grass is", "corrupt": "The color of snow is", "target": " green", "foil": " white"}
+{"clean": "The animal that barks is the", "corrupt": "The animal that howls is the", "target": " dog", "foil": " wolf"}
+{"clean": "The organ that pumps blood is the", "corrupt": "The organ that absorbs oxygen is the", "target": " heart", "foil": " lung"}
+{"clean": "The capital of France is", "corrupt": "The capital of Germany is", "target": " Paris", "foil": " Berlin"}
+{"clean": "The season with snow is", "corrupt": "The season with heatwaves is", "target": " winter", "foil": " summer"}
+{"clean": "The color of grass is", "corrupt": "The color of lemons is", "target": " green", "foil": " yellow"}
+{"clean": "The animal that barks is the", "corrupt": "The animal that roars is the", "target": " dog", "foil": " lion"}
+{"clean": "The organ that pumps blood is the", "corrupt": "The organ that filters toxins is the", "target": " heart", "foil": " liver"}
+{"clean": "The fruit that is red is the", "corrupt": "The fruit that is green is the", "target": " apple", "foil": " pear"}
+{"clean": "The capital of France is", "corrupt": "The capital of Spain is", "target": " Paris", "foil": " Madrid"}
+{"clean": "The season with snow is", "corrupt": "The season with falling leaves is", "target": " winter", "foil": " autumn"}
+{"clean": "The color of grass is", "corrupt": "The color of pumpkins is", "target": " green", "foil": " orange"}
+{"clean": "The capital of France is", "corrupt": "The capital of Austria is", "target": " Paris", "foil": " Vienna"}
+{"clean": "The season with snow is", "corrupt": "Frozen water from the sky is called", "target": " winter", "foil": " snow"}
+{"clean": "The color of grass is", "corrupt": "The color of lavender is", "target": " green", "foil": " purple"}
+{"clean": "The animal that barks is the", "corrupt": "The animal that gallops is the", "target": " dog", "foil": " horse"}
+{"clean": "The organ that pumps blood is the", "corrupt": "The organ that digests food is the", "target": " heart", "foil": " stomach"}
+{"clean": "The capital of France is", "corrupt": "The capital of Sweden is", "target": " Paris", "foil": " Stockholm"}
+{"clean": "The season with snow is", "corrupt": "Water falling from the sky is called", "target": " winter", "foil": " rain"}
+{"clean": "The color of grass is", "corrupt": "The color of sand is", "target": " green", "foil": " brown"}
+{"clean": "The animal that barks is the", "corrupt": "The animal that gives wool is the", "target": " dog", "foil": " sheep"}
+{"clean": "The organ that pumps blood is the", "corrupt": "The organ that protects the body is the", "target": " heart", "foil": " skin"}
+{"clean": "The fruit that is red is the", "corrupt": "The fruit that is sour and yellow is the", "target": " apple", "foil": " lemon"}
+{"clean": "The season with snow is", "corrupt": "Moving air is called", "target": " winter", "foil": " wind"}
+{"clean": "The color of grass is", "corrupt": "The color of the sky is", "target": " green", "foil": " blue"}
+{"clean": "The organ that pumps blood is the", "corrupt": "The fluid that carries oxygen is", "target": " heart", "foil": " blood"}
+{"clean": "The color of grass is", "corrupt": "The color of clouds is", "target": " green", "foil": " gray"}
+{"clean": "The animal that barks is the", "corrupt": "The animal that quacks is the", "target": " dog", "foil": " duck"}
+{"clean": "The organ that pumps blood is the", "corrupt": "The organ that sees light is the", "target": " heart", "foil": " eye"}
+{"clean": "The capital of France is", "corrupt": "The capital of Russia is", "target": " Paris", "foil": " Moscow"}
+{"clean": "The season with snow is", "corrupt": "The measure of heat is called", "target": " winter", "foil": " temperature"}
+{"clean": "The color of grass is", "corrupt": "The color of steel is", "target": " green", "foil": " silver"}
+{"clean": "The animal that barks is the", "corrupt": "The animal that produces milk is the", "target": " dog", "foil": " cow"}
+{"clean": "The organ that pumps blood is the", "corrupt": "The organ that hears sound is the", "target": " heart", "foil": " ear"}
+{"clean": "The fruit that is red is the", "corrupt": "The drink made from roasted beans is", "target": " apple", "foil": " coffee"}
+{"clean": "The capital of France is", "corrupt": "The capital of Japan is", "target": " Paris", "foil": " Tokyo"}
+{"clean": "The season with rain showers is", "corrupt": "The season with snow is", "target": " spring", "foil": " winter"}
+{"clean": "The color of grass is", "corrupt": "The color of gold is", "target": " green", "foil": " gold"}
+{"clean": "The organ that pumps blood is the", "corrupt": "The organ that smells is the", "target": " heart", "foil": " nose"}
+{"clean": "The fruit that is red is the", "corrupt": "The drink made from leaves is", "target": " apple", "foil": " tea"}
+{"clean": "The capital of France is", "corrupt": "The capital of China is", "target": " Paris", "foil": " Beijing"}
+{"clean": "The season with rain showers is", "corrupt": "The season with heatwaves is", "target": " spring", "foil": " summer"}
+{"clean": "The color of grass is", "corrupt": "The color of clay is", "target": " green", "foil": " red"}
+{"clean": "The animal that barks is the", "corrupt": "The insect that builds colonies is the", "target": " dog", "foil": " ant"}
+{"clean": "The organ that pumps blood is the", "corrupt": "The organ that tastes is the", "target": " heart", "foil": " mouth"}
+{"clean": "The fruit that is red is the", "corrupt": "The grain used for bread is", "target": " apple", "foil": " wheat"}
+{"clean": "The season with rain showers is", "corrupt": "The season with falling leaves is", "target": " spring", "foil": " autumn"}
+{"clean": "The color of coal is", "corrupt": "The color of grass is", "target": " black", "foil": " green"}
+{"clean": "The animal that purrs is the", "corrupt": "The animal that barks is the", "target": " cat", "foil": " dog"}
+{"clean": "The organ that controls thought is the", "corrupt": "The organ that pumps blood is the", "target": " brain", "foil": " heart"}
+{"clean": "The capital of Italy is", "corrupt": "The capital of France is", "target": " Rome", "foil": " Paris"}
+{"clean": "The season with rain showers is", "corrupt": "Frozen water from the sky is called", "target": " spring", "foil": " snow"}
+{"clean": "The color of coal is", "corrupt": "The color of snow is", "target": " black", "foil": " white"}
+{"clean": "The animal that purrs is the", "corrupt": "The animal that howls is the", "target": " cat", "foil": " wolf"}
+{"clean": "The organ that controls thought is the", "corrupt": "The organ that absorbs oxygen is the", "target": " brain", "foil": " lung"}
+{"clean": "The capital of Italy is", "corrupt": "The capital of Germany is", "target": " Rome", "foil": " Berlin"}
+{"clean": "The season with rain showers is", "corrupt": "Water falling from the sky is called", "target": " spring", "foil": " rain"}
+{"clean": "The color of coal is", "corrupt": "The color of lemons is", "target": " black", "foil": " yellow"}
+{"clean": "The animal that purrs is the", "corrupt": "The animal that roars is the", "target": " cat", "foil": " lion"}
+{"clean": "The organ that controls thought is the", "corrupt": "The organ that filters toxins is the", "target": " brain", "foil": " liver"}
+{"clean": "The capital of Italy is", "corrupt": "The capital of Spain is", "target": " Rome", "foil": " Madrid"}
+{"clean": "The season with rain showers is", "corrupt": "Moving air is called", "target": " spring", "foil": " wind"}
+{"clean": "The color of coal is", "corrupt": "The color of pumpkins is", "target": " black", "foil": " orange"}
+{"clean": "The capital of Italy is", "corrupt": "The capital of Austria is", "target": " Rome", "foil": " Vienna"}
+{"clean": "The color of coal is", "corrupt": "The color of lavender is", "target": " black", "foil": " purple"}
+{"clean": "The animal that purrs is the", "corrupt": "The animal that gallops is the", "target": " cat", "foil": " horse"}
+{"clean": "The organ that controls thought is the", "corrupt": "The organ that digests food is the", "target": " brain", "foil": " stomach"}
+{"clean": "The capital of Italy is", "corrupt": "The capital of Sweden is", "target": " Rome", "foil": " Stockholm"}
+{"clean": "The season with rain showers is", "corrupt": "The measure of heat is called", "target": " spring", "foil": " temperature"}
+{"clean": "The color of coal is", "corrupt": "The color of sand is", "target": " black", "foil": " brown"}
+{"clean": "The animal that purrs is the", "corrupt": "The animal that gives wool is the", "target": " cat", "foil": " sheep"}
+{"clean": "The organ that controls thought is the", "corrupt": "The organ that protects the body is the", "target": " brain", "foil": " skin"}
+{"clean": "The season with heatwaves is", "corrupt": "The season with snow is", "target": " summer", "foil": " winter"}
+{"clean": "The color of coal is", "corrupt": "The color of the sky is", "target": " black", "foil": " blue"}
+{"clean": "The organ that controls thought is the", "corrupt": "The fluid that carries oxygen is", "target": " brain", "foil": " blood"}
+{"clean": "The season with heatwaves is", "corrupt": "The season with rain showers is", "target": " summer", "foil": " spring"}
+{"clean": "The color of coal is", "corrupt": "The color of clouds is", "target": " black", "foil": " gray"}
+{"clean": "The animal that purrs is the", "corrupt": "The animal that quacks is the", "target": " cat", "foil": " duck"}
+{"clean": "The organ that controls thought is the", "corrupt": "The organ that sees light is the", "target": " brain", "foil": " eye"}
+{"clean": "The capital of Italy is", "corrupt": "The capital of Russia is", "target": " Rome", "foil": " Moscow"}
+{"clean": "The season with heatwaves is", "corrupt": "The season with falling leaves is", "target": " summer", "foil": " autumn"}
+{"clean": "The color of coal is", "corrupt": "The color of steel is", "target": " black", "foil": " silver"}
+{"clean": "The animal that purrs is the", "corrupt": "The animal that produces milk is the", "target": " cat", "foil": " cow"}
+{"clean": "The organ that controls thought is the", "corrupt": "The organ that hears sound is the", "target": " brain", "foil": " ear"}
+{"clean": "The capital of Italy is", "corrupt": "The capital of Japan is", "target": " Rome", "foil": " Tokyo"}
+{"clean": "The season with heatwaves is", "corrupt": "Frozen water from the sky is called", "target": " summer", "foil": " snow"}
+{"clean": "The color of coal is", "corrupt": "The color of gold is", "target": " black", "foil": " gold"}
+{"clean": "The organ that controls thought is the", "corrupt": "The organ that smells is the", "target": " brain", "foil": " nose"}
+{"clean": "The capital of Italy is", "corrupt": "The capital of China is", "target": " Rome", "foil": " Beijing"}
+{"clean": "The season with heatwaves is", "corrupt": "Water falling from the sky is called", "target": " summer", "foil": " rain"}
+{"clean": "The color of coal is", "corrupt": "The color of clay is", "target": " black", "foil": " red"}
+{"clean": "The animal that purrs is the", "corrupt": "The insect that builds colonies is the", "target": " cat", "foil": " ant"}
+{"clean": "The organ that controls thought is the", "corrupt": "The organ that tastes is the", "target": " brain", "foil": " mouth"}
+{"clean": "The season with heatwaves is", "corrupt": "Moving air is called", "target": " summer", "foil": " wind"}
+{"clean": "The color of snow is", "corrupt": "The color of grass is", "target": " white", "foil": " green"}
+{"clean": "The animal that howls is the", "corrupt": "The animal that barks is the", "target": " wolf", "foil": " dog"}
+{"clean": "The organ that absorbs oxygen is the", "corrupt": "The organ that pumps blood is the", "target": " lung", "foil": " heart"}
+{"clean": "The capital of Germany is", "corrupt": "The capital of France is", "target": " Berlin", "foil": " Paris"}
+{"clean": "The color of snow is", "corrupt": "The color of coal is", "target": " white", "foil": " black"}
+{"clean": "The animal that howls is the", "corrupt": "The animal that purrs is the", "target": " wolf", "foil": " cat"}
+{"clean": "The organ that absorbs oxygen is the", "corrupt": "The organ that controls thought is the", "target": " lung", "foil": " brain"}
+{"clean": "The capital of Germany is", "corrupt": "The capital of Italy is", "target": " Berlin", "foil": " Rome"}
+{"clean": "The season with heatwaves is", "corrupt": "The measure of heat is called", "target": " summer", "foil": " temperature"}
+{"clean": "The color of snow is", "corrupt": "The color of lemons is", "target": " white", "foil": " yellow"}
+{"clean": "The animal that howls is the", "corrupt": "The animal that roars is the", "target": " wolf", "foil": " lion"}
+{"clean": "The organ that absorbs oxygen is the", "corrupt": "The organ that filters toxins is the", "target": " lung", "foil": " liver"}
+{"clean": "The capital of Germany is", "corrupt": "The capital of Spain is", "target": " Berlin", "foil": " Madrid"}
+{"clean": "The season with falling leaves is", "corrupt": "The season with snow is", "target": " autumn", "foil": " winter"}
+{"clean": "The color of snow is", "corrupt": "The color of pumpkins is", "target": " white", "foil": " orange"}
+{"clean": "The capital of Germany is", "corrupt": "The capital of Austria is", "target": " Berlin", "foil": " Vienna"}
+{"clean": "The season with falling leaves is", "corrupt": "The season with rain showers is", "target": " autumn", "foil": " spring"}
+{"clean": "The color of snow is", "corrupt": "The color of lavender is", "target": " white", "foil": " purple"}
+{"clean": "The animal that howls is the", "corrupt": "The animal that gallops is the", "target": " wolf", "foil": " horse"}
+{"clean": "The organ that absorbs oxygen is the", "corrupt": "The organ that digests food is the", "target": " lung", "foil": " stomach"}
+{"clean": "The capital of Germany is", "corrupt": "The capital of Sweden is", "target": " Berlin", "foil": " Stockholm"}
+{"clean": "The season with falling leaves is", "corrupt": "The season with heatwaves is", "target": " autumn", "foil": " summer"}
+{"clean": "The color of snow is", "corrupt": "The color of sand is", "target": " white", "foil": " brown"}
+{"clean": "The animal that howls is the", "corrupt": "The animal that gives wool is the", "target": " wolf", "foil": " sheep"}
+{"clean": "The organ that absorbs oxygen is the", "corrupt": "The organ that protects the body is the", "target": " lung", "foil": " skin"}
+{"clean": "The season with falling leaves is", "corrupt": "Frozen water from the sky is called", "target": " autumn", "foil": " snow"}
+{"clean": "The color of snow is", "corrupt": "The color of the sky is", "target": " white", "foil": " blue"}
+{"clean": "The organ that absorbs oxygen is the", "corrupt": "The fluid that carries oxygen is", "target": " lung", "foil": " blood"}

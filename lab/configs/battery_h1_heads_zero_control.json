@@ -1,0 +1,8 @@
+{
+  "type": "heads_zero",
+  "layers": "all",
+  "scales": [0.0],
+  "positions": "all",
+  "random_control": true,
+  "random_count": 4
+}

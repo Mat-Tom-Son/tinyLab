@@ -1,0 +1,92 @@
+[
+  {
+    "model": "gpt2",
+    "layer": 0,
+    "head": 2,
+    "lexicon": "hedge",
+    "log_odds": 1.2154910150577998,
+    "auc": 0.5013905533776144,
+    "token_count": 541
+  },
+  {
+    "model": "gpt2",
+    "layer": 0,
+    "head": 2,
+    "lexicon": "booster",
+    "log_odds": 4.289126560622807,
+    "auc": 0.5157116451016636,
+    "token_count": 541
+  },
+  {
+    "model": "gpt2",
+    "layer": 0,
+    "head": 4,
+    "lexicon": "hedge",
+    "log_odds": -1.268814677505876,
+    "auc": 0.4986162361623616,
+    "token_count": 549
+  },
+  {
+    "model": "gpt2",
+    "layer": 0,
+    "head": 4,
+    "lexicon": "booster",
+    "log_odds": -2.8912820902303102,
+    "auc": 0.4921586715867159,
+    "token_count": 549
+  },
+  {
+    "model": "gpt2",
+    "layer": 0,
+    "head": 7,
+    "lexicon": "hedge",
+    "log_odds": 0.18554217149399682,
+    "auc": 0.500003379120415,
+    "token_count": 543
+  },
+  {
+    "model": "gpt2",
+    "layer": 0,
+    "head": 7,
+    "lexicon": "booster",
+    "log_odds": -2.874698150731842,
+    "auc": 0.49220183486238533,
+    "token_count": 543
+  },
+  {
+    "model": "mistral",
+    "layer": 0,
+    "head": 22,
+    "lexicon": "hedge",
+    "log_odds": 0.0,
+    "auc": 0.5,
+    "token_count": 600
+  },
+  {
+    "model": "mistral",
+    "layer": 0,
+    "head": 22,
+    "lexicon": "booster",
+    "log_odds": 0.0,
+    "auc": 0.5,
+    "token_count": 600
+  },
+  {
+    "model": "mistral",
+    "layer": 0,
+    "head": 23,
+    "lexicon": "hedge",
+    "log_odds": 0.0,
+    "auc": 0.5,
+    "token_count": 600
+  },
+  {
+    "model": "mistral",
+    "layer": 0,
+    "head": 23,
+    "lexicon": "booster",
+    "log_odds": 0.0,
+    "auc": 0.5,
+    "token_count": 600
+  }
+]

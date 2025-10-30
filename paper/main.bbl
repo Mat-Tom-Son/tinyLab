@@ -1,0 +1,111 @@
+\begin{thebibliography}{10}
+
+\bibitem{aghajanyan2021better}
+Armen Aghajanyan, Akshat Shrivastava, Amal Gupta, Naman Goyal, Luke
+  Zettlemoyer, and Sonal Gupta.
+\newblock Better fine-tuning by reducing representational collapse.
+\newblock In {\em International Conference on Learning Representations}, 2021.
+
+\bibitem{bricken2023monosemantic}
+Trenton Bricken, Alex Templeton, Joshua Batson, Benjamin Chen, Adam Jermyn,
+  Toby Conerly, and Chris Olah.
+\newblock Towards monosemanticity: Decomposing language models with dictionary
+  learning.
+\newblock {\em Transformer Circuits Thread}, 2023.
+
+\bibitem{elhage2022toy}
+Nelson Elhage, Tom Hume, Catherine Olsson, Nick Schiefer, Tom Henighan, Scott
+  Kravec, Catherine Chen, Neel Nanda, Nicholas Joseph, Ben Mann, et~al.
+\newblock Toy models of superposition.
+\newblock {\em Transformer Circuits Thread}, 2022.
+
+\bibitem{elhage2021mathematical}
+Nelson Elhage, Neel Nanda, Catherine Olsson, Tom Henighan, Nicholas Joseph, Ben
+  Mann, Dani Yogatama, Greg Brockman, Theodore Lieberman, Dario Amodei, et~al.
+\newblock A mathematical framework for transformer circuits.
+\newblock {\em Transformer Circuits Thread}, 2021.
+
+\bibitem{hanna2023greater}
+Michael Hanna, Ofir~Press Liu, and Aric Variengien.
+\newblock How does gpt-2 compute greater-than?: Interpreting mathematical
+  abilities in a pre-trained language model.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2023.
+
+\bibitem{heimersheim2024activation}
+S.~Heimersheim and N.~Nanda.
+\newblock How to use and interpret activation patching.
+\newblock Alignment Forum, 2024.
+\newblock \url{https://www.alignmentforum.org/posts/}.
+
+\bibitem{kadavath2022language}
+Saurav Kadavath, Toby Conerly, Amanda Askell, Tom Henighan, Dawn Drain, Ethan
+  Perez, Nick Schiefer, Andrew Jones, Anna Chen, Yuntao Bai, et~al.
+\newblock Language models (mostly) know what they know.
+\newblock {\em arXiv preprint arXiv:2207.05221}, 2022.
+
+\bibitem{kalai2025why}
+Adam~Tauman Kalai, Ofir Nachum, Santosh~S. Vempala, and Eric Zhang.
+\newblock Why language models hallucinate.
+\newblock {\em arXiv preprint arXiv:2509.04664}, 2025.
+
+\bibitem{kalai2023calibrated}
+Adam~Tauman Kalai and Santosh~S. Vempala.
+\newblock Calibrated language models must hallucinate.
+\newblock {\em arXiv preprint arXiv:2311.14648}, 2023.
+
+\bibitem{lin2021truthfulqa}
+Stephanie Lin, Jacob Hilton, and Owain Evans.
+\newblock Truthfulqa: Measuring how models mimic human falsehoods.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2021.
+
+\bibitem{mcdougall2024copy}
+Connor McDougall, Alex Conmy, Will Rushing, Thomas McGrath, and Neel Nanda.
+\newblock Copy suppression: Comprehensively understanding an attention head.
+\newblock In {\em Proceedings of the 7th BlackboxNLP Workshop}, 2024.
+
+\bibitem{meng2022locating}
+Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov.
+\newblock Locating and editing factual associations in gpt.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2022.
+
+\bibitem{jiang2023mistral}
+{Mistral AI}.
+\newblock Mistral 7b.
+\newblock {\em arXiv preprint arXiv:2310.06825}, 2023.
+
+\bibitem{olah2020zoom}
+Chris Olah, Nick Cammarata, Ludwig Schubert, Gabriel Goh, Michael Petrov, and
+  Shan Carter.
+\newblock Zoom in: An introduction to circuits.
+\newblock {\em Distill}, 2020.
+\newblock https://distill.pub/2020/circuits/zoom-in.
+
+\bibitem{olsson2022incontext}
+Catherine Olsson, Nelson Elhage, Neel Nanda, Nicholas Joseph, Nova DasSarma,
+  Tom Henighan, Ben Mann, Amanda Askell, Yuntao Bai, Anna Goldie, et~al.
+\newblock In-context learning and induction heads.
+\newblock {\em Transformer Circuits Thread}, 2022.
+
+\bibitem{quirke2024understanding}
+Patrick Quirke, Filippo Barez, Richard Mendelsohn, Arvind Sheshadri, Adam
+  Jermyn, and Neel Nanda.
+\newblock Understanding addition in transformers.
+\newblock In {\em International Conference on Learning Representations}, 2024.
+
+\bibitem{radford2019language}
+Alec Radford, Jeffrey Wu, Rewon Child, et~al.
+\newblock Language models are unsupervised multitask learners.
+\newblock {\em OpenAI Technical Report}, 2019.
+
+\bibitem{valeriani2023geometry}
+Daniele Valeriani, Carlo Ciliberto, and Mark Gales.
+\newblock Geometry of the loss landscape in overparameterized neural networks.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2023.
+
+\bibitem{wang2023interpret}
+Kevin Wang, Aric Variengien, Alex Conmy, Ben Shlegeris, and Jacob Steinhardt.
+\newblock Interpretability in the wild: A circuit for indirect object
+  identification in gpt-2 small.
+\newblock In {\em International Conference on Learning Representations}, 2023.
+
+\end{thebibliography}

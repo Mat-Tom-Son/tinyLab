@@ -1,0 +1,8 @@
+{
+  "type": "activation_patch",
+  "granularity": "layer_resid",
+  "layers": [11],
+  "positions": "last_token",
+  "patch_direction": "corrupt->clean",
+  "sham_control": false
+}

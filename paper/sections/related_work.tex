@@ -1,0 +1,25 @@
+\section{Related Work}
+
+\subsection{Mechanistic interpretability foundations}
+We adopt the transformer-circuits framework of QK/OV decomposition and modular computation~\cite{elhage2021mathematical,olah2020zoom}, treating attention heads as circuits that route and transform information. Our analysis uses activation (\emph{forward}) and path-restricted patching within this framework, alongside targeted ablations.
+
+\subsection{Circuit motifs in transformers}
+Prior interpretability studies have mapped capability-building circuits: induction heads copy tokens in-context across models~\cite{olsson2022incontext}; the indirect-object-identification (IOI) circuit reverse-engineered a 26-head mechanism in GPT-2-small~\cite{wang2023interpret}; and arithmetic/relational subcircuits (e.g., addition, greater-than) were dissected in small transformers~\cite{hanna2023greater,quirke2024understanding}. Copy-suppression heads down-weight spurious repeats later in the network~\cite{mcdougall2024copy}. In contrast, our \emph{suppressors} sit in layer~0, degrade factual continuation quality, and appear driven by statistical incentives rather than capability construction.
+
+\subsection{Methods: causal and path patching}
+Activation patching establishes necessity by replacing corrupted activations with clean references, while path patching restricts the intervention to specific communication channels. We follow practical guidance from Heimersheim and Nanda~\cite{heimersheim2024activation} and the causal editing lineage exemplified by ROME~\cite{meng2022locating}.
+
+\subsection{Polysemanticity, superposition, and monosemantic features}
+Neurons often exhibit superposition, mixing multiple features~\cite{elhage2022toy}. Sparse-autoencoder decompositions extract more monosemantic features~\cite{bricken2023monosemantic}. Our suppressors act monosemantically across tasks, consistently degrading factual continuations, aligning more with SAE-style features than with classic polysemantic neurons.
+
+\subsection{Calibration and truthfulness}
+TruthfulQA demonstrates that models mimic human falsehoods even when they could abstain~\cite{lin2021truthfulqa}. Large language models often know when they are correct yet remain miscalibrated on out-of-distribution inputs~\cite{kadavath2022language}. We connect these behavioral findings to an early-layer circuit: suppressors bias factual continuations under uncertainty.
+
+\subsection{Statistical foundations of hallucination}
+Recent theory proves that calibrated language models must hallucinate on certain fact types~\cite{kalai2023calibrated}, and that training pipelines rewarding guessing reinforce the behavior~\cite{kalai2025why}. We provide the first mechanistic instantiation of these predictions: layer-0 suppressors implement the loss-reducing, truth-degrading trade-off predicted under binary evaluation.
+
+\subsection{Reproducible infrastructure and geometry}
+In the circuits ethos, we standardise ablation, patching, probe suites, and reporting to facilitate reuse~\cite{olah2020zoom}. Observed expansion--compression patterns and low intrinsic dimensionality in transformer representations~\cite{aghajanyan2021better,valeriani2023geometry} suggest stable geometry across scales, consistent with suppressors appearing in both GPT-2 Small and Medium.
+
+\subsection{Gap clarified}
+While prior work has characterised capability-enhancing circuits and later-layer copy-suppression mechanisms, none has mechanistically grounded why models trade factuality for hedging under uncertainty. Our identification of layer-0 suppressors bridges this gap, linking statistical predictions to concrete transformer circuitry.

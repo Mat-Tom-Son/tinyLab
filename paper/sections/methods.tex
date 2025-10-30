@@ -1,0 +1,42 @@
+\section{Methods}\label{sec:methods}
+
+\subsection{Models, datasets, and probes}
+We study GPT-2 Medium (355\,M parameters)~\cite{radford2019language} and Mistral-7B v0.1~\cite{jiang2023mistral}, both loaded via TransformerLens with \texttt{float16} weights on Apple M-series (MPS) hardware.
+To elicit suppressor behavior we use the single-token factuality probe suite introduced in Tiny Ablation Lab: balanced corpora for factual recall, negation, counterfactual, and logical implication tasks.
+Each corpus specifies matched clean/corrupt prompts and single-token target/foil completions, enabling logit-difference evaluation.
+
+\subsection{Ablation batteries}
+Suppressor candidates are located with the H1 ``heads\_zero'' battery, which zeroes individual attention heads in layer~0 while measuring logit difference (\texttt{logit\_diff}) and the flip rate of the argmax token (\texttt{acc\_flip\_rate}).
+Cross-condition orchestrators execute the same battery on all four corpora per model to surface heads whose ablation increases logit difference.
+
+We test destructive cooperation using H5 batteries.
+For GPT-2 we reuse the established triplet configuration (heads~\{0:2, 0:4, 0:7\}); for Mistral we construct corrected batteries targeting \{0:21, 0:22, 0:23\} and the minimal suppressor pair \{0:22, 0:23\}.
+All H5 runs use the Tiny Ablation Lab harness with per-condition configs so that seeds, dataset IDs, and battery hashes are recorded under each run directory.
+
+To evaluate downstream behavior we employ the H6 reverse patch, which patches the residual stream of a reference model into the ablated model over sliding token windows.
+The H6 runs confirm that the suppressor circuit acts locally at the beginning of the sequence and that removing it restores factual continuations without disrupting later layers.
+
+\subsection{OV direction analysis}
+We characterise the semantic direction learned by each suppressor head using the project’s OV report module.
+For a given config and tag we collect 160 samples, project the head’s output vector onto the vocabulary, and record the top/bottom 150 tokens.
+Token overlap and clustering (\texttt{lab/analysis/cluster\_ov\_tokens.py}) quantify how closely the Mistral heads share GPT-2’s hedging signature.
+Reports and clusters are versioned in \texttt{reports/ov\_report\_*.json} and \texttt{reports/ov\_token\_clusters\_*.json}.
+Statistical summary: all reported metrics aggregate the per-seed values. GPT-2 uses seeds 0–2; Mistral runs seeds 0–2 on the H1 negation and counterfactual batteries and seed 0 elsewhere. We report 95\% confidence intervals from the seed distribution; NaN values in KL divergence reflect numerical saturation of the estimator when logits approach channel capacity for deterministic completions.
+The additional Mistral seeds reproduce the seed~0 logit-difference trajectories exactly, so the associated 95\% intervals collapse to zero width; we keep them to document determinism and queue broader multi-seed sweeps for future work.
+
+\subsection{Lexicon-based enrichment analysis}
+To quantify the semantic shift induced by suppressors we build a simple hedge/booster lexicon (Appendix~\ref{app:lexicon}).
+Tokens are converted to word forms by stripping whitespace, punctuation, and byte-pair fragments before lookup.
+For each suppressor head we compute log-odds enrichment of hedges (and boosters) among the top-$K$ OV projections relative to the pool of other layer-0 heads, using add-$0.5$ smoothing and 1{,}000 frequency-matched resamples.
+A single-feature classifier that predicts ``upweighted'' if a token is in the lexicon yields a small but positive AUC for head~0:2 (Appendix~\ref{app:lexicon}); Mistral heads 0:22/0:23 show no enrichment, consistent with their editorial rather than hedging direction.
+
+\subsection{Random head baselines}
+To pre-empt the concern that any early head removal improves accuracy, we resample 1{,}000 random layer-0 single ablations and 1{,}000 random layer-0 pair combinations by drawing from the empirical H1 distribution (suppressor heads excluded).
+Suppressor head 0:2 lies at the 100th percentile of the single-head distribution, and the suppressor trio $\{0{:}2,0{:}4,0{:}7\}$ lands at the 99.5th percentile of the simulated pair distribution (Figure~\ref{fig:random-baseline}).
+
+\subsection{Reproducibility checks}
+Every run directory stores the canonical configuration (\texttt{config.json}), model/data hashes, and metric summaries (\texttt{metrics/summary.json}). Detailed hashes and seeds for Table~\ref{tab:impact} are collated in Appendix~\ref{app:repro}. GPT-2 runs use seeds $\{0,1,2\}$; Mistral uses $\{0,1,2\}$ on negation/counterfactual probes and $\{0\}$ on facts/logic.
+We audited the suppressor findings by verifying that seed averages were finite for \texttt{logit\_diff} and \texttt{acc\_flip\_rate}, that orchestrator parents without summaries list child runs with valid hashes, and that the Mistral logic anomaly traces to layer-0 head~21 (negative \texttt{logit\_diff} when ablated; see Section~\ref{sec:findings}). Table~\ref{tab:impact} is generated directly from an audited Markdown summary (\url{reports/figure1_impact_table.md}) with a footnote noting the head~21 antagonism.
+\subsection{Discovery path and transparency}
+During calibration experiments we clip logits to $\pm 20$ prior to softmax to avoid numerical overflow (Appendix~\ref{app:calibration}), and all autoregressive passes use deterministic settings on Apple M-series hardware.
+This project began as an entropy-geometry probe targeting emotion, ambiguity, and narrative tension. Early layer-0 activation sweeps surfaced heads $\{0{:}2,0{:}4,0{:}7\}$ that strongly suppressed factual continuations---orthogonal to our initial hypothesis but integral to hallucination-under-uncertainty. Once identified, we fixed analysis protocols: ablation batteries across the four probe tasks, random layer-0 baselines, path patching to measure mediation, and cross-architecture replication on Mistral-7B. We did not pre-register; all confirmatory analyses followed these fixed protocols.

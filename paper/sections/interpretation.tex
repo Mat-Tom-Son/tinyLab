@@ -1,0 +1,25 @@
+\section{Mechanistic Interpretation of Suppressor Attractors}
+
+The standard ablation story ends with “remove bad heads, performance improves’’.
+Suppressors suggest a richer picture.
+When the suppressor trio fires in GPT-2---or the {22, 23} pair in Mistral---the residual stream exiting layer~0 already contains a hedging-oriented rotation of token probabilities.
+Downstream attention and feedforward blocks therefore operate in a regime where plausible meta-commentary is pre-selected, making it costly for later layers to reintroduce factual certainty.
+Reverse-patch experiments support this attractor view: inserting clean activations into an ablated run does not restore factuality, yet inserting corrupted suppressor activations into a clean run rapidly induces hedging.
+Figure~\ref{fig:path-dag} summarises the mediated contribution on the facts probe: ablation alone yields $\Delta\mathrm{LD}=+0.40$, reinstating only the suppressor$\rightarrow$layer-11 path leaves $\Delta\mathrm{LD}=+0.13$, so $67\%$ of the effect is mediated by that path; the reciprocal reverse patch drives $\Delta\mathrm{LD}=-0.93$ in the clean model.
+
+In GPT-2, the semantic direction couples suppression and hedging: factual stems are demoted while hedging vocabulary is promoted.
+This produces an attractor that favors calibrated-sounding evasions.
+Mistral takes a different route.
+The suppressor pair demotes factual tokens without a corresponding hedging boost; instead it surfaces multilingual editorial fragments.
+The anti-suppressor head~0:21 then selectively counteracts suppression on logic tasks, proving that the attractor is task-contingent rather than globally enforced.
+
+These dynamics align with Kalai et al.'s incentive view.
+Suppressors are the concrete machinery that allows a model to satisfy conflicting objectives: keep accuracy high when knowledge is certain, yet emit fluent hedging when knowledge is sparse.
+Rather than toggling individual token probabilities late in the computation, the model enters a behavioral basin from which hedged discourse feels natural.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.48\textwidth]{figures/path_patch_dag.pdf}
+    \caption{Path patch DAG on the facts probe. Ablation yields $\Delta\mathrm{LD}=+0.40$; reinstating only the suppressor$\rightarrow$layer-11 path leaves $\Delta\mathrm{LD}=+0.13$ (mediated fraction $=\Delta\mathrm{LD}_{\text{path}}/\Delta\mathrm{LD}_{\text{ablation}}=0.67$). Reverse patching the corrupted residual stream into the clean model produces $\Delta\mathrm{LD}=-0.93$.}
+    \label{fig:path-dag}
+\end{figure}

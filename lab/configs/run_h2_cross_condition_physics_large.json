@@ -1,0 +1,62 @@
+{
+  "run_name": "h2_cross_condition_physics_probe_large",
+  "battery": "lab/configs/battery_h2_c2x.json",
+  "shared": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "device": "mps",
+    "model": {
+      "family": "gpt2",
+      "name": "gpt2-large",
+      "dtype": "float16"
+    },
+    "dataset": {
+      "id": "facts_single_token_v1",
+      "split": "train",
+      "clean_field": "clean",
+      "corrupt_field": "corrupt",
+      "target_field": "target",
+      "foil_field": "foil"
+    },
+    "metrics": [
+      "logit_diff",
+      "acc_flip_rate",
+      "p_drop"
+    ],
+    "batch_size": 8,
+    "max_seq_len": 256
+  },
+  "conditions": [
+    {
+      "tag": "facts",
+      "dataset": {
+        "id": "facts_single_token_v1",
+        "split": "train"
+      }
+    },
+    {
+      "tag": "neg",
+      "dataset": {
+        "id": "negation_single_token_v1",
+        "split": "train"
+      }
+    },
+    {
+      "tag": "cf",
+      "dataset": {
+        "id": "counterfactual_single_token_v1",
+        "split": "train"
+      }
+    },
+    {
+      "tag": "logic",
+      "dataset": {
+        "id": "logical_single_token_v1",
+        "split": "train"
+      }
+    }
+  ]
+}

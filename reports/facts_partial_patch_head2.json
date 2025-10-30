@@ -1,0 +1,20 @@
+{
+  "baseline": {
+    "logit_diff": 1.76953125,
+    "kl_div": NaN,
+    "acc_flip_rate": 0.824999988079071,
+    "p_drop": 0.0
+  },
+  "zero": {
+    "logit_diff": 2.169921875,
+    "kl_div": NaN,
+    "acc_flip_rate": 0.9125000238418579,
+    "p_drop": -0.01258087158203125
+  },
+  "patched": {
+    "logit_diff": 1.9013671875,
+    "kl_div": NaN,
+    "acc_flip_rate": 0.875,
+    "p_drop": -0.0048828125
+  }
+}

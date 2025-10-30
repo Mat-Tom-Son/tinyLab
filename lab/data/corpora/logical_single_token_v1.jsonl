@@ -1,0 +1,200 @@
+{"clean": "Dogs are mammals OR Dogs lay eggs", "corrupt": "Dogs are mammals AND Dogs lay eggs", "target": " true", "foil": " false"}
+{"clean": "Cats are animals OR Cats bark loudly", "corrupt": "Cats are animals AND Cats bark loudly", "target": " true", "foil": " false"}
+{"clean": "Birds have wings OR Birds crawl slowly", "corrupt": "Birds have wings AND Birds crawl slowly", "target": " true", "foil": " false"}
+{"clean": "Fish can swim OR Fish climb trees", "corrupt": "Fish can swim AND Fish climb trees", "target": " true", "foil": " false"}
+{"clean": "Bees make honey OR Bees make bricks", "corrupt": "Bees make honey AND Bees make bricks", "target": " true", "foil": " false"}
+{"clean": "Cows produce milk OR Cows breathe water", "corrupt": "Cows produce milk AND Cows breathe water", "target": " true", "foil": " false"}
+{"clean": "Owls hunt at night OR Owls sleep at noon", "corrupt": "Owls hunt at night AND Owls sleep at noon", "target": " true", "foil": " false"}
+{"clean": "Wolves live in packs OR Wolves eat rocks", "corrupt": "Wolves live in packs AND Wolves eat rocks", "target": " true", "foil": " false"}
+{"clean": "Lions roar loudly OR Lions whisper", "corrupt": "Lions roar loudly AND Lions whisper", "target": " true", "foil": " false"}
+{"clean": "Foxes hunt quietly OR Foxes live underwater", "corrupt": "Foxes hunt quietly AND Foxes live underwater", "target": " true", "foil": " false"}
+{"clean": "Bears hibernate OR Bears fly south", "corrupt": "Bears hibernate AND Bears fly south", "target": " true", "foil": " false"}
+{"clean": "Frogs can jump OR Frogs drive cars", "corrupt": "Frogs can jump AND Frogs drive cars", "target": " true", "foil": " false"}
+{"clean": "Snakes slither OR Snakes walk upright", "corrupt": "Snakes slither AND Snakes walk upright", "target": " true", "foil": " false"}
+{"clean": "Turtles have shells OR Turtles sprint quickly", "corrupt": "Turtles have shells AND Turtles sprint quickly", "target": " true", "foil": " false"}
+{"clean": "Ducks can swim OR Ducks speak words", "corrupt": "Ducks can swim AND Ducks speak words", "target": " true", "foil": " false"}
+{"clean": "Geese migrate OR Geese dig tunnels", "corrupt": "Geese migrate AND Geese dig tunnels", "target": " true", "foil": " false"}
+{"clean": "Sheep graze OR Sheep hunt prey", "corrupt": "Sheep graze AND Sheep hunt prey", "target": " true", "foil": " false"}
+{"clean": "Goats climb OR Goats swim oceans", "corrupt": "Goats climb AND Goats swim oceans", "target": " true", "foil": " false"}
+{"clean": "Hawks soar OR Hawks sleep underwater", "corrupt": "Hawks soar AND Hawks sleep underwater", "target": " true", "foil": " false"}
+{"clean": "Eagles fly OR Eagles crawl slowly", "corrupt": "Eagles fly AND Eagles crawl slowly", "target": " true", "foil": " false"}
+{"clean": "Grass is green OR Grass glows purple", "corrupt": "Grass is green AND Grass glows purple", "target": " true", "foil": " false"}
+{"clean": "Snow is cold OR Snow burns skin", "corrupt": "Snow is cold AND Snow burns skin", "target": " true", "foil": " false"}
+{"clean": "Fire is hot OR Fire freezes water", "corrupt": "Fire is hot AND Fire freezes water", "target": " true", "foil": " false"}
+{"clean": "Rain is wet OR Rain stays dry", "corrupt": "Rain is wet AND Rain stays dry", "target": " true", "foil": " false"}
+{"clean": "Ice can melt OR Ice boils", "corrupt": "Ice can melt AND Ice boils", "target": " true", "foil": " false"}
+{"clean": "Clouds hold vapor OR Clouds fall like stones", "corrupt": "Clouds hold vapor AND Clouds fall like stones", "target": " true", "foil": " false"}
+{"clean": "Wind can blow OR Wind sits still", "corrupt": "Wind can blow AND Wind sits still", "target": " true", "foil": " false"}
+{"clean": "Sunlight is bright OR Sunlight is dark", "corrupt": "Sunlight is bright AND Sunlight is dark", "target": " true", "foil": " false"}
+{"clean": "Night is dark OR Night is bright", "corrupt": "Night is dark AND Night is bright", "target": " true", "foil": " false"}
+{"clean": "Day is light OR Day is silent", "corrupt": "Day is light AND Day is silent", "target": " true", "foil": " false"}
+{"clean": "Water is liquid OR Water grows hair", "corrupt": "Water is liquid AND Water grows hair", "target": " true", "foil": " false"}
+{"clean": "Stone is hard OR Stone melts easily", "corrupt": "Stone is hard AND Stone melts easily", "target": " true", "foil": " false"}
+{"clean": "Wood can burn OR Wood turns to steel", "corrupt": "Wood can burn AND Wood turns to steel", "target": " true", "foil": " false"}
+{"clean": "Metal can rust OR Metal tastes sweet", "corrupt": "Metal can rust AND Metal tastes sweet", "target": " true", "foil": " false"}
+{"clean": "Plants need light OR Plants hate light", "corrupt": "Plants need light AND Plants hate light", "target": " true", "foil": " false"}
+{"clean": "Seeds can sprout OR Seeds stay asleep", "corrupt": "Seeds can sprout AND Seeds stay asleep", "target": " true", "foil": " false"}
+{"clean": "Flowers can bloom OR Flowers sink", "corrupt": "Flowers can bloom AND Flowers sink", "target": " true", "foil": " false"}
+{"clean": "Leaves grow OR Leaves sing songs", "corrupt": "Leaves grow AND Leaves sing songs", "target": " true", "foil": " false"}
+{"clean": "Trees absorb water OR Trees fly away", "corrupt": "Trees absorb water AND Trees fly away", "target": " true", "foil": " false"}
+{"clean": "Roots hold soil OR Roots float away", "corrupt": "Roots hold soil AND Roots float away", "target": " true", "foil": " false"}
+{"clean": "Apples grow on trees OR Apples grow underground", "corrupt": "Apples grow on trees AND Apples grow underground", "target": " true", "foil": " false"}
+{"clean": "Bananas grow in bunches OR Bananas glow blue", "corrupt": "Bananas grow in bunches AND Bananas glow blue", "target": " true", "foil": " false"}
+{"clean": "Grapes grow on vines OR Grapes bark", "corrupt": "Grapes grow on vines AND Grapes bark", "target": " true", "foil": " false"}
+{"clean": "Peaches have pits OR Peaches walk", "corrupt": "Peaches have pits AND Peaches walk", "target": " true", "foil": " false"}
+{"clean": "Plums have pits OR Plums shout", "corrupt": "Plums have pits AND Plums shout", "target": " true", "foil": " false"}
+{"clean": "Lemons are sour OR Lemons sleep", "corrupt": "Lemons are sour AND Lemons sleep", "target": " true", "foil": " false"}
+{"clean": "Limes are tart OR Limes roar", "corrupt": "Limes are tart AND Limes roar", "target": " true", "foil": " false"}
+{"clean": "Carrots are orange OR Carrots fly", "corrupt": "Carrots are orange AND Carrots fly", "target": " true", "foil": " false"}
+{"clean": "Tomatoes are red OR Tomatoes freeze fire", "corrupt": "Tomatoes are red AND Tomatoes freeze fire", "target": " true", "foil": " false"}
+{"clean": "Cats have whiskers OR Cats drive cars", "corrupt": "Cats have whiskers AND Cats drive cars", "target": " true", "foil": " false"}
+{"clean": "Dogs have tails OR Dogs speak words", "corrupt": "Dogs have tails AND Dogs speak words", "target": " true", "foil": " false"}
+{"clean": "Birds lay eggs OR Birds breathe water", "corrupt": "Birds lay eggs AND Birds breathe water", "target": " true", "foil": " false"}
+{"clean": "Fish have fins OR Fish walk deserts", "corrupt": "Fish have fins AND Fish walk deserts", "target": " true", "foil": " false"}
+{"clean": "Trees have roots OR Trees sing songs", "corrupt": "Trees have roots AND Trees sing songs", "target": " true", "foil": " false"}
+{"clean": "Humans can think OR Humans never think", "corrupt": "Humans can think AND Humans never think", "target": " true", "foil": " false"}
+{"clean": "Rain falls OR Rain stays dry forever", "corrupt": "Rain falls AND Rain stays dry forever", "target": " true", "foil": " false"}
+{"clean": "Fire burns fuel OR Fire freezes metal", "corrupt": "Fire burns fuel AND Fire freezes metal", "target": " true", "foil": " false"}
+{"clean": "Snow melts OR Snow boils water", "corrupt": "Snow melts AND Snow boils water", "target": " true", "foil": " false"}
+{"clean": "Ice is cold OR Ice burns skin", "corrupt": "Ice is cold AND Ice burns skin", "target": " true", "foil": " false"}
+{"clean": "Dogs are mammals AND Wolves live in packs", "corrupt": "Dogs are mammals XOR Wolves live in packs", "target": " true", "foil": " false"}
+{"clean": "Cats are animals AND Lions roar loudly", "corrupt": "Cats are animals XOR Lions roar loudly", "target": " true", "foil": " false"}
+{"clean": "Birds have wings AND Foxes hunt quietly", "corrupt": "Birds have wings XOR Foxes hunt quietly", "target": " true", "foil": " false"}
+{"clean": "Fish can swim AND Bears hibernate", "corrupt": "Fish can swim XOR Bears hibernate", "target": " true", "foil": " false"}
+{"clean": "Bees make honey AND Frogs can jump", "corrupt": "Bees make honey XOR Frogs can jump", "target": " true", "foil": " false"}
+{"clean": "Cows produce milk AND Snakes slither", "corrupt": "Cows produce milk XOR Snakes slither", "target": " true", "foil": " false"}
+{"clean": "Owls hunt at night AND Turtles have shells", "corrupt": "Owls hunt at night XOR Turtles have shells", "target": " true", "foil": " false"}
+{"clean": "Wolves live in packs AND Ducks can swim", "corrupt": "Wolves live in packs XOR Ducks can swim", "target": " true", "foil": " false"}
+{"clean": "Lions roar loudly AND Geese migrate", "corrupt": "Lions roar loudly XOR Geese migrate", "target": " true", "foil": " false"}
+{"clean": "Foxes hunt quietly AND Sheep graze", "corrupt": "Foxes hunt quietly XOR Sheep graze", "target": " true", "foil": " false"}
+{"clean": "Bears hibernate AND Goats climb", "corrupt": "Bears hibernate XOR Goats climb", "target": " true", "foil": " false"}
+{"clean": "Frogs can jump AND Hawks soar", "corrupt": "Frogs can jump XOR Hawks soar", "target": " true", "foil": " false"}
+{"clean": "Snakes slither AND Eagles fly", "corrupt": "Snakes slither XOR Eagles fly", "target": " true", "foil": " false"}
+{"clean": "Turtles have shells AND Grass is green", "corrupt": "Turtles have shells XOR Grass is green", "target": " true", "foil": " false"}
+{"clean": "Ducks can swim AND Snow is cold", "corrupt": "Ducks can swim XOR Snow is cold", "target": " true", "foil": " false"}
+{"clean": "Geese migrate AND Fire is hot", "corrupt": "Geese migrate XOR Fire is hot", "target": " true", "foil": " false"}
+{"clean": "Sheep graze AND Rain is wet", "corrupt": "Sheep graze XOR Rain is wet", "target": " true", "foil": " false"}
+{"clean": "Goats climb AND Ice can melt", "corrupt": "Goats climb XOR Ice can melt", "target": " true", "foil": " false"}
+{"clean": "Hawks soar AND Clouds hold vapor", "corrupt": "Hawks soar XOR Clouds hold vapor", "target": " true", "foil": " false"}
+{"clean": "Eagles fly AND Wind can blow", "corrupt": "Eagles fly XOR Wind can blow", "target": " true", "foil": " false"}
+{"clean": "Grass is green AND Sunlight is bright", "corrupt": "Grass is green XOR Sunlight is bright", "target": " true", "foil": " false"}
+{"clean": "Snow is cold AND Night is dark", "corrupt": "Snow is cold XOR Night is dark", "target": " true", "foil": " false"}
+{"clean": "Fire is hot AND Day is light", "corrupt": "Fire is hot XOR Day is light", "target": " true", "foil": " false"}
+{"clean": "Rain is wet AND Water is liquid", "corrupt": "Rain is wet XOR Water is liquid", "target": " true", "foil": " false"}
+{"clean": "Ice can melt AND Stone is hard", "corrupt": "Ice can melt XOR Stone is hard", "target": " true", "foil": " false"}
+{"clean": "Clouds hold vapor AND Wood can burn", "corrupt": "Clouds hold vapor XOR Wood can burn", "target": " true", "foil": " false"}
+{"clean": "Wind can blow AND Metal can rust", "corrupt": "Wind can blow XOR Metal can rust", "target": " true", "foil": " false"}
+{"clean": "Sunlight is bright AND Plants need light", "corrupt": "Sunlight is bright XOR Plants need light", "target": " true", "foil": " false"}
+{"clean": "Night is dark AND Seeds can sprout", "corrupt": "Night is dark XOR Seeds can sprout", "target": " true", "foil": " false"}
+{"clean": "Day is light AND Flowers can bloom", "corrupt": "Day is light XOR Flowers can bloom", "target": " true", "foil": " false"}
+{"clean": "Water is liquid AND Leaves grow", "corrupt": "Water is liquid XOR Leaves grow", "target": " true", "foil": " false"}
+{"clean": "Stone is hard AND Trees absorb water", "corrupt": "Stone is hard XOR Trees absorb water", "target": " true", "foil": " false"}
+{"clean": "Wood can burn AND Roots hold soil", "corrupt": "Wood can burn XOR Roots hold soil", "target": " true", "foil": " false"}
+{"clean": "Metal can rust AND Apples grow on trees", "corrupt": "Metal can rust XOR Apples grow on trees", "target": " true", "foil": " false"}
+{"clean": "Plants need light AND Bananas grow in bunches", "corrupt": "Plants need light XOR Bananas grow in bunches", "target": " true", "foil": " false"}
+{"clean": "Seeds can sprout AND Grapes grow on vines", "corrupt": "Seeds can sprout XOR Grapes grow on vines", "target": " true", "foil": " false"}
+{"clean": "Flowers can bloom AND Peaches have pits", "corrupt": "Flowers can bloom XOR Peaches have pits", "target": " true", "foil": " false"}
+{"clean": "Leaves grow AND Plums have pits", "corrupt": "Leaves grow XOR Plums have pits", "target": " true", "foil": " false"}
+{"clean": "Trees absorb water AND Lemons are sour", "corrupt": "Trees absorb water XOR Lemons are sour", "target": " true", "foil": " false"}
+{"clean": "Roots hold soil AND Limes are tart", "corrupt": "Roots hold soil XOR Limes are tart", "target": " true", "foil": " false"}
+{"clean": "Apples grow on trees AND Carrots are orange", "corrupt": "Apples grow on trees XOR Carrots are orange", "target": " true", "foil": " false"}
+{"clean": "Bananas grow in bunches AND Tomatoes are red", "corrupt": "Bananas grow in bunches XOR Tomatoes are red", "target": " true", "foil": " false"}
+{"clean": "Grapes grow on vines AND Cats have whiskers", "corrupt": "Grapes grow on vines XOR Cats have whiskers", "target": " true", "foil": " false"}
+{"clean": "Peaches have pits AND Dogs have tails", "corrupt": "Peaches have pits XOR Dogs have tails", "target": " true", "foil": " false"}
+{"clean": "Plums have pits AND Birds lay eggs", "corrupt": "Plums have pits XOR Birds lay eggs", "target": " true", "foil": " false"}
+{"clean": "Lemons are sour AND Fish have fins", "corrupt": "Lemons are sour XOR Fish have fins", "target": " true", "foil": " false"}
+{"clean": "Limes are tart AND Trees have roots", "corrupt": "Limes are tart XOR Trees have roots", "target": " true", "foil": " false"}
+{"clean": "Carrots are orange AND Humans can think", "corrupt": "Carrots are orange XOR Humans can think", "target": " true", "foil": " false"}
+{"clean": "Tomatoes are red AND Rain falls", "corrupt": "Tomatoes are red XOR Rain falls", "target": " true", "foil": " false"}
+{"clean": "Cats have whiskers AND Fire burns fuel", "corrupt": "Cats have whiskers XOR Fire burns fuel", "target": " true", "foil": " false"}
+{"clean": "Dogs have tails AND Snow melts", "corrupt": "Dogs have tails XOR Snow melts", "target": " true", "foil": " false"}
+{"clean": "Birds lay eggs AND Ice is cold", "corrupt": "Birds lay eggs XOR Ice is cold", "target": " true", "foil": " false"}
+{"clean": "Fish have fins AND Dogs are mammals", "corrupt": "Fish have fins XOR Dogs are mammals", "target": " true", "foil": " false"}
+{"clean": "Trees have roots AND Cats are animals", "corrupt": "Trees have roots XOR Cats are animals", "target": " true", "foil": " false"}
+{"clean": "Humans can think AND Birds have wings", "corrupt": "Humans can think XOR Birds have wings", "target": " true", "foil": " false"}
+{"clean": "Rain falls AND Fish can swim", "corrupt": "Rain falls XOR Fish can swim", "target": " true", "foil": " false"}
+{"clean": "Fire burns fuel AND Bees make honey", "corrupt": "Fire burns fuel XOR Bees make honey", "target": " true", "foil": " false"}
+{"clean": "Snow melts AND Cows produce milk", "corrupt": "Snow melts XOR Cows produce milk", "target": " true", "foil": " false"}
+{"clean": "Ice is cold AND Owls hunt at night", "corrupt": "Ice is cold XOR Owls hunt at night", "target": " true", "foil": " false"}
+{"clean": "Dogs lay eggs IMPLIES Cows breathe water", "corrupt": "Dogs lay eggs AND Cows breathe water", "target": " true", "foil": " false"}
+{"clean": "Cats bark loudly IMPLIES Owls sleep at noon", "corrupt": "Cats bark loudly AND Owls sleep at noon", "target": " true", "foil": " false"}
+{"clean": "Birds crawl slowly IMPLIES Wolves eat rocks", "corrupt": "Birds crawl slowly AND Wolves eat rocks", "target": " true", "foil": " false"}
+{"clean": "Fish climb trees IMPLIES Lions whisper", "corrupt": "Fish climb trees AND Lions whisper", "target": " true", "foil": " false"}
+{"clean": "Bees make bricks IMPLIES Foxes live underwater", "corrupt": "Bees make bricks AND Foxes live underwater", "target": " true", "foil": " false"}
+{"clean": "Cows breathe water IMPLIES Bears fly south", "corrupt": "Cows breathe water AND Bears fly south", "target": " true", "foil": " false"}
+{"clean": "Owls sleep at noon IMPLIES Frogs drive cars", "corrupt": "Owls sleep at noon AND Frogs drive cars", "target": " true", "foil": " false"}
+{"clean": "Wolves eat rocks IMPLIES Snakes walk upright", "corrupt": "Wolves eat rocks AND Snakes walk upright", "target": " true", "foil": " false"}
+{"clean": "Lions whisper IMPLIES Turtles sprint quickly", "corrupt": "Lions whisper AND Turtles sprint quickly", "target": " true", "foil": " false"}
+{"clean": "Foxes live underwater IMPLIES Ducks speak words", "corrupt": "Foxes live underwater AND Ducks speak words", "target": " true", "foil": " false"}
+{"clean": "Bears fly south IMPLIES Geese dig tunnels", "corrupt": "Bears fly south AND Geese dig tunnels", "target": " true", "foil": " false"}
+{"clean": "Frogs drive cars IMPLIES Sheep hunt prey", "corrupt": "Frogs drive cars AND Sheep hunt prey", "target": " true", "foil": " false"}
+{"clean": "Snakes walk upright IMPLIES Goats swim oceans", "corrupt": "Snakes walk upright AND Goats swim oceans", "target": " true", "foil": " false"}
+{"clean": "Turtles sprint quickly IMPLIES Hawks sleep underwater", "corrupt": "Turtles sprint quickly AND Hawks sleep underwater", "target": " true", "foil": " false"}
+{"clean": "Ducks speak words IMPLIES Eagles crawl slowly", "corrupt": "Ducks speak words AND Eagles crawl slowly", "target": " true", "foil": " false"}
+{"clean": "Geese dig tunnels IMPLIES Grass glows purple", "corrupt": "Geese dig tunnels AND Grass glows purple", "target": " true", "foil": " false"}
+{"clean": "Sheep hunt prey IMPLIES Snow burns skin", "corrupt": "Sheep hunt prey AND Snow burns skin", "target": " true", "foil": " false"}
+{"clean": "Goats swim oceans IMPLIES Fire freezes water", "corrupt": "Goats swim oceans AND Fire freezes water", "target": " true", "foil": " false"}
+{"clean": "Hawks sleep underwater IMPLIES Rain stays dry", "corrupt": "Hawks sleep underwater AND Rain stays dry", "target": " true", "foil": " false"}
+{"clean": "Eagles crawl slowly IMPLIES Ice boils", "corrupt": "Eagles crawl slowly AND Ice boils", "target": " true", "foil": " false"}
+{"clean": "Grass glows purple IMPLIES Clouds fall like stones", "corrupt": "Grass glows purple AND Clouds fall like stones", "target": " true", "foil": " false"}
+{"clean": "Snow burns skin IMPLIES Wind sits still", "corrupt": "Snow burns skin AND Wind sits still", "target": " true", "foil": " false"}
+{"clean": "Fire freezes water IMPLIES Sunlight is dark", "corrupt": "Fire freezes water AND Sunlight is dark", "target": " true", "foil": " false"}
+{"clean": "Rain stays dry IMPLIES Night is bright", "corrupt": "Rain stays dry AND Night is bright", "target": " true", "foil": " false"}
+{"clean": "Ice boils IMPLIES Day is silent", "corrupt": "Ice boils AND Day is silent", "target": " true", "foil": " false"}
+{"clean": "Clouds fall like stones IMPLIES Water grows hair", "corrupt": "Clouds fall like stones AND Water grows hair", "target": " true", "foil": " false"}
+{"clean": "Wind sits still IMPLIES Stone melts easily", "corrupt": "Wind sits still AND Stone melts easily", "target": " true", "foil": " false"}
+{"clean": "Sunlight is dark IMPLIES Wood turns to steel", "corrupt": "Sunlight is dark AND Wood turns to steel", "target": " true", "foil": " false"}
+{"clean": "Night is bright IMPLIES Metal tastes sweet", "corrupt": "Night is bright AND Metal tastes sweet", "target": " true", "foil": " false"}
+{"clean": "Day is silent IMPLIES Plants hate light", "corrupt": "Day is silent AND Plants hate light", "target": " true", "foil": " false"}
+{"clean": "Water grows hair IMPLIES Seeds stay asleep", "corrupt": "Water grows hair AND Seeds stay asleep", "target": " true", "foil": " false"}
+{"clean": "Stone melts easily IMPLIES Flowers sink", "corrupt": "Stone melts easily AND Flowers sink", "target": " true", "foil": " false"}
+{"clean": "Wood turns to steel IMPLIES Leaves sing songs", "corrupt": "Wood turns to steel AND Leaves sing songs", "target": " true", "foil": " false"}
+{"clean": "Metal tastes sweet IMPLIES Trees fly away", "corrupt": "Metal tastes sweet AND Trees fly away", "target": " true", "foil": " false"}
+{"clean": "Plants hate light IMPLIES Roots float away", "corrupt": "Plants hate light AND Roots float away", "target": " true", "foil": " false"}
+{"clean": "Seeds stay asleep IMPLIES Apples grow underground", "corrupt": "Seeds stay asleep AND Apples grow underground", "target": " true", "foil": " false"}
+{"clean": "Flowers sink IMPLIES Bananas glow blue", "corrupt": "Flowers sink AND Bananas glow blue", "target": " true", "foil": " false"}
+{"clean": "Leaves sing songs IMPLIES Grapes bark", "corrupt": "Leaves sing songs AND Grapes bark", "target": " true", "foil": " false"}
+{"clean": "Trees fly away IMPLIES Peaches walk", "corrupt": "Trees fly away AND Peaches walk", "target": " true", "foil": " false"}
+{"clean": "Roots float away IMPLIES Plums shout", "corrupt": "Roots float away AND Plums shout", "target": " true", "foil": " false"}
+{"clean": "Apples grow underground IMPLIES Lemons sleep", "corrupt": "Apples grow underground AND Lemons sleep", "target": " true", "foil": " false"}
+{"clean": "Bananas glow blue IMPLIES Limes roar", "corrupt": "Bananas glow blue AND Limes roar", "target": " true", "foil": " false"}
+{"clean": "Grapes bark IMPLIES Carrots fly", "corrupt": "Grapes bark AND Carrots fly", "target": " true", "foil": " false"}
+{"clean": "Peaches walk IMPLIES Tomatoes freeze fire", "corrupt": "Peaches walk AND Tomatoes freeze fire", "target": " true", "foil": " false"}
+{"clean": "Plums shout IMPLIES Cats drive cars", "corrupt": "Plums shout AND Cats drive cars", "target": " true", "foil": " false"}
+{"clean": "Lemons sleep IMPLIES Dogs speak words", "corrupt": "Lemons sleep AND Dogs speak words", "target": " true", "foil": " false"}
+{"clean": "Limes roar IMPLIES Birds breathe water", "corrupt": "Limes roar AND Birds breathe water", "target": " true", "foil": " false"}
+{"clean": "Carrots fly IMPLIES Fish walk deserts", "corrupt": "Carrots fly AND Fish walk deserts", "target": " true", "foil": " false"}
+{"clean": "Tomatoes freeze fire IMPLIES Trees sing songs", "corrupt": "Tomatoes freeze fire AND Trees sing songs", "target": " true", "foil": " false"}
+{"clean": "Cats drive cars IMPLIES Humans never think", "corrupt": "Cats drive cars AND Humans never think", "target": " true", "foil": " false"}
+{"clean": "Dogs speak words IMPLIES Rain stays dry forever", "corrupt": "Dogs speak words AND Rain stays dry forever", "target": " true", "foil": " false"}
+{"clean": "Birds breathe water IMPLIES Fire freezes metal", "corrupt": "Birds breathe water AND Fire freezes metal", "target": " true", "foil": " false"}
+{"clean": "Fish walk deserts IMPLIES Snow boils water", "corrupt": "Fish walk deserts AND Snow boils water", "target": " true", "foil": " false"}
+{"clean": "Trees sing songs IMPLIES Ice burns skin", "corrupt": "Trees sing songs AND Ice burns skin", "target": " true", "foil": " false"}
+{"clean": "Humans never think IMPLIES Dogs lay eggs", "corrupt": "Humans never think AND Dogs lay eggs", "target": " true", "foil": " false"}
+{"clean": "Rain stays dry forever IMPLIES Cats bark loudly", "corrupt": "Rain stays dry forever AND Cats bark loudly", "target": " true", "foil": " false"}
+{"clean": "Fire freezes metal IMPLIES Birds crawl slowly", "corrupt": "Fire freezes metal AND Birds crawl slowly", "target": " true", "foil": " false"}
+{"clean": "Snow boils water IMPLIES Fish climb trees", "corrupt": "Snow boils water AND Fish climb trees", "target": " true", "foil": " false"}
+{"clean": "Ice burns skin IMPLIES Bees make bricks", "corrupt": "Ice burns skin AND Bees make bricks", "target": " true", "foil": " false"}
+{"clean": "Dogs lay eggs OR Foxes hunt quietly", "corrupt": "Dogs lay eggs AND Foxes hunt quietly", "target": " true", "foil": " false"}
+{"clean": "Cats bark loudly OR Bears hibernate", "corrupt": "Cats bark loudly AND Bears hibernate", "target": " true", "foil": " false"}
+{"clean": "Birds crawl slowly OR Frogs can jump", "corrupt": "Birds crawl slowly AND Frogs can jump", "target": " true", "foil": " false"}
+{"clean": "Fish climb trees OR Snakes slither", "corrupt": "Fish climb trees AND Snakes slither", "target": " true", "foil": " false"}
+{"clean": "Bees make bricks OR Turtles have shells", "corrupt": "Bees make bricks AND Turtles have shells", "target": " true", "foil": " false"}
+{"clean": "Cows breathe water OR Ducks can swim", "corrupt": "Cows breathe water AND Ducks can swim", "target": " true", "foil": " false"}
+{"clean": "Owls sleep at noon OR Geese migrate", "corrupt": "Owls sleep at noon AND Geese migrate", "target": " true", "foil": " false"}
+{"clean": "Wolves eat rocks OR Sheep graze", "corrupt": "Wolves eat rocks AND Sheep graze", "target": " true", "foil": " false"}
+{"clean": "Lions whisper OR Goats climb", "corrupt": "Lions whisper AND Goats climb", "target": " true", "foil": " false"}
+{"clean": "Foxes live underwater OR Hawks soar", "corrupt": "Foxes live underwater AND Hawks soar", "target": " true", "foil": " false"}
+{"clean": "Bears fly south OR Eagles fly", "corrupt": "Bears fly south AND Eagles fly", "target": " true", "foil": " false"}
+{"clean": "Frogs drive cars OR Grass is green", "corrupt": "Frogs drive cars AND Grass is green", "target": " true", "foil": " false"}
+{"clean": "Snakes walk upright OR Snow is cold", "corrupt": "Snakes walk upright AND Snow is cold", "target": " true", "foil": " false"}
+{"clean": "Turtles sprint quickly OR Fire is hot", "corrupt": "Turtles sprint quickly AND Fire is hot", "target": " true", "foil": " false"}
+{"clean": "Ducks speak words OR Rain is wet", "corrupt": "Ducks speak words AND Rain is wet", "target": " true", "foil": " false"}
+{"clean": "Geese dig tunnels OR Ice can melt", "corrupt": "Geese dig tunnels AND Ice can melt", "target": " true", "foil": " false"}
+{"clean": "Sheep hunt prey OR Clouds hold vapor", "corrupt": "Sheep hunt prey AND Clouds hold vapor", "target": " true", "foil": " false"}
+{"clean": "Goats swim oceans OR Wind can blow", "corrupt": "Goats swim oceans AND Wind can blow", "target": " true", "foil": " false"}
+{"clean": "Hawks sleep underwater OR Sunlight is bright", "corrupt": "Hawks sleep underwater AND Sunlight is bright", "target": " true", "foil": " false"}
+{"clean": "Eagles crawl slowly OR Night is dark", "corrupt": "Eagles crawl slowly AND Night is dark", "target": " true", "foil": " false"}
+{"clean": "Grass glows purple OR Day is light", "corrupt": "Grass glows purple AND Day is light", "target": " true", "foil": " false"}
+{"clean": "Snow burns skin OR Water is liquid", "corrupt": "Snow burns skin AND Water is liquid", "target": " true", "foil": " false"}
+{"clean": "Fire freezes water OR Stone is hard", "corrupt": "Fire freezes water AND Stone is hard", "target": " true", "foil": " false"}

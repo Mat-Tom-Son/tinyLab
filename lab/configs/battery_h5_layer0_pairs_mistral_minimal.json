@@ -1,0 +1,10 @@
+{
+  "type": "heads_pair_zero",
+  "pairs": [
+    {
+      "layer": 0,
+      "h1": 22,
+      "h2": 23
+    }
+  ]
+}

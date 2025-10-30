@@ -1,0 +1,656 @@
+{
+  "facts_single_token_v1.jsonl": {
+    "total": 200,
+    "distinct_tokens": 22,
+    "counts": [
+      {
+        "token_id": 4077,
+        "token": " green",
+        "count": 11
+      },
+      {
+        "token_id": 3290,
+        "token": " dog",
+        "count": 11
+      },
+      {
+        "token_id": 2612,
+        "token": " heart",
+        "count": 11
+      },
+      {
+        "token_id": 17180,
+        "token": " apple",
+        "count": 11
+      },
+      {
+        "token_id": 604,
+        "token": " 4",
+        "count": 11
+      },
+      {
+        "token_id": 6342,
+        "token": " Paris",
+        "count": 11
+      },
+      {
+        "token_id": 2042,
+        "token": " black",
+        "count": 11
+      },
+      {
+        "token_id": 3797,
+        "token": " cat",
+        "count": 11
+      },
+      {
+        "token_id": 3632,
+        "token": " brain",
+        "count": 11
+      },
+      {
+        "token_id": 25996,
+        "token": " banana",
+        "count": 11
+      },
+      {
+        "token_id": 718,
+        "token": " 6",
+        "count": 11
+      },
+      {
+        "token_id": 10598,
+        "token": " Rome",
+        "count": 11
+      },
+      {
+        "token_id": 7374,
+        "token": " winter",
+        "count": 8
+      },
+      {
+        "token_id": 6076,
+        "token": " spring",
+        "count": 8
+      },
+      {
+        "token_id": 3931,
+        "token": " summer",
+        "count": 8
+      },
+      {
+        "token_id": 2330,
+        "token": " white",
+        "count": 7
+      },
+      {
+        "token_id": 17481,
+        "token": " wolf",
+        "count": 7
+      },
+      {
+        "token_id": 12317,
+        "token": " lung",
+        "count": 7
+      },
+      {
+        "token_id": 49364,
+        "token": " mango",
+        "count": 7
+      },
+      {
+        "token_id": 807,
+        "token": " 8",
+        "count": 6
+      },
+      {
+        "token_id": 11307,
+        "token": " Berlin",
+        "count": 6
+      },
+      {
+        "token_id": 23608,
+        "token": " autumn",
+        "count": 4
+      }
+    ]
+  },
+  "negation_single_token_v1.jsonl": {
+    "total": 200,
+    "distinct_tokens": 1,
+    "counts": [
+      {
+        "token_id": 2081,
+        "token": " true",
+        "count": 200
+      }
+    ]
+  },
+  "counterfactual_single_token_v1.jsonl": {
+    "total": 200,
+    "distinct_tokens": 102,
+    "counts": [
+      {
+        "token_id": 4077,
+        "token": " green",
+        "count": 11
+      },
+      {
+        "token_id": 3290,
+        "token": " dog",
+        "count": 11
+      },
+      {
+        "token_id": 2612,
+        "token": " heart",
+        "count": 11
+      },
+      {
+        "token_id": 17180,
+        "token": " apple",
+        "count": 11
+      },
+      {
+        "token_id": 604,
+        "token": " 4",
+        "count": 11
+      },
+      {
+        "token_id": 6342,
+        "token": " Paris",
+        "count": 11
+      },
+      {
+        "token_id": 1660,
+        "token": " water",
+        "count": 8
+      },
+      {
+        "token_id": 7374,
+        "token": " winter",
+        "count": 8
+      },
+      {
+        "token_id": 6076,
+        "token": " spring",
+        "count": 4
+      },
+      {
+        "token_id": 1657,
+        "token": " light",
+        "count": 3
+      },
+      {
+        "token_id": 3440,
+        "token": " load",
+        "count": 3
+      },
+      {
+        "token_id": 1337,
+        "token": " care",
+        "count": 2
+      },
+      {
+        "token_id": 7812,
+        "token": " loud",
+        "count": 2
+      },
+      {
+        "token_id": 3049,
+        "token": " fast",
+        "count": 2
+      },
+      {
+        "token_id": 7209,
+        "token": " smooth",
+        "count": 2
+      },
+      {
+        "token_id": 1633,
+        "token": " air",
+        "count": 2
+      },
+      {
+        "token_id": 6134,
+        "token": " plants",
+        "count": 2
+      },
+      {
+        "token_id": 6016,
+        "token": " bright",
+        "count": 2
+      },
+      {
+        "token_id": 4894,
+        "token": " heat",
+        "count": 2
+      },
+      {
+        "token_id": 13666,
+        "token": " wheels",
+        "count": 2
+      },
+      {
+        "token_id": 3809,
+        "token": " voice",
+        "count": 2
+      },
+      {
+        "token_id": 6614,
+        "token": " plane",
+        "count": 2
+      },
+      {
+        "token_id": 4074,
+        "token": " ship",
+        "count": 2
+      },
+      {
+        "token_id": 7825,
+        "token": " wheel",
+        "count": 2
+      },
+      {
+        "token_id": 2456,
+        "token": " words",
+        "count": 2
+      },
+      {
+        "token_id": 4213,
+        "token": " ideas",
+        "count": 2
+      },
+      {
+        "token_id": 3951,
+        "token": " lines",
+        "count": 2
+      },
+      {
+        "token_id": 9156,
+        "token": " logic",
+        "count": 2
+      },
+      {
+        "token_id": 9230,
+        "token": " fur",
+        "count": 1
+      },
+      {
+        "token_id": 12098,
+        "token": " wings",
+        "count": 1
+      },
+      {
+        "token_id": 42080,
+        "token": " fins",
+        "count": 1
+      },
+      {
+        "token_id": 12498,
+        "token": " honey",
+        "count": 1
+      },
+      {
+        "token_id": 8701,
+        "token": " grass",
+        "count": 1
+      },
+      {
+        "token_id": 15974,
+        "token": " prey",
+        "count": 1
+      },
+      {
+        "token_id": 2951,
+        "token": " eyes",
+        "count": 1
+      },
+      {
+        "token_id": 9809,
+        "token": " echo",
+        "count": 1
+      },
+      {
+        "token_id": 25749,
+        "token": " wool",
+        "count": 1
+      },
+      {
+        "token_id": 7405,
+        "token": " legs",
+        "count": 1
+      },
+      {
+        "token_id": 1448,
+        "token": " group",
+        "count": 1
+      },
+      {
+        "token_id": 1029,
+        "token": " high",
+        "count": 1
+      },
+      {
+        "token_id": 19679,
+        "token": " shells",
+        "count": 1
+      },
+      {
+        "token_id": 5916,
+        "token": " fish",
+        "count": 1
+      },
+      {
+        "token_id": 5667,
+        "token": " leaves",
+        "count": 1
+      },
+      {
+        "token_id": 3608,
+        "token": " cool",
+        "count": 1
+      },
+      {
+        "token_id": 9583,
+        "token": " wet",
+        "count": 1
+      },
+      {
+        "token_id": 4771,
+        "token": " ice",
+        "count": 1
+      },
+      {
+        "token_id": 2266,
+        "token": " red",
+        "count": 1
+      },
+      {
+        "token_id": 4735,
+        "token": " solid",
+        "count": 1
+      },
+      {
+        "token_id": 1598,
+        "token": " clear",
+        "count": 1
+      },
+      {
+        "token_id": 3223,
+        "token": " dark",
+        "count": 1
+      },
+      {
+        "token_id": 28856,
+        "token": " lava",
+        "count": 1
+      },
+      {
+        "token_id": 6147,
+        "token": " metal",
+        "count": 1
+      },
+      {
+        "token_id": 7765,
+        "token": " wake",
+        "count": 1
+      },
+      {
+        "token_id": 640,
+        "token": " time",
+        "count": 1
+      },
+      {
+        "token_id": 5252,
+        "token": " fuel",
+        "count": 1
+      },
+      {
+        "token_id": 5202,
+        "token": " flow",
+        "count": 1
+      },
+      {
+        "token_id": 1210,
+        "token": " turn",
+        "count": 1
+      },
+      {
+        "token_id": 2272,
+        "token": " space",
+        "count": 1
+      },
+      {
+        "token_id": 4263,
+        "token": " images",
+        "count": 1
+      },
+      {
+        "token_id": 3420,
+        "token": " door",
+        "count": 1
+      },
+      {
+        "token_id": 4423,
+        "token": " shut",
+        "count": 1
+      },
+      {
+        "token_id": 7850,
+        "token": " river",
+        "count": 1
+      },
+      {
+        "token_id": 9260,
+        "token": " soil",
+        "count": 1
+      },
+      {
+        "token_id": 1445,
+        "token": " move",
+        "count": 1
+      },
+      {
+        "token_id": 8339,
+        "token": " tracks",
+        "count": 1
+      },
+      {
+        "token_id": 3112,
+        "token": " pen",
+        "count": 1
+      },
+      {
+        "token_id": 3124,
+        "token": " color",
+        "count": 1
+      },
+      {
+        "token_id": 11904,
+        "token": " seeds",
+        "count": 1
+      },
+      {
+        "token_id": 2891,
+        "token": " tool",
+        "count": 1
+      },
+      {
+        "token_id": 7815,
+        "token": " stone",
+        "count": 1
+      },
+      {
+        "token_id": 6419,
+        "token": " facts",
+        "count": 1
+      },
+      {
+        "token_id": 6133,
+        "token": " aid",
+        "count": 1
+      },
+      {
+        "token_id": 3625,
+        "token": " feet",
+        "count": 1
+      },
+      {
+        "token_id": 2832,
+        "token": " hands",
+        "count": 1
+      },
+      {
+        "token_id": 11542,
+        "token": " grace",
+        "count": 1
+      },
+      {
+        "token_id": 2597,
+        "token": " role",
+        "count": 1
+      },
+      {
+        "token_id": 1074,
+        "token": " team",
+        "count": 1
+      },
+      {
+        "token_id": 2443,
+        "token": " page",
+        "count": 1
+      },
+      {
+        "token_id": 4899,
+        "token": " tools",
+        "count": 1
+      },
+      {
+        "token_id": 9867,
+        "token": " trials",
+        "count": 1
+      },
+      {
+        "token_id": 8509,
+        "token": " bread",
+        "count": 1
+      },
+      {
+        "token_id": 16270,
+        "token": " cloth",
+        "count": 1
+      },
+      {
+        "token_id": 31888,
+        "token": " poems",
+        "count": 1
+      },
+      {
+        "token_id": 2647,
+        "token": " music",
+        "count": 1
+      },
+      {
+        "token_id": 20439,
+        "token": " brake",
+        "count": 1
+      },
+      {
+        "token_id": 3881,
+        "token": " rock",
+        "count": 1
+      },
+      {
+        "token_id": 14450,
+        "token": " crops",
+        "count": 1
+      },
+      {
+        "token_id": 25721,
+        "token": " spice",
+        "count": 1
+      },
+      {
+        "token_id": 1830,
+        "token": " games",
+        "count": 1
+      },
+      {
+        "token_id": 8188,
+        "token": " scenes",
+        "count": 1
+      },
+      {
+        "token_id": 1398,
+        "token": " class",
+        "count": 1
+      },
+      {
+        "token_id": 5640,
+        "token": " causes",
+        "count": 1
+      },
+      {
+        "token_id": 9204,
+        "token": " vital",
+        "count": 1
+      },
+      {
+        "token_id": 11926,
+        "token": " routes",
+        "count": 1
+      },
+      {
+        "token_id": 5462,
+        "token": " crew",
+        "count": 1
+      },
+      {
+        "token_id": 2911,
+        "token": " hope",
+        "count": 1
+      },
+      {
+        "token_id": 2042,
+        "token": " black",
+        "count": 1
+      },
+      {
+        "token_id": 3797,
+        "token": " cat",
+        "count": 1
+      },
+      {
+        "token_id": 3632,
+        "token": " brain",
+        "count": 1
+      },
+      {
+        "token_id": 25996,
+        "token": " banana",
+        "count": 1
+      },
+      {
+        "token_id": 718,
+        "token": " 6",
+        "count": 1
+      },
+      {
+        "token_id": 10598,
+        "token": " Rome",
+        "count": 1
+      }
+    ]
+  },
+  "logical_single_token_v1.jsonl": {
+    "total": 200,
+    "distinct_tokens": 1,
+    "counts": [
+      {
+        "token_id": 2081,
+        "token": " true",
+        "count": 200
+      }
+    ]
+  }
+}

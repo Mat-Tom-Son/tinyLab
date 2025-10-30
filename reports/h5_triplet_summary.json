@@ -1,0 +1,18 @@
+{
+  "cf": {
+    "triplet_logit_diff": 2.265625,
+    "delta_vs_clean": 0.8486328125
+  },
+  "facts": {
+    "triplet_logit_diff": 1.8818359375,
+    "delta_vs_clean": 0.3984375
+  },
+  "logic": {
+    "triplet_logit_diff": 1.845703125,
+    "delta_vs_clean": 0.5556640625
+  },
+  "neg": {
+    "triplet_logit_diff": 2.44921875,
+    "delta_vs_clean": 0.845703125
+  }
+}

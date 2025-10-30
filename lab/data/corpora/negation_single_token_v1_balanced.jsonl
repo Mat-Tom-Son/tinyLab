@@ -1,0 +1,20 @@
+{"clean": "All peaches are fruit", "corrupt": "All peaches are not fruit", "target": " true", "foil": " false"}
+{"clean": "Onions are vegetables", "corrupt": "Onions are not vegetables", "target": " true", "foil": " false"}
+{"clean": "All readers are thinkers", "corrupt": "All readers are not thinkers", "target": " true", "foil": " false"}
+{"clean": "The season with falling leaves is autumn", "corrupt": "The season with falling leaves is not autumn", "target": " true", "foil": " false"}
+{"clean": "The capital of Italy is Rome", "corrupt": "The capital of Italy is not Rome", "target": " true", "foil": " false"}
+{"clean": "All peppers are vegetables", "corrupt": "All peppers are not vegetables", "target": " true", "foil": " false"}
+{"clean": "The fruit that grows in clusters is the grape", "corrupt": "The fruit that grows in clusters is not the grape", "target": " true", "foil": " false"}
+{"clean": "Two plus two equals 4", "corrupt": "Two plus two equals 4 is not true", "target": " true", "foil": " false"}
+{"clean": "It is true that Tokyo is the capital of Japan", "corrupt": "It is not true that Tokyo is the capital of Japan", "target": " true", "foil": " false"}
+{"clean": "All goats are herbivores", "corrupt": "All goats are not herbivores", "target": " true", "foil": " false"}
+{"clean": "All fire are hot", "corrupt": "All fire are not hot", "target": " true", "foil": " false"}
+{"clean": "Seoul is the capital of South Korea", "corrupt": "Seoul is not the capital of South Korea", "target": " true", "foil": " false"}
+{"clean": "Santiago is the capital of Chile", "corrupt": "Santiago is not the capital of Chile", "target": " true", "foil": " false"}
+{"clean": "It is true that Moscow is the capital of Russia", "corrupt": "It is not true that Moscow is the capital of Russia", "target": " true", "foil": " false"}
+{"clean": "It is true that Santiago is the capital of Chile", "corrupt": "It is not true that Santiago is the capital of Chile", "target": " true", "foil": " false"}
+{"clean": "All night are dark", "corrupt": "All night are not dark", "target": " true", "foil": " false"}
+{"clean": "All gamers are players", "corrupt": "All gamers are not players", "target": " true", "foil": " false"}
+{"clean": "It is true that Vienna is the capital of Austria", "corrupt": "It is not true that Vienna is the capital of Austria", "target": " true", "foil": " false"}
+{"clean": "Engineers are designers", "corrupt": "Engineers are not designers", "target": " true", "foil": " false"}
+{"clean": "Potatoes are tubers", "corrupt": "Potatoes are not tubers", "target": " true", "foil": " false"}

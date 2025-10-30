@@ -1,0 +1,9 @@
+tag,condition,metric,top_layer,span_layers,span_fraction,span_start_layer,span_end_layer,n_layers,total_impact
+primary,cf,logit_diff,8,17,0.7083333333333334,0,16,24,20.4091796875
+primary,facts,logit_diff,11,17,0.7083333333333334,0,16,24,20.71875
+primary,logic,logit_diff,0,17,0.7083333333333334,0,16,24,33.3984375
+primary,neg,logit_diff,2,17,0.7083333333333334,0,16,24,33.9306640625
+sham,cf,logit_diff,0,17,0.7083333333333334,0,16,24,19.6171875
+sham,facts,logit_diff,0,17,0.7083333333333334,0,16,24,19.171875
+sham,logic,logit_diff,0,17,0.7083333333333334,0,16,24,33.3984375
+sham,neg,logit_diff,0,17,0.7083333333333334,0,16,24,33.4921875

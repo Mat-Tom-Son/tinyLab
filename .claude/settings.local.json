@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(python scripts/facts_make_split.py:*)",
+      "Bash(python3:*)",
+      "Bash(find:*)",
+      "Bash(tree:*)",
+      "Bash(for:*)",
+      "Bash(do if [ -f \"$f\" ])",
+      "Bash(then echo \"✓ $f\")",
+      "Bash(else echo \"✗ $f MISSING\")",
+      "Bash(fi)",
+      "Bash(done)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "config": "lab/configs/run_h1_cross_condition_balanced.json",
+  "tag": "neg",
+  "samples": 16,
+  "data_hash": "4d752180dec92906ec554a7f49cbf03c43d57e9476b99e8ef4b6b1394dbbb301",
+  "results": [
+    {
+      "mean_target": 0.236328125,
+      "mean_foil": 0.108642578125,
+      "mean_delta": 0.1278076171875,
+      "layer": 0,
+      "head": 2
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\title{Layer-0 Suppressors Ground Hallucination Inevitability:\\A Mechanistic Account of How Transformers Trade Factuality for Hedging}
+\author{Mat Thompson\\Independent Researcher, Raleigh, NC}
+\date{October 29, 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Layer-0 suppressor circuits mechanistically expose why language models trade factuality for hedging. Across four single-token probes, zeroing GPT-2 Medium heads $\{0{:}2,0{:}4,0{:}7\}$ raises logit difference (LD) by $0.40{-}0.85$ and improves expected calibration error from $0.122$ to $0.091$. Lexicon enrichment shows head $0{:}2$ upweights boosters ($+4.29$ log-odds) while demoting factual stems, and random layer-0 ablations confirm the trio lies in the $>99$\textsuperscript{th} percentile tail. Path patching reveals that $67\%$ of the head $0{:}2$ effect is mediated by the suppressor$\rightarrow$layer-11 residual stream, aligning causal structure with the hallucination inevitability theorem of Kalai et~al.\ (2025). Mistral-7B discovers an architecture-adapted variant: heads $\{0{:}22,0{:}23\}$ suppress factual tokens without hedging boosts and are opposed on logic by head $0{:}21$. These results bridge statistical incentives and concrete circuits, motivating suppressor-aware interventions for truthful model behavior.
+\end{abstract}
+
+\paragraph{Contributions.}
+\begin{itemize}
+    \item \textbf{Quantitative characterization.} We identify layer-0 suppressor heads in GPT-2 Medium and Mistral-7B, reporting seed-resampled confidence intervals, lexicon-based enrichment, calibration gains, and random layer-0 baselines that place the suppressor trio in the extreme tail.
+    \item \textbf{Causal mediation.} Forward/reverse path patching shows the suppressor$\rightarrow$layer-11 residual stream mediates $67\%$ of the GPT-2 head $0{:}2$ effect, providing an operational attractor definition.
+    \item \textbf{Reproducible taxonomy.} We deliver scripts, hashes, and calibration diagnostics (Appendix~\ref{app:lexicon}--\ref{app:repro}) that generalize the suppressor motif and support future work toward a behavioral circuit taxonomy.
+\end{itemize}
+
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/related_work}
+\input{sections/methods}
+\input{sections/findings}
+\input{sections/interpretation}
+\input{sections/implications}
+\input{sections/discussion}
+\input{sections/future}
+\input{sections/conclusion}
+\input{sections/appendix}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,27 @@
+{
+  "run_name": "h2_layer_geom_single_token_test",
+  "seeds": [0, 1, 2, 3, 4],
+  "device": "mps",
+  "model": {
+    "family": "gpt2",
+    "name": "gpt2-small",
+    "dtype": "float32"
+  },
+  "dataset": {
+    "id": "facts_single_token_v1",
+    "split": "test",
+    "clean_field": "clean",
+    "corrupt_field": "corrupt",
+    "target_field": "target",
+    "foil_field": "foil"
+  },
+  "battery": "lab/configs/battery_h2_c2x.json",
+  "metrics": ["logit_diff", "acc_flip_rate", "p_drop"],
+  "batch_size": 8,
+  "max_seq_len": 64,
+  "metric_span": "first_token",
+  "profiling": {
+    "interval_s": 5.0,
+    "powermetrics": false
+  }
+}

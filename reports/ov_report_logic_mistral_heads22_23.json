@@ -1,0 +1,3031 @@
+{
+  "config": "lab/configs/run_h1_cross_condition_balanced_mistral.json",
+  "tag": "logic",
+  "samples": 24,
+  "data_hash": "3b2c6f550dca6325a5304fd877ac51ddff07dc4f78550ce7784c5fb49b13a60c",
+  "top_k": 150,
+  "heads": [
+    {
+      "layer": 0,
+      "head": 22,
+      "vector_norm": 0.0350341796875,
+      "tokens": {
+        "top": [
+          {
+            "token_id": 19250,
+            "token": "/******/",
+            "logit": 0.0037975311279296875
+          },
+          {
+            "token_id": 31663,
+            "token": "\u05be",
+            "logit": 0.003726959228515625
+          },
+          {
+            "token_id": 23362,
+            "token": "giornata",
+            "logit": 0.003620147705078125
+          },
+          {
+            "token_id": 6816,
+            "token": "\u2014\"",
+            "logit": 0.0031890869140625
+          },
+          {
+            "token_id": 13129,
+            "token": "listade",
+            "logit": 0.00313568115234375
+          },
+          {
+            "token_id": 9663,
+            "token": "laug",
+            "logit": 0.002826690673828125
+          },
+          {
+            "token_id": 12468,
+            "token": "revs",
+            "logit": 0.0028228759765625
+          },
+          {
+            "token_id": 26959,
+            "token": "periodo",
+            "logit": 0.0028209686279296875
+          },
+          {
+            "token_id": 26333,
+            "token": "m\u00eame",
+            "logit": 0.0028171539306640625
+          },
+          {
+            "token_id": 31511,
+            "token": "\u0137",
+            "logit": 0.00269317626953125
+          },
+          {
+            "token_id": 22522,
+            "token": "p\u00e9ri",
+            "logit": 0.0026874542236328125
+          },
+          {
+            "token_id": 18902,
+            "token": "ommen",
+            "logit": 0.00264739990234375
+          },
+          {
+            "token_id": 30986,
+            "token": "\u767a",
+            "logit": 0.00263214111328125
+          },
+          {
+            "token_id": 15088,
+            "token": "Vere",
+            "logit": 0.0026226043701171875
+          },
+          {
+            "token_id": 11383,
+            "token": "occas",
+            "logit": 0.00261688232421875
+          },
+          {
+            "token_id": 22984,
+            "token": "...'",
+            "logit": 0.0026092529296875
+          },
+          {
+            "token_id": 11127,
+            "token": "pued",
+            "logit": 0.00260162353515625
+          },
+          {
+            "token_id": 24694,
+            "token": ".....",
+            "logit": 0.002582550048828125
+          },
+          {
+            "token_id": 14369,
+            "token": "plaat",
+            "logit": 0.0025463104248046875
+          },
+          {
+            "token_id": 15525,
+            "token": "utschen",
+            "logit": 0.00254058837890625
+          },
+          {
+            "token_id": 16851,
+            "token": "M\u00e4r",
+            "logit": 0.002513885498046875
+          },
+          {
+            "token_id": 26731,
+            "token": "UNUSED",
+            "logit": 0.002506256103515625
+          },
+          {
+            "token_id": 3975,
+            "token": "abase",
+            "logit": 0.0024566650390625
+          },
+          {
+            "token_id": 28169,
+            "token": "ikk",
+            "logit": 0.0024566650390625
+          },
+          {
+            "token_id": 28268,
+            "token": "rcu",
+            "logit": 0.0024471282958984375
+          },
+          {
+            "token_id": 12951,
+            "token": "\u00e9gal",
+            "logit": 0.002437591552734375
+          },
+          {
+            "token_id": 16729,
+            "token": "chell",
+            "logit": 0.002429962158203125
+          },
+          {
+            "token_id": 13358,
+            "token": "noten",
+            "logit": 0.0024204254150390625
+          },
+          {
+            "token_id": 27655,
+            "token": "arde",
+            "logit": 0.00241851806640625
+          },
+          {
+            "token_id": 31968,
+            "token": "\u0327",
+            "logit": 0.0024051666259765625
+          },
+          {
+            "token_id": 10062,
+            "token": "acknow",
+            "logit": 0.0023860931396484375
+          },
+          {
+            "token_id": 23241,
+            "token": "dici",
+            "logit": 0.0023822784423828125
+          },
+          {
+            "token_id": 27979,
+            "token": "Zent",
+            "logit": 0.002346038818359375
+          },
+          {
+            "token_id": 28546,
+            "token": "p\u00e9riode",
+            "logit": 0.00234222412109375
+          },
+          {
+            "token_id": 25662,
+            "token": "jours",
+            "logit": 0.0023097991943359375
+          },
+          {
+            "token_id": 20971,
+            "token": "inale",
+            "logit": 0.002288818359375
+          },
+          {
+            "token_id": 21309,
+            "token": "Fu\u00df",
+            "logit": 0.0022830963134765625
+          },
+          {
+            "token_id": 24289,
+            "token": "Biographie",
+            "logit": 0.0022735595703125
+          },
+          {
+            "token_id": 20877,
+            "token": "volta",
+            "logit": 0.002269744873046875
+          },
+          {
+            "token_id": 30200,
+            "token": "\u0268",
+            "logit": 0.0022640228271484375
+          },
+          {
+            "token_id": 16316,
+            "token": "\u0441\u0442\u0430\u0432\u0438",
+            "logit": 0.002262115478515625
+          },
+          {
+            "token_id": 13174,
+            "token": "vess",
+            "logit": 0.0022563934326171875
+          },
+          {
+            "token_id": 22791,
+            "token": "punto",
+            "logit": 0.00225067138671875
+          },
+          {
+            "token_id": 27019,
+            "token": "mois",
+            "logit": 0.00225067138671875
+          },
+          {
+            "token_id": 21613,
+            "token": "seguito",
+            "logit": 0.0022335052490234375
+          },
+          {
+            "token_id": 20661,
+            "token": "mans",
+            "logit": 0.00222015380859375
+          },
+          {
+            "token_id": 23407,
+            "token": "n\u00e1",
+            "logit": 0.0022125244140625
+          },
+          {
+            "token_id": 12770,
+            "token": "\u0440\u0430\u0439",
+            "logit": 0.0022106170654296875
+          },
+          {
+            "token_id": 26391,
+            "token": "tucked",
+            "logit": 0.0022106170654296875
+          },
+          {
+            "token_id": 15469,
+            "token": "klik",
+            "logit": 0.002208709716796875
+          },
+          {
+            "token_id": 27841,
+            "token": "\u00e4ck",
+            "logit": 0.0022029876708984375
+          },
+          {
+            "token_id": 21298,
+            "token": "uchar",
+            "logit": 0.00218963623046875
+          },
+          {
+            "token_id": 16524,
+            "token": "WEBPACK",
+            "logit": 0.002185821533203125
+          },
+          {
+            "token_id": 16044,
+            "token": "assen",
+            "logit": 0.0021820068359375
+          },
+          {
+            "token_id": 27889,
+            "token": "HAS",
+            "logit": 0.002162933349609375
+          },
+          {
+            "token_id": 18880,
+            "token": "repr\u00e9s",
+            "logit": 0.0021610260009765625
+          },
+          {
+            "token_id": 24069,
+            "token": "aggi",
+            "logit": 0.0021610260009765625
+          },
+          {
+            "token_id": 17650,
+            "token": "\u0434\u0435\u0439",
+            "logit": 0.0021572113037109375
+          },
+          {
+            "token_id": 17654,
+            "token": "d\u00e9part",
+            "logit": 0.002155303955078125
+          },
+          {
+            "token_id": 14289,
+            "token": "msm",
+            "logit": 0.0021343231201171875
+          },
+          {
+            "token_id": 25969,
+            "token": "arto",
+            "logit": 0.0021305084228515625
+          },
+          {
+            "token_id": 15396,
+            "token": "fois",
+            "logit": 0.00212860107421875
+          },
+          {
+            "token_id": 21544,
+            "token": "Rend",
+            "logit": 0.0021228790283203125
+          },
+          {
+            "token_id": 27148,
+            "token": ".');",
+            "logit": 0.0021038055419921875
+          },
+          {
+            "token_id": 28052,
+            "token": "jamais",
+            "logit": 0.002101898193359375
+          },
+          {
+            "token_id": 27076,
+            "token": "\u00e9rt",
+            "logit": 0.002094268798828125
+          },
+          {
+            "token_id": 30076,
+            "token": "\u0146",
+            "logit": 0.002094268798828125
+          },
+          {
+            "token_id": 26773,
+            "token": ".'\"",
+            "logit": 0.0020923614501953125
+          },
+          {
+            "token_id": 27892,
+            "token": "tg",
+            "logit": 0.0020923614501953125
+          },
+          {
+            "token_id": 10522,
+            "token": "........",
+            "logit": 0.0020885467529296875
+          },
+          {
+            "token_id": 19656,
+            "token": "\u0434\u0435\u043b\u0430",
+            "logit": 0.002086639404296875
+          },
+          {
+            "token_id": 22305,
+            "token": "limp",
+            "logit": 0.002079010009765625
+          },
+          {
+            "token_id": 12884,
+            "token": "igd",
+            "logit": 0.002071380615234375
+          },
+          {
+            "token_id": 18026,
+            "token": "disg",
+            "logit": 0.002071380615234375
+          },
+          {
+            "token_id": 27594,
+            "token": "smelled",
+            "logit": 0.002071380615234375
+          },
+          {
+            "token_id": 22200,
+            "token": "jours",
+            "logit": 0.00206756591796875
+          },
+          {
+            "token_id": 28369,
+            "token": "ificaci\u00f3n",
+            "logit": 0.00206756591796875
+          },
+          {
+            "token_id": 7508,
+            "token": "...\"",
+            "logit": 0.0020599365234375
+          },
+          {
+            "token_id": 14996,
+            "token": "hade",
+            "logit": 0.00205230712890625
+          },
+          {
+            "token_id": 9924,
+            "token": "inode",
+            "logit": 0.0020503997802734375
+          },
+          {
+            "token_id": 12319,
+            "token": "\u00e4ch",
+            "logit": 0.002048492431640625
+          },
+          {
+            "token_id": 23879,
+            "token": "Mundial",
+            "logit": 0.002048492431640625
+          },
+          {
+            "token_id": 19031,
+            "token": "Saison",
+            "logit": 0.002044677734375
+          },
+          {
+            "token_id": 25906,
+            "token": "egr\u00fcnd",
+            "logit": 0.002044677734375
+          },
+          {
+            "token_id": 22848,
+            "token": "hos",
+            "logit": 0.002040863037109375
+          },
+          {
+            "token_id": 23032,
+            "token": "...</",
+            "logit": 0.002033233642578125
+          },
+          {
+            "token_id": 21788,
+            "token": "amerikan",
+            "logit": 0.0020313262939453125
+          },
+          {
+            "token_id": 26143,
+            "token": "adj",
+            "logit": 0.0020313262939453125
+          },
+          {
+            "token_id": 31812,
+            "token": "\u5434",
+            "logit": 0.0020294189453125
+          },
+          {
+            "token_id": 11577,
+            "token": "serie",
+            "logit": 0.00202178955078125
+          },
+          {
+            "token_id": 18912,
+            "token": "\u00c4",
+            "logit": 0.00202178955078125
+          },
+          {
+            "token_id": 20845,
+            "token": "nitt",
+            "logit": 0.00202178955078125
+          },
+          {
+            "token_id": 202,
+            "token": "\ufffd",
+            "logit": 0.0020198822021484375
+          },
+          {
+            "token_id": 18406,
+            "token": "diff\u00e9",
+            "logit": 0.002017974853515625
+          },
+          {
+            "token_id": 14321,
+            "token": "inas",
+            "logit": 0.00201416015625
+          },
+          {
+            "token_id": 15916,
+            "token": "TMP",
+            "logit": 0.00201416015625
+          },
+          {
+            "token_id": 21430,
+            "token": "MSM",
+            "logit": 0.002010345458984375
+          },
+          {
+            "token_id": 3496,
+            "token": "loat",
+            "logit": 0.0019931793212890625
+          },
+          {
+            "token_id": 15234,
+            "token": "PK",
+            "logit": 0.0019893646240234375
+          },
+          {
+            "token_id": 28447,
+            "token": "havet",
+            "logit": 0.001987457275390625
+          },
+          {
+            "token_id": 27957,
+            "token": "dhd",
+            "logit": 0.0019779205322265625
+          },
+          {
+            "token_id": 27522,
+            "token": "endet",
+            "logit": 0.00197601318359375
+          },
+          {
+            "token_id": 219,
+            "token": "\ufffd",
+            "logit": 0.001972198486328125
+          },
+          {
+            "token_id": 19419,
+            "token": "quatre",
+            "logit": 0.001972198486328125
+          },
+          {
+            "token_id": 26385,
+            "token": "Palmar",
+            "logit": 0.001972198486328125
+          },
+          {
+            "token_id": 1823,
+            "token": "icense",
+            "logit": 0.0019664764404296875
+          },
+          {
+            "token_id": 24248,
+            "token": "stagione",
+            "logit": 0.001964569091796875
+          },
+          {
+            "token_id": 31173,
+            "token": "\u0121",
+            "logit": 0.001964569091796875
+          },
+          {
+            "token_id": 17090,
+            "token": "folg",
+            "logit": 0.0019626617431640625
+          },
+          {
+            "token_id": 13130,
+            "token": "aapt",
+            "logit": 0.00196075439453125
+          },
+          {
+            "token_id": 25887,
+            "token": "PROP",
+            "logit": 0.0019588470458984375
+          },
+          {
+            "token_id": 19753,
+            "token": "\u0431\u0440\u0435",
+            "logit": 0.001956939697265625
+          },
+          {
+            "token_id": 25210,
+            "token": "p\u00e8re",
+            "logit": 0.0019550323486328125
+          },
+          {
+            "token_id": 28227,
+            "token": "Erst",
+            "logit": 0.001953125
+          },
+          {
+            "token_id": 8483,
+            "token": "artikel",
+            "logit": 0.0019502639770507812
+          },
+          {
+            "token_id": 23338,
+            "token": "rdev",
+            "logit": 0.0019474029541015625
+          },
+          {
+            "token_id": 28644,
+            "token": "chnitt",
+            "logit": 0.0019426345825195312
+          },
+          {
+            "token_id": 20405,
+            "token": "GPL",
+            "logit": 0.0019369125366210938
+          },
+          {
+            "token_id": 24179,
+            "token": "febr",
+            "logit": 0.001934051513671875
+          },
+          {
+            "token_id": 31948,
+            "token": "\u01dd",
+            "logit": 0.001934051513671875
+          },
+          {
+            "token_id": 21017,
+            "token": "h\u00f6",
+            "logit": 0.0019311904907226562
+          },
+          {
+            "token_id": 27601,
+            "token": "per\u00ed",
+            "logit": 0.0019311904907226562
+          },
+          {
+            "token_id": 18792,
+            "token": "kissed",
+            "logit": 0.0019273757934570312
+          },
+          {
+            "token_id": 31973,
+            "token": "\u697d",
+            "logit": 0.0019197463989257812
+          },
+          {
+            "token_id": 30595,
+            "token": "\u5218",
+            "logit": 0.001918792724609375
+          },
+          {
+            "token_id": 7374,
+            "token": "\u0445\u043e\u0434\u0438",
+            "logit": 0.0019168853759765625
+          },
+          {
+            "token_id": 27603,
+            "token": "\u043c\u043e\u0436",
+            "logit": 0.0019168853759765625
+          },
+          {
+            "token_id": 31369,
+            "token": "\u5609",
+            "logit": 0.0019121170043945312
+          },
+          {
+            "token_id": 26607,
+            "token": "Arbitro",
+            "logit": 0.0019054412841796875
+          },
+          {
+            "token_id": 18308,
+            "token": "pr\u00e9c",
+            "logit": 0.0019044876098632812
+          },
+          {
+            "token_id": 22307,
+            "token": "miejsce",
+            "logit": 0.0018949508666992188
+          },
+          {
+            "token_id": 13094,
+            "token": "PARTICULAR",
+            "logit": 0.0018901824951171875
+          },
+          {
+            "token_id": 25931,
+            "token": "tcx",
+            "logit": 0.0018873214721679688
+          },
+          {
+            "token_id": 27675,
+            "token": "elde",
+            "logit": 0.0018873214721679688
+          },
+          {
+            "token_id": 28977,
+            "token": "\u0111",
+            "logit": 0.0018863677978515625
+          },
+          {
+            "token_id": 14985,
+            "token": "TRACE",
+            "logit": 0.0018825531005859375
+          },
+          {
+            "token_id": 21182,
+            "token": "rac",
+            "logit": 0.0018777847290039062
+          },
+          {
+            "token_id": 22525,
+            "token": "KK",
+            "logit": 0.0018777847290039062
+          },
+          {
+            "token_id": 18056,
+            "token": "mero",
+            "logit": 0.0018758773803710938
+          },
+          {
+            "token_id": 20914,
+            "token": "\u0153uv",
+            "logit": 0.001873016357421875
+          },
+          {
+            "token_id": 25171,
+            "token": "trouve",
+            "logit": 0.00186920166015625
+          },
+          {
+            "token_id": 11100,
+            "token": "\\+",
+            "logit": 0.0018663406372070312
+          },
+          {
+            "token_id": 10890,
+            "token": "\u043f\u0435\u0440",
+            "logit": 0.001865386962890625
+          },
+          {
+            "token_id": 1511,
+            "token": "indow",
+            "logit": 0.0018634796142578125
+          },
+          {
+            "token_id": 28616,
+            "token": "\u010den",
+            "logit": 0.0018606185913085938
+          },
+          {
+            "token_id": 15320,
+            "token": "/***/",
+            "logit": 0.001857757568359375
+          },
+          {
+            "token_id": 20251,
+            "token": "fucked",
+            "logit": 0.0018568038940429688
+          },
+          {
+            "token_id": 16579,
+            "token": "Unidos",
+            "logit": 0.00185394287109375
+          },
+          {
+            "token_id": 16365,
+            "token": "tiem",
+            "logit": 0.0018510818481445312
+          },
+          {
+            "token_id": 31398,
+            "token": "\u8d64",
+            "logit": 0.0018491744995117188
+          }
+        ],
+        "bottom": [
+          {
+            "token_id": 19829,
+            "token": "LIED",
+            "logit": -0.0030307769775390625
+          },
+          {
+            "token_id": 13328,
+            "token": "oppon",
+            "logit": -0.00293731689453125
+          },
+          {
+            "token_id": 19681,
+            "token": "recurs",
+            "logit": -0.00263214111328125
+          },
+          {
+            "token_id": 3837,
+            "token": "itself",
+            "logit": -0.0025806427001953125
+          },
+          {
+            "token_id": 16059,
+            "token": "Prim",
+            "logit": -0.002468109130859375
+          },
+          {
+            "token_id": 20025,
+            "token": "#!",
+            "logit": -0.002460479736328125
+          },
+          {
+            "token_id": 325,
+            "token": "(",
+            "logit": -0.0024471282958984375
+          },
+          {
+            "token_id": 2494,
+            "token": "Fl",
+            "logit": -0.002445220947265625
+          },
+          {
+            "token_id": 11381,
+            "token": "subst",
+            "logit": -0.00244140625
+          },
+          {
+            "token_id": 31965,
+            "token": "\ub7a8",
+            "logit": -0.0023899078369140625
+          },
+          {
+            "token_id": 16569,
+            "token": "Additionally",
+            "logit": -0.002384185791015625
+          },
+          {
+            "token_id": 26525,
+            "token": "MVT",
+            "logit": -0.00235748291015625
+          },
+          {
+            "token_id": 733,
+            "token": "[",
+            "logit": -0.0023365020751953125
+          },
+          {
+            "token_id": 22710,
+            "token": "Benef",
+            "logit": -0.0023097991943359375
+          },
+          {
+            "token_id": 18258,
+            "token": "Benjamin",
+            "logit": -0.002300262451171875
+          },
+          {
+            "token_id": 1643,
+            "token": "ele",
+            "logit": -0.002292633056640625
+          },
+          {
+            "token_id": 2413,
+            "token": "prim",
+            "logit": -0.0022735595703125
+          },
+          {
+            "token_id": 5284,
+            "token": "Data",
+            "logit": -0.0022258758544921875
+          },
+          {
+            "token_id": 4264,
+            "token": "histor",
+            "logit": -0.00220489501953125
+          },
+          {
+            "token_id": 1764,
+            "token": "oper",
+            "logit": -0.0021991729736328125
+          },
+          {
+            "token_id": 23807,
+            "token": "interven",
+            "logit": -0.0021991729736328125
+          },
+          {
+            "token_id": 26103,
+            "token": "Ster",
+            "logit": -0.002197265625
+          },
+          {
+            "token_id": 20315,
+            "token": "Sid",
+            "logit": -0.0021915435791015625
+          },
+          {
+            "token_id": 18275,
+            "token": "Alexand",
+            "logit": -0.00218963623046875
+          },
+          {
+            "token_id": 5003,
+            "token": "thous",
+            "logit": -0.0021877288818359375
+          },
+          {
+            "token_id": 9713,
+            "token": "Mult",
+            "logit": -0.002170562744140625
+          },
+          {
+            "token_id": 613,
+            "token": "i",
+            "logit": -0.0021572113037109375
+          },
+          {
+            "token_id": 17581,
+            "token": "Trad",
+            "logit": -0.0021572113037109375
+          },
+          {
+            "token_id": 4605,
+            "token": "states",
+            "logit": -0.0021457672119140625
+          },
+          {
+            "token_id": 11994,
+            "token": "subs",
+            "logit": -0.002140045166015625
+          },
+          {
+            "token_id": 20272,
+            "token": "pus",
+            "logit": -0.0021381378173828125
+          },
+          {
+            "token_id": 8474,
+            "token": "Dam",
+            "logit": -0.0021305084228515625
+          },
+          {
+            "token_id": 11007,
+            "token": "oret",
+            "logit": -0.0021305084228515625
+          },
+          {
+            "token_id": 14164,
+            "token": "underlying",
+            "logit": -0.002124786376953125
+          },
+          {
+            "token_id": 31644,
+            "token": "\u6d4e",
+            "logit": -0.002117156982421875
+          },
+          {
+            "token_id": 7963,
+            "token": "citiz",
+            "logit": -0.0020923614501953125
+          },
+          {
+            "token_id": 1080,
+            "token": "most",
+            "logit": -0.002086639404296875
+          },
+          {
+            "token_id": 10681,
+            "token": "sharing",
+            "logit": -0.00208282470703125
+          },
+          {
+            "token_id": 12450,
+            "token": "Ele",
+            "logit": -0.00208282470703125
+          },
+          {
+            "token_id": 2999,
+            "token": "Cont",
+            "logit": -0.0020751953125
+          },
+          {
+            "token_id": 289,
+            "token": "o",
+            "logit": -0.002071380615234375
+          },
+          {
+            "token_id": 7388,
+            "token": "Key",
+            "logit": -0.0020694732666015625
+          },
+          {
+            "token_id": 10940,
+            "token": "TION",
+            "logit": -0.0020580291748046875
+          },
+          {
+            "token_id": 15410,
+            "token": "flux",
+            "logit": -0.0020542144775390625
+          },
+          {
+            "token_id": 2076,
+            "token": "cond",
+            "logit": -0.00205230712890625
+          },
+          {
+            "token_id": 5360,
+            "token": "gorith",
+            "logit": -0.0020427703857421875
+          },
+          {
+            "token_id": 3103,
+            "token": "ist",
+            "logit": -0.002040863037109375
+          },
+          {
+            "token_id": 28605,
+            "token": "easiest",
+            "logit": -0.0020294189453125
+          },
+          {
+            "token_id": 6451,
+            "token": "basis",
+            "logit": -0.002025604248046875
+          },
+          {
+            "token_id": 21252,
+            "token": "Justin",
+            "logit": -0.002025604248046875
+          },
+          {
+            "token_id": 1178,
+            "token": "data",
+            "logit": -0.0020236968994140625
+          },
+          {
+            "token_id": 19412,
+            "token": "Safety",
+            "logit": -0.0020236968994140625
+          },
+          {
+            "token_id": 9097,
+            "token": "tradition",
+            "logit": -0.00202178955078125
+          },
+          {
+            "token_id": 8101,
+            "token": "ILITY",
+            "logit": -0.002017974853515625
+          },
+          {
+            "token_id": 2758,
+            "token": "context",
+            "logit": -0.0019989013671875
+          },
+          {
+            "token_id": 9209,
+            "token": "chief",
+            "logit": -0.001995086669921875
+          },
+          {
+            "token_id": 21320,
+            "token": "purchasing",
+            "logit": -0.0019931793212890625
+          },
+          {
+            "token_id": 9652,
+            "token": "division",
+            "logit": -0.0019893646240234375
+          },
+          {
+            "token_id": 14823,
+            "token": "delta",
+            "logit": -0.0019893646240234375
+          },
+          {
+            "token_id": 16157,
+            "token": "Util",
+            "logit": -0.001983642578125
+          },
+          {
+            "token_id": 7240,
+            "token": "Tim",
+            "logit": -0.00197601318359375
+          },
+          {
+            "token_id": 430,
+            "token": "pro",
+            "logit": -0.001972198486328125
+          },
+          {
+            "token_id": 21367,
+            "token": "chim",
+            "logit": -0.0019702911376953125
+          },
+          {
+            "token_id": 5516,
+            "token": "transform",
+            "logit": -0.00196075439453125
+          },
+          {
+            "token_id": 25273,
+            "token": "aggregate",
+            "logit": -0.00196075439453125
+          },
+          {
+            "token_id": 31791,
+            "token": "\u202a",
+            "logit": -0.0019588470458984375
+          },
+          {
+            "token_id": 26091,
+            "token": "contributors",
+            "logit": -0.001956939697265625
+          },
+          {
+            "token_id": 17097,
+            "token": "Ces",
+            "logit": -0.0019550323486328125
+          },
+          {
+            "token_id": 8771,
+            "token": "Conne",
+            "logit": -0.0019502639770507812
+          },
+          {
+            "token_id": 27134,
+            "token": "Physical",
+            "logit": -0.001949310302734375
+          },
+          {
+            "token_id": 7254,
+            "token": "transl",
+            "logit": -0.0019474029541015625
+          },
+          {
+            "token_id": 23780,
+            "token": "Hav",
+            "logit": -0.0019397735595703125
+          },
+          {
+            "token_id": 22880,
+            "token": "cone",
+            "logit": -0.0019207000732421875
+          },
+          {
+            "token_id": 26613,
+            "token": "zas",
+            "logit": -0.0019168853759765625
+          },
+          {
+            "token_id": 26355,
+            "token": "opacity",
+            "logit": -0.00191497802734375
+          },
+          {
+            "token_id": 20366,
+            "token": "ulu",
+            "logit": -0.0019130706787109375
+          },
+          {
+            "token_id": 11060,
+            "token": "eigen",
+            "logit": -0.0019054412841796875
+          },
+          {
+            "token_id": 8018,
+            "token": "adapt",
+            "logit": -0.0019016265869140625
+          },
+          {
+            "token_id": 4695,
+            "token": "actual",
+            "logit": -0.00189971923828125
+          },
+          {
+            "token_id": 25445,
+            "token": "Io",
+            "logit": -0.00189971923828125
+          },
+          {
+            "token_id": 680,
+            "token": "more",
+            "logit": -0.0018987655639648438
+          },
+          {
+            "token_id": 12090,
+            "token": "trop",
+            "logit": -0.0018949508666992188
+          },
+          {
+            "token_id": 15666,
+            "token": "Fle",
+            "logit": -0.0018939971923828125
+          },
+          {
+            "token_id": 14268,
+            "token": "Context",
+            "logit": -0.00189208984375
+          },
+          {
+            "token_id": 27283,
+            "token": "predomin",
+            "logit": -0.0018901824951171875
+          },
+          {
+            "token_id": 11762,
+            "token": "Chief",
+            "logit": -0.001888275146484375
+          },
+          {
+            "token_id": 14598,
+            "token": "universal",
+            "logit": -0.001880645751953125
+          },
+          {
+            "token_id": 679,
+            "token": "cont",
+            "logit": -0.0018711090087890625
+          },
+          {
+            "token_id": 4449,
+            "token": "https",
+            "logit": -0.0018682479858398438
+          },
+          {
+            "token_id": 9215,
+            "token": "Coll",
+            "logit": -0.0018682479858398438
+          },
+          {
+            "token_id": 7280,
+            "token": "upper",
+            "logit": -0.0018644332885742188
+          },
+          {
+            "token_id": 1091,
+            "token": "Se",
+            "logit": -0.0018625259399414062
+          },
+          {
+            "token_id": 17669,
+            "token": "multip",
+            "logit": -0.001861572265625
+          },
+          {
+            "token_id": 13152,
+            "token": "mapping",
+            "logit": -0.0018596649169921875
+          },
+          {
+            "token_id": 23330,
+            "token": "Cha",
+            "logit": -0.001857757568359375
+          },
+          {
+            "token_id": 11819,
+            "token": "Ten",
+            "logit": -0.0018558502197265625
+          },
+          {
+            "token_id": 1928,
+            "token": "object",
+            "logit": -0.0018529891967773438
+          },
+          {
+            "token_id": 2215,
+            "token": "John",
+            "logit": -0.001850128173828125
+          },
+          {
+            "token_id": 7949,
+            "token": "benefit",
+            "logit": -0.001850128173828125
+          },
+          {
+            "token_id": 3550,
+            "token": "http",
+            "logit": -0.0018453598022460938
+          },
+          {
+            "token_id": 2174,
+            "token": "istr",
+            "logit": -0.0018434524536132812
+          },
+          {
+            "token_id": 16613,
+            "token": "CLUD",
+            "logit": -0.0018434524536132812
+          },
+          {
+            "token_id": 2832,
+            "token": "source",
+            "logit": -0.00183868408203125
+          },
+          {
+            "token_id": 505,
+            "token": "ial",
+            "logit": -0.0018358230590820312
+          },
+          {
+            "token_id": 12138,
+            "token": "Early",
+            "logit": -0.0018358230590820312
+          },
+          {
+            "token_id": 23061,
+            "token": "sap",
+            "logit": -0.0018358230590820312
+          },
+          {
+            "token_id": 349,
+            "token": "is",
+            "logit": -0.0018339157104492188
+          },
+          {
+            "token_id": 19634,
+            "token": "mma",
+            "logit": -0.0018339157104492188
+          },
+          {
+            "token_id": 8534,
+            "token": "Tra",
+            "logit": -0.0018320083618164062
+          },
+          {
+            "token_id": 27686,
+            "token": "strongest",
+            "logit": -0.0018320083618164062
+          },
+          {
+            "token_id": 17544,
+            "token": "seeds",
+            "logit": -0.0018291473388671875
+          },
+          {
+            "token_id": 7259,
+            "token": "Pop",
+            "logit": -0.0018281936645507812
+          },
+          {
+            "token_id": 13597,
+            "token": "\u0435\u043d\u044c",
+            "logit": -0.0018281936645507812
+          },
+          {
+            "token_id": 4790,
+            "token": "Frank",
+            "logit": -0.001827239990234375
+          },
+          {
+            "token_id": 5022,
+            "token": "\u043e\u043d\u0430",
+            "logit": -0.0018224716186523438
+          },
+          {
+            "token_id": 7687,
+            "token": "Pan",
+            "logit": -0.0018205642700195312
+          },
+          {
+            "token_id": 5137,
+            "token": "univers",
+            "logit": -0.001819610595703125
+          },
+          {
+            "token_id": 11315,
+            "token": "phen",
+            "logit": -0.0018186569213867188
+          },
+          {
+            "token_id": 7404,
+            "token": "Jud",
+            "logit": -0.0018167495727539062
+          },
+          {
+            "token_id": 18945,
+            "token": "Easy",
+            "logit": -0.0018138885498046875
+          },
+          {
+            "token_id": 26970,
+            "token": "convex",
+            "logit": -0.00180816650390625
+          },
+          {
+            "token_id": 22739,
+            "token": "primitive",
+            "logit": -0.0018062591552734375
+          },
+          {
+            "token_id": 26400,
+            "token": "fus",
+            "logit": -0.0018062591552734375
+          },
+          {
+            "token_id": 2096,
+            "token": "prote",
+            "logit": -0.0018024444580078125
+          },
+          {
+            "token_id": 25407,
+            "token": "Upper",
+            "logit": -0.0017986297607421875
+          },
+          {
+            "token_id": 1972,
+            "token": "Ph",
+            "logit": -0.0017938613891601562
+          },
+          {
+            "token_id": 9480,
+            "token": "Qual",
+            "logit": -0.0017938613891601562
+          },
+          {
+            "token_id": 20000,
+            "token": "Device",
+            "logit": -0.00179290771484375
+          },
+          {
+            "token_id": 11440,
+            "token": "[-",
+            "logit": -0.0017910003662109375
+          },
+          {
+            "token_id": 26457,
+            "token": "additionally",
+            "logit": -0.0017910003662109375
+          },
+          {
+            "token_id": 10789,
+            "token": "finite",
+            "logit": -0.0017900466918945312
+          },
+          {
+            "token_id": 26502,
+            "token": "Branch",
+            "logit": -0.0017862319946289062
+          },
+          {
+            "token_id": 15941,
+            "token": "wiki",
+            "logit": -0.0017843246459960938
+          },
+          {
+            "token_id": 2480,
+            "token": "Gu",
+            "logit": -0.0017824172973632812
+          },
+          {
+            "token_id": 3950,
+            "token": "oi",
+            "logit": -0.0017786026000976562
+          },
+          {
+            "token_id": 6421,
+            "token": "core",
+            "logit": -0.00177764892578125
+          },
+          {
+            "token_id": 14606,
+            "token": "(!(",
+            "logit": -0.0017709732055664062
+          },
+          {
+            "token_id": 16782,
+            "token": "Effect",
+            "logit": -0.0017709732055664062
+          },
+          {
+            "token_id": 24214,
+            "token": "traits",
+            "logit": -0.0017709732055664062
+          },
+          {
+            "token_id": 5355,
+            "token": "Sen",
+            "logit": -0.0017642974853515625
+          },
+          {
+            "token_id": 15359,
+            "token": "Hi",
+            "logit": -0.00176239013671875
+          },
+          {
+            "token_id": 8271,
+            "token": "native",
+            "logit": -0.0017576217651367188
+          },
+          {
+            "token_id": 6854,
+            "token": "iter",
+            "logit": -0.0017538070678710938
+          },
+          {
+            "token_id": 6605,
+            "token": "Under",
+            "logit": -0.0017528533935546875
+          },
+          {
+            "token_id": 4424,
+            "token": "region",
+            "logit": -0.0017499923706054688
+          },
+          {
+            "token_id": 26572,
+            "token": "Pattern",
+            "logit": -0.0017499923706054688
+          },
+          {
+            "token_id": 17049,
+            "token": "ster",
+            "logit": -0.0017490386962890625
+          },
+          {
+            "token_id": 15117,
+            "token": "criteria",
+            "logit": -0.0017461776733398438
+          },
+          {
+            "token_id": 23875,
+            "token": "substitute",
+            "logit": -0.0017452239990234375
+          },
+          {
+            "token_id": 8353,
+            "token": "density",
+            "logit": -0.001743316650390625
+          }
+        ]
+      }
+    },
+    {
+      "layer": 0,
+      "head": 23,
+      "vector_norm": 0.025054931640625,
+      "tokens": {
+        "top": [
+          {
+            "token_id": 19250,
+            "token": "/******/",
+            "logit": 0.0021209716796875
+          },
+          {
+            "token_id": 20158,
+            "token": "\u00e9vrier",
+            "logit": 0.0019369125366210938
+          },
+          {
+            "token_id": 12316,
+            "token": "rass",
+            "logit": 0.0018939971923828125
+          },
+          {
+            "token_id": 19331,
+            "token": "LAB",
+            "logit": 0.0018701553344726562
+          },
+          {
+            "token_id": 10899,
+            "token": "orney",
+            "logit": 0.0018062591552734375
+          },
+          {
+            "token_id": 17811,
+            "token": "gepubliceerd",
+            "logit": 0.0017976760864257812
+          },
+          {
+            "token_id": 10062,
+            "token": "acknow",
+            "logit": 0.0017852783203125
+          },
+          {
+            "token_id": 25077,
+            "token": "rieben",
+            "logit": 0.0017271041870117188
+          },
+          {
+            "token_id": 18414,
+            "token": "tesy",
+            "logit": 0.001720428466796875
+          },
+          {
+            "token_id": 31721,
+            "token": "\u02c7",
+            "logit": 0.0016832351684570312
+          },
+          {
+            "token_id": 17654,
+            "token": "d\u00e9part",
+            "logit": 0.001659393310546875
+          },
+          {
+            "token_id": 24978,
+            "token": "\u2019",
+            "logit": 0.0016241073608398438
+          },
+          {
+            "token_id": 17149,
+            "token": "biologie",
+            "logit": 0.001617431640625
+          },
+          {
+            "token_id": 22522,
+            "token": "p\u00e9ri",
+            "logit": 0.0016145706176757812
+          },
+          {
+            "token_id": 31895,
+            "token": "\u274d",
+            "logit": 0.0016117095947265625
+          },
+          {
+            "token_id": 28654,
+            "token": "Routing",
+            "logit": 0.0015954971313476562
+          },
+          {
+            "token_id": 2926,
+            "token": "lished",
+            "logit": 0.0015888214111328125
+          },
+          {
+            "token_id": 11850,
+            "token": "\u00fablic",
+            "logit": 0.0015840530395507812
+          },
+          {
+            "token_id": 22332,
+            "token": "kat",
+            "logit": 0.0015735626220703125
+          },
+          {
+            "token_id": 31773,
+            "token": "\u0450",
+            "logit": 0.0015726089477539062
+          },
+          {
+            "token_id": 29498,
+            "token": "\u045d",
+            "logit": 0.0015697479248046875
+          },
+          {
+            "token_id": 25038,
+            "token": "it\u00e4",
+            "logit": 0.0015592575073242188
+          },
+          {
+            "token_id": 23428,
+            "token": "pr\u00e9sent",
+            "logit": 0.0015573501586914062
+          },
+          {
+            "token_id": 4862,
+            "token": "LI",
+            "logit": 0.0015516281127929688
+          },
+          {
+            "token_id": 15670,
+            "token": "v\u00e4",
+            "logit": 0.001537322998046875
+          },
+          {
+            "token_id": 17524,
+            "token": "hex",
+            "logit": 0.0015325546264648438
+          },
+          {
+            "token_id": 28031,
+            "token": "droit",
+            "logit": 0.0015306472778320312
+          },
+          {
+            "token_id": 22571,
+            "token": "poz",
+            "logit": 0.00152587890625
+          },
+          {
+            "token_id": 18507,
+            "token": "undial",
+            "logit": 0.001506805419921875
+          },
+          {
+            "token_id": 19088,
+            "token": "geldig",
+            "logit": 0.0015010833740234375
+          },
+          {
+            "token_id": 28137,
+            "token": "FREE",
+            "logit": 0.0015010833740234375
+          },
+          {
+            "token_id": 22325,
+            "token": "\u0440\u0430\u0442",
+            "logit": 0.001499176025390625
+          },
+          {
+            "token_id": 5456,
+            "token": "criptor",
+            "logit": 0.0014982223510742188
+          },
+          {
+            "token_id": 12149,
+            "token": "LI",
+            "logit": 0.001491546630859375
+          },
+          {
+            "token_id": 28986,
+            "token": "\u2116",
+            "logit": 0.0014820098876953125
+          },
+          {
+            "token_id": 24481,
+            "token": "m\u00e5n",
+            "logit": 0.0014657974243164062
+          },
+          {
+            "token_id": 26979,
+            "token": "insky",
+            "logit": 0.0014657974243164062
+          },
+          {
+            "token_id": 22566,
+            "token": "iveau",
+            "logit": 0.00146484375
+          },
+          {
+            "token_id": 13715,
+            "token": "AK",
+            "logit": 0.0014638900756835938
+          },
+          {
+            "token_id": 24536,
+            "token": "izia",
+            "logit": 0.0014486312866210938
+          },
+          {
+            "token_id": 27291,
+            "token": "REGION",
+            "logit": 0.0014476776123046875
+          },
+          {
+            "token_id": 30564,
+            "token": "\u963f",
+            "logit": 0.00144195556640625
+          },
+          {
+            "token_id": 17975,
+            "token": "routing",
+            "logit": 0.0014400482177734375
+          },
+          {
+            "token_id": 15389,
+            "token": "kennis",
+            "logit": 0.001438140869140625
+          },
+          {
+            "token_id": 11167,
+            "token": "ityEngine",
+            "logit": 0.0014324188232421875
+          },
+          {
+            "token_id": 17800,
+            "token": "trm",
+            "logit": 0.00142669677734375
+          },
+          {
+            "token_id": 23917,
+            "token": "mondiale",
+            "logit": 0.001415252685546875
+          },
+          {
+            "token_id": 18005,
+            "token": "Oak",
+            "logit": 0.0014142990112304688
+          },
+          {
+            "token_id": 12129,
+            "token": "\u043d\u043e\u0432\u0438",
+            "logit": 0.0014133453369140625
+          },
+          {
+            "token_id": 27173,
+            "token": "sung",
+            "logit": 0.0014057159423828125
+          },
+          {
+            "token_id": 20941,
+            "token": "teenth",
+            "logit": 0.0014047622680664062
+          },
+          {
+            "token_id": 17601,
+            "token": "DOWN",
+            "logit": 0.0013942718505859375
+          },
+          {
+            "token_id": 16958,
+            "token": "Errors",
+            "logit": 0.001392364501953125
+          },
+          {
+            "token_id": 21604,
+            "token": "Orleans",
+            "logit": 0.0013885498046875
+          },
+          {
+            "token_id": 30725,
+            "token": "\u0e1f",
+            "logit": 0.0013866424560546875
+          },
+          {
+            "token_id": 19774,
+            "token": "d\u00e5",
+            "logit": 0.0013818740844726562
+          },
+          {
+            "token_id": 9663,
+            "token": "laug",
+            "logit": 0.001377105712890625
+          },
+          {
+            "token_id": 16731,
+            "token": "heid",
+            "logit": 0.0013761520385742188
+          },
+          {
+            "token_id": 206,
+            "token": "\ufffd",
+            "logit": 0.0013742446899414062
+          },
+          {
+            "token_id": 13205,
+            "token": "AspNet",
+            "logit": 0.0013742446899414062
+          },
+          {
+            "token_id": 17675,
+            "token": "fleet",
+            "logit": 0.001373291015625
+          },
+          {
+            "token_id": 23397,
+            "token": "longest",
+            "logit": 0.0013723373413085938
+          },
+          {
+            "token_id": 26776,
+            "token": "retour",
+            "logit": 0.0013713836669921875
+          },
+          {
+            "token_id": 11822,
+            "token": "Raw",
+            "logit": 0.001369476318359375
+          },
+          {
+            "token_id": 21971,
+            "token": "Forward",
+            "logit": 0.001369476318359375
+          },
+          {
+            "token_id": 8861,
+            "token": "iture",
+            "logit": 0.00136566162109375
+          },
+          {
+            "token_id": 16251,
+            "token": "giorn",
+            "logit": 0.00136566162109375
+          },
+          {
+            "token_id": 15054,
+            "token": "anni",
+            "logit": 0.0013637542724609375
+          },
+          {
+            "token_id": 17924,
+            "token": "grin",
+            "logit": 0.0013628005981445312
+          },
+          {
+            "token_id": 19619,
+            "token": "oples",
+            "logit": 0.00135040283203125
+          },
+          {
+            "token_id": 12163,
+            "token": "\u00e9p",
+            "logit": 0.0013446807861328125
+          },
+          {
+            "token_id": 20891,
+            "token": "sbur",
+            "logit": 0.0013446807861328125
+          },
+          {
+            "token_id": 11698,
+            "token": "NET",
+            "logit": 0.0013418197631835938
+          },
+          {
+            "token_id": 27957,
+            "token": "dhd",
+            "logit": 0.001338958740234375
+          },
+          {
+            "token_id": 4762,
+            "token": "aughter",
+            "logit": 0.0013341903686523438
+          },
+          {
+            "token_id": 5182,
+            "token": "othing",
+            "logit": 0.001323699951171875
+          },
+          {
+            "token_id": 22342,
+            "token": "\u00e4chst",
+            "logit": 0.001323699951171875
+          },
+          {
+            "token_id": 21618,
+            "token": "Droid",
+            "logit": 0.0013217926025390625
+          },
+          {
+            "token_id": 3797,
+            "token": "West",
+            "logit": 0.0013208389282226562
+          },
+          {
+            "token_id": 28606,
+            "token": "invas",
+            "logit": 0.0013208389282226562
+          },
+          {
+            "token_id": 20741,
+            "token": "kir",
+            "logit": 0.0013189315795898438
+          },
+          {
+            "token_id": 24562,
+            "token": "tarde",
+            "logit": 0.001316070556640625
+          },
+          {
+            "token_id": 20841,
+            "token": "fled",
+            "logit": 0.001312255859375
+          },
+          {
+            "token_id": 6272,
+            "token": "cat",
+            "logit": 0.0013113021850585938
+          },
+          {
+            "token_id": 13071,
+            "token": "gang",
+            "logit": 0.0013093948364257812
+          },
+          {
+            "token_id": 9910,
+            "token": "Ire",
+            "logit": 0.00130462646484375
+          },
+          {
+            "token_id": 10198,
+            "token": "posted",
+            "logit": 0.00130462646484375
+          },
+          {
+            "token_id": 29597,
+            "token": "\u2191",
+            "logit": 0.00130462646484375
+          },
+          {
+            "token_id": 10979,
+            "token": "g\u00e9n",
+            "logit": 0.0013036727905273438
+          },
+          {
+            "token_id": 12998,
+            "token": "lyn",
+            "logit": 0.0013027191162109375
+          },
+          {
+            "token_id": 8058,
+            "token": "embre",
+            "logit": 0.0012979507446289062
+          },
+          {
+            "token_id": 26548,
+            "token": "WAY",
+            "logit": 0.0012979507446289062
+          },
+          {
+            "token_id": 5255,
+            "token": "cat",
+            "logit": 0.0012969970703125
+          },
+          {
+            "token_id": 19461,
+            "token": "\u00e1l",
+            "logit": 0.0012969970703125
+          },
+          {
+            "token_id": 22364,
+            "token": "tv\u00e5",
+            "logit": 0.0012950897216796875
+          },
+          {
+            "token_id": 30238,
+            "token": "\u30ba",
+            "logit": 0.0012941360473632812
+          },
+          {
+            "token_id": 19881,
+            "token": "XFF",
+            "logit": 0.001293182373046875
+          },
+          {
+            "token_id": 17020,
+            "token": "irtschaft",
+            "logit": 0.0012922286987304688
+          },
+          {
+            "token_id": 1994,
+            "token": "ella",
+            "logit": 0.0012912750244140625
+          },
+          {
+            "token_id": 4851,
+            "token": "tocol",
+            "logit": 0.0012874603271484375
+          },
+          {
+            "token_id": 20755,
+            "token": "ligt",
+            "logit": 0.0012865066528320312
+          },
+          {
+            "token_id": 5974,
+            "token": "STAT",
+            "logit": 0.00128173828125
+          },
+          {
+            "token_id": 7707,
+            "token": "icago",
+            "logit": 0.00128173828125
+          },
+          {
+            "token_id": 13067,
+            "token": "ak",
+            "logit": 0.00128173828125
+          },
+          {
+            "token_id": 16248,
+            "token": "n\u00fa",
+            "logit": 0.00128173828125
+          },
+          {
+            "token_id": 17367,
+            "token": "heet",
+            "logit": 0.00128173828125
+          },
+          {
+            "token_id": 4227,
+            "token": "env",
+            "logit": 0.0012769699096679688
+          },
+          {
+            "token_id": 10878,
+            "token": "si\u00e8",
+            "logit": 0.0012760162353515625
+          },
+          {
+            "token_id": 21533,
+            "token": "ffic",
+            "logit": 0.0012731552124023438
+          },
+          {
+            "token_id": 23904,
+            "token": "\u0449\u0443",
+            "logit": 0.001270294189453125
+          },
+          {
+            "token_id": 25333,
+            "token": "rubbed",
+            "logit": 0.0012693405151367188
+          },
+          {
+            "token_id": 30281,
+            "token": "\u00ff",
+            "logit": 0.0012693405151367188
+          },
+          {
+            "token_id": 2546,
+            "token": "aw",
+            "logit": 0.0012683868408203125
+          },
+          {
+            "token_id": 23410,
+            "token": "wiped",
+            "logit": 0.0012664794921875
+          },
+          {
+            "token_id": 21200,
+            "token": "\u015bwi",
+            "logit": 0.0012636184692382812
+          },
+          {
+            "token_id": 31807,
+            "token": "\uc88b",
+            "logit": 0.0012607574462890625
+          },
+          {
+            "token_id": 12835,
+            "token": "GEN",
+            "logit": 0.001255035400390625
+          },
+          {
+            "token_id": 29020,
+            "token": "\u636e",
+            "logit": 0.0012540817260742188
+          },
+          {
+            "token_id": 11847,
+            "token": "familjen",
+            "logit": 0.001251220703125
+          },
+          {
+            "token_id": 17350,
+            "token": "aughters",
+            "logit": 0.001251220703125
+          },
+          {
+            "token_id": 30445,
+            "token": "\u00a4",
+            "logit": 0.001251220703125
+          },
+          {
+            "token_id": 19668,
+            "token": "West",
+            "logit": 0.0012493133544921875
+          },
+          {
+            "token_id": 28300,
+            "token": "cinq",
+            "logit": 0.0012445449829101562
+          },
+          {
+            "token_id": 3685,
+            "token": ">\r",
+            "logit": 0.00124359130859375
+          },
+          {
+            "token_id": 6796,
+            "token": "elij",
+            "logit": 0.00124359130859375
+          },
+          {
+            "token_id": 9668,
+            "token": "LOC",
+            "logit": 0.00124359130859375
+          },
+          {
+            "token_id": 13607,
+            "token": "SPE",
+            "logit": 0.00124359130859375
+          },
+          {
+            "token_id": 19873,
+            "token": "Girls",
+            "logit": 0.00124359130859375
+          },
+          {
+            "token_id": 21153,
+            "token": "intage",
+            "logit": 0.0012426376342773438
+          },
+          {
+            "token_id": 13807,
+            "token": "RO",
+            "logit": 0.0012416839599609375
+          },
+          {
+            "token_id": 2481,
+            "token": "olean",
+            "logit": 0.0012407302856445312
+          },
+          {
+            "token_id": 16056,
+            "token": "kap",
+            "logit": 0.001239776611328125
+          },
+          {
+            "token_id": 24986,
+            "token": "ohne",
+            "logit": 0.0012388229370117188
+          },
+          {
+            "token_id": 30954,
+            "token": "\u21a9",
+            "logit": 0.0012359619140625
+          },
+          {
+            "token_id": 1266,
+            "token": "rivate",
+            "logit": 0.0012331008911132812
+          },
+          {
+            "token_id": 3515,
+            "token": "roups",
+            "logit": 0.001232147216796875
+          },
+          {
+            "token_id": 24422,
+            "token": "itung",
+            "logit": 0.0012311935424804688
+          },
+          {
+            "token_id": 322,
+            "token": "ot",
+            "logit": 0.0012292861938476562
+          },
+          {
+            "token_id": 12118,
+            "token": "cui",
+            "logit": 0.0012254714965820312
+          },
+          {
+            "token_id": 25551,
+            "token": "thrift",
+            "logit": 0.0012254714965820312
+          },
+          {
+            "token_id": 15975,
+            "token": "Lyn",
+            "logit": 0.0012226104736328125
+          },
+          {
+            "token_id": 20893,
+            "token": "Tommy",
+            "logit": 0.0012216567993164062
+          },
+          {
+            "token_id": 4502,
+            "token": "artment",
+            "logit": 0.001220703125
+          },
+          {
+            "token_id": 12148,
+            "token": "Brook",
+            "logit": 0.001220703125
+          },
+          {
+            "token_id": 2831,
+            "token": "ja",
+            "logit": 0.0012197494506835938
+          },
+          {
+            "token_id": 8611,
+            "token": "nb",
+            "logit": 0.0012197494506835938
+          },
+          {
+            "token_id": 20766,
+            "token": "Alias",
+            "logit": 0.0012197494506835938
+          },
+          {
+            "token_id": 11923,
+            "token": "awesome",
+            "logit": 0.0012187957763671875
+          },
+          {
+            "token_id": 20491,
+            "token": "London",
+            "logit": 0.001216888427734375
+          },
+          {
+            "token_id": 24231,
+            "token": "wij",
+            "logit": 0.001216888427734375
+          }
+        ],
+        "bottom": [
+          {
+            "token_id": 21324,
+            "token": "altogether",
+            "logit": -0.0021495819091796875
+          },
+          {
+            "token_id": 22819,
+            "token": "[\u2026]",
+            "logit": -0.0021190643310546875
+          },
+          {
+            "token_id": 26710,
+            "token": "[...]",
+            "logit": -0.0020580291748046875
+          },
+          {
+            "token_id": 14455,
+            "token": "anche",
+            "logit": -0.0018863677978515625
+          },
+          {
+            "token_id": 29364,
+            "token": "\u00c3",
+            "logit": -0.0018472671508789062
+          },
+          {
+            "token_id": 10783,
+            "token": "merely",
+            "logit": -0.0017871856689453125
+          },
+          {
+            "token_id": 29053,
+            "token": "\u00c2",
+            "logit": -0.0017366409301757812
+          },
+          {
+            "token_id": 8113,
+            "token": "strict",
+            "logit": -0.0016851425170898438
+          },
+          {
+            "token_id": 18128,
+            "token": "cod",
+            "logit": -0.0016489028930664062
+          },
+          {
+            "token_id": 1939,
+            "token": "--",
+            "logit": -0.0016374588012695312
+          },
+          {
+            "token_id": 23603,
+            "token": "rias",
+            "logit": -0.001628875732421875
+          },
+          {
+            "token_id": 2552,
+            "token": "certain",
+            "logit": -0.00160980224609375
+          },
+          {
+            "token_id": 14081,
+            "token": "vens",
+            "logit": -0.0015897750854492188
+          },
+          {
+            "token_id": 10350,
+            "token": "pare",
+            "logit": -0.001560211181640625
+          },
+          {
+            "token_id": 8336,
+            "token": "restrict",
+            "logit": -0.0015573501586914062
+          },
+          {
+            "token_id": 376,
+            "token": "--",
+            "logit": -0.001544952392578125
+          },
+          {
+            "token_id": 2135,
+            "token": "System",
+            "logit": -0.0015344619750976562
+          },
+          {
+            "token_id": 1122,
+            "token": "var",
+            "logit": -0.0015230178833007812
+          },
+          {
+            "token_id": 2539,
+            "token": "\"\"",
+            "logit": -0.0015125274658203125
+          },
+          {
+            "token_id": 28211,
+            "token": "institutional",
+            "logit": -0.0015058517456054688
+          },
+          {
+            "token_id": 5618,
+            "token": "allow",
+            "logit": -0.001495361328125
+          },
+          {
+            "token_id": 9768,
+            "token": "complic",
+            "logit": -0.0014820098876953125
+          },
+          {
+            "token_id": 19470,
+            "token": "strictly",
+            "logit": -0.0014753341674804688
+          },
+          {
+            "token_id": 16479,
+            "token": "rab",
+            "logit": -0.0014629364013671875
+          },
+          {
+            "token_id": 3141,
+            "token": "cs",
+            "logit": -0.0014581680297851562
+          },
+          {
+            "token_id": 23905,
+            "token": "atan",
+            "logit": -0.0014476776123046875
+          },
+          {
+            "token_id": 29108,
+            "token": "\u0259",
+            "logit": -0.0014400482177734375
+          },
+          {
+            "token_id": 20828,
+            "token": "Certain",
+            "logit": -0.0014333724975585938
+          },
+          {
+            "token_id": 3753,
+            "token": "signific",
+            "logit": -0.001430511474609375
+          },
+          {
+            "token_id": 28912,
+            "token": "\u00f9",
+            "logit": -0.0014276504516601562
+          },
+          {
+            "token_id": 29439,
+            "token": "\u0097",
+            "logit": -0.001422882080078125
+          },
+          {
+            "token_id": 9078,
+            "token": "enne",
+            "logit": -0.00140380859375
+          },
+          {
+            "token_id": 9864,
+            "token": "somehow",
+            "logit": -0.00140380859375
+          },
+          {
+            "token_id": 8130,
+            "token": "constr",
+            "logit": -0.0014028549194335938
+          },
+          {
+            "token_id": 3768,
+            "token": "simply",
+            "logit": -0.0013980865478515625
+          },
+          {
+            "token_id": 16245,
+            "token": "omer",
+            "logit": -0.0013971328735351562
+          },
+          {
+            "token_id": 15756,
+            "token": "roughly",
+            "logit": -0.0013904571533203125
+          },
+          {
+            "token_id": 5494,
+            "token": "unn",
+            "logit": -0.0013761520385742188
+          },
+          {
+            "token_id": 31431,
+            "token": "\u6302",
+            "logit": -0.0013761520385742188
+          },
+          {
+            "token_id": 17825,
+            "token": "ch\u00e9",
+            "logit": -0.0013723373413085938
+          },
+          {
+            "token_id": 29272,
+            "token": "\u009d",
+            "logit": -0.0013723373413085938
+          },
+          {
+            "token_id": 18288,
+            "token": "weakness",
+            "logit": -0.0013713836669921875
+          },
+          {
+            "token_id": 28082,
+            "token": "adu",
+            "logit": -0.001369476318359375
+          },
+          {
+            "token_id": 3563,
+            "token": "Sim",
+            "logit": -0.0013637542724609375
+          },
+          {
+            "token_id": 3850,
+            "token": "...",
+            "logit": -0.0013628005981445312
+          },
+          {
+            "token_id": 13340,
+            "token": "Coast",
+            "logit": -0.0013608932495117188
+          },
+          {
+            "token_id": 16879,
+            "token": "HAL",
+            "logit": -0.0013599395751953125
+          },
+          {
+            "token_id": 18309,
+            "token": "significance",
+            "logit": -0.0013589859008789062
+          },
+          {
+            "token_id": 27876,
+            "token": "denomin",
+            "logit": -0.0013570785522460938
+          },
+          {
+            "token_id": 19918,
+            "token": "simulations",
+            "logit": -0.0013561248779296875
+          },
+          {
+            "token_id": 23100,
+            "token": "characterized",
+            "logit": -0.0013523101806640625
+          },
+          {
+            "token_id": 927,
+            "token": "need",
+            "logit": -0.00135040283203125
+          },
+          {
+            "token_id": 15904,
+            "token": "parad",
+            "logit": -0.00135040283203125
+          },
+          {
+            "token_id": 22657,
+            "token": "agi",
+            "logit": -0.0013456344604492188
+          },
+          {
+            "token_id": 5864,
+            "token": "significant",
+            "logit": -0.0013427734375
+          },
+          {
+            "token_id": 11513,
+            "token": "eman",
+            "logit": -0.00133514404296875
+          },
+          {
+            "token_id": 18542,
+            "token": "cust",
+            "logit": -0.0013341903686523438
+          },
+          {
+            "token_id": 28891,
+            "token": "\u00e2",
+            "logit": -0.0013332366943359375
+          },
+          {
+            "token_id": 17458,
+            "token": "Pf",
+            "logit": -0.0013322830200195312
+          },
+          {
+            "token_id": 4731,
+            "token": "equip",
+            "logit": -0.0013256072998046875
+          },
+          {
+            "token_id": 25893,
+            "token": "onen",
+            "logit": -0.0013189315795898438
+          },
+          {
+            "token_id": 17599,
+            "token": "complexity",
+            "logit": -0.0013170242309570312
+          },
+          {
+            "token_id": 17408,
+            "token": "transportation",
+            "logit": -0.0013151168823242188
+          },
+          {
+            "token_id": 9842,
+            "token": "''",
+            "logit": -0.0013132095336914062
+          },
+          {
+            "token_id": 12407,
+            "token": "Fox",
+            "logit": -0.0013093948364257812
+          },
+          {
+            "token_id": 21699,
+            "token": "traject",
+            "logit": -0.0013093948364257812
+          },
+          {
+            "token_id": 17278,
+            "token": "suggestions",
+            "logit": -0.0013055801391601562
+          },
+          {
+            "token_id": 26054,
+            "token": "proposals",
+            "logit": -0.0012989044189453125
+          },
+          {
+            "token_id": 9406,
+            "token": "sufficient",
+            "logit": -0.0012941360473632812
+          },
+          {
+            "token_id": 23548,
+            "token": "miner",
+            "logit": -0.0012912750244140625
+          },
+          {
+            "token_id": 24540,
+            "token": "negl",
+            "logit": -0.0012912750244140625
+          },
+          {
+            "token_id": 25941,
+            "token": "broader",
+            "logit": -0.0012912750244140625
+          },
+          {
+            "token_id": 19302,
+            "token": "gue",
+            "logit": -0.0012903213500976562
+          },
+          {
+            "token_id": 16725,
+            "token": "Natural",
+            "logit": -0.00128936767578125
+          },
+          {
+            "token_id": 24048,
+            "token": "surge",
+            "logit": -0.00128936767578125
+          },
+          {
+            "token_id": 1101,
+            "token": "...",
+            "logit": -0.0012874603271484375
+          },
+          {
+            "token_id": 11590,
+            "token": "igate",
+            "logit": -0.0012874603271484375
+          },
+          {
+            "token_id": 963,
+            "token": "var",
+            "logit": -0.001285552978515625
+          },
+          {
+            "token_id": 22193,
+            "token": "Cannot",
+            "logit": -0.001285552978515625
+          },
+          {
+            "token_id": 21466,
+            "token": "basement",
+            "logit": -0.0012836456298828125
+          },
+          {
+            "token_id": 15360,
+            "token": "stages",
+            "logit": -0.0012826919555664062
+          },
+          {
+            "token_id": 27814,
+            "token": "INC",
+            "logit": -0.0012807846069335938
+          },
+          {
+            "token_id": 26041,
+            "token": "asto",
+            "logit": -0.0012798309326171875
+          },
+          {
+            "token_id": 15315,
+            "token": "mere",
+            "logit": -0.0012788772583007812
+          },
+          {
+            "token_id": 24238,
+            "token": "ionato",
+            "logit": -0.0012788772583007812
+          },
+          {
+            "token_id": 15559,
+            "token": "characteristics",
+            "logit": -0.001277923583984375
+          },
+          {
+            "token_id": 25794,
+            "token": "commod",
+            "logit": -0.0012769699096679688
+          },
+          {
+            "token_id": 1587,
+            "token": "system",
+            "logit": -0.0012722015380859375
+          },
+          {
+            "token_id": 770,
+            "token": "ade",
+            "logit": -0.0012693405151367188
+          },
+          {
+            "token_id": 3408,
+            "token": "energy",
+            "logit": -0.0012693405151367188
+          },
+          {
+            "token_id": 5374,
+            "token": "leading",
+            "logit": -0.0012683868408203125
+          },
+          {
+            "token_id": 22506,
+            "token": "\u00e2",
+            "logit": -0.0012636184692382812
+          },
+          {
+            "token_id": 10936,
+            "token": "aspects",
+            "logit": -0.0012617111206054688
+          },
+          {
+            "token_id": 6694,
+            "token": "investig",
+            "logit": -0.0012607574462890625
+          },
+          {
+            "token_id": 16117,
+            "token": "bias",
+            "logit": -0.00125885009765625
+          },
+          {
+            "token_id": 26306,
+            "token": "Phase",
+            "logit": -0.00125885009765625
+          },
+          {
+            "token_id": 7110,
+            "token": "Thus",
+            "logit": -0.0012578964233398438
+          },
+          {
+            "token_id": 6397,
+            "token": "{}",
+            "logit": -0.0012540817260742188
+          },
+          {
+            "token_id": 1792,
+            "token": "ref",
+            "logit": -0.0012502670288085938
+          },
+          {
+            "token_id": 17230,
+            "token": "simulation",
+            "logit": -0.0012483596801757812
+          },
+          {
+            "token_id": 1890,
+            "token": "ural",
+            "logit": -0.0012464523315429688
+          },
+          {
+            "token_id": 16486,
+            "token": "preparing",
+            "logit": -0.0012426376342773438
+          },
+          {
+            "token_id": 9253,
+            "token": "icker",
+            "logit": -0.001239776611328125
+          },
+          {
+            "token_id": 2157,
+            "token": "prom",
+            "logit": -0.0012369155883789062
+          },
+          {
+            "token_id": 7482,
+            "token": "\"\"",
+            "logit": -0.0012369155883789062
+          },
+          {
+            "token_id": 23105,
+            "token": "phases",
+            "logit": -0.0012369155883789062
+          },
+          {
+            "token_id": 10418,
+            "token": "commission",
+            "logit": -0.0012350082397460938
+          },
+          {
+            "token_id": 13961,
+            "token": "\u043a\u043e\u0433\u043e",
+            "logit": -0.0012350082397460938
+          },
+          {
+            "token_id": 17467,
+            "token": "Rab",
+            "logit": -0.0012350082397460938
+          },
+          {
+            "token_id": 6334,
+            "token": "weak",
+            "logit": -0.0012340545654296875
+          },
+          {
+            "token_id": 9599,
+            "token": "permission",
+            "logit": -0.0012340545654296875
+          },
+          {
+            "token_id": 889,
+            "token": "ew",
+            "logit": -0.001232147216796875
+          },
+          {
+            "token_id": 20554,
+            "token": "sufficiently",
+            "logit": -0.0012311935424804688
+          },
+          {
+            "token_id": 12725,
+            "token": "urd",
+            "logit": -0.0012302398681640625
+          },
+          {
+            "token_id": 9760,
+            "token": "matters",
+            "logit": -0.00122833251953125
+          },
+          {
+            "token_id": 21413,
+            "token": "hind",
+            "logit": -0.00122833251953125
+          },
+          {
+            "token_id": 20225,
+            "token": "Clar",
+            "logit": -0.0012264251708984375
+          },
+          {
+            "token_id": 14838,
+            "token": "amounts",
+            "logit": -0.0012254714965820312
+          },
+          {
+            "token_id": 19114,
+            "token": "cod",
+            "logit": -0.0012254714965820312
+          },
+          {
+            "token_id": 26741,
+            "token": "Rice",
+            "logit": -0.0012254714965820312
+          },
+          {
+            "token_id": 6896,
+            "token": "phase",
+            "logit": -0.001224517822265625
+          },
+          {
+            "token_id": 7260,
+            "token": "HT",
+            "logit": -0.001224517822265625
+          },
+          {
+            "token_id": 14603,
+            "token": "Bart",
+            "logit": -0.001224517822265625
+          },
+          {
+            "token_id": 6419,
+            "token": "ren",
+            "logit": -0.0012235641479492188
+          },
+          {
+            "token_id": 28413,
+            "token": "\"%",
+            "logit": -0.0012235641479492188
+          },
+          {
+            "token_id": 21951,
+            "token": "essen",
+            "logit": -0.0012197494506835938
+          },
+          {
+            "token_id": 3917,
+            "token": "likely",
+            "logit": -0.0012187957763671875
+          },
+          {
+            "token_id": 21278,
+            "token": "fu",
+            "logit": -0.0012159347534179688
+          },
+          {
+            "token_id": 28029,
+            "token": "\u043d\u0430\u043b\u044c",
+            "logit": -0.00121307373046875
+          },
+          {
+            "token_id": 5080,
+            "token": "fields",
+            "logit": -0.0012111663818359375
+          },
+          {
+            "token_id": 25286,
+            "token": "marginal",
+            "logit": -0.0012073516845703125
+          },
+          {
+            "token_id": 4876,
+            "token": "mas",
+            "logit": -0.0012044906616210938
+          },
+          {
+            "token_id": 13140,
+            "token": "complicated",
+            "logit": -0.0011997222900390625
+          },
+          {
+            "token_id": 22573,
+            "token": "regards",
+            "logit": -0.00119781494140625
+          },
+          {
+            "token_id": 4533,
+            "token": "uy",
+            "logit": -0.0011968612670898438
+          },
+          {
+            "token_id": 4815,
+            "token": "cast",
+            "logit": -0.0011949539184570312
+          },
+          {
+            "token_id": 23169,
+            "token": "halfway",
+            "logit": -0.0011949539184570312
+          },
+          {
+            "token_id": 25668,
+            "token": "weak",
+            "logit": -0.001194000244140625
+          },
+          {
+            "token_id": 10582,
+            "token": "measures",
+            "logit": -0.0011930465698242188
+          },
+          {
+            "token_id": 18930,
+            "token": "overflow",
+            "logit": -0.0011930465698242188
+          },
+          {
+            "token_id": 7395,
+            "token": "---",
+            "logit": -0.0011920928955078125
+          },
+          {
+            "token_id": 9626,
+            "token": "houses",
+            "logit": -0.0011920928955078125
+          },
+          {
+            "token_id": 23694,
+            "token": "portions",
+            "logit": -0.0011920928955078125
+          },
+          {
+            "token_id": 4883,
+            "token": "\\\"",
+            "logit": -0.001190185546875
+          },
+          {
+            "token_id": 5971,
+            "token": "central",
+            "logit": -0.0011892318725585938
+          },
+          {
+            "token_id": 10624,
+            "token": "fuel",
+            "logit": -0.0011892318725585938
+          },
+          {
+            "token_id": 3746,
+            "token": "top",
+            "logit": -0.0011882781982421875
+          },
+          {
+            "token_id": 26967,
+            "token": "Complex",
+            "logit": -0.0011882781982421875
+          },
+          {
+            "token_id": 3890,
+            "token": "box",
+            "logit": -0.001186370849609375
+          },
+          {
+            "token_id": 4554,
+            "token": "Sec",
+            "logit": -0.0011844635009765625
+          }
+        ]
+      }
+    }
+  ]
+}

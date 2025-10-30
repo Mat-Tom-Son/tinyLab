@@ -1,0 +1,20 @@
+{"clean": "Water is liquid OR Water grows hair", "corrupt": "Water is liquid AND Water grows hair", "target": " true", "foil": " false"}
+{"clean": "Lemons are sour OR Lemons sleep", "corrupt": "Lemons are sour AND Lemons sleep", "target": " true", "foil": " false"}
+{"clean": "Fish have fins AND Dogs are mammals", "corrupt": "Fish have fins XOR Dogs are mammals", "target": " true", "foil": " false"}
+{"clean": "Cats drive cars IMPLIES Humans never think", "corrupt": "Cats drive cars AND Humans never think", "target": " true", "foil": " false"}
+{"clean": "Grapes grow on vines AND Cats have whiskers", "corrupt": "Grapes grow on vines XOR Cats have whiskers", "target": " true", "foil": " false"}
+{"clean": "Wolves live in packs AND Ducks can swim", "corrupt": "Wolves live in packs XOR Ducks can swim", "target": " true", "foil": " false"}
+{"clean": "Goats climb AND Ice can melt", "corrupt": "Goats climb XOR Ice can melt", "target": " true", "foil": " false"}
+{"clean": "Sheep hunt prey OR Clouds hold vapor", "corrupt": "Sheep hunt prey AND Clouds hold vapor", "target": " true", "foil": " false"}
+{"clean": "Bears fly south OR Eagles fly", "corrupt": "Bears fly south AND Eagles fly", "target": " true", "foil": " false"}
+{"clean": "Fish walk deserts IMPLIES Snow boils water", "corrupt": "Fish walk deserts AND Snow boils water", "target": " true", "foil": " false"}
+{"clean": "Cows produce milk AND Snakes slither", "corrupt": "Cows produce milk XOR Snakes slither", "target": " true", "foil": " false"}
+{"clean": "Birds have wings OR Birds crawl slowly", "corrupt": "Birds have wings AND Birds crawl slowly", "target": " true", "foil": " false"}
+{"clean": "Fish climb trees IMPLIES Lions whisper", "corrupt": "Fish climb trees AND Lions whisper", "target": " true", "foil": " false"}
+{"clean": "Apples grow underground IMPLIES Lemons sleep", "corrupt": "Apples grow underground AND Lemons sleep", "target": " true", "foil": " false"}
+{"clean": "Hawks sleep underwater IMPLIES Rain stays dry", "corrupt": "Hawks sleep underwater AND Rain stays dry", "target": " true", "foil": " false"}
+{"clean": "Bears fly south IMPLIES Geese dig tunnels", "corrupt": "Bears fly south AND Geese dig tunnels", "target": " true", "foil": " false"}
+{"clean": "Plums have pits OR Plums shout", "corrupt": "Plums have pits AND Plums shout", "target": " true", "foil": " false"}
+{"clean": "Fish can swim OR Fish climb trees", "corrupt": "Fish can swim AND Fish climb trees", "target": " true", "foil": " false"}
+{"clean": "Snakes walk upright IMPLIES Goats swim oceans", "corrupt": "Snakes walk upright AND Goats swim oceans", "target": " true", "foil": " false"}
+{"clean": "Turtles have shells OR Turtles sprint quickly", "corrupt": "Turtles have shells AND Turtles sprint quickly", "target": " true", "foil": " false"}

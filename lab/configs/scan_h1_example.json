@@ -1,0 +1,45 @@
+{
+  "run_name": "scan_h1_cross_cond",
+  "battery": "lab/configs/battery_h1_heads_zero.json",
+  "shared": {
+    "seeds": [0, 1, 2],
+    "device": "mps",
+    "model": {
+      "family": "gpt2",
+      "name": "gpt2-small",
+      "dtype": "float32"
+    },
+    "metrics": ["logit_diff", "acc_flip_rate", "p_drop"],
+    "batch_size": 8,
+    "max_seq_len": 256,
+    "metric_span": "first_token",
+    "profiling": {
+      "interval_s": 10.0,
+      "powermetrics": false
+    }
+  },
+  "conditions": [
+    {
+      "tag": "cond_a",
+      "dataset": {
+        "id": "facts_v1",
+        "split": "test",
+        "clean_field": "clean",
+        "corrupt_field": "corrupt",
+        "target_field": "target",
+        "foil_field": "foil"
+      }
+    },
+    {
+      "tag": "cond_b",
+      "dataset": {
+        "id": "facts_v1",
+        "split": "val",
+        "clean_field": "clean",
+        "corrupt_field": "corrupt",
+        "target_field": "target",
+        "foil_field": "foil"
+      }
+    }
+  ]
+}

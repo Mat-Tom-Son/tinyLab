@@ -1,0 +1,14 @@
+\section{Background: Statistical Inevitability Meets Mechanistic Structure}
+
+Kalai et al.\ show that when language models are evaluated with binary correctness metrics, calibrated uncertainty is systematically disfavored~\cite{kalai2025why}.
+A model that admits ignorance scores identically to one that fabricates a confident answer, while a model that answers truthfully when it \emph{does} know receives full credit.
+Under such incentives, gradient descent pushes the model toward policies that produce confident continuations even in regions of epistemic uncertainty.
+
+Two consequences follow from the theorem.
+First, the correlation between confidence and accuracy that arises naturally during pre-training must be weakened: the model benefits from emitting confident-sounding statements even when its latent probability of correctness is low.
+Second, because the penalty for hedging equals the penalty for hallucinating, there is an optimisation advantage in producing plausible meta-commentary or qualified statements—the output “looks helpful’’ despite being wrong.
+
+The theory predicts \emph{what} behavior should emerge but not \emph{how} it is instantiated.
+To uncover the implementation, we analyse foundational circuits in layer~0, building on the Tiny Ablation Lab’s reproducible infrastructure.
+We search for heads whose removal improves factuality across tasks and architectures, evaluate their cooperation via pair/triplet ablations, trace their information flow with reverse patching, and read out their learned semantic directions through output-vector projection.
+This pipeline reveals that the bias toward hedging manifests in concrete layer-0 suppressor circuits.

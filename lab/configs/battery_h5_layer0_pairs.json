@@ -1,0 +1,8 @@
+{
+  "type": "heads_pair_zero",
+  "pairs": [
+    {"layer": 0, "h1": 2, "h2": 4},
+    {"layer": 0, "h1": 2, "h2": 7},
+    {"layer": 0, "h1": 4, "h2": 7}
+  ]
+}

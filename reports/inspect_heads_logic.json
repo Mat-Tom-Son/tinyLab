@@ -1,0 +1,1394 @@
+{
+  "config": "lab/configs/run_h1_cross_condition_balanced.json",
+  "tag": "logic",
+  "dataset_id": "logical_single_token_v1_balanced",
+  "split": "train",
+  "sample_count": 16,
+  "data_hash": "db7a55a73b6554d03ae0cbef7b4fb24e4a9170411d24b3d16495f07ba2def9bb",
+  "baseline_logit_diff": 1.2900390625,
+  "heads": [
+    {
+      "layer": 0,
+      "head": 2,
+      "baseline_logit_diff": 1.2900390625,
+      "ablated_logit_diff": 1.73046875,
+      "delta": 0.4404296875,
+      "mean_target_delta": 1.2001953125,
+      "mean_foil_delta": 0.759765625,
+      "attention": [
+        {
+          "sequence_index": 0,
+          "query_position": 7,
+          "top_attention": [
+            {
+              "position": 2,
+              "token": " is",
+              "weight": 0.6879927515983582
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.23973950743675232
+            },
+            {
+              "position": 4,
+              "token": " OR",
+              "weight": 0.019628027454018593
+            }
+          ]
+        },
+        {
+          "sequence_index": 1,
+          "query_position": 10,
+          "top_attention": [
+            {
+              "position": 1,
+              "token": "C",
+              "weight": 0.40697768330574036
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.35904860496520996
+            },
+            {
+              "position": 9,
+              "token": " never",
+              "weight": 0.1208878681063652
+            }
+          ]
+        },
+        {
+          "sequence_index": 2,
+          "query_position": 11,
+          "top_attention": [
+            {
+              "position": 5,
+              "token": " on",
+              "weight": 0.22868689894676208
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.2194804847240448
+            },
+            {
+              "position": 9,
+              "token": " have",
+              "weight": 0.20234328508377075
+            }
+          ]
+        },
+        {
+          "sequence_index": 3,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": " in",
+              "weight": 0.361707478761673
+            },
+            {
+              "position": 8,
+              "token": " can",
+              "weight": 0.2488255351781845
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.1812627613544464
+            }
+          ]
+        },
+        {
+          "sequence_index": 4,
+          "query_position": 7,
+          "top_attention": [
+            {
+              "position": 6,
+              "token": " can",
+              "weight": 0.46232837438583374
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.4132974147796631
+            },
+            {
+              "position": 1,
+              "token": "Go",
+              "weight": 0.050707485526800156
+            }
+          ]
+        },
+        {
+          "sequence_index": 5,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.6496359705924988
+            },
+            {
+              "position": 1,
+              "token": "She",
+              "weight": 0.13856351375579834
+            },
+            {
+              "position": 7,
+              "token": " hold",
+              "weight": 0.09386779367923737
+            }
+          ]
+        },
+        {
+          "sequence_index": 6,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.7985767722129822
+            },
+            {
+              "position": 9,
+              "token": " water",
+              "weight": 0.07805551588535309
+            },
+            {
+              "position": 2,
+              "token": " walk",
+              "weight": 0.036485254764556885
+            }
+          ]
+        },
+        {
+          "sequence_index": 7,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 1,
+              "token": "C",
+              "weight": 0.41821056604385376
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.3655083477497101
+            },
+            {
+              "position": 8,
+              "token": " sl",
+              "weight": 0.06348519027233124
+            }
+          ]
+        },
+        {
+          "sequence_index": 8,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 3,
+              "token": " have",
+              "weight": 0.3649790585041046
+            },
+            {
+              "position": 1,
+              "token": "B",
+              "weight": 0.32073330879211426
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.26039621233940125
+            }
+          ]
+        },
+        {
+          "sequence_index": 9,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.8096994757652283
+            },
+            {
+              "position": 1,
+              "token": "Fish",
+              "weight": 0.03374441713094711
+            },
+            {
+              "position": 6,
+              "token": "IES",
+              "weight": 0.026869362220168114
+            }
+          ]
+        },
+        {
+          "sequence_index": 10,
+          "query_position": 10,
+          "top_attention": [
+            {
+              "position": 1,
+              "token": "H",
+              "weight": 0.462643027305603
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.4132058620452881
+            },
+            {
+              "position": 10,
+              "token": " dry",
+              "weight": 0.034086115658283234
+            }
+          ]
+        },
+        {
+          "sequence_index": 11,
+          "query_position": 11,
+          "top_attention": [
+            {
+              "position": 1,
+              "token": "B",
+              "weight": 0.48082804679870605
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.32963597774505615
+            },
+            {
+              "position": 8,
+              "token": " Ge",
+              "weight": 0.04774894192814827
+            }
+          ]
+        },
+        {
+          "sequence_index": 12,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 3,
+              "token": " have",
+              "weight": 0.47205743193626404
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.347963809967041
+            },
+            {
+              "position": 6,
+              "token": " Pl",
+              "weight": 0.05613687261939049
+            }
+          ]
+        },
+        {
+          "sequence_index": 13,
+          "query_position": 7,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.48000770807266235
+            },
+            {
+              "position": 2,
+              "token": " can",
+              "weight": 0.4319566488265991
+            },
+            {
+              "position": 4,
+              "token": " OR",
+              "weight": 0.04393782839179039
+            }
+          ]
+        },
+        {
+          "sequence_index": 14,
+          "query_position": 11,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.5696132779121399
+            },
+            {
+              "position": 8,
+              "token": " Go",
+              "weight": 0.13800619542598724
+            },
+            {
+              "position": 1,
+              "token": "Sn",
+              "weight": 0.063801608979702
+            }
+          ]
+        },
+        {
+          "sequence_index": 15,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 3,
+              "token": " have",
+              "weight": 0.35758110880851746
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.31535235047340393
+            },
+            {
+              "position": 1,
+              "token": "T",
+              "weight": 0.28177905082702637
+            }
+          ]
+        }
+      ],
+      "logit_deltas": [
+        {
+          "index": 0,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.3125,
+          "foil_delta": 0.7802734375
+        },
+        {
+          "index": 1,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.142578125,
+          "foil_delta": 0.7236328125
+        },
+        {
+          "index": 2,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.236328125,
+          "foil_delta": 0.908203125
+        },
+        {
+          "index": 3,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.185546875,
+          "foil_delta": 0.7177734375
+        },
+        {
+          "index": 4,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.326171875,
+          "foil_delta": 0.81640625
+        },
+        {
+          "index": 5,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.23046875,
+          "foil_delta": 0.7568359375
+        },
+        {
+          "index": 6,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.005859375,
+          "foil_delta": 0.58984375
+        },
+        {
+          "index": 7,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.28515625,
+          "foil_delta": 0.80419921875
+        },
+        {
+          "index": 8,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.3828125,
+          "foil_delta": 0.88037109375
+        },
+        {
+          "index": 9,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.1640625,
+          "foil_delta": 0.7177734375
+        },
+        {
+          "index": 10,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.013671875,
+          "foil_delta": 0.64111328125
+        },
+        {
+          "index": 11,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.322265625,
+          "foil_delta": 0.99609375
+        },
+        {
+          "index": 12,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.453125,
+          "foil_delta": 0.92138671875
+        },
+        {
+          "index": 13,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.35546875,
+          "foil_delta": 0.833984375
+        },
+        {
+          "index": 14,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.453125,
+          "foil_delta": 0.21484375
+        },
+        {
+          "index": 15,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 1.337890625,
+          "foil_delta": 0.85595703125
+        }
+      ]
+    },
+    {
+      "layer": 0,
+      "head": 4,
+      "baseline_logit_diff": 1.2900390625,
+      "ablated_logit_diff": 1.4375,
+      "delta": 0.1474609375,
+      "mean_target_delta": 0.049560546875,
+      "mean_foil_delta": -0.0972900390625,
+      "attention": [
+        {
+          "sequence_index": 0,
+          "query_position": 7,
+          "top_attention": [
+            {
+              "position": 2,
+              "token": " is",
+              "weight": 0.27061986923217773
+            },
+            {
+              "position": 6,
+              "token": " grows",
+              "weight": 0.1932148039340973
+            },
+            {
+              "position": 3,
+              "token": " liquid",
+              "weight": 0.1696445643901825
+            }
+          ]
+        },
+        {
+          "sequence_index": 1,
+          "query_position": 10,
+          "top_attention": [
+            {
+              "position": 9,
+              "token": " never",
+              "weight": 0.23898467421531677
+            },
+            {
+              "position": 3,
+              "token": " drive",
+              "weight": 0.14638057351112366
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.13949836790561676
+            }
+          ]
+        },
+        {
+          "sequence_index": 2,
+          "query_position": 11,
+          "top_attention": [
+            {
+              "position": 5,
+              "token": " on",
+              "weight": 0.1678779572248459
+            },
+            {
+              "position": 11,
+              "token": "ers",
+              "weight": 0.16077600419521332
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.12518586218357086
+            }
+          ]
+        },
+        {
+          "sequence_index": 3,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": " in",
+              "weight": 0.3086037039756775
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.17065925896167755
+            },
+            {
+              "position": 5,
+              "token": " packs",
+              "weight": 0.0962366908788681
+            }
+          ]
+        },
+        {
+          "sequence_index": 4,
+          "query_position": 7,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.3521152436733246
+            },
+            {
+              "position": 7,
+              "token": " melt",
+              "weight": 0.17373520135879517
+            },
+            {
+              "position": 2,
+              "token": "ats",
+              "weight": 0.1478329449892044
+            }
+          ]
+        },
+        {
+          "sequence_index": 5,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 7,
+              "token": " hold",
+              "weight": 0.2595388889312744
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.24031001329421997
+            },
+            {
+              "position": 2,
+              "token": "ep",
+              "weight": 0.1379702240228653
+            }
+          ]
+        },
+        {
+          "sequence_index": 6,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 2,
+              "token": " walk",
+              "weight": 0.19750812649726868
+            },
+            {
+              "position": 8,
+              "token": " boils",
+              "weight": 0.18305480480194092
+            },
+            {
+              "position": 9,
+              "token": " water",
+              "weight": 0.17596565186977386
+            }
+          ]
+        },
+        {
+          "sequence_index": 7,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.26843690872192383
+            },
+            {
+              "position": 3,
+              "token": " produce",
+              "weight": 0.12343744933605194
+            },
+            {
+              "position": 2,
+              "token": "ows",
+              "weight": 0.11894885450601578
+            }
+          ]
+        },
+        {
+          "sequence_index": 8,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 8,
+              "token": " slowly",
+              "weight": 0.24576164782047272
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.2202814370393753
+            },
+            {
+              "position": 4,
+              "token": " wings",
+              "weight": 0.19255876541137695
+            }
+          ]
+        },
+        {
+          "sequence_index": 9,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 3,
+              "token": " trees",
+              "weight": 0.2993628978729248
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.26953035593032837
+            },
+            {
+              "position": 2,
+              "token": " climb",
+              "weight": 0.15018408000469208
+            }
+          ]
+        },
+        {
+          "sequence_index": 10,
+          "query_position": 10,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.2889125943183899
+            },
+            {
+              "position": 10,
+              "token": " dry",
+              "weight": 0.14510604739189148
+            },
+            {
+              "position": 9,
+              "token": " stays",
+              "weight": 0.10560248047113419
+            }
+          ]
+        },
+        {
+          "sequence_index": 11,
+          "query_position": 11,
+          "top_attention": [
+            {
+              "position": 11,
+              "token": " tunnels",
+              "weight": 0.1746768057346344
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.16608190536499023
+            },
+            {
+              "position": 9,
+              "token": "ese",
+              "weight": 0.1385631263256073
+            }
+          ]
+        },
+        {
+          "sequence_index": 12,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 4,
+              "token": " pits",
+              "weight": 0.22245275974273682
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.17956988513469696
+            },
+            {
+              "position": 6,
+              "token": " Pl",
+              "weight": 0.16284628212451935
+            }
+          ]
+        },
+        {
+          "sequence_index": 13,
+          "query_position": 7,
+          "top_attention": [
+            {
+              "position": 7,
+              "token": " trees",
+              "weight": 0.3002740740776062
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.28242892026901245
+            },
+            {
+              "position": 2,
+              "token": " can",
+              "weight": 0.12391570955514908
+            }
+          ]
+        },
+        {
+          "sequence_index": 14,
+          "query_position": 11,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.22892938554286957
+            },
+            {
+              "position": 4,
+              "token": " upright",
+              "weight": 0.1587211936712265
+            },
+            {
+              "position": 9,
+              "token": "ats",
+              "weight": 0.13438518345355988
+            }
+          ]
+        },
+        {
+          "sequence_index": 15,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 8,
+              "token": " quickly",
+              "weight": 0.3446889817714691
+            },
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.19619566202163696
+            },
+            {
+              "position": 3,
+              "token": " have",
+              "weight": 0.14787396788597107
+            }
+          ]
+        }
+      ],
+      "logit_deltas": [
+        {
+          "index": 0,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": -0.04296875,
+          "foil_delta": -0.23486328125
+        },
+        {
+          "index": 1,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.150390625,
+          "foil_delta": -0.0126953125
+        },
+        {
+          "index": 2,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.0,
+          "foil_delta": 0.033203125
+        },
+        {
+          "index": 3,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.005859375,
+          "foil_delta": -0.15771484375
+        },
+        {
+          "index": 4,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": -0.03515625,
+          "foil_delta": -0.22802734375
+        },
+        {
+          "index": 5,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.03515625,
+          "foil_delta": -0.16259765625
+        },
+        {
+          "index": 6,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": -0.00390625,
+          "foil_delta": -0.17041015625
+        },
+        {
+          "index": 7,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.0859375,
+          "foil_delta": -0.08203125
+        },
+        {
+          "index": 8,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": -0.013671875,
+          "foil_delta": -0.18115234375
+        },
+        {
+          "index": 9,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.041015625,
+          "foil_delta": -0.1572265625
+        },
+        {
+          "index": 10,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.076171875,
+          "foil_delta": -0.0625
+        },
+        {
+          "index": 11,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.265625,
+          "foil_delta": 0.19921875
+        },
+        {
+          "index": 12,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.025390625,
+          "foil_delta": -0.15087890625
+        },
+        {
+          "index": 13,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": -0.048828125,
+          "foil_delta": -0.240234375
+        },
+        {
+          "index": 14,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.2265625,
+          "foil_delta": 0.201171875
+        },
+        {
+          "index": 15,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.025390625,
+          "foil_delta": -0.1494140625
+        }
+      ]
+    },
+    {
+      "layer": 0,
+      "head": 7,
+      "baseline_logit_diff": 1.2900390625,
+      "ablated_logit_diff": 1.4375,
+      "delta": 0.1474609375,
+      "mean_target_delta": 0.31787109375,
+      "mean_foil_delta": 0.1708984375,
+      "attention": [
+        {
+          "sequence_index": 0,
+          "query_position": 7,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.7078517079353333
+            },
+            {
+              "position": 2,
+              "token": " is",
+              "weight": 0.08293220400810242
+            },
+            {
+              "position": 4,
+              "token": " OR",
+              "weight": 0.04324740916490555
+            }
+          ]
+        },
+        {
+          "sequence_index": 1,
+          "query_position": 10,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.555512547492981
+            },
+            {
+              "position": 1,
+              "token": "C",
+              "weight": 0.07998435944318771
+            },
+            {
+              "position": 10,
+              "token": " think",
+              "weight": 0.05200973525643349
+            }
+          ]
+        },
+        {
+          "sequence_index": 2,
+          "query_position": 11,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.41661494970321655
+            },
+            {
+              "position": 1,
+              "token": "G",
+              "weight": 0.09504067152738571
+            },
+            {
+              "position": 5,
+              "token": " on",
+              "weight": 0.08269281685352325
+            }
+          ]
+        },
+        {
+          "sequence_index": 3,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.5129338502883911
+            },
+            {
+              "position": 4,
+              "token": " in",
+              "weight": 0.0903962031006813
+            },
+            {
+              "position": 1,
+              "token": "W",
+              "weight": 0.08424734324216843
+            }
+          ]
+        },
+        {
+          "sequence_index": 4,
+          "query_position": 7,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.5451330542564392
+            },
+            {
+              "position": 6,
+              "token": " can",
+              "weight": 0.10117556154727936
+            },
+            {
+              "position": 1,
+              "token": "Go",
+              "weight": 0.08117087930440903
+            }
+          ]
+        },
+        {
+          "sequence_index": 5,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.3404880464076996
+            },
+            {
+              "position": 1,
+              "token": "She",
+              "weight": 0.16140790283679962
+            },
+            {
+              "position": 2,
+              "token": "ep",
+              "weight": 0.11408977210521698
+            }
+          ]
+        },
+        {
+          "sequence_index": 6,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.5499852299690247
+            },
+            {
+              "position": 1,
+              "token": "Fish",
+              "weight": 0.06894061714410782
+            },
+            {
+              "position": 5,
+              "token": "PL",
+              "weight": 0.0573108084499836
+            }
+          ]
+        },
+        {
+          "sequence_index": 7,
+          "query_position": 9,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.413014680147171
+            },
+            {
+              "position": 1,
+              "token": "C",
+              "weight": 0.14141464233398438
+            },
+            {
+              "position": 5,
+              "token": " AND",
+              "weight": 0.07734031230211258
+            }
+          ]
+        },
+        {
+          "sequence_index": 8,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.6437842845916748
+            },
+            {
+              "position": 1,
+              "token": "B",
+              "weight": 0.07849210500717163
+            },
+            {
+              "position": 3,
+              "token": " have",
+              "weight": 0.07198484987020493
+            }
+          ]
+        },
+        {
+          "sequence_index": 9,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.45079588890075684
+            },
+            {
+              "position": 1,
+              "token": "Fish",
+              "weight": 0.1021014079451561
+            },
+            {
+              "position": 4,
+              "token": " IM",
+              "weight": 0.09054536372423172
+            }
+          ]
+        },
+        {
+          "sequence_index": 10,
+          "query_position": 10,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.4590011239051819
+            },
+            {
+              "position": 1,
+              "token": "H",
+              "weight": 0.10251213610172272
+            },
+            {
+              "position": 6,
+              "token": "PL",
+              "weight": 0.058024805039167404
+            }
+          ]
+        },
+        {
+          "sequence_index": 11,
+          "query_position": 11,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.3570634722709656
+            },
+            {
+              "position": 1,
+              "token": "B",
+              "weight": 0.13755610585212708
+            },
+            {
+              "position": 2,
+              "token": "ears",
+              "weight": 0.06521843373775482
+            }
+          ]
+        },
+        {
+          "sequence_index": 12,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.6402171850204468
+            },
+            {
+              "position": 3,
+              "token": " have",
+              "weight": 0.07885532081127167
+            },
+            {
+              "position": 5,
+              "token": " OR",
+              "weight": 0.049352921545505524
+            }
+          ]
+        },
+        {
+          "sequence_index": 13,
+          "query_position": 7,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.5669727325439453
+            },
+            {
+              "position": 2,
+              "token": " can",
+              "weight": 0.1121465191245079
+            },
+            {
+              "position": 4,
+              "token": " OR",
+              "weight": 0.07239881157875061
+            }
+          ]
+        },
+        {
+          "sequence_index": 14,
+          "query_position": 11,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.4868680536746979
+            },
+            {
+              "position": 2,
+              "token": "akes",
+              "weight": 0.057954780757427216
+            },
+            {
+              "position": 8,
+              "token": " Go",
+              "weight": 0.056632984429597855
+            }
+          ]
+        },
+        {
+          "sequence_index": 15,
+          "query_position": 8,
+          "top_attention": [
+            {
+              "position": 0,
+              "token": "<|endoftext|>",
+              "weight": 0.5907753109931946
+            },
+            {
+              "position": 1,
+              "token": "T",
+              "weight": 0.10417559742927551
+            },
+            {
+              "position": 3,
+              "token": " have",
+              "weight": 0.08700606226921082
+            }
+          ]
+        }
+      ],
+      "logit_deltas": [
+        {
+          "index": 0,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.3828125,
+          "foil_delta": 0.20068359375
+        },
+        {
+          "index": 1,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.2734375,
+          "foil_delta": 0.1376953125
+        },
+        {
+          "index": 2,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.1015625,
+          "foil_delta": 0.08984375
+        },
+        {
+          "index": 3,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.201171875,
+          "foil_delta": 0.06640625
+        },
+        {
+          "index": 4,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.359375,
+          "foil_delta": 0.171875
+        },
+        {
+          "index": 5,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.462890625,
+          "foil_delta": 0.2705078125
+        },
+        {
+          "index": 6,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.404296875,
+          "foil_delta": 0.2314453125
+        },
+        {
+          "index": 7,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.3359375,
+          "foil_delta": 0.16552734375
+        },
+        {
+          "index": 8,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.318359375,
+          "foil_delta": 0.16015625
+        },
+        {
+          "index": 9,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.466796875,
+          "foil_delta": 0.275390625
+        },
+        {
+          "index": 10,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.29296875,
+          "foil_delta": 0.15771484375
+        },
+        {
+          "index": 11,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.228515625,
+          "foil_delta": 0.10546875
+        },
+        {
+          "index": 12,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.3359375,
+          "foil_delta": 0.162109375
+        },
+        {
+          "index": 13,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.416015625,
+          "foil_delta": 0.2197265625
+        },
+        {
+          "index": 14,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.18359375,
+          "foil_delta": 0.146484375
+        },
+        {
+          "index": 15,
+          "target_id": 2081,
+          "foil_id": 3991,
+          "target_delta": 0.3203125,
+          "foil_delta": 0.17236328125
+        }
+      ]
+    }
+  ]
+}

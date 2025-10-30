@@ -1,0 +1,29 @@
+{
+  "config": "lab/configs/run_h1_cross_condition_balanced.json",
+  "tag": "logic",
+  "samples": 16,
+  "data_hash": "db7a55a73b6554d03ae0cbef7b4fb24e4a9170411d24b3d16495f07ba2def9bb",
+  "results": [
+    {
+      "mean_target": 0.1990966796875,
+      "mean_foil": 0.10638427734375,
+      "mean_delta": 0.09271240234375,
+      "layer": 0,
+      "head": 2
+    },
+    {
+      "mean_target": 0.09759521484375,
+      "mean_foil": -0.040252685546875,
+      "mean_delta": 0.1378173828125,
+      "layer": 0,
+      "head": 4
+    },
+    {
+      "mean_target": 0.287109375,
+      "mean_foil": 0.2012939453125,
+      "mean_delta": 0.08587646484375,
+      "layer": 0,
+      "head": 7
+    }
+  ]
+}

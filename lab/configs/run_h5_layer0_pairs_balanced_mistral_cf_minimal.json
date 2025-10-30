@@ -1,0 +1,28 @@
+{
+  "seeds": [0],
+  "device": "mps",
+  "model": {
+    "family": "mistral",
+    "name": "mistralai/Mistral-7B-v0.1",
+    "dtype": "float16"
+  },
+  "dataset": {
+    "id": "counterfactual_single_token_v1_mistral",
+    "split": "train",
+    "clean_field": "clean",
+    "corrupt_field": "corrupt",
+    "target_field": "target",
+    "foil_field": "foil"
+  },
+  "metrics": [
+    "logit_diff",
+    "acc_flip_rate",
+    "kl_div",
+    "p_drop"
+  ],
+  "batch_size": 8,
+  "max_seq_len": 256,
+  "tag": "cf",
+  "run_name": "h5_layer0_pairs_balanced_mistral_cf_minimal",
+  "battery": "lab/configs/battery_h5_layer0_pairs_mistral_minimal.json"
+}

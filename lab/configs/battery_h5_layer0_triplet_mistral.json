@@ -1,0 +1,10 @@
+{
+  "type": "heads_subset_zero",
+  "groups": [
+    {
+      "layer": 0,
+      "heads": [21, 22, 23],
+      "label": "triplet_mistral"
+    }
+  ]
+}

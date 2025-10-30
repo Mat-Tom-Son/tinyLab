@@ -1,0 +1,20 @@
+\section{Implications for the Statistical Theory of Hallucinations}
+
+The suppressor motif sharpens the consequences of Kalai et al.'s inevitability result~\cite{kalai2025why}.
+First, it shows that the statistical incentive to guess is realised through concrete architectural structure.
+Suppressors are not surface heuristics but deeply embedded circuits that reshape the residual stream before the rest of the network has acted.
+
+Second, it complicates evaluation reform.
+Suppressed calibration metrics improve in tandem: expected calibration error drops from $0.122$ to $0.091$, the Brier score from $0.033$ to $0.024$, and negative log-likelihood from $0.151$ to $0.113$ (Figure~\ref{fig:calibration}). Changing benchmarks to reward calibrated abstention is necessary to prevent new suppressors from forming, but already-trained models may remain stuck in hedging attractors even after the incentives shift.
+Interventions must therefore operate at the circuit level---for example by steering the suppressor OV direction or regularizing its activations during fine-tuning.
+
+Third, the motif suggests a form of learned universality.
+Different architectures converge on suppressors despite differing head layouts, attention mechanisms, and tokenizers.
+This supports the view of suppressors as behavioral priors: gradient descent repeatedly rediscovers them because they satisfy the conflicting optimisation objectives imposed by our datasets and evals.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/calibration_curve.pdf}
+    \caption{Reliability diagram on the probe suite. Suppressor removal improves calibration (ECE $0.122 \rightarrow 0.091$, Brier $0.033 \rightarrow 0.024$, NLL $0.151 \rightarrow 0.113$).}
+    \label{fig:calibration}
+\end{figure}

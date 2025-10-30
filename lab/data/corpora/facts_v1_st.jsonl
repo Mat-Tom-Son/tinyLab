@@ -1,0 +1,9 @@
+{"clean": "The capital of France is", "corrupt": "The capital of Italy is", "target": " Paris", "foil": " Rome"}
+{"clean": "The currency of Japan is the", "corrupt": "The currency of China is the", "target": " yen", "foil": " yuan"}
+{"clean": "The main language of Brazil is", "corrupt": "The main language of Spain is", "target": " Portuguese", "foil": " Spanish"}
+{"clean": "Water freezes at", "corrupt": "Water boils at", "target": " 0", "foil": " 100"}
+{"clean": "The author of '1984' was", "corrupt": "The author of 'The Hobbit' was", "target": " George", "foil": " J"}
+{"clean": "The largest planet in our solar system is", "corrupt": "The smallest planet in our solar system is", "target": " Jupiter", "foil": " Mercury"}
+{"clean": "The chemical symbol for gold is", "corrupt": "The chemical symbol for silver is", "target": " Au", "foil": " Ag"}
+{"clean": "The inventor of the telephone was", "corrupt": "The inventor of the light bulb was", "target": " Bell", "foil": " Edison"}
+{"clean": "The longest river in the world is the", "corrupt": "The shortest river in the world is the", "target": " Nile", "foil": " Roe"}
