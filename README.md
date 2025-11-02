@@ -1,8 +1,10 @@
 # Tiny Ablation Lab
 
-A reproducible, local-first workspace for mechanistic interpretability on Apple Silicon. This repository accompanies the October 2025 study **“Layer-0 Suppressors Ground Hallucination Inevitability”**, providing every script, configuration, and logged artefact required to replicate the results on GPT‑2 Medium and Mistral‑7B.
+A reproducible, local-first workspace for mechanistic interpretability on Apple Silicon. This repository accompanies the October 2025 study **“Layer‑0 Suppressors Ground Hallucination Inevitability”**, providing every script, configuration, and logged artefact required to replicate the results on GPT‑2 Medium/Large and Mistral‑7B.
 
-> The manuscript is at [`paper/main.pdf`](paper/main.pdf). Figure/table regeneration commands are documented in-line throughout the repository.
+> Paper: [`paper/main.pdf`](paper/main.pdf)
+>
+> Framing: prediction → validation. We predicted that circuits implementing the factuality–hedging trade‑off would crystallize at the first bottleneck (layer 0), then validated that prediction with dual observables (ΔLD + calibration), random baselines (>99th percentile), cross‑architecture replication (GPT‑2, Mistral), and path mediation.
 
 ## Table of Contents
 
@@ -44,7 +46,7 @@ A full command-by-command guide—covering dataset preparation, GPT‑2 and Mist
 
 1. **Corpora** – use the provided single-token probe datasets under `lab/data/corpora/`. If you need fresh Mistral tokeniser variants, run `scripts/build_tokenizer_variants.py`.
 2. **GPT‑2 experiments** – orchestrated configs under `lab/configs/run_h1_cross_condition_physics_balanced.json`, `run_h5_layer0_triplet_balanced.json`, and `run_h6_layer_targets_window_balanced.json` reproduce the H1/H5/H6 batteries.
-3. **Mistral experiments** – `lab/configs/run_h1_cross_condition_balanced_mistral*.json` cover the per-condition sweeps (now defaulting to seeds `[0,1,2,3,4]` with a CPU verify slice); pair/triplet follow-ups live alongside (`run_h5_*mistral*.json`, default seeds `[0,1,2]`).
+3. **Mistral experiments** – `lab/configs/run_h1_cross_condition_balanced_mistral*.json` cover the per‑condition sweeps (defaults to 5 seeds on facts and 3 seeds elsewhere); pair/triplet follow‑ups live alongside (`run_h5_*mistral*.json`).
 4. **Analysis scripts** – regenerate all figures/tables via the Python utilities in `paper/scripts/` (summarised in [Results.md](Results.md)).
 5. **Paper build** – `cd paper && make` triggers `latexmk` + `bibtex`, recreating `paper/main.pdf` from source.
 
@@ -60,8 +62,7 @@ After running H1/H5/H6, regenerate all standardized exports (summaries, rankings
 make postprocess
 ```
 
-Key outputs land in `reports/` and are indexed by `reports/RESULTS_MANIFEST.json`. A quick
-results viewer lives in `notebooks/results_summary.ipynb`.
+Key outputs land in `reports/` and are indexed by `reports/RESULTS_MANIFEST.json`. Open `notebooks/results_summary.ipynb` for a quick manifest‑driven viewer.
 
 ---
 
