@@ -16,10 +16,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - name: Install dependencies
+      - name: Install pre-commit only (no package install)
         run: |
           python -m pip install --upgrade pip
-          pip install -e .[dev]
           python -m pip install pre-commit
       - name: Run pre-commit (best-effort)
         run: pre-commit run --all-files || true
