@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+title: "Layer-0 Suppressors Ground Hallucination Inevitability"
+authors:
+  - family-names: Thompson
+    given-names: Mat
+type: software
+version: 1.0-suppressor-paper
+date-released: 2025-11-01
+repository-code: https://github.com/your-org-or-user/tinyLab
+license: MIT
+keywords:
+  - mechanistic interpretability
+  - transformers
+  - circuits
+  - hallucination
+  - factuality

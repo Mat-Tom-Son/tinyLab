@@ -1,0 +1,168 @@
+\begin{thebibliography}{10}
+
+\bibitem{aghajanyan2021better}
+Armen Aghajanyan, Akshat Shrivastava, Amal Gupta, Naman Goyal, Luke
+  Zettlemoyer, and Sonal Gupta.
+\newblock Better fine-tuning by reducing representational collapse.
+\newblock In {\em International Conference on Learning Representations}, 2021.
+
+\bibitem{bai2022constitutional}
+Yuntao Bai, Saurav Kadavath, Sandipan Kundu, Amanda Askell, Jackson Kernion,
+  Andy Jones, Anna Chen, Anna Goldie, Azalia Mirhoseini, Cameron McKinnon,
+  et~al.
+\newblock Constitutional ai: Harmlessness from ai feedback.
+\newblock {\em arXiv preprint arXiv:2212.08073}, 2022.
+
+\bibitem{bricken2023monosemanticity}
+Trenton Bricken, Alex Templeton, Joshua Batson, Benjamin Chen, Adam Jermyn,
+  Toby Conerly, and Chris Olah.
+\newblock Towards monosemanticity: Decomposing language models with dictionary
+  learning.
+\newblock {\em Transformer Circuits Thread}, 2023.
+
+\bibitem{elhage2021mathematical}
+Nelson Elhage, Neel Nanda, Catherine Olsson, Tom Henighan, Nicholas Joseph, Ben
+  Mann, Dani Yogatama, Greg Brockman, Theodore Lieberman, Dario Amodei, et~al.
+\newblock A mathematical framework for transformer circuits.
+\newblock {\em Transformer Circuits Thread}, 2021.
+
+\bibitem{gundersen2018state}
+Odd~Erik Gundersen and Sigbj{\o}rn Kjensmo.
+\newblock State of the art: Reproducibility in artificial intelligence.
+\newblock {\em Proceedings of the AAAI Conference on Artificial Intelligence},
+  32(1), 2018.
+
+\bibitem{hanna2023gpt2greater}
+Michael Hanna, Ofir Press, Yann Liu, and Aric Variengien.
+\newblock How does gpt-2 compute greater-than?: Interpreting mathematical
+  abilities in a pre-trained language model.
+\newblock {\em Advances in Neural Information Processing Systems}, 2023.
+
+\bibitem{heimersheim2024path}
+Stefan Heimersheim and Neel Nanda.
+\newblock How to use and interpret activation patching.
+\newblock Alignment Forum, 2024.
+
+\bibitem{hyland1998hedging}
+Ken Hyland.
+\newblock Hedging in scientific research articles.
+\newblock {\em Amsterdam: John Benjamins}, 1998.
+
+\bibitem{jain2019attention}
+Sarthak Jain and Byron~C. Wallace.
+\newblock Attention is not explanation.
+\newblock {\em Proceedings of the 2019 Conference of the North American Chapter
+  of the Association for Computational Linguistics: Human Language
+  Technologies}, 2019.
+
+\bibitem{kadavath2022language}
+Saurav Kadavath, Toby Conerly, Amanda Askell, Tom Henighan, Dawn Drain, Ethan
+  Perez, Nick Schiefer, Andrew Jones, Anna Chen, Yuntao Bai, et~al.
+\newblock Language models (mostly) know what they know.
+\newblock {\em arXiv preprint arXiv:2207.05221}, 2022.
+
+\bibitem{kalai2025hallucination}
+Adam~Tauman Kalai, Ofir Nachum, and Santosh~S. Vempala.
+\newblock Why language models hallucinate and how to reduce it.
+\newblock {\em arXiv preprint arXiv:2501.XXXXX}, 2025.
+
+\bibitem{lin2021truthfulqa}
+Stephanie Lin, Jacob Hilton, and Owain Evans.
+\newblock Truthfulqa: Measuring how models mimic human falsehoods.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2021.
+
+\bibitem{lipton2019troubling}
+Zachary~C. Lipton and Jacob Steinhardt.
+\newblock Troubling trends in machine learning scholarship.
+\newblock {\em Queue}, 17(1):45--77, 2019.
+
+\bibitem{lucic2018gans}
+Mario Lucic, Karol Kurach, Marcin Michalski, Sylvain Gelly, and Olivier
+  Bousquet.
+\newblock Are gans created equal? a large-scale study.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2018.
+
+\bibitem{mcdougall2024copy}
+Connor McDougall, Alex Conmy, Will Rushing, Thomas McGrath, and Neel Nanda.
+\newblock Copy suppression: Comprehensively understanding an attention head.
+\newblock In {\em Proceedings of the 7th BlackboxNLP Workshop}, 2024.
+
+\bibitem{melis2018state}
+G{\'a}bor Melis, Chris Dyer, and Phil Blunsom.
+\newblock On the state of the art of evaluation in neural language models.
+\newblock {\em International Conference on Learning Representations}, 2018.
+
+\bibitem{meng2022locating}
+Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov.
+\newblock Locating and editing factual associations in gpt.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2022.
+
+\bibitem{nanda2022transformerlens}
+Neel Nanda and Joseph Bloom.
+\newblock Transformerlens: A library for mechanistic interpretability of
+  generative language models.
+\newblock \url{https://github.com/neelnanda-io/TransformerLens}, 2022.
+
+\bibitem{nosek2014registered}
+Brian~A. Nosek and Dani{\"e}l Lakens.
+\newblock Registered reports: A method to increase the credibility of published
+  results.
+\newblock {\em Social Psychology}, 45(3):137--141, 2014.
+
+\bibitem{olsson2022context}
+Catherine Olsson, Nelson Elhage, Neel Nanda, Nicholas Joseph, Nova DasSarma,
+  Tom Henighan, Ben Mann, Amanda Askell, Yuntao Bai, Anna Goldie, et~al.
+\newblock In-context learning and induction heads.
+\newblock {\em Transformer Circuits Thread}, 2022.
+
+\bibitem{pearl2001direct}
+Judea Pearl.
+\newblock {\em Direct and Indirect Effects}.
+\newblock Morgan Kaufmann, 2001.
+
+\bibitem{quirke2024understanding}
+Patrick Quirke, Filippo Barez, Richard Mendelsohn, Arvind Sheshadri, Adam
+  Jermyn, and Neel Nanda.
+\newblock Understanding addition in transformers.
+\newblock In {\em International Conference on Learning Representations}, 2024.
+
+\bibitem{rafailov2023direct}
+Rafael Rafailov, Archit Sharma, Eric Mitchell, Christopher~D. Manning, Stefano
+  Ermon, and Chelsea Finn.
+\newblock Direct preference optimization: Your language model is secretly a
+  reward model.
+\newblock {\em Advances in Neural Information Processing Systems}, 2023.
+
+\bibitem{thompson2024entropy}
+Mat Thompson.
+\newblock Entropy geometry and information flow in transformers.
+\newblock {\em arXiv preprint}, 2024.
+\newblock Previous work on information-theoretic analysis.
+
+\bibitem{thompson2024mrc}
+Mat Thompson.
+\newblock Memory resonance condition in transformers: A null result.
+\newblock {\em arXiv preprint}, 2024.
+\newblock Previously published null result.
+
+\bibitem{turner2023activation}
+Alex Turner, Lisa Thiergart, David Udell, Tilman Rauker, David Rein, Neel
+  Prakash, and Dylan Hadfield-Menell.
+\newblock Activation addition: Steering language models without optimization.
+\newblock {\em arXiv preprint arXiv:2308.10248}, 2023.
+
+\bibitem{vig2020causal}
+Jesse Vig, Sebastian Gehrmann, Yonatan Belinkov, Sharon Qian, Daniel Nevo,
+  Simas Sakenis, Jason Huang, Yaron Singer, and Stuart Shieber.
+\newblock Causal mediation analysis for interpreting neural nlp: The case of
+  gender bias.
+\newblock In {\em arXiv preprint arXiv:2004.12265}, 2020.
+
+\bibitem{wang2023interpretability}
+Kevin Wang, Alexandre Variengien, Arthur Conmy, Buck Shlegeris, and Jacob
+  Steinhardt.
+\newblock Interpretability in the wild: a circuit for indirect object
+  identification in gpt-2 small.
+\newblock {\em International Conference on Learning Representations}, 2023.
+
+\end{thebibliography}

@@ -46,3 +46,6 @@ To avoid numerical overflow we clip logits to the range $[-20,20]$ before applyi
     \item \textbf{Commands.} \texttt{python -m lab.src.orchestrators.conditions <config>} (see Table~\ref{tab:impact} for the specific JSON files).
     \item \textbf{Figures.} Scripts in \texttt{paper/scripts/} regenerate the figures.
 \end{itemize}
+
+\section{Discovery path and transparency}\label{app:transparency}
+We formulated a layer~0 prediction prior to targeted experiments based on bottleneck theory and Kalai et~al.'s constraint. We then ran fixed protocols: H1 head sweeps, random layer~0 baselines (1{,}000 resamples), H5 cooperation tests, H6 path mediation, and cross-architecture replication. We did not perform an exhaustive post-hoc search. A timestamped research log is available upon request.

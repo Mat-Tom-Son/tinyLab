@@ -1,0 +1,118 @@
+{
+  "mistral": {
+    "summary_table": "reports/mistral_summary_table.csv",
+    "trio_percentiles": "reports/mistral_trio_percentiles.json",
+    "head_rankings": {
+      "facts": {
+        "full": "reports/mistral_facts_head_ranking.csv",
+        "top": "reports/mistral_facts_top12.csv",
+        "bottom": "reports/mistral_facts_bottom6.csv"
+      },
+      "neg": {
+        "full": "reports/mistral_neg_head_ranking.csv",
+        "top": "reports/mistral_neg_top12.csv",
+        "bottom": "reports/mistral_neg_bottom6.csv"
+      },
+      "cf": {
+        "full": "reports/mistral_cf_head_ranking.csv",
+        "top": "reports/mistral_cf_top12.csv",
+        "bottom": "reports/mistral_cf_bottom6.csv"
+      },
+      "logic": {
+        "full": "reports/mistral_logic_head_ranking.csv",
+        "top": "reports/mistral_logic_top12.csv",
+        "bottom": "reports/mistral_logic_bottom6.csv"
+      }
+    },
+    "ov_reports": [
+      "reports/ov_report_neg_mistral_heads22_23.json",
+      "reports/ov_report_facts_mistral_heads22_23.json",
+      "reports/ov_report_cf_mistral_heads22_23.json",
+      "reports/ov_report_cf_mistral_heads21_23.json",
+      "reports/ov_report_neg_mistral_heads21_23.json",
+      "reports/ov_report_facts_mistral_heads21_23.json",
+      "reports/ov_report_logic_mistral_heads22_23.json",
+      "reports/ov_report_cf_mistral_heads20_25_31.json",
+      "reports/ov_report_logic_mistral_heads21_23.json",
+      "reports/ov_report_logic_mistral_heads21_13_22.json",
+      "reports/ov_report_neg_mistral_heads21_23_29.json"
+    ]
+  },
+  "gpt2_medium": {
+    "summary_table": "reports/gpt2_medium_summary_table.csv",
+    "trio_percentiles": "reports/gpt2_medium_trio_percentiles.json",
+    "head_rankings": {},
+    "ov_reports": []
+  },
+  "gpt2_large": {
+    "summary_table": "reports/gpt2_large_summary_table.csv",
+    "trio_percentiles": "reports/gpt2_large_trio_percentiles.json",
+    "head_rankings": {},
+    "ov_reports": []
+  },
+  "gpt2m": {
+    "summary_table": null,
+    "trio_percentiles": null,
+    "head_rankings": {
+      "facts": {
+        "full": "reports/gpt2m_facts_head_ranking.csv",
+        "top": "reports/gpt2m_facts_top12.csv",
+        "bottom": "reports/gpt2m_facts_bottom6.csv"
+      },
+      "neg": {
+        "full": "reports/gpt2m_neg_head_ranking.csv",
+        "top": "reports/gpt2m_neg_top12.csv",
+        "bottom": "reports/gpt2m_neg_bottom6.csv"
+      },
+      "cf": {
+        "full": "reports/gpt2m_cf_head_ranking.csv",
+        "top": "reports/gpt2m_cf_top12.csv",
+        "bottom": "reports/gpt2m_cf_bottom6.csv"
+      },
+      "logic": {
+        "full": "reports/gpt2m_logic_head_ranking.csv",
+        "top": "reports/gpt2m_logic_top12.csv",
+        "bottom": "reports/gpt2m_logic_bottom6.csv"
+      }
+    },
+    "ov_reports": []
+  },
+  "gpt2l": {
+    "summary_table": null,
+    "trio_percentiles": null,
+    "head_rankings": {
+      "facts": {
+        "full": "reports/gpt2l_facts_head_ranking.csv",
+        "top": "reports/gpt2l_facts_top12.csv",
+        "bottom": "reports/gpt2l_facts_bottom6.csv"
+      },
+      "neg": {
+        "full": "reports/gpt2l_neg_head_ranking.csv",
+        "top": "reports/gpt2l_neg_top12.csv",
+        "bottom": "reports/gpt2l_neg_bottom6.csv"
+      },
+      "cf": {
+        "full": "reports/gpt2l_cf_head_ranking.csv",
+        "top": "reports/gpt2l_cf_top12.csv",
+        "bottom": "reports/gpt2l_cf_bottom6.csv"
+      },
+      "logic": {
+        "full": "reports/gpt2l_logic_head_ranking.csv",
+        "top": "reports/gpt2l_logic_top12.csv",
+        "bottom": "reports/gpt2l_logic_bottom6.csv"
+      }
+    },
+    "ov_reports": []
+  },
+  "gpt2": {
+    "summary_table": null,
+    "trio_percentiles": null,
+    "head_rankings": {},
+    "ov_reports": [
+      "reports/ov_report_logic_gpt2_heads2_4_7.json",
+      "reports/ov_report_neg_gpt2_heads2_4_7.json",
+      "reports/ov_report_cf_gpt2_heads2_4_7.json",
+      "reports/ov_report_facts_gpt2_heads2_4_7.json"
+    ]
+  }
+}

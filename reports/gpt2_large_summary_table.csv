@@ -1,0 +1,5 @@
+Probe,LogitDiff_Mean,Seeds,Scope
+Facts,1.6478746202256944,3,Full H1
+Negation,0.11418914794921875,3,Full H1
+Counterfactual,1.102114529079861,3,Full H1
+Logic,-0.07147227393256293,3,Full H1

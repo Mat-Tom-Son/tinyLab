@@ -23,3 +23,6 @@ Rather than toggling individual token probabilities late in the computation, the
     \caption{Path patch DAG on the facts probe. Ablation yields $\Delta\mathrm{LD}=+0.40$; reinstating only the suppressor$\rightarrow$layer-11 path leaves $\Delta\mathrm{LD}=+0.13$ (mediated fraction $=\Delta\mathrm{LD}_{\text{path}}/\Delta\mathrm{LD}_{\text{ablation}}=0.67$). Reverse patching the corrupted residual stream into the clean model produces $\Delta\mathrm{LD}=-0.93$.}
     \label{fig:path-dag}
 \end{figure}
+
+\subsection*{Suppressors as forced solutions}
+Across GPT-2 and Mistral we observe a common pattern: (i) \emph{function is conserved} (a circuit that implements a factuality–hedging trade-off), (ii) \emph{implementation adapts} (different heads and OV semantics), and (iii) \emph{location is forced} (layer~0 across both architectures). This ``conserved function, adapted implementation, forced location'' signature is exactly what a bottleneck-constrained solution predicts. The what is forced by the objective and geometry; the how is shaped by architecture and data.

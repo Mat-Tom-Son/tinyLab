@@ -1,0 +1,330 @@
+\section{Implementation}
+\label{sec:implementation}
+
+TinyLab's implementation prioritizes deterministic execution, reproducibility metadata, and extensibility. This section details the infrastructure, determinism guarantees, configuration management, and dataset handling.
+
+\subsection{Infrastructure Overview}
+
+\paragraph{System Requirements.}
+\begin{itemize}
+    \item Apple Silicon (M1/M2/M3) with MPS acceleration OR
+    \item CUDA-capable GPU (Linux/Windows) OR
+    \item CPU-only mode (slower, cross-platform)
+    \item PyTorch 2.0+ with device-specific support
+    \item TransformerLens 1.0+ for model loading
+    \item 16GB+ unified memory (for 7B models)
+\end{itemize}
+
+\paragraph{Core Modules.}
+\begin{verbatim}
+lab/
+├── src/
+│   ├── harness.py              # Main experiment runner
+│   ├── components/
+│   │   ├── load_model.py       # TransformerLens integration
+│   │   ├── datasets.py         # Probe suite management
+│   │   ├── metrics.py          # Dual-observable computation
+│   │   └── tracking.py         # MLflow integration
+│   ├── ablations/
+│   │   ├── heads_zero.py       # H1 battery
+│   │   ├── heads_pair_zero.py  # H5 battery
+│   │   ├── activation_patch.py # H2 battery
+│   │   ├── reverse_patch.py    # H6 battery (partial)
+│   │   └── sae_features.py     # H7 battery (SAE variant)
+│   ├── orchestrators/
+│   │   └── conditions.py       # Cross-task/model runner
+│   └── utils/
+│       ├── hashing.py          # Config/data hashing
+│       ├── determinism.py      # Seed control
+│       └── stats.py            # CI computation
+\end{verbatim}
+
+\subsection{Deterministic Execution and Seed Discipline}
+
+\paragraph{Challenge: Non-Deterministic Hardware Operations.}
+
+PyTorch does not guarantee deterministic behavior across all backends. MPS (Apple Silicon) operations can exhibit minor numerical variance; CUDA implementations vary by kernel version. This threatens reproducibility.
+
+\paragraph{TinyLab's Multi-Layered Strategy.}
+
+\textbf{1. Explicit Seed Control.}
+
+Every experiment specifies seeds explicitly in config. Before each run:
+\begin{verbatim}
+def set_seeds(seed: int):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.backends.mps.is_available():
+        torch.mps.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+\end{verbatim}
+
+\textbf{2. PyTorch Deterministic Flags.}
+
+We enable PyTorch's deterministic mode where available:
+\begin{verbatim}
+torch.use_deterministic_algorithms(True, warn_only=True)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+\end{verbatim}
+
+Note: \texttt{warn\_only=True} prevents crashes on operations lacking deterministic implementations (e.g., certain MPS kernels); variance is tracked via multi-seed aggregation instead.
+
+\textbf{3. Multi-Seed Aggregation.}
+
+All experiments run $N \geq 3$ seeds (default: \{0, 1, 2\}). We report:
+\begin{itemize}
+    \item Mean $\mu$ across seeds
+    \item 95\% confidence interval: $\mu \pm 1.96 \cdot \frac{\sigma}{\sqrt{N}}$
+    \item Per-seed values in detailed output
+\end{itemize}
+
+\textit{Empirical observation:} GPT-2 on MPS shows $< 0.01$ variance in $\Delta$LD across seeds. Mistral-7B on MPS (seeds \{0, 1, 2\}) reproduces \textit{exactly} to float32 precision (95\% CI $\approx 0$).
+
+\textbf{4. CPU/CUDA Parity Checks.}
+
+TinyLab includes a \texttt{verify\_slice} config option:
+\begin{verbatim}
+{
+  "verify_slice": {
+    "device": "cpu",
+    "n_examples": 20
+  }
+}
+\end{verbatim}
+
+This runs the last $n$ examples on both the main device (e.g., MPS) and CPU, comparing metrics. Divergence beyond a threshold (default: $\delta > 0.05$ in $\Delta$LD) triggers a warning. Output: \texttt{metrics/verify.json} with per-metric diffs.
+
+\textbf{5. Seed Packs for Replication.}
+
+All recorded experiments include a \texttt{seed\_pack.json}:
+\begin{verbatim}
+{
+  "seeds": [0, 1, 2],
+  "metrics": {
+    "logit_diff": {"mean": 2.34, "ci": [2.31, 2.37], "values": [...]},
+    "kl_div": {"mean": 0.52, "ci": [0.49, 0.55], "values": [...]}
+  }
+}
+\end{verbatim}
+
+Replicators can use identical seeds and compare distributions, not just point estimates.
+
+\paragraph{Threats to Validity and Mitigations.}
+
+Table~\ref{tab:determinism_threats} summarizes determinism challenges and TinyLab's mitigations.
+
+\begin{table}[t]
+\centering
+\caption{Determinism Threats and Mitigations}
+\label{tab:determinism_threats}
+\small
+\begin{tabular}{p{0.35\linewidth}p{0.25\linewidth}p{0.30\linewidth}}
+\toprule
+\textbf{Threat} & \textbf{Impact} & \textbf{Mitigation} \\
+\midrule
+MPS non-deterministic kernels & Minor float variance & Multi-seed aggregation; 95\% CI reporting \\
+CUDA kernel version differences & Cross-system variance & CPU parity checks; seed packs for comparison \\
+Tokenization artifacts & BPE merging inconsistencies & Single-token validation; reject multi-token \\
+Estimator sensitivity (KL, MI) & Metric bias & Add-0.5 smoothing; log-space computation \\
+Prompt distribution shift & Task-specific effects & Cross-task orchestration; rank correlation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Configuration Management and Hashing}
+
+\paragraph{Philosophy: Configs Are Code.}
+
+Every experiment is defined by a JSON configuration file versioned in git. Changing hyperparameters requires explicit config modification, preventing post-hoc tuning.
+
+\paragraph{Config Structure.}
+
+\begin{verbatim}
+{
+  "run_name": "h1_cross_condition_facts",
+  "battery": "battery_h1_heads_zero.json",
+  "model": {
+    "name": "gpt2-medium",
+    "dtype": "float16"
+  },
+  "dataset": {
+    "path": "lab/data/corpora/facts_v1.jsonl",
+    "split": "train",
+    "max_examples": 100
+  },
+  "seeds": [0, 1, 2],
+  "device": "mps",
+  "verify_slice": {"device": "cpu", "n_examples": 20}
+}
+\end{verbatim}
+
+\paragraph{SHA-256 Hashing.}
+
+On execution, TinyLab computes:
+\begin{itemize}
+    \item \textbf{Config hash:} SHA-256 of canonical JSON (keys sorted, whitespace normalized)
+    \item \textbf{Data hash:} SHA-256 of dataset file contents
+    \item \textbf{Model hash:} SHA-256 of model checkpoint (if local) or HuggingFace commit ID
+\end{itemize}
+
+These hashes are recorded in \texttt{manifest.json}. Identical config + data + model $\Rightarrow$ identical hash $\Rightarrow$ exact replication expected (modulo hardware variance captured in seed CIs).
+
+\paragraph{Manifest Example.}
+
+\begin{verbatim}
+{
+  "run_id": "h1_facts_3a7f",
+  "config_hash": "3a7f9b2c",
+  "data_hash": "8f3d2a1e",
+  "model_hash": "a3f7c9d",
+  "seeds": [0, 1, 2],
+  "git_commit": "a3f7c9d",
+  "git_clean": true,
+  "timestamp": "2025-01-28T10:23:45Z",
+  "device": "mps",
+  "pytorch_version": "2.1.0",
+  "outputs": {
+    "summary": "metrics/summary.json",
+    "head_impact": "metrics/head_impact.parquet",
+    "verify": "metrics/verify.json"
+  }
+}
+\end{verbatim}
+
+\subsection{Dataset Management and Tokenization}
+
+\paragraph{Probe Suite Format.}
+
+Each probe is stored as JSONL with clean/corrupt prompt pairs:
+\begin{verbatim}
+{
+  "clean": "The capital of France is",
+  "corrupt": "The capital of Spain is",
+  "target": " Paris",
+  "foil": " Madrid",
+  "metadata": {"category": "factual_recall", "entity": "France"}
+}
+\end{verbatim}
+
+\paragraph{Single-Token Validation.}
+
+TinyLab enforces single-token targets/foils to avoid multi-token confounds:
+\begin{verbatim}
+def validate_single_token(text: str, tokenizer) -> bool:
+    tokens = tokenizer.encode(text)
+    if len(tokens) != 1:
+        raise ValueError(f"Multi-token target: {text} -> {tokens}")
+    return True
+\end{verbatim}
+
+Examples failing this check are excluded from analysis and logged.
+
+\paragraph{Tokenizer Adaptation for Cross-Architecture.}
+
+GPT-2 uses BPE (byte-pair encoding); Mistral uses SentencePiece. TinyLab:
+\begin{enumerate}
+    \item Preserves semantic content across tokenizers
+    \item Validates single-token status per model
+    \item Rejects examples where tokenization changes (e.g., ``~Paris'' $\to$ multiple tokens in Mistral)
+    \item Records tokenizer version in manifest
+\end{enumerate}
+
+Dataset sizes vary slightly across models due to tokenization constraints. Example: facts corpus has 160 examples for GPT-2; 152 pass single-token validation for Mistral.
+
+\subsection{Information-Theoretic Estimator Choices}
+
+\paragraph{KL Divergence.}
+
+We compute KL$(P_{\text{clean}} \| P_{\text{ablated}})$ using:
+\begin{verbatim}
+def compute_kl(logits_clean, logits_ablated):
+    p = torch.softmax(logits_clean, dim=-1)
+    q = torch.softmax(logits_ablated, dim=-1)
+    # Add epsilon for numerical stability
+    kl = (p * (torch.log(p + 1e-10) - torch.log(q + 1e-10))).sum()
+    return kl.item()
+\end{verbatim}
+
+\textit{Note:} Add-$\epsilon$ smoothing ($\epsilon = 10^{-10}$) prevents $\log(0)$ but introduces negligible bias given typical logit scales ($> 10^{-5}$).
+
+\paragraph{Mutual Information.}
+
+Exact MI computation is intractable for high-dimensional vocabularies. We use KL divergence as a proxy:
+\[
+\text{MI}(X; Y) \approx \text{KL}(P(Y \mid X) \| P(Y))
+\]
+
+where $P(Y \mid X)$ is the model's output distribution and $P(Y)$ is a uniform or corpus-frequency prior. This approximation is standard in interpretability work~\cite{jain2019attention}.
+
+\paragraph{Calibration Metrics.}
+
+Expected Calibration Error (ECE) uses 10-bin discretization:
+\begin{verbatim}
+def compute_ece(probs, labels, n_bins=10):
+    bin_boundaries = np.linspace(0, 1, n_bins + 1)
+    ece = 0.0
+    for i in range(n_bins):
+        in_bin = (probs >= bin_boundaries[i]) & (probs < bin_boundaries[i+1])
+        if in_bin.sum() > 0:
+            acc = labels[in_bin].mean()
+            conf = probs[in_bin].mean()
+            ece += (in_bin.sum() / len(probs)) * abs(acc - conf)
+    return ece
+\end{verbatim}
+
+\textit{Sensitivity:} ECE varies slightly with bin count. We report ECE$_{10}$ and provide Brier score (bin-free) as robustness check.
+
+\subsection{Extensibility: Adding New Batteries and Models}
+
+\paragraph{Adding a New Battery.}
+
+Batteries inherit from \texttt{BaseBattery}:
+\begin{verbatim}
+class MyBattery(BaseBattery):
+    def run(self, model, dataset, config):
+        results = []
+        for example in dataset:
+            metrics = self.compute_metrics(model, example)
+            results.append(metrics)
+        return self.aggregate(results)
+\end{verbatim}
+
+Register in \texttt{ablations/\_\_init\_\_.py}:
+\begin{verbatim}
+BATTERIES = {
+    "h1": HeadsZero,
+    "h5": HeadsPairZero,
+    "h7": SAEFeatures,  # New battery
+}
+\end{verbatim}
+
+\paragraph{Adding a New Model.}
+
+Any TransformerLens-compatible model works. In config:
+\begin{verbatim}
+{
+  "model": {
+    "name": "pythia-1.4b",  # HuggingFace model name
+    "dtype": "float16"
+  }
+}
+\end{verbatim}
+
+TinyLab automatically adapts to model architecture (reads \texttt{n\_layers}, \texttt{n\_heads} from config).
+
+\paragraph{Adding New Metrics.}
+
+Register metrics via decorator:
+\begin{verbatim}
+@register_metric("new_metric")
+def compute_new_metric(logits_clean, logits_ablated, target_idx):
+    # Custom metric logic
+    return value
+\end{verbatim}
+
+Metric is automatically included in all batteries.
+
+This modular design enables community extensions without modifying core TinyLab code.

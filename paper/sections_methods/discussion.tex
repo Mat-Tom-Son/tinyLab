@@ -1,0 +1,188 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{What TinyLab Enables}
+
+TinyLab addresses a concrete problem in mechanistic interpretability: circuit discoveries rely on ad-hoc methodologies vulnerable to cherry-picking, narrow parameter sweeps, and irreproducibility. By enforcing standardized batteries, dual observables, random baselines, and cross-architecture validation, TinyLab makes circuit discovery a \textbf{falsifiable scientific practice} rather than exploratory data analysis.
+
+\paragraph{Catching False Positives.}
+
+The framework's design emerged from direct experience with methodological failure. In prior work~\cite{thompson2024mrc}, we hypothesized a ``memory-resonance condition'' based on physical intuition about stability and noise in complex information systems. Preliminary experiments sweeping a parameter $\alpha \in \{0.0, 1.0, 2.0\}$ showed strong effects (logit difference gains $> +0.4$). However, extending the sweep to $\alpha \in \{0.0, 0.5, \ldots, 5.0\}$ revealed the effect \textit{vanished}—a textbook narrow-range artifact.
+
+That null result taught us two lessons:
+\begin{enumerate}
+    \item \textbf{Physics intuition is powerful but insufficient:} Thermodynamic self-stabilization patterns (resonance, attractor basins) \textit{do} appear in transformers (e.g., the L0 hedging coalition's 67\% mediation through layer-11 suggests an attractor), but they require rigorous validation.
+    \item \textbf{Reproducible infrastructure is necessary:} Without tools enforcing extended sweeps and random baselines, even well-motivated hypotheses produce illusory circuits.
+\end{enumerate}
+
+TinyLab is the infrastructure we \textit{had to build} to test whether physical intuitions about information dynamics hold in transformers. The hedging coalition validates this approach: it exhibits attractor-like behavior (reverse patching shows stable propagation through layer-11), passes statistical tests (99th percentile of random baselines), and replicates across architectures—exactly what we'd expect from a thermodynamically stable solution to conflicting objectives.
+
+\paragraph{Preventing Cherry-Picking.}
+
+Dual-observable measurement forces honesty. A circuit that improves accuracy but degrades calibration (or vice versa) is suspicious—it may be exploiting a metric artifact rather than capturing genuine computational structure. The hedging coalition improves \textit{both} $\Delta$LD (+30\%) and ECE (-25\%), confirming it is a removable behavioral pathology, not a fundamental accuracy-calibration trade-off.
+
+Similarly, random baselines prevent ``this head matters'' claims without statistical context. Reporting that head~0:2 produces $\Delta$LD $= +0.406$ is meaningless without knowing the random layer-0 distribution (mean~$= 0.05$, 99th percentile~$= 0.169$). TinyLab makes percentile reporting automatic.
+
+\paragraph{Quantifying Mechanisms.}
+
+Path patching (H6 battery) moves beyond correlation to \textit{quantified mediation}. Saying ``head~0:2 affects factuality'' is weaker than ``67\% of head~0:2's effect is mediated through the layer-11 residual stream.'' The latter is falsifiable: alternative paths (layer-1, layer-2) show only 12--20\% mediation, ruling out distributed mediation and confirming a specific information channel.
+
+This operational definition of an attractor—``injecting coalition activations into an otherwise clean run induces a stable hedging pattern that downstream layers amplify''—bridges mechanistic and thermodynamic views of transformer computation.
+
+\subsection{The Hedging Coalition as Framework Validation}
+
+The L0 hedging coalition is \textbf{not the primary contribution} of this work—TinyLab is. However, the coalition serves as a rigorous proof of concept: it demonstrates that TinyLab surfaces genuine behavioral circuits learned by gradient descent, not artifacts of narrow sweeps or cherry-picked observables.
+
+\paragraph{Why the Coalition Is a Strong Validation Case.}
+
+\begin{enumerate}
+    \item \textbf{Theoretically grounded:} Kalai et al.~\cite{kalai2025hallucination} predicted that binary evaluation incentivizes decoupling confidence from ground truth. The coalition provides mechanistic evidence consistent with this prediction.
+
+    \item \textbf{Survives all four tests:} Random baseline (99th percentile), dual observables ($\Delta$LD and ECE both improve), cross-architecture (GPT-2 + Mistral variants), path patching (67\% mediation quantified).
+
+    \item \textbf{Semantically interpretable:} OV projection shows coherent direction (upweight hedges, downweight factual stems), not polysemantic noise.
+
+    \item \textbf{Replicates despite architectural differences:} GPT-2 (MHA, 12--24 layers) and Mistral (GQA, 32 layers) both discover layer-0 hedging, though implementations differ.
+\end{enumerate}
+
+\paragraph{What the Coalition Does Not Prove.}
+
+The coalition does \textit{not} prove:
+\begin{itemize}
+    \item That all hallucinations originate from layer-0 circuits (long-context failures, sampling artifacts, and post-training alignment introduce other pathways)
+    \item That Kalai et al.'s theorem \textit{necessitates} layer-0 hedging (alternative implementations may exist)
+    \item That removing the coalition eliminates all calibration issues (ECE improves 25\%, not 100\%)
+\end{itemize}
+
+The coalition is a \textbf{sufficient but not necessary} mechanistic instantiation of hedging under binary evaluation. It provides one concrete circuit implementing the predicted behavior.
+
+\subsection{Limitations}
+
+\paragraph{Scope: Models and Tasks.}
+
+We tested three models (GPT-2 Small/Medium, Mistral-7B) on single-token factual probes. Broader validation requires:
+\begin{itemize}
+    \item \textbf{Model census:} Llama-2/3, Pythia, Qwen, OPT, GPT-3-scale checkpoints
+    \item \textbf{Task diversity:} Multi-token generation, long-context reasoning, dialogue, code
+    \item \textbf{Training dynamics:} When do coalitions emerge? Gradual or phase-transition?
+\end{itemize}
+
+Current results establish \textit{existence} of the motif; comprehensive taxonomy requires larger-scale sweeps.
+
+\paragraph{Determinism: MPS Variance.}
+
+PyTorch MPS (Apple Silicon) operations are not universally deterministic. We mitigate this via:
+\begin{itemize}
+    \item Multi-seed aggregation (N~$\geq 3$, report mean $\pm$ 95\% CI)
+    \item CPU verification slices (compare MPS vs. CPU on subset)
+    \item Seed packs for replication (exact seed lists + expected distributions)
+\end{itemize}
+
+Empirically, GPT-2 on MPS shows $< 0.01$ variance in $\Delta$LD; Mistral seeds~\{0,1,2\} reproduce exactly (95\% CI~$\approx 0$). However, broader hardware testing (CUDA, TPU) is needed for platform-independent claims.
+
+\paragraph{Single-Seed Mistral Results.}
+
+Mistral experiments currently rely on seed~0 due to compute constraints. While deterministic reproduction across seeds~\{1,2\} on negation/counterfactual tasks suggests low variance, full multi-seed sweeps across all tasks are queued. Random baseline comparison (1,000~random Mistral L0 ablations) is planned to contextualize percentile rankings.
+
+\paragraph{Estimator Sensitivity.}
+
+Information-theoretic metrics (KL divergence, mutual information) depend on estimator choice. We use:
+\begin{itemize}
+    \item Add-$\epsilon$ smoothing ($\epsilon = 10^{-10}$) for numerical stability
+    \item Log-space computation to avoid overflow
+    \item Brier score (bin-free) as robustness check for calibration
+\end{itemize}
+
+While standard in the literature~\cite{jain2019attention}, alternative estimators (e.g., k-NN entropy estimation) may yield slightly different values. Effect \textit{directions} (coalition ablation improves calibration) are robust; exact magnitudes are estimator-dependent.
+
+\paragraph{Probe Limitations.}
+
+Single-token probes simplify analysis but miss:
+\begin{itemize}
+    \item Multi-token reasoning (``What is the capital of the country that borders Spain and France?'' $\to$ `` Andorra'')
+    \item Long-context dependencies (hedging may appear differently in 8K+ token contexts)
+    \item Interactive dialogue (do coalitions activate differently under conversational priming?)
+\end{itemize}
+
+Future work should extend TinyLab's probe suite to multi-token targets (requires aggregating logits across positions) and autoregressive generation (requires sampling + trajectory analysis).
+
+\subsection{Comparison to Existing Tools}
+
+\paragraph{TransformerLens.}
+
+TransformerLens~\cite{nanda2022transformerlens} provides programmatic access to transformer internals (weights, activations, gradients). TinyLab \textbf{complements} this by adding:
+\begin{itemize}
+    \item Standardized experimental protocols (batteries)
+    \item Methodological enforcement (dual observables, random baselines)
+    \item Reproducibility infrastructure (config hashing, seed packs, determinism verification)
+\end{itemize}
+
+\textit{Analogy:} TransformerLens is the microscope; TinyLab is the experimental protocol and lab notebook.
+
+\paragraph{Circuit Discovery Papers (IOI, Induction, Arithmetic).}
+
+Prior circuit discoveries~\cite{wang2023interpretability,olsson2022context,quirke2024understanding} relied on detailed manual reverse-engineering. These studies provide deep mechanistic understanding of specific circuits but require researcher intuition and ad-hoc methodology.
+
+TinyLab \textbf{systematizes} the discovery process:
+\begin{itemize}
+    \item IOI required manual analysis of 26~heads $\to$ TinyLab's H1/H5 batteries automate head-sweep + cooperation testing
+    \item Induction heads discovered via cross-model observation $\to$ TinyLab's cross-architecture validation formalizes this
+    \item Arithmetic circuits dissected task-by-task $\to$ TinyLab's cross-task orchestration identifies conserved vs. task-specific heads
+\end{itemize}
+
+TinyLab does \textit{not replace} detailed reverse-engineering (which remains valuable for deep understanding). It provides \textit{at-scale, reproducible discovery} that complements manual analysis.
+
+\paragraph{SAELens and Dictionary Learning.}
+
+SAELens~\cite{bricken2023monosemanticity} decomposes activations into sparse, monosemantic features. TinyLab's H7 battery (feature-space ablation) provides downstream \textit{validation} of SAE-discovered features:
+\begin{itemize}
+    \item SAEs identify features; TinyLab tests whether ablating those features affects behavior
+    \item OV-to-feature alignment analysis (Section~3.2.4) bridges head-level and feature-level circuits
+\end{itemize}
+
+\textit{Relationship:} Orthogonal tools. SAEs decompose; TinyLab validates via ablation + dual observables.
+
+\paragraph{Causal Mediation Libraries.}
+
+General causal mediation frameworks~\cite{pearl2001direct} formalize mediation analysis. TinyLab \textbf{specializes} this to transformers:
+\begin{itemize}
+    \item H6 battery (path patching) is domain-specific: source~$\to$~layer-$k$ residual stream
+    \item Dual observables enforce simultaneous power + information metric tracking
+    \item Batteries provide reusable templates (researchers don't re-implement path patching per study)
+\end{itemize}
+
+\subsection{Implications for Alignment and Safety}
+
+\paragraph{Circuit-Level Transparency.}
+
+If we understand which circuits implement undesirable behaviors (hedging coalitions, jailbreak-sensitivity, deception), we can:
+\begin{enumerate}
+    \item \textbf{Steer during inference:} Activation steering~\cite{turner2023activation} using coalition OV directions (flip between hedging/factual modes without full ablation)
+    \item \textbf{Regularize during fine-tuning:} Circuit-specific loss penalties (e.g., L1 on coalition activations) to suppress undesired patterns
+    \item \textbf{Monitor during deployment:} Track coalition activation levels; flag when hedging mode is unexpectedly high
+\end{enumerate}
+
+\paragraph{Training-Time Interventions.}
+
+The coalition emerges during pre-training under binary evaluation. Alternative training objectives may prevent coalition formation:
+\begin{itemize}
+    \item \textbf{Calibration-aware loss:} Penalize overconfident predictions when ground-truth uncertainty is high
+    \item \textbf{Frozen heads:} Freeze coalition heads during fine-tuning, test if model learns alternative solutions
+    \item \textbf{Adversarial training:} Reward factual continuations even when coalition activates
+\end{itemize}
+
+Testing these interventions requires instrumenting training—a natural extension of TinyLab (Section~\ref{sec:future}).
+
+\paragraph{Evaluation Reform Alone Is Insufficient.}
+
+Kalai et al.'s result suggests that changing evaluation metrics (rewarding calibrated abstention) prevents \textit{new} coalitions from forming. However, existing pre-trained models already contain coalitions learned under binary evaluation. Evaluation reform is necessary but not sufficient; circuit-level intervention (steering, regularization, or targeted fine-tuning) may be required to restore truthful behavior in deployed models.
+
+\subsection{From Physics Intuition to Reproducible Tooling}
+
+This work's research arc reflects a broader methodological evolution: starting from physical intuition about self-stabilization in complex systems, encountering the reproducibility problem when testing those intuitions in transformers, and building infrastructure to address it.
+
+The memory-resonance hypothesis emerged from thermodynamic reasoning: if transformers are complex information systems under noise, they should exhibit resonance-like stability patterns where certain configurations amplify signal while suppressing noise. When preliminary experiments suggested such patterns existed, we extended parameter sweeps—and discovered the effect was an artifact.
+
+That failure motivated TinyLab's design: if we want to test whether physical intuitions (attractors, resonance, thermodynamic stability) apply to transformers, we need tools that \textit{enforce falsifiability}. The hedging coalition vindicates this approach: it exhibits attractor-like mediation (67\% through layer-11), survives statistical falsification (99th percentile), and replicates across architectures—exactly what we'd expect from a thermodynamically stable solution to conflicting training objectives.
+
+Physics provides the \textit{hypothesis space}; TinyLab provides the \textit{validation framework}. Future work bridging information geometry, free energy principles, and circuit-level analysis can now proceed on solid methodological ground.

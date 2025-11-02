@@ -67,14 +67,14 @@ Outputs land in `lab/runs/h6_layer_targets_window_balanced_*`.
 
 ## 3. Mistral-7B Experiments
 
-The orchestrated config targets all four probe families with seeds `[0,1,2]`:
+The orchestrated config targets all four probe families with seeds `[0,1,2,3,4]` and stores a 32-example CPU verify slice before each sweep:
 
 ```bash
 python -m lab.src.orchestrators.conditions \
   lab/configs/run_h1_cross_condition_balanced_mistral.json
 ```
 
-If orchestration timeouts occur, run the per-condition configs (all set to seeds `[0,1,2]`):
+If orchestration timeouts occur, run the per-condition configs (all set to the same five seeds and verify slice):
 
 ```bash
 python -m lab.src.harness lab/configs/run_h1_cross_condition_balanced_mistral_facts.json
@@ -93,9 +93,19 @@ python -m lab.src.harness lab/configs/run_h1_cross_condition_balanced_mistral_lo
   ```bash
   python -m lab.src.harness lab/configs/run_h5_layer0_triplet_balanced_mistral_*.json
   ```
-  (facts/neg/cf/logic corrected configs match the paper.)
+  (facts/neg/cf/logic corrected configs match the paper; each defaults to seeds `[0,1,2]` plus a 24-example CPU verify slice.)
 
 Each run logs to `lab/runs/` with matching names.
+
+
+After all probes complete, regenerate standardized reports with:
+
+```
+make postprocess
+```
+
+This refreshes `reports/` (head rankings, OV tokens, H5/H6 tables) and rebuilds
+`reports/RESULTS_MANIFEST.json` for reviewers.
 
 ## 4. Analysis Scripts → Figures / Tables
 

@@ -2,7 +2,7 @@
 
 \begin{table}[t]
     \centering
-    \caption{Effect of layer-0 suppressor ablations on logit difference (LD). GPT-2 Medium: deterministic point estimates across three seeds (Apple M-series MPS). $^{\dagger}$Mistral-7B: single-seed estimates (seed~0; compute constraints). Positive $\Delta$LD indicates a stronger factual preference.}
+    \caption{Effect of layer-0 suppressor ablations on logit difference (LD). GPT-2 Medium: deterministic point estimates across three seeds (Apple M-series MPS). Mistral-7B: multi-seed H1 (3~seeds for negation/counterfactual, 5~seeds for facts) with collapsed CIs due to determinism on the 24-example splits. Positive $\Delta$LD indicates a stronger factual preference.}
     \label{tab:impact}
     \begin{tabular}{llcccc}
         \toprule
@@ -13,17 +13,17 @@
         GPT-2 Medium & Counterfactual & $1.420$ & $2.266$ & $+0.846$ & 0:2, 0:4, 0:7 \\
         GPT-2 Medium & Logic          & $1.294$ & $1.846$ & $+0.552$ & 0:2, 0:4, 0:7 \\
         \addlinespace
-        Mistral 7B   & Facts          & $4.933^{\dagger}$ & $4.930^{\dagger}$ & $-0.003^{\dagger}$ & 0:22, 0:23 \\
-        Mistral 7B   & Negation       & $0.384^{\dagger}$ & $0.609^{\dagger}$ & $+0.225^{\dagger}$ & 0:22, 0:23 \\
-        Mistral 7B   & Counterfactual & $3.017^{\dagger}$ & $3.299^{\dagger}$ & $+0.282^{\dagger}$ & 0:22, 0:23 \\
-        Mistral 7B$^{\ddagger}$   & Logic          & $0.335^{\dagger}$ & $0.293^{\dagger}$ & $-0.042^{\dagger}$ & 0:22, 0:23 \\
+        Mistral 7B   & Facts          & $4.933$ & $4.930$ & $-0.003$ & 0:22, 0:23 \\
+        Mistral 7B   & Negation       & $0.384$ & $0.609$ & $+0.225$ & 0:22, 0:23 \\
+        Mistral 7B   & Counterfactual & $3.017$ & $3.299$ & $+0.282$ & 0:22, 0:23 \\
+        Mistral 7B$^{\ddagger}$   & Logic          & $0.335$ & $0.293$ & $-0.042$ & 0:22, 0:23 \\
         \bottomrule
     \end{tabular}
     \vspace{0.5em}
     \footnotesize{$^{\ddagger}$Head~0:21 opposes heads~0:22/0:23 on the logic probe (net $\Delta$LD combines both effects).}
 \end{table}
 
-\subsection{Foundational signals from cross-task sweeps}
+\subsection{Layer~0 as predicted: extreme-tail circuits at the first bottleneck}
 Before zooming in on individual heads we measured geometry-level invariants.
 Layer-wise activation patches (H2) reveal task-dependent phase shifts: GPT-2 Medium routes factual recall through layer~11, negation through layer~2, counterfactual reasoning through layer~8, and logic through layer~0.
 Despite these shifts, three layer-0 heads---0:2, 0:4, and 0:7---retain high impact across all tasks with rank correlations $\rho \in [0.52,0.97]$ ($p \le 0.04$).
@@ -36,7 +36,7 @@ Rebalancing the corpora to equalise token frequencies \emph{increases} their pro
     \label{fig:random-baseline}
 \end{figure}
 
-Figure~\ref{fig:random-baseline} shows head~0:2 producing $\Delta\mathrm{LD}=+0.406$, placing it at the very top of the single-head distribution. Heads~0:4 and 0:7 contribute $+0.130$ and $+0.124$, respectively—both around the 94th percentile while the random baseline’s 95th and 99th percentiles sit at $0.162$ and $0.169$. The suppressor pairs $(0{:}2,0{:}4)$ and $(0{:}2,0{:}7)$ deliver $+0.556$ and $+0.550$ LD shifts, placing them in the extreme tail of the simulated pair distribution (95th percentile $0.186$, 99th percentile $0.243$); the pair $(0{:}4,0{:}7)$ still exceeds the 99th percentile at $+0.253$.
+Figure~\ref{fig:random-baseline} shows head~0:2 producing $\Delta\mathrm{LD}=+0.406$, placing it at the very top of the single-head distribution. Heads~0:4 and 0:7 contribute $+0.130$ and $+0.124$, respectively—both around the 94th percentile while the random baseline’s 95th and 99th percentiles sit at $0.162$ and $0.169$. The suppressor pairs $(0{:}2,0{:}4)$ and $(0{:}2,0{:}7)$ deliver $+0.556$ and $+0.550$ LD shifts, placing them in the extreme tail of the simulated pair distribution (95th percentile $0.186$, 99th percentile $0.243$); the pair $(0{:}4,0{:}7)$ still exceeds the 99th percentile at $+0.253$. In parallel, information metrics (calibration) improve alongside power, passing our dual‑observable test for structural circuits.
 
 \subsection{GPT-2 layer-0 suppressor}
 Across all four probes the H1 heads-zero battery ranks layer-0 heads 2, 4, and~7 as the most damaging suppressors: ablation increases logit difference by 0.40--0.85 (Table~\ref{tab:impact}) and the trio sits at the top of the per-head tables in every condition.

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1761802031.64645 "main.aux" "main.bbl" "main" 1761802070.89347 0
-  "./references.bib" 1761801355.54056 5921 f26f7eb5d563954e8688cc1ca0d93449 ""
+["bibtex main"] 1762063519.20624 "main.aux" "main.bbl" "main" 1762063520.49973 0
+  "./references.bib" 1761926189.33183 11918 c20bd6f488af2635ed61ae39695a5cad ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1761802070.54514 11830 54922fd40c249606107e8dfa3eaba7af "pdflatex"
+  "main.aux" 1762063520.15434 12439 ad85260c4b1bfa083239f12a7c5511dc "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1761802069.75217 "main.tex" "main.pdf" "main" 1761802070.89361 0
+["pdflatex"] 1762063519.35882 "main.tex" "main.pdf" "main" 1762063520.49988 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
@@ -107,23 +107,23 @@
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "figures/calibration_curve.pdf" 1761780848.31464 14289 fe1bd7543ce76575b9a073a7f1ceebc4 ""
-  "figures/path_patch_dag.pdf" 1761780883.64597 14652 a24a92d8cb0eca7e60ea7ec3af20953d ""
+  "figures/path_patch_dag.pdf" 1761924167.46152 27204 df86c321296f7e8d902093a52ef50a88 ""
   "figures/random_l0_baseline.pdf" 1761782276.74403 23728 e43960bdfe5c158795dc756dbd45ba6c ""
   "generated/token_tables.tex" 1761801801.54249 4382 45a33a1087a376b334836685dcee09e9 ""
-  "main.aux" 1761802070.54514 11830 54922fd40c249606107e8dfa3eaba7af "pdflatex"
-  "main.bbl" 1761802031.80634 4657 8ceb615d9485b940dd9df81cd99c9b91 "bibtex main"
-  "main.out" 1761802070.54668 6668 c7a2cf626358c142ecf369ab9f3afecc "pdflatex"
-  "main.tex" 1761801832.79045 2708 da48a0c2227e06d50d3d3c08f0e7de9c ""
-  "sections/appendix.tex" 1761788417.96956 2897 d75463478743ce705cb9ce892265575a ""
+  "main.aux" 1762063520.15434 12439 ad85260c4b1bfa083239f12a7c5511dc "pdflatex"
+  "main.bbl" 1762063519.35606 4657 8ceb615d9485b940dd9df81cd99c9b91 "bibtex main"
+  "main.out" 1762063520.15593 7327 5cc0580d82e70d916c39336c79966005 "pdflatex"
+  "main.tex" 1762063423.72969 2908 c0ec010ead4815b8d922ba924c2ca3a1 ""
+  "sections/appendix.tex" 1762063500.30226 3359 ab2ef1b205a3f114c98e7b1b07a8ca44 ""
   "sections/background.tex" 1761801359.36119 1695 82b09c389b06e9694877f65411f191ce ""
   "sections/conclusion.tex" 1761781166.40594 1020 0c9e3eeb8eb0fd090b0c80bc2cc0e4a9 ""
-  "sections/discussion.tex" 1761781166.40582 1690 3bb2527d89587eb056f6dd8ce9f54ba2 ""
-  "sections/findings.tex" 1761802065.5939 7431 cbcd08e3344ae03957c7fc8f5103dd54 ""
-  "sections/future.tex" 1761781166.40606 1085 4e279dc50be6cbca298db8f89ebc0793 ""
+  "sections/discussion.tex" 1762063513.97376 2196 675a0e213fbb9d1867a44f2c7b244fe2 ""
+  "sections/findings.tex" 1762063461.24827 7537 f4b794f254be7cbd31a06e0ea36af49f ""
+  "sections/future.tex" 1762063493.54837 626 d323376c45c7160d7c435bfb5e3e4383 ""
   "sections/implications.tex" 1761781166.40554 1792 0c4cd9ab86f1ba1fa7e32d9617c675e4 ""
-  "sections/interpretation.tex" 1761782264.74324 2601 f550d86ff9661b5b3bc20ff94cadbc42 ""
-  "sections/introduction.tex" 1761781166.40619 2847 e5a9a6d2124cb948998080d1b9682a3b ""
-  "sections/methods.tex" 1761801971.59517 6093 a9bdd1b4fe2868fb597b40065e78d608 ""
+  "sections/interpretation.tex" 1762063468.23478 3173 3fbe69a5564cfd28f81da00a387818f2 ""
+  "sections/introduction.tex" 1762063434.80888 3217 80357f051a2c4402595da001318299f7 ""
+  "sections/methods.tex" 1762063445.55925 6119 d0ffe5861bbd653500f480d806809187 ""
   "sections/related_work.tex" 1761801902.16784 3664 b1e9e951198c98fe629a2b51eff147e6 ""
   (generated)
   "main.aux"

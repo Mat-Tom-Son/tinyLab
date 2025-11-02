@@ -1,0 +1,25 @@
+{
+  "seeds": [0, 1, 2],
+  "device": "mps",
+  "model": {
+    "family": "mistral",
+    "name": "mistralai/Mistral-7B-v0.1",
+    "dtype": "float16"
+  },
+  "dataset": {
+    "id": "logical_single_token_v1_mistral",
+    "split": "train",
+    "clean_field": "clean",
+    "corrupt_field": "corrupt",
+    "target_field": "target",
+    "foil_field": "foil"
+  },
+  "metrics": [
+    "logit_diff",
+    "acc_flip_rate"
+  ],
+  "batch_size": 2,
+  "max_seq_len": 256,
+  "run_name": "h1_mistral_logic_fullstack_3seed",
+  "battery": "lab/configs/battery_h1_heads_zero.json"
+}

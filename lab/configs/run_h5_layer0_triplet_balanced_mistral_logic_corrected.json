@@ -1,5 +1,5 @@
 {
-  "seeds": [0],
+  "seeds": [0, 1, 2],
   "device": "mps",
   "model": {
     "family": "mistral",
@@ -24,5 +24,9 @@
   "max_seq_len": 256,
   "tag": "logic",
   "run_name": "h5_layer0_triplet_balanced_mistral_logic_corrected",
-  "battery": "lab/configs/battery_h5_layer0_triplet_mistral.json"
+  "battery": "lab/configs/battery_h5_layer0_triplet_mistral.json",
+  "verify_slice": {
+    "n_examples": 24,
+    "device": "cpu"
+  }
 }

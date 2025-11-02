@@ -3,8 +3,9 @@ import json
 import os
 import time
 import subprocess
-import uuid
 import sys
+import platform
+from importlib import metadata as importlib_metadata
 from pathlib import Path
 import numpy as np
 import torch
@@ -27,6 +28,51 @@ def flatten_dict(d, parent_key="", sep="."):
         else:
             items.append((new_k, v))
     return dict(items)
+
+
+def _get_package_version(package):
+    """Best-effort package version lookup."""
+    try:
+        return importlib_metadata.version(package)
+    except importlib_metadata.PackageNotFoundError:
+        return None
+
+
+def collect_provenance(device):
+    """Collect runtime provenance for reproducibility."""
+    mps_backend = getattr(torch.backends, "mps", None)
+
+    prov = {
+        "python_version": platform.python_version(),
+        "platform": platform.platform(),
+        "machine": platform.machine(),
+        "processor": platform.processor(),
+        "torch_version": torch.__version__,
+        "torch_device": str(device),
+        "torch_default_dtype": str(torch.get_default_dtype()),
+        "torch_cuda_available": torch.cuda.is_available(),
+        "torch_mps_available": bool(mps_backend and mps_backend.is_available()),
+        "transformer_lens_version": _get_package_version("transformer-lens"),
+        "transformers_version": _get_package_version("transformers"),
+        "mlflow_version": _get_package_version("mlflow"),
+    }
+
+    if torch.cuda.is_available():
+        prov.update(
+            {
+                "cuda_device_name": torch.cuda.get_device_name(0),
+                "cuda_device_capability": ".".join(
+                    str(x) for x in torch.cuda.get_device_capability(0)
+                ),
+            }
+        )
+    if mps_backend:
+        if hasattr(mps_backend, "is_built"):
+            prov["torch_mps_built"] = mps_backend.is_built()
+        if hasattr(mps_backend, "is_available"):
+            prov["torch_mps_available"] = mps_backend.is_available()
+
+    return prov
 
 
 def main(cfg_path):
@@ -61,12 +107,16 @@ def main(cfg_path):
     (run_dir / "git_commit.txt").write_text(git_commit or "unknown")
     env_freeze = subprocess.getoutput("python -m pip freeze")
     (run_dir / "env.txt").write_text(env_freeze)
+    provenance = collect_provenance(device)
+    io.save_json(provenance, run_dir / "provenance.json")
 
     # Tracking
     mlf = tracking.MLFlowTracker(
         experiment="tiny-ablation-lab", run_name=cfg["run_name"]
     )
     mlf.log_params(flatten_dict(cfg))
+    for key, value in provenance.items():
+        mlf.log_param(f"prov_{key}", value)
 
     # Load data
     dset, split_info, data_hash = datasets.load_split(cfg["dataset"])

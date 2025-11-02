@@ -1,0 +1,153 @@
+\section{Future Directions}
+\label{sec:future}
+
+\subsection{Broader Model Census}
+
+Current validation spans GPT-2 (Small, Medium) and Mistral-7B. Comprehensive circuit taxonomy requires testing:
+
+\begin{itemize}
+    \item \textbf{Llama family:} Llama-2 (7B, 13B, 70B), Llama-3 (8B, 70B) to test scale effects within a single architecture
+    \item \textbf{Pythia suite:} 70M $\to$ 12B checkpoints with intermediate training snapshots, enabling training-dynamics analysis
+    \item \textbf{Alternative architectures:} Qwen (GQA + RoPE), OPT (decoder-only), Falcon (multiquery attention)
+    \item \textbf{Instruction-tuned variants:} Compare base vs. instruct models (e.g., Llama-2-Base vs. Llama-2-Chat) to test whether RLHF modifies coalitions
+\end{itemize}
+
+\textbf{Anticipated finding:} Layer-0 hedging motif appears across all autoregressive models trained under binary evaluation; specific implementations adapt to architecture and training corpus.
+
+\subsection{Training Dynamics Instrumentation}
+
+We observe coalitions in fully-trained models but do not know \textit{when} or \textit{how} they emerge. Key questions:
+
+\begin{enumerate}
+    \item \textbf{Emergence timing:} Do coalitions appear early (first 10\% of training) or late (final 10\%)?
+    \item \textbf{Phase transitions:} Gradual formation or abrupt crystallization?
+    \item \textbf{Objective sensitivity:} Do alternative pre-training objectives (e.g., DPO~\cite{rafailov2023direct}, constitutional AI~\cite{bai2022constitutional}) prevent coalition formation?
+\end{enumerate}
+
+\paragraph{Method.}
+
+\begin{itemize}
+    \item Obtain checkpoint series (e.g., Pythia checkpoints every 1B tokens)
+    \item Run H1 battery at each checkpoint
+    \item Track head~0:2 (and analogs) $\Delta$LD over training
+    \item Identify critical transitions (e.g., step where $\Delta$LD crosses threshold)
+\end{itemize}
+
+\textbf{Value:} Understanding emergence enables training-time interventions (freeze heads before coalition forms, regularize during critical window).
+
+\subsection{SAE Integration (H7 Full Implementation)}
+
+Section~\ref{sec:design} outlined H7 (feature-space ablation). Full implementation requires:
+
+\begin{enumerate}
+    \item Train SAE on layer-0 residual stream (GPT-2, Mistral)
+    \item Extract learned features, ablate individually
+    \item Align features to head OV directions (cosine similarity)
+    \item Test hypothesis: ``Features aligned to head~0:2's OV should show similar $\Delta$LD as head~0:2 ablation''
+\end{enumerate}
+
+\paragraph{Integration with SAELens.}
+
+TinyLab's H7 battery can consume SAELens-trained features directly:
+\begin{verbatim}
+{
+  "battery": "h7_sae_features",
+  "sae_checkpoint": "path/to/sae_l0.pt",
+  "target_heads": ["0:2", "0:4", "0:7"]
+}
+\end{verbatim}
+
+This enables systematic feature-level validation of circuits discovered at the head level.
+
+\subsection{Multi-Token and Generative Extensions}
+
+Current probes use single-token targets (`` Paris''). Extensions:
+
+\paragraph{Multi-Token Targets.}
+
+\begin{itemize}
+    \item Example: ``The first president of the United States was'' $\to$ `` George Washington''
+    \item Challenge: Aggregate logits across positions (product, sum, or first-token-only?)
+    \item H1 battery extension: ablate heads, measure multi-token $\Delta$LD
+\end{itemize}
+
+\paragraph{Autoregressive Generation.}
+
+\begin{itemize}
+    \item Run coalition ablation during open-ended generation
+    \item Measure: hedge-word frequency, factual claim density, calibration over full trajectory
+    \item Test: Does coalition ablation reduce hedging in long-form output?
+\end{itemize}
+
+\subsection{Steering and Intervention Experiments}
+
+\paragraph{Activation Steering.}
+
+Construct steering vectors from coalition OV directions:
+\begin{enumerate}
+    \item Extract $\mathbf{v}_{\text{hedge}} = \text{OV}(\text{head~0:2})$
+    \item At inference, inject $\pm \alpha \mathbf{v}_{\text{hedge}}$ into layer-0 residual stream
+    \item Measure: Does $+\alpha$ increase hedging? Does $-\alpha$ increase factuality?
+\end{enumerate}
+
+\textbf{Value:} Inference-time control without full ablation (gentler intervention).
+
+\paragraph{Fine-Tuning with Frozen Coalitions.}
+
+\begin{enumerate}
+    \item Freeze coalition heads~\{0:2, 0:4, 0:7\} (set gradients to zero)
+    \item Fine-tune GPT-2 on factual QA dataset
+    \item Test: Does model learn alternative hedging mechanisms, or does factuality improve?
+\end{enumerate}
+
+\textbf{Hypothesis:} If coalition is the \textit{only} hedging mechanism, freezing it forces factuality. If backup mechanisms exist, they will emerge during fine-tuning.
+
+\subsection{Geometry and Information Theory Extensions}
+
+\paragraph{Attractor Basin Measurement.}
+
+Quantify the ``width'' of the hedging attractor:
+\begin{itemize}
+    \item Perturb coalition activations by varying magnitudes ($\pm 0.1\sigma, \pm 0.5\sigma, \pm 1.0\sigma$)
+    \item Measure: At what perturbation strength does hedging mode collapse?
+    \item Geometric interpretation: Larger basin width $\Rightarrow$ more stable attractor
+\end{itemize}
+
+\paragraph{Curvature and Information Flow.}
+
+\begin{itemize}
+    \item Compute Fisher information matrix along coalition~$\to$~layer-11 path
+    \item Measure curvature (geodesic deviation) in representation space
+    \item Connect to prior entropy-geometry work~\cite{thompson2024entropy}: Do hedging states occupy high-curvature regions?
+\end{itemize}
+
+\subsection{Behavioral Circuit Taxonomy}
+
+Long-term goal: Build an \textbf{open database of circuits} with standardized TinyLab batteries, enabling:
+
+\begin{itemize}
+    \item \textbf{Cross-lab replication:} Researchers run H1/H5/H6 on same model, compare results
+    \item \textbf{Meta-analysis:} Aggregate findings across models to identify universal vs. architecture-specific circuits
+    \item \textbf{Intervention registry:} Document which steering/fine-tuning methods successfully modify which circuits
+\end{itemize}
+
+\paragraph{Example Database Schema.}
+
+\begin{verbatim}
+{
+  "circuit_id": "gpt2_l0_hedging_coalition",
+  "model": "gpt2-medium",
+  "heads": ["0:2", "0:4", "0:7"],
+  "function": "trade_factuality_for_hedging",
+  "delta_ld": {
+    "facts": 0.406, "negation": 0.520, ...
+  },
+  "mediation": {"path": "0:2->layer_11", "fraction": 0.67},
+  "replications": [
+    {"lab": "anthropic", "model": "claude-3", "result": "not_found"},
+    {"lab": "openai", "model": "gpt-4", "result": "adapted_variant"}
+  ]
+}
+\end{verbatim}
+
+This enables science-of-circuits at scale, with TinyLab as the standardized measurement protocol.

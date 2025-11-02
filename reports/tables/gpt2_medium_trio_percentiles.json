@@ -1,0 +1,58 @@
+{
+  "Facts": {
+    "0:2": {
+      "mean_value": 1.748046875,
+      "percentile": 100.0
+    },
+    "0:4": {
+      "mean_value": 1.5419921875,
+      "percentile": 87.5
+    },
+    "0:7": {
+      "mean_value": 1.5458984375,
+      "percentile": 93.75
+    }
+  },
+  "Negation": {
+    "0:2": {
+      "mean_value": 2.1171875,
+      "percentile": 100.0
+    },
+    "0:4": {
+      "mean_value": 1.78515625,
+      "percentile": 93.75
+    },
+    "0:7": {
+      "mean_value": 1.779296875,
+      "percentile": 87.5
+    }
+  },
+  "Counterfactual": {
+    "0:2": {
+      "mean_value": 1.833984375,
+      "percentile": 100.0
+    },
+    "0:4": {
+      "mean_value": 1.5576171875,
+      "percentile": 87.5
+    },
+    "0:7": {
+      "mean_value": 1.5361328125,
+      "percentile": 81.25
+    }
+  },
+  "Logic": {
+    "0:2": {
+      "mean_value": 1.73046875,
+      "percentile": 100.0
+    },
+    "0:4": {
+      "mean_value": 1.4375,
+      "percentile": 87.5
+    },
+    "0:7": {
+      "mean_value": 1.4375,
+      "percentile": 87.5
+    }
+  }
+}

@@ -1,9 +1,7 @@
 \section{Future Directions}
 
 \begin{enumerate}
-    \item \textbf{Circuit steering.} Construct steering vectors from suppressor OV directions to flip models between hedging and factual modes without full ablation, testing the stability of the attractor.
-    \item \textbf{Training-time interventions.} Freeze suppressor heads or regularise their activations during fine-tuning to evaluate whether models can learn alternative solutions that preserve calibration.
-    \item \textbf{Cross-architecture census.} Apply the Tiny Ablation Lab pipeline to Pythia, Llama, OPT, Qwen, and larger proprietary checkpoints to build a taxonomy of suppressor implementations (Meta Llama-3 access pending gating approval).
-    \item \textbf{Layer competition mapping.} Trace how suppressor outputs propagate through layer~1 and beyond, identifying downstream amplifiers or dampers (e.g.\ Mistral’s head~0:21).
-    \item \textbf{RLHF effects.} Analyse alignment-trained models to determine whether suppressors survive reinforcement learning or are modified into new behavioral motifs.
+    \item \textbf{Bottleneck–circuit alignment.} Extend H1 batteries to all known bottlenecks (e.g., Saxe; Achille \& Soatto) to test whether extreme-tail circuits concentrate where compression is strongest.
+    \item \textbf{Training dynamics.} Use Pythia checkpoints to detect phase transitions: do suppressors crystallize suddenly as the objective and geometry align?
+    \item \textbf{Scaling and diversity.} Test LLaMA/Qwen families and larger GPTs: does solution diversity scale with degrees of freedom while location remains forced at early bottlenecks?
 \end{enumerate}

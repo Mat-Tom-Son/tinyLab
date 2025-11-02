@@ -1,0 +1,352 @@
+\section{TinyLab Design}
+\label{sec:design}
+
+TinyLab enforces methodological rigor through four design principles, each addressing a specific failure mode in circuit discovery. This section details the principles, batteries, observables, baselines, and validation pipelines that constitute the framework.
+
+\subsection{Design Principles}
+
+\paragraph{Principle 1: Falsifiability Over Confirmation.}
+
+Traditional circuit discovery begins with a hypothesis (``head~$H$ implements function~$F$'') and searches for supporting evidence. This creates confirmation bias: researchers naturally report configurations where $H$~shows strong effects.
+
+TinyLab inverts this. Every finding must answer: \textbf{``Compared to what?''} We require:
+\begin{itemize}
+    \item Random baseline generation (1,000+ ablations from null distribution)
+    \item Percentile ranking of candidate findings
+    \item Effect-size reporting relative to random mean
+\end{itemize}
+
+\textit{Example:} Claiming ``head~0:2 is important'' requires showing it ranks in the extreme tail (e.g., 99\textsuperscript{th} percentile) of random layer-0 ablations, not just that it has non-zero effect.
+
+\paragraph{Principle 2: Dual Observables.}
+
+Most circuit studies report \textit{either} power-based metrics (accuracy, logit difference) \textit{or} information-theoretic metrics (entropy, calibration), enabling selective reporting. A circuit might improve accuracy while degrading calibration (or vice versa), but reporting only the favorable metric creates misleading impressions.
+
+TinyLab enforces \textbf{dual-observable measurement}: every battery computes \textit{both} power and information metrics. Genuine circuits must affect both types. Findings appearing in only one category are flagged as suspicious.
+
+\textit{Example:} Our layer-0 suppressors improve logit difference by +0.40--0.85 (power) \textit{and} expected calibration error from 0.122~to~0.091 (information). Both observables confirm the effect.
+
+\paragraph{Principle 3: Extended Parameter Sweeps.}
+
+Learned from our memory-resonance null result~\cite{thompson2024mrc}, narrow parameter sweeps create illusory circuits. An effect appearing at $\alpha \in \{0, 1, 2\}$ may vanish at $\alpha \in \{0, 0.5, 1, \ldots, 5\}$.
+
+TinyLab automatically tests beyond hypothesized optima:
+\begin{itemize}
+    \item User specifies candidate range (e.g., layer~0)
+    \item Framework generates extended grid (e.g., all layer-0 heads $\times$ all scales)
+    \item Reports effect robustness across range
+\end{itemize}
+
+\textit{Example:} Instead of testing heads~\{0:2, 0:4, 0:7\} in isolation, H1~battery sweeps \textit{all} layer-0 heads, confirming \{0:2, 0:4, 0:7\} emerge systematically, not by manual selection.
+
+\paragraph{Principle 4: Cross-Architecture Validation.}
+
+Single-model findings are ambiguous: is the circuit a universal computational pattern or an architectural artifact? Conserved circuits (appearing across model families) suggest learned behavioral priors; model-specific circuits suggest architectural quirks.
+
+TinyLab runs identical batteries across:
+\begin{itemize}
+    \item \textbf{Same architecture, different scales:} GPT-2 Small (124M) $\to$ Medium (355M)
+    \item \textbf{Different architectures:} GPT-2 (MHA) $\to$ Mistral (GQA)
+    \item \textbf{Extensible:} Llama, Pythia, Qwen via config changes
+\end{itemize}
+
+Findings are classified as \textit{conserved} (identical across scale), \textit{adapted} (different implementation, same function), or \textit{architecture-specific} (appears in only one family).
+
+\textit{Example:} Suppressors in GPT-2 Small and Medium occupy \textit{identical} positions (\{0:2, 0:4, 0:7\}), indicating conservation. Mistral learns an \textit{adapted} variant (\{0:22, 0:23\}) with task-contingent logic, indicating the motif is learned but implementation differs.
+
+\subsection{Ablation Batteries}
+
+A \textbf{battery} is a standardized experimental protocol: fixed ablation type, observables, aggregation method, and output format. Users select batteries via JSON configs, eliminating ad-hoc design choices.
+
+\subsubsection{H1: Single-Component Ablation (\texttt{heads\_zero})}
+
+\paragraph{Purpose.} Identify high-impact individual components (attention heads) via systematic sweep.
+
+\paragraph{Method.}
+\begin{algorithmic}[1]
+\FOR{each layer $\ell$ in model}
+    \FOR{each head $h$ in layer $\ell$}
+        \STATE Zero head output: $\text{attn\_out}[\ell, h] \gets 0$
+        \STATE Compute metrics: logit\_diff, kl\_div, acc\_flip\_rate, p\_drop
+        \STATE Record per-example results
+    \ENDFOR
+\ENDFOR
+\STATE Aggregate across seeds (mean $\pm$ 95\% CI)
+\STATE Rank heads by impact
+\end{algorithmic}
+
+\paragraph{Cross-Task Orchestration.} Run H1~on multiple tasks (facts, negation, counterfactual, logic). Compute rank correlation $\rho$ across task pairs. Heads with $\rho > 0.7$ (high rank agreement) are flagged as \textit{conserved} across tasks.
+
+\paragraph{Output.}
+\begin{itemize}
+    \item \texttt{metrics/head\_impact.parquet}: long-format table with columns \texttt{[run\_id, seed, layer, head, metric, value]}
+    \item \texttt{metrics/summary.json}: aggregated statistics (mean, CI, percentile rankings)
+\end{itemize}
+
+\paragraph{Example Finding.} GPT-2 Medium heads \{0:2, 0:4, 0:7\} exhibit rank correlation $\rho \in [0.52, 0.97]$ across all four tasks ($p \leq 0.04$), indicating conserved suppressive effect.
+
+\subsubsection{H5: Cooperation Testing (\texttt{heads\_pair\_zero})}
+
+\paragraph{Purpose.} Test whether heads form backup circuits via pair/triplet ablation.
+
+\paragraph{Method.}
+\begin{algorithmic}[1]
+\STATE Run H1 to identify candidate heads
+\FOR{each pair $(h_i, h_j)$ in candidates}
+    \STATE Zero both heads simultaneously
+    \STATE Measure joint effect $\Delta_{\text{joint}}$
+    \STATE Compute individual effects $\Delta_i$, $\Delta_j$ from H1
+    \STATE Cooperation metric: $C = \Delta_{\text{joint}} / (\Delta_i + \Delta_j)$
+\ENDFOR
+\end{algorithmic}
+
+\paragraph{Interpretation.}
+\begin{itemize}
+    \item $C \approx 1$: additive (independent effects)
+    \item $C > 1$: super-additive (destructive cooperation—removing both compounds effect)
+    \item $C < 1$: sub-additive (redundancy—one head backs up the other)
+\end{itemize}
+
+\paragraph{Example Finding.} Suppressor triplet \{0:2, 0:4, 0:7\} yields $C = 1.00$ (full additivity), indicating destructive cooperation without redundancy.
+
+\subsubsection{H6: Path Patching (\texttt{reverse\_patch})}
+
+\paragraph{Purpose.} Quantify causal mediation through specific information paths.
+
+\paragraph{Method (Reverse Patching).}
+\begin{algorithmic}[1]
+\STATE Run baseline: corrupted input $\to$ logits, measure $\Delta_{\text{baseline}}$
+\STATE Run clean: clean input $\to$ logits
+\STATE \textbf{Reverse patch:} inject clean activations at source~$S$ into corrupted run
+\STATE Measure effect with patch: $\Delta_{\text{path}}$
+\STATE Mediated fraction: $M = \Delta_{\text{path}} / \Delta_{\text{baseline}}$
+\end{algorithmic}
+
+\paragraph{Paths Tested.}
+\begin{itemize}
+    \item Source: suppressor head output
+    \item Targets: layer-$k$ residual streams for $k \in \{1, 2, 8, 11\}$
+\end{itemize}
+
+\paragraph{Example Finding.} Head~0:2 $\to$ layer-11 residual stream mediates $M = 0.67$ (67\% of effect), identifying layer~11 as key amplification point.
+
+\subsubsection{H2: Layer-Wise Activation Patching}
+
+\paragraph{Purpose.} Identify critical layers for task-specific computation.
+
+\paragraph{Method.}
+\begin{algorithmic}[1]
+\FOR{each layer $\ell$}
+    \STATE Patch entire layer activation: clean $\to$ corrupt (or vice versa)
+    \STATE Measure impact on logit\_diff
+\ENDFOR
+\end{algorithmic}
+
+\paragraph{Granularities.}
+\begin{itemize}
+    \item \texttt{layer\_resid}: entire residual stream post-layer
+    \item \texttt{mlp\_out}: MLP block output only
+    \item \texttt{head\_out}: all attention heads in layer
+\end{itemize}
+
+\paragraph{Example Finding.} GPT-2 Medium routes factual recall through layer~11, negation through layer~2, counterfactual reasoning through layer~8—task-specific phase shifts.
+
+\subsubsection{H7: Feature-Space SAE Variant (\texttt{sae\_features})}
+
+\paragraph{Purpose.} Extend circuit discovery to sparse autoencoder (SAE) features, bridging head-level and dictionary-learned feature-level analyses.
+
+\paragraph{Motivation.} Attention heads may be polysemantic (encoding multiple features). SAEs~\cite{bricken2023monosemanticity} decompose activations into sparse, monosemantic features. H7~enables testing whether circuits discovered at the head level (e.g., hedging coalition) have feature-space analogues.
+
+\paragraph{Method.}
+\begin{algorithmic}[1]
+\STATE Train or load SAE on layer-$\ell$ activations (e.g., residual stream post-layer-0)
+\STATE Extract learned features $\{f_1, \ldots, f_K\}$ with sparse coefficients $\mathbf{c}$
+\FOR{each feature $f_i$}
+    \STATE Ablate feature: set coefficient $c_i \gets 0$
+    \STATE Reconstruct activation: $\mathbf{a}' = \text{SAE\_decode}(\mathbf{c}')$
+    \STATE Inject $\mathbf{a}'$ into model, measure metrics
+\ENDFOR
+\STATE Rank features by impact
+\STATE Compare to head-level findings (e.g., project head OV directions onto feature space)
+\end{algorithmic}
+
+\paragraph{Integration with Head-Level Batteries.}
+
+\begin{enumerate}
+    \item Run H1 to identify candidate heads (e.g., \{0:2, 0:4, 0:7\})
+    \item Extract head OV directions: $\mathbf{v}_{\text{OV}} = W_O W_V$
+    \item Project onto SAE feature space: find features $f_i$ with high $|\langle f_i, \mathbf{v}_{\text{OV}} \rangle|$
+    \item Run H7 to ablate those features
+    \item Test hypothesis: ``Features aligned to head~0:2's OV direction should show similar $\Delta$LD as ablating head~0:2''
+\end{enumerate}
+
+\paragraph{Output.}
+\begin{itemize}
+    \item \texttt{metrics/feature\_impact.parquet}: schema \texttt{[run\_id, seed, layer, feature\_id, metric, value]}
+    \item \texttt{analysis/feature\_head\_alignment.json}: cosine similarities between SAE features and head OV directions
+\end{itemize}
+
+\paragraph{Status.} H7 is outlined in TinyLab's architecture with SAELens integration planned. Current implementation provides placeholder hooks for community SAE extensions.
+
+\paragraph{Anticipated Finding.} For the GPT-2 hedging coalition, we predict:
+\begin{itemize}
+    \item SAE trained on layer-0 residual stream will discover features enriched for hedge/booster tokens
+    \item Ablating top-$k$ features aligned to head~0:2's OV direction ($k \approx 5{-}10$) will yield $\Delta$LD shifts comparable to ablating head~0:2 alone ($\Delta$LD $\approx 0.3{-}0.4$)
+    \item Feature-space ablation will show similar calibration improvements (ECE reduction)
+\end{itemize}
+
+This extends TinyLab's validation to the feature level, providing a bridge to dictionary-learning methods and enabling finer-grained circuit analysis.
+
+\subsection{Dual-Observable Measurement}
+
+Table~\ref{tab:observables} summarizes the metrics TinyLab computes for every battery.
+
+\begin{table}[t]
+\centering
+\caption{Dual-Observable Metrics. TinyLab enforces measurement of both power-based and information-theoretic quantities.}
+\label{tab:observables}
+\begin{tabular}{lll}
+\toprule
+\textbf{Type} & \textbf{Metric} & \textbf{Interpretation} \\
+\midrule
+\multirow{3}{*}{Power} & Logit Difference & Raw prediction strength \\
+& Probability Drop & Confidence change \\
+& Accuracy Flip Rate & Behavioral shift \\
+\midrule
+\multirow{3}{*}{Information} & KL Divergence & Distributional shift \\
+& Calibration (ECE) & Confidence-accuracy alignment \\
+& Brier Score & Probabilistic accuracy \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Power-Based Metrics.}
+
+\begin{enumerate}
+    \item \textbf{Logit Difference (LD):}
+    \[
+    \text{LD} = \text{logit}(y_{\text{target}}) - \text{logit}(y_{\text{foil}})
+    \]
+    Measures how strongly the model prefers the correct answer over a plausible distractor.
+
+    \item \textbf{Probability Drop (p\_drop):}
+    \[
+    \text{p\_drop} = P(y_{\text{target}} \mid \text{clean}) - P(y_{\text{target}} \mid \text{ablated})
+    \]
+    Measures how much probability mass shifted away from the target due to ablation.
+
+    \item \textbf{Accuracy Flip Rate (acc\_flip):}
+    \[
+    \text{acc\_flip} = \frac{1}{N} \sum_{i=1}^N \mathbb{1}\left[\arg\max \text{logits}_{\text{clean}}^{(i)} \neq \arg\max \text{logits}_{\text{ablated}}^{(i)}\right]
+    \]
+    Measures the fraction of examples where the top prediction changed.
+\end{enumerate}
+
+\paragraph{Information-Theoretic Metrics.}
+
+\begin{enumerate}
+    \item \textbf{KL Divergence:}
+    \[
+    \text{KL}(P_{\text{clean}} \| P_{\text{ablated}}) = \sum_y P_{\text{clean}}(y) \log \frac{P_{\text{clean}}(y)}{P_{\text{ablated}}(y)}
+    \]
+    Measures distributional shift between clean and ablated output distributions.
+
+    \item \textbf{Expected Calibration Error (ECE):}
+    \[
+    \text{ECE} = \sum_{b=1}^B \frac{|B_b|}{N} \left| \text{acc}(B_b) - \text{conf}(B_b) \right|
+    \]
+    where $B_b$ is the $b$-th confidence bin, acc$(B_b)$ is empirical accuracy in that bin, and conf$(B_b)$ is mean predicted confidence. Measures calibration quality.
+
+    \item \textbf{Brier Score:}
+    \[
+    \text{Brier} = \frac{1}{N} \sum_{i=1}^N (p_i - y_i)^2
+    \]
+    where $p_i$ is predicted probability and $y_i \in \{0,1\}$ is ground truth. Measures probabilistic accuracy.
+\end{enumerate}
+
+\paragraph{Why Both Types Matter.}
+
+A circuit affecting only power metrics might improve accuracy via overconfident guessing. A circuit affecting only information metrics might improve calibration while degrading accuracy. \textbf{Genuine behavioral circuits affect both.}
+
+\textit{Suppressors validate this:} ablating \{0:2, 0:4, 0:7\} improves LD by +0.40--0.85 (power) \textit{and} ECE from 0.122~to~0.091 (information), confirming the effect is not a mere accuracy-calibration trade-off but a removable pathology.
+
+\subsection{Random Baselines and Statistical Grounding}
+
+\paragraph{The Problem.} A researcher finds head~$H$ that, when ablated, improves logit difference by $+0.40$. Is this special? Without comparison to a null distribution, the answer is unknown.
+
+\paragraph{TinyLab Solution.}
+
+\begin{algorithmic}[1]
+\STATE \textbf{Input:} candidate head $H$ in layer $\ell$, metric $M$
+\STATE Generate 1,000 random heads from layer $\ell$ (excluding $H$)
+\FOR{each random head $H_r$}
+    \STATE Run ablation battery
+    \STATE Record metric value $M_r$
+\ENDFOR
+\STATE Compute empirical distribution: mean $\mu_r$, std $\sigma_r$, percentiles $\{95, 99\}$
+\STATE Rank candidate: percentile of $M_H$ in $\{M_r\}$
+\STATE \textbf{Report:} ``Head $H$ ranks at $p$-th percentile, effect size $(M_H - \mu_r)/\sigma_r$''
+\end{algorithmic}
+
+\paragraph{Example (Suppressors).}
+
+Random layer-0 ablation distribution (GPT-2 Medium, facts task):
+\begin{itemize}
+    \item Mean LD: $\mu_r = 0.05$
+    \item 95\textsuperscript{th} percentile: 0.162
+    \item 99\textsuperscript{th} percentile: 0.169
+\end{itemize}
+
+Suppressor head~0:2: LD $= 0.406$ (exceeds 99\textsuperscript{th} percentile on all four tasks). This is \textit{not cherry-picked}—it is statistically extreme.
+
+\subsection{Cross-Architecture Validation Pipeline}
+
+\paragraph{Motivation.} If a circuit is a genuine learned behavioral prior (i.e., gradient descent reliably discovers it to satisfy conflicting training objectives), it should appear across architectures despite implementation differences.
+
+\paragraph{Pipeline.}
+
+\begin{enumerate}
+    \item \textbf{Model Selection.}
+    \begin{itemize}
+        \item GPT-2 Small (124M, 12 layers, 12 heads/layer, MHA)
+        \item GPT-2 Medium (355M, 24 layers, 16 heads/layer, MHA)
+        \item Mistral-7B (7B, 32 layers, 32 heads/layer, GQA, sliding window attention)
+    \end{itemize}
+
+    \item \textbf{Standardized Probe Suite.}
+    Identical tasks across models:
+    \begin{itemize}
+        \item Factual recall: ``The capital of France is'' $\to$ ``~Paris'' (target) vs. ``~Madrid'' (foil)
+        \item Negation: ``France's capital is not Paris, it's'' $\to$ ``~Madrid'' vs. ``~Paris''
+        \item Counterfactual: ``If France had lost WWII, the capital might be'' $\to$ ``~Berlin'' vs. ``~Paris''
+        \item Logic: ``All EU capitals are in Europe. Paris is'' $\to$ ``~European'' vs. ``~Asian''
+    \end{itemize}
+    Tokenizer-adapted (preserve semantic content, validate single-token targets).
+
+    \item \textbf{Battery Execution.}
+    Identical configs (modulo architecture-specific params like \texttt{n\_layers}, \texttt{n\_heads}). Same seeds \{0, 1, 2\}. Same metrics.
+
+    \item \textbf{Comparison Analysis.}
+    \begin{itemize}
+        \item Rank correlation: Spearman $\rho$ between head rankings across models
+        \item Conserved circuits: intersection of top-$k$ heads across models
+        \item Adapted motifs: different heads, same functional signature (e.g., suppressive effect)
+    \end{itemize}
+\end{enumerate}
+
+\paragraph{Expected Outcomes.}
+
+\begin{itemize}
+    \item \textbf{Universal circuits:} Identical heads/layers across all models (strong conservation)
+    \item \textbf{Conserved motifs:} Different heads, same function (e.g., GPT-2~$\to$~Mistral hedging coalition)
+    \item \textbf{Architecture-specific:} Appears in only one model family (likely artifact)
+\end{itemize}
+
+\paragraph{Hedging Coalition Example.}
+
+\begin{itemize}
+    \item GPT-2 Small $\to$ Medium: \textbf{conserved} (identical heads \{0:2, 0:4, 0:7\})
+    \item GPT-2 $\to$ Mistral: \textbf{adapted motif} (heads \{0:22, 0:23\}, same hedging function, different implementation)
+\end{itemize}
+
+This validates the hedging coalition as a learned behavioral prior, not an architectural accident.

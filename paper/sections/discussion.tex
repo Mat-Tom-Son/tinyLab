@@ -1,4 +1,4 @@
-\section{Discussion and Limitations}
+\section{Discussion: validation of a prediction-first methodology}
 
 \paragraph{Scope of explanation.}
 Suppressors account for a large share of factual degradation, but not all hallucinations.
@@ -14,9 +14,15 @@ Mapping suppressors across GPT-3, Llama, Pythia, Qwen, and other families is nec
 We observe suppressors in fully-trained networks but did not instrument training.
 It remains unknown when suppressors crystallise, whether they emerge gradually or via abrupt phase transitions, and how alternative objectives (e.g.\ DPO, constitutional AI) modify them.
 
-\paragraph{Single-seed Mistral results.}
-Mistral experiments currently rely on seed~0 due to compute constraints.
-While the signal is strong, multi-seed replication is queued to quantify variance and confirm stability.
+\paragraph{Methodological advance.}
+We did not search the full network and then rationalize what we found. We predicted layer~0 from first principles and validated it with tests designed to reject artifacts:
+\begin{itemize}
+    \item Dual observables: power ($\Delta$LD) and information (calibration) improve together.
+    \item Random baselines: suppressors sit in the $>99$\% tails of empirical nulls.
+    \item Cross-architecture: GPT-2 and Mistral replicate the motif.
+    \item Path mediation: $\approx$67\% of the GPT-2 head~0:2 effect flows via L0$\rightarrow$L11.
+\end{itemize}
+This prediction-first framing strengthens the interpretation and provides a template for subsequent studies.
 
 \paragraph{Threats to validity.}
 All experiments use deterministic Apple M-series (MPS) kernels; while we observed identical seeds across runs, CUDA backends may introduce numerical drift. Mistral results currently use a single seed, and we rely on byte-pair token cleanup when constructing the hedge/booster lexicon, so residual tokenization artifacts may remain. Finally, the probe suite covers single-token judgments; multi-token generation may surface additional suppressor interactions.

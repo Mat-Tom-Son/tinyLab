@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\title{TinyLab: A Reproducible Framework for Discovering Behavioral Circuits in Transformers}
+\author{Mat Thompson\\Independent Researcher, Raleigh, NC}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Tiny Ablation Lab (TinyLab) is a reproducible framework for behavioral circuit discovery in transformers. It standardizes ablation batteries (H1~single-head, H5~pair/triplet, H6~path-specific reverse/forward patching), enforces extended parameter sweeps with random baselines, and reports both power-based and information-theoretic observables with full config/seed/hardware hashes.
+
+As a validation case study, TinyLab identifies an early-layer ``hedging coalition'' in GPT-2 where ablating heads $\{0{:}2, 0{:}4, 0{:}7\}$ improves factual single-token probes by $+0.40{-}0.85$~$\Delta$LD and shows ${\sim}67\%$ of the effect traveling an L0$\to$mid-layer path by causal path-patching; OV analyses reveal enrichment for hedge/booster lexicons in the coalition's output direction. We replicate architecture-specific variants in Mistral-7B (pair $\{0{:}22, 0{:}23\}$ with a logic-task opponent 0:21) and outline a feature-space version of these batteries for SAE-discovered features.
+
+TinyLab's design catches the narrow-sweep problem that invalidated our prior ``memory-resonance condition'' hypothesis, demonstrating the framework's ability to prevent false positives. TinyLab's artifacts (batteries, sweeps, baselines, and seed packs) are designed for drop-in replication across model families.
+
+\textbf{Code:} \url{https://github.com/username/tinyLab}
+\end{abstract}
+
+\paragraph{Keywords:} mechanistic interpretability, reproducibility, ablation studies, attention circuits, transformers
+
+\section*{Contributions}
+\begin{enumerate}
+    \item \textbf{Reproducible circuit-discovery harness.} Standard batteries (H1/H5/H6/H7), sweep enforcement, random baselines, dual observables, and full run hashing
+    \item \textbf{Case-study validation.} GPT-2 L0 hedging coalition $\{0{:}2, 0{:}4, 0{:}7\}$ with $+0.40{-}0.85$~$\Delta$LD; path mediation ${\sim}67\%$; hedge/booster OV enrichment
+    \item \textbf{Cross-architecture variant.} Mistral-7B pair $\{0{:}22, 0{:}23\}$ with logic-task opponent 0:21; task-contingent effects
+    \item \textbf{Feature-space extension.} SAE-compatible battery variant (H7) for dictionary-learned features
+    \item \textbf{Reproducibility pack.} Scripts, hashes, calibration diagnostics, seed discipline, and determinism verification
+\end{enumerate}
+
+\input{sections_methods/introduction}
+\input{sections_methods/related_work}
+\input{sections_methods/design}
+\input{sections_methods/implementation}
+\input{sections_methods/case_study}
+\input{sections_methods/cross_architecture}
+\input{sections_methods/discussion}
+\input{sections_methods/future}
+\input{sections_methods/conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\appendix
+\input{sections_methods/appendix}
+
+\end{document}

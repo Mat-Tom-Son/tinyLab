@@ -1,0 +1,71 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Mechanistic Interpretability Foundations}
+
+The transformer circuits framework~\cite{elhage2021mathematical} established the conceptual foundation for mechanistic interpretability: attention heads as modular computational units, QK/OV decomposition for understanding query-key and output-value operations, and the residual stream as a communication channel between components. TinyLab builds on this framework by providing infrastructure to systematically discover which specific circuits implement behavioral patterns.
+
+TransformerLens~\cite{nanda2022transformerlens} provides programmatic access to transformer internals: weight loading, activation hooks, and gradient computation. It is the \textit{microscope} that makes mechanistic analysis possible. TinyLab \textit{complements} TransformerLens by adding the \textit{experimental protocol}—standardized batteries, dual observables, and validation pipelines that ensure discoveries are reproducible and non-cherry-picked. The relationship is analogous to a microscope (TransformerLens) versus laboratory safety protocols (TinyLab): both are necessary for rigorous science.
+
+\subsection{Circuit Discovery Case Studies}
+
+Prior work has discovered several important circuits through detailed reverse-engineering:
+
+\paragraph{Induction Heads.} Olsson et~al.~\cite{olsson2022context} discovered that transformers learn ``induction heads'' that copy tokens from earlier in context. These heads appear across models and enable in-context learning. TinyLab formalizes their cross-model observation methodology as ``cross-architecture validation pipelines,'' making such comparisons systematic rather than manual.
+
+\paragraph{Indirect Object Identification (IOI).} Wang et~al.~\cite{wang2023interpretability} reverse-engineered a 26-head circuit implementing indirect object identification in GPT-2-small (e.g., ``When Mary and John went to the store, John gave a drink to''~$\to$~``Mary''). Their detailed manual analysis revealed backup heads, inhibition mechanisms, and name-mover heads. TinyLab's H5 battery (pair/triplet cooperation testing) systematizes the discovery of such backup circuits, enabling at-scale detection rather than labor-intensive reverse-engineering.
+
+\paragraph{Arithmetic Circuits.} Quirke et~al.~\cite{quirke2024understanding} dissected addition circuits, while Hanna et~al.~\cite{hanna2023gpt2greater} reverse-engineered greater-than operations. These task-specific analyses required careful ablation and attention pattern inspection. TinyLab enables systematic discovery across tasks via cross-task orchestration (H1 battery), identifying heads with conserved function beyond single operations.
+
+\paragraph{Copy-Suppression.} McDougall et~al.~\cite{mcdougall2024copy} comprehensively analyzed a copy-suppression head that downweights spurious token repetitions in later layers. Our layer-0 suppressors are conceptually related but operate earlier (layer~0 vs. later layers) and serve a different function (trading factuality for hedging vs. suppressing lexical repetition).
+
+These discoveries demonstrate the power of mechanistic interpretability but also its ad-hoc nature. Each study designed custom ablation protocols, selected observables post-hoc, and validated on specific models. TinyLab provides the infrastructure to make such discoveries systematic, replicable, and falsifiable by default.
+
+\subsection{Ablation and Patching Techniques}
+
+\paragraph{Activation Patching.} Meng et~al.~\cite{meng2022locating} introduced activation patching (also called ``causal tracing'') to localize factual associations in GPT. The method replaces corrupted activations with clean references at specific layers, measuring how much this intervention restores correct behavior. TinyLab standardizes this as the H2 battery, adding bidirectional patching (clean$\to$corrupt and corrupt$\to$clean) to detect asymmetries.
+
+\paragraph{Path Patching.} Heimersheim and Nanda~\cite{heimersheim2024path} refined activation patching to restrict interventions to specific paths (e.g., head~$i$ $\to$ head~$j$), enabling causal mediation analysis. TinyLab implements this as the H6 battery, quantifying what fraction of an effect is mediated through a specific information channel (e.g., suppressor $\to$ layer-11 residual stream).
+
+\paragraph{Causal Mediation.} Pearl~\cite{pearl2001direct} formalized causal mediation for general causal graphs; Vig et~al.~\cite{vig2020causal} applied it to attention mechanisms. TinyLab operationalizes mediation for transformer circuits, reporting mediated fractions as standard output (e.g., ``67\% of effect mediated through path~X'').
+
+TinyLab's contribution is not inventing new ablation techniques but \textit{standardizing their application}: batteries ensure consistent methodology, dual observables prevent selective metric reporting, and random baselines force honest effect-size comparison.
+
+\subsection{Reproducibility and Meta-Science in Machine Learning}
+
+The broader ML community has long grappled with reproducibility challenges. Gundersen and Kjensmo~\cite{gundersen2018state} documented pervasive issues: hyperparameter selection bias, data leakage, and incomplete reporting. Lipton and Steinhardt~\cite{lipton2019troubling} critiqued ``troubling trends in machine learning scholarship,'' including post-hoc storytelling and cherry-picking favorable experimental conditions.
+
+\paragraph{Registered Reports.} In psychology and medicine, registered reports~\cite{nosek2014registered} address publication bias by requiring pre-registration of hypotheses and methods \textit{before} data collection. TinyLab's config hashing serves a similar function: experimental design (battery choice, observables, parameter ranges) is committed to version control \textit{before} execution, preventing post-hoc adjustment.
+
+\paragraph{Replication Studies.} Recent ML replication efforts~\cite{lucic2018gans, melis2018state} showed that many claimed advances disappear under fair comparison. TinyLab addresses this by enforcing random baselines and extended parameter sweeps: effects must survive comparison to null distributions and extended ranges, not just narrow ad-hoc conditions.
+
+TinyLab applies these meta-scientific principles to mechanistic interpretability, treating circuit discovery as an engineering discipline requiring standardized tooling, not just conceptual insight.
+
+\subsection{Information-Theoretic Interpretability}
+
+\paragraph{Mutual Information and Attention.} Jain and Wallace~\cite{jain2019attention} showed that attention weights are not sufficient explanations of model behavior, motivating information-theoretic metrics. TinyLab incorporates mutual information (via KL divergence proxy) as a complementary observable to power-based metrics.
+
+\paragraph{Representation Geometry.} Aghajanyan et~al.~\cite{aghajanyan2021better} observed that transformer representations exhibit low intrinsic dimensionality. Our related work on entropy-geometry~\cite{thompson2024entropy} connects this to semantic compression: predictable concepts occupy lower-entropy subspaces. TinyLab's dual observables (power + information) capture both geometric structure (logit difference) and statistical properties (KL divergence, calibration).
+
+\paragraph{Calibration and Truthfulness.} Lin et~al.~\cite{lin2021truthfulqa} demonstrated that models mimic human falsehoods even when abstaining would be safer. Kadavath et~al.~\cite{kadavath2022language} showed models often ``know when they're right'' but remain miscalibrated on distribution shifts. Our suppressors mechanistically connect these behavioral findings to early-layer circuits: layer-0 heads bias the model toward hedging under uncertainty.
+
+\subsection{Gap Analysis}
+
+\paragraph{What Exists.}
+\begin{itemize}
+    \item \textbf{Access tools:} TransformerLens provides weight loading and activation hooks
+    \item \textbf{Circuit discoveries:} IOI, induction, arithmetic, copy-suppression via detailed reverse-engineering
+    \item \textbf{Ablation techniques:} Activation patching, path patching, causal mediation methods
+    \item \textbf{Meta-scientific awareness:} Recognition of reproducibility crisis in ML
+\end{itemize}
+
+\paragraph{What Doesn't Exist.}
+\begin{itemize}
+    \item \textbf{Standardized methodology:} No agreed-upon protocol preventing cherry-picking observables or parameter ranges
+    \item \textbf{Cross-architecture validation:} Ad-hoc model selection, unclear if findings are universal or architectural
+    \item \textbf{Random baseline enforcement:} Effects reported without percentile context
+    \item \textbf{Dual-observable measurement:} Most studies report accuracy \textit{or} calibration, not both
+    \item \textbf{Reproducibility infrastructure:} Config hashing, seed control, deterministic execution not standard
+\end{itemize}
+
+\textbf{TinyLab fills this gap} by providing the first standardized, bias-resistant framework for systematic circuit discovery. It does not replace detailed reverse-engineering (which remains valuable for deep mechanistic understanding) but complements it by enabling at-scale, reproducible discovery across models and tasks.

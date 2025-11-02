@@ -1,5 +1,5 @@
 {
-  "seeds": [0, 1, 2],
+  "seeds": [0, 1, 2, 3, 4],
   "device": "mps",
   "model": {
     "family": "mistral",
@@ -21,5 +21,9 @@
     "foil_field": "foil"
   },
   "run_name": "h1_cross_condition_balanced_mistral_cf",
-  "battery": "lab/configs/battery_h1_heads_zero.json"
+  "battery": "lab/configs/battery_h1_heads_zero.json",
+  "verify_slice": {
+    "n_examples": 32,
+    "device": "cpu"
+  }
 }

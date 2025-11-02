@@ -162,6 +162,7 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT ./sections/background.tex
 INPUT ./sections/background.tex
 INPUT ./sections/background.tex
@@ -172,7 +173,6 @@ INPUT ./sections/related_work.tex
 INPUT ./sections/related_work.tex
 INPUT ./sections/related_work.tex
 INPUT sections/related_work.tex
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT ./sections/methods.tex
 INPUT ./sections/methods.tex
 INPUT ./sections/methods.tex

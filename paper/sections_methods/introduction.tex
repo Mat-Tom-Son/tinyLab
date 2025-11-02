@@ -1,0 +1,108 @@
+\section{Introduction}
+
+\subsection{The Reproducibility Problem in Mechanistic Interpretability}
+
+The indirect object identification (IOI) circuit required reverse-engineering 26~attention heads through detailed manual analysis~\cite{wang2023interpretability}. Induction heads were discovered through careful observation across multiple models~\cite{olsson2022context}. Copy-suppression heads emerged from targeted investigation of repetition behavior~\cite{mcdougall2024copy}. Each discovery advanced our understanding—but each also relied on researcher intuition, ad-hoc methodology, and non-standardized evaluation.
+
+This creates a fundamental reproducibility problem. When discovering circuits, researchers choose:
+\begin{itemize}
+    \item \textbf{Which observables to measure:} power-based metrics (accuracy, logit difference) or information-theoretic metrics (entropy, mutual information, calibration)?
+    \item \textbf{Which parameter ranges to sweep:} narrow ranges near hypothesized optima or extended ranges testing robustness?
+    \item \textbf{Which baselines to compare against:} random ablations, task-specific controls, or no baseline at all?
+    \item \textbf{Which models to test:} single checkpoints or systematic cross-architecture validation?
+\end{itemize}
+
+These degrees of freedom enable unintentional cherry-picking. Researchers naturally report what works, creating publication bias toward positive results. Parameter sweeps that show strong effects at narrow ranges may fail when extended. Observable selection can inflate or deflate apparent circuit importance depending on which metrics are chosen. Single-model findings leave open whether results reflect universal computational principles or architectural artifacts.
+
+\paragraph{A Concrete Example: The Memory-Resonance Null Result.}
+
+Our prior work hypothesized a ``memory-resonance condition''—an attention head configuration that should improve factual recall. Preliminary experiments sweeping a scaling parameter $\alpha \in \{0.0, 1.0, 2.0\}$ showed strong effects (logit difference gains of $+0.4$). However, when we extended the sweep to $\alpha \in \{0.0, 0.5, 1.0, \ldots, 5.0\}$, the effect \textbf{vanished}~\cite{thompson2024mrc}. The apparent circuit was an artifact of narrow-range sampling.
+
+This null result taught us that mechanistic interpretability needs infrastructure enforcing methodological rigor, not just conceptual frameworks for understanding circuits. Just as version control prevents ``works on my machine'' problems in software engineering, we need tools that prevent ``works for this parameter range'' problems in circuit discovery.
+
+\subsection{What TinyLab Provides}
+
+We introduce \textbf{TinyLab}, a reproducible framework for discovering behavioral circuits in transformers. TinyLab enforces methodological rigor through four key design principles:
+
+\paragraph{1. Standardized Ablation Batteries.}
+
+TinyLab provides pre-configured experimental protocols (``batteries'') that standardize ablation methodology:
+\begin{itemize}
+    \item \textbf{H1 (heads\_zero):} Single-head ablations with cross-task orchestration, identifying components with conserved high impact across diverse corpora
+    \item \textbf{H5 (heads\_pair\_zero):} Pair/triplet cooperation testing, detecting backup circuits and redundancy
+    \item \textbf{H6 (reverse\_patch):} Path-specific patching with mediation quantification, measuring information flow through specific circuits
+    \item \textbf{H2 (activation\_patch):} Layer-wise activation patching, identifying task-specific computation phases
+\end{itemize}
+
+These batteries are replicable across models, tasks, and architectures, eliminating ad-hoc design choices.
+
+\paragraph{2. Dual-Observable Measurement.}
+
+Every battery measures \textit{both} power-based metrics (logit difference, probability drop, accuracy flip rate) \textit{and} information-theoretic metrics (KL divergence, calibration metrics). This forces falsification: genuine circuits must affect both types of observables. A finding that appears only in accuracy but not calibration (or vice versa) is flagged as suspicious, preventing selective reporting of favorable metrics.
+
+\paragraph{3. Extended Parameter Sweeps and Random Baselines.}
+
+Learned from our memory-resonance null result, TinyLab automatically:
+\begin{itemize}
+    \item Generates 1,000+ random ablation comparisons (e.g., random layer-0 heads for baseline)
+    \item Computes percentile rankings of candidate findings (e.g., ``this head is 99\textsuperscript{th} percentile, not cherry-picked'')
+    \item Tests parameter ranges beyond hypothesized optima
+    \item Catches narrow-range sampling bias by default
+\end{itemize}
+
+This prevents the mistake that invalidated our prior work: effects must survive extended testing and random comparison.
+
+\paragraph{4. Cross-Architecture Validation Pipelines.}
+
+TinyLab runs identical batteries across multiple model architectures (GPT-2, Mistral, extensible to Llama, Pythia, Qwen). This distinguishes:
+\begin{itemize}
+    \item \textbf{Conserved circuits:} same heads across model scales (e.g., GPT-2 Small $\to$ Medium)
+    \item \textbf{Adapted motifs:} different implementations, same function (e.g., GPT-2 $\to$ Mistral)
+    \item \textbf{Architecture-specific artifacts:} effects appearing in only one model family
+\end{itemize}
+
+If a circuit is a genuine learned behavioral prior, it should replicate across architectures despite implementation differences.
+
+\subsection{Validation: L0 Hedging Coalition as Proof of Concept}
+
+To validate that TinyLab surfaces genuine behavioral circuits, we apply it to discover mechanisms implementing a theoretically predicted phenomenon: \textbf{hedging under uncertainty}.
+
+Kalai, Nachum, Vempala, and Zhang~\cite{kalai2025hallucination} recently showed that hallucinations in language models are \textit{statistically inevitable} under binary evaluation metrics. Binary scoring rewards confident guesses and penalizes calibrated uncertainty equally with incorrect answers. Gradient descent thus learns to decouple confidence from ground truth, producing plausible-sounding output even when epistemic uncertainty is high.
+
+Their work predicts \textit{what} behavior emerges but not \textit{how} it is instantiated mechanistically. We hypothesize that there should exist concrete circuits—we call them an \textbf{L0 hedging coalition}—that systematically downweight factual continuations and boost uncertainty markers. If such circuits exist and TinyLab is sound, they must survive all four methodological tests:
+
+\begin{enumerate}
+    \item \textbf{Random baseline comparison:} rank in extreme tail (not just any heads)
+    \item \textbf{Dual observables:} affect both power metrics (accuracy) and information metrics (calibration)
+    \item \textbf{Cross-architecture validation:} replicate across GPT-2 and Mistral despite architectural differences
+    \item \textbf{Path patching:} exhibit quantifiable mediation through specific information channels
+\end{enumerate}
+
+We find exactly this. Using TinyLab's H1 battery with cross-task orchestration, we discover:
+
+\begin{itemize}
+    \item \textbf{GPT-2 Medium:} heads $\{0{:}2, 0{:}4, 0{:}7\}$ suppress factual continuations, ranking in the 99\textsuperscript{th} percentile of 1,000~random layer-0 ablations
+    \item \textbf{Conserved across scale:} identical heads in GPT-2 Small (124M) and GPT-2 Medium (355M)
+    \item \textbf{Dual-observable effects:} ablation improves expected calibration error from 0.122~to~0.091 (power) \textit{and} logit difference by +0.40--0.85 (information)
+    \item \textbf{Quantified mechanism:} path patching shows 67\% of head~0:2's effect mediated through suppressor$\to$layer-11 residual stream
+    \item \textbf{Cross-architecture replication:} Mistral-7B discovers adapted variant (heads $\{0{:}22, 0{:}23\}$) with task-contingent logic and opposition mechanism (head~0:21)
+    \item \textbf{Semantic coherence:} OV projection analysis shows head~0:2 upweights hedging vocabulary (``perhaps,'' ``maybe,'' ``seems'') while demoting factual stems
+\end{itemize}
+
+These results demonstrate that TinyLab surfaces \textbf{genuine, fundamental behavioral circuits} learned by gradient descent. The hedging coalition is not an artifact of narrow sweeps (random baseline comparison falsifies this), not cherry-picked observables (dual metrics confirm), not a single-model fluke (cross-architecture validation rules out), and not an uninterpretable correlation (path patching quantifies mechanism). It provides mechanistic evidence consistent with Kalai et al.'s theoretical prediction.
+
+\subsection{Contributions and Roadmap}
+
+This work makes five contributions:
+
+\begin{enumerate}
+    \item \textbf{Infrastructure:} Complete reproducible framework for circuit discovery ($\sim$1,600 lines of code, full documentation, cross-platform support)
+    \item \textbf{Methodology:} Standardized batteries preventing ad-hoc analysis, dual-observable enforcement, random baselines, cross-architecture validation
+    \item \textbf{Validation:} L0 hedging coalition demonstrating TinyLab surfaces genuine circuits across GPT-2 and Mistral-7B
+    \item \textbf{Datasets:} Tokenizer-adapted probe suites (facts, negation, counterfactual, logic) with hash validation
+    \item \textbf{Replication package:} 15+ recorded experiments with config hashes, seed specifications, full reproducibility metadata
+\end{enumerate}
+
+The remainder of this paper is organized as follows. Section~\ref{sec:related} positions TinyLab relative to existing tools (TransformerLens, circuit discoveries, reproducibility methods). Section~\ref{sec:design} details TinyLab's design principles, batteries, dual observables, and validation pipelines. Section~\ref{sec:implementation} describes the infrastructure (deterministic execution, config management, reproducibility metadata). Section~\ref{sec:case_study} applies TinyLab to discover and characterize layer-0 suppressors in GPT-2. Section~\ref{sec:cross_arch} validates suppressors across GPT-2 Small, Medium, and Mistral-7B. Section~\ref{sec:discussion} discusses limitations, implications for alignment, and comparisons to existing tools. Section~\ref{sec:future} outlines future directions (broader model census, SAE integration, training dynamics). Section~\ref{sec:conclusion} concludes.
+
+All code, datasets, and recorded experiments are available at \url{https://github.com/username/tinyLab}.

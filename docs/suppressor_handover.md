@@ -54,6 +54,8 @@ python -m lab.src.orchestrators.conditions lab/configs/run_h5_layer0_triplet_bal
 python -m lab.src.orchestrators.conditions lab/configs/run_h6_layer_targets_window_balanced.json
 ```
 
+The current Mistral configs ship with multi-seed defaults (H1: five seeds, H5: three seeds) and run a small CPU `verify_slice` before each sweep to catch MPS drift. Tweak the `seeds` array or `verify_slice` block in the JSON if you need different coverage.
+
 ### 2.3 Tokenizer-aware corpora
 Use `scripts/build_tokenizer_variants.py` for any new architecture:
 ```bash
@@ -153,6 +155,7 @@ Every run gets its own directory under `lab/runs/<run_name>_<hash>/` with:
 - `artifacts/cross_condition/`    – (for orchestrator runs) aggregate matrices & summaries for easy comparison.
 - `partial_summary.json`          – produced if a run aborts early; useful for debugging.
 - `profile.json`                  – resource usage traces if profiling enabled.
+- `provenance.json`               – runtime metadata (python/torch versions, device availability, backend flags).
 
 The cross-condition rebuild helper (`lab/analysis/rebuild_cross_condition.py`) stitches together single-condition runs if the orchestrator ran into timeouts. Use it anytime a parent run is missing `artifacts/cross_condition/*.parquet`.
 

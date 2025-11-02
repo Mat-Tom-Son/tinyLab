@@ -3,7 +3,9 @@
   "battery": "lab/configs/battery_h5_layer0_triplet_mistral.json",
   "shared": {
     "seeds": [
-      0
+      0,
+      1,
+      2
     ],
     "device": "mps",
     "model": {
@@ -57,5 +59,9 @@
         "split": "train"
       }
     }
-  ]
+  ],
+  "verify_slice": {
+    "n_examples": 24,
+    "device": "cpu"
+  }
 }

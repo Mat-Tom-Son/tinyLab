@@ -1,10 +1,6 @@
 \section{Introduction}
 
-Kalai, Nachum, Vempala, and Zhang recently formalized a stark statistical claim: hallucinations in language models are inevitable under the evaluation regimes we currently impose~\cite{kalai2025why}.
-Binary scoring rewards confident guesses and penalizes calibrated uncertainty, so a model that wishes to maximize benchmark accuracy must learn to \emph{decouple} confidence from ground truth.
-The theorem explains why hallucinations persist even as scale and data improve, but it leaves open the mechanistic question.
-What concrete structures inside a transformer encode this bias?
-How do gradient updates instantiate the learned trade-off between factuality and hedging?
+Information bottleneck theory tells us where dimensionality compression—and therefore geometric constraint—occurs in deep networks. Kalai et~al.~\cite{kalai2025why} formalize what trade-off language models must learn: benchmarks that reward confidence will select for hedging when ground truth is uncertain. We combine these views into a \emph{bottleneck prediction}: circuits implementing the factuality–hedging trade-off should crystallize at the first major bottleneck—layer~0. This paper validates that prediction.
 
 We identify and characterize a family of circuits we call \emph{layer-0 suppressors}.
 Suppressors are small coalitions of attention heads in the very first transformer layer that systematically down-weight factual continuations and boost uncertainty markers or meta-commentary.
@@ -22,3 +18,6 @@ Our study contributes four findings.
 By grounding Kalai et al.'s theoretical inevitability in concrete circuits, we bridge statistical and mechanistic interpretability.
 Our results imply that evaluation reform alone may not eliminate hallucinations: once suppressors have crystallised, they steer computation toward hedging by default.
 Direct circuit-level intervention or steering may therefore be required to restore truthful behavior.
+
+\subsection*{Why layer~0?}
+Layer~0 is both the first point of strong compression and the stage where optimization pressure is highest with respect to geometric constraints. If a model must encode a factuality–hedging trade-off anywhere, the bottleneck forces it to appear here: early residual rotations bias downstream computation, making later correction costly. This yields a falsifiable prediction: if suppressors exist, they should concentrate at layer~0 and rank in the extreme tail under random baselines.
