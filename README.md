@@ -1,10 +1,25 @@
 # Tiny Ablation Lab
 
-A reproducible, local-first workspace for mechanistic interpretability on Apple Silicon. This repository accompanies the October 2025 study **“Layer‑0 Suppressors Ground Hallucination Inevitability”**, providing every script, configuration, and logged artefact required to replicate the results on GPT‑2 Medium/Large and Mistral‑7B.
+A reproducible, local‑first workspace for mechanistic interpretability on Apple Silicon. This repository accompanies the October 2025 study **“Layer‑0 Suppressors Ground Hallucination Inevitability”**, and ships end‑to‑end code to replicate the findings on GPT‑2 Medium and Mistral‑7B. It now includes the geometric validation of suppressors via output entropy and trajectory curvature.
 
-> Paper: [`paper/main.pdf`](paper/main.pdf)
->
-> Framing: prediction → validation. We predicted that circuits implementing the factuality–hedging trade‑off would crystallize at the first bottleneck (layer 0), then validated that prediction with dual observables (ΔLD + calibration), random baselines (>99th percentile), cross‑architecture replication (GPT‑2, Mistral), and path mediation.
+Paper PDF: `paper/main.pdf`
+
+Key idea: circuits that implement the factuality vs hedging tradeoff crystallize at the first bottleneck (layer 0). We validate this prediction with dual observables (power: ΔLD; information: calibration), random head baselines, cross‑architecture checks, path mediation, and now geometric signatures.
+
+## Highlights
+
+- Strong geometric signature under suppressor ablation across all probe families (facts, counterfactual, negation, logic):
+  - Output entropy reduction: ΔH = −2.4 to −3.8 nats (lower is sharper), all in the extreme lower tail of random layer‑0 head controls (p < 0.02).
+  - Early trajectory straightening in layer‑0 residuals: Δ curvature (early) ≈ −14 to −16.
+- Activation space expands under suppressors (negative Δ activation entropy under ablation across estimators), consistent with a rotation‑plus‑expansion mechanism coupled with output flattening.
+- Location is forced by geometry: the operation appears at layer 0; implementation varies by model.
+- Fully reproducible harness and figure scripts; all key reports are committed.
+
+### Geometric Signature Figure
+
+![Geometric signature](paper/figures/geometric_signature.png)
+
+Left: distribution of output‑entropy deltas from random layer‑0 head sets (gray). Vertical lines show observed deltas for the four tasks under ablation of heads (0:2, 0:4, 0:7) in GPT‑2 Medium. Right: early curvature deltas (all negative), consistent with removal of an early hedging attractor.
 
 ## Table of Contents
 
@@ -42,19 +57,19 @@ python smoke_test.py  # optional sanity check
 
 ## Reproducing the Study
 
-A full command-by-command guide—covering dataset preparation, GPT‑2 and Mistral runs, analysis scripts, and paper compilation—is in [docs/REPLICATION.md](docs/REPLICATION.md). The high-level flow is:
+A full, step‑by‑step guide covering dataset preparation, GPT‑2 and Mistral runs, analysis scripts, and paper compilation is in `docs/REPLICATION.md`. The high‑level flow is:
 
-1. **Corpora** – use the provided single-token probe datasets under `lab/data/corpora/`. If you need fresh Mistral tokeniser variants, run `scripts/build_tokenizer_variants.py`.
-2. **GPT‑2 experiments** – orchestrated configs under `lab/configs/run_h1_cross_condition_physics_balanced.json`, `run_h5_layer0_triplet_balanced.json`, and `run_h6_layer_targets_window_balanced.json` reproduce the H1/H5/H6 batteries.
-3. **Mistral experiments** – `lab/configs/run_h1_cross_condition_balanced_mistral*.json` cover the per‑condition sweeps (defaults to 5 seeds on facts and 3 seeds elsewhere); pair/triplet follow‑ups live alongside (`run_h5_*mistral*.json`).
-4. **Analysis scripts** – regenerate all figures/tables via the Python utilities in `paper/scripts/` (summarised in [Results.md](Results.md)).
-5. **Paper build** – `cd paper && make` triggers `latexmk` + `bibtex`, recreating `paper/main.pdf` from source.
+1. Corpora — use the provided single‑token probe datasets under `lab/data/corpora/`. If you need fresh tokenizer variants, run `scripts/build_tokenizer_variants.py`.
+2. GPT‑2 experiments — orchestrated configs under `lab/configs/run_h1_cross_condition_balanced.json`, `run_h5_layer0_triplet_balanced.json`, and `run_h6_layer_targets_window_balanced.json` reproduce the H1/H5/H6 batteries.
+3. Mistral experiments — `lab/configs/run_h1_cross_condition_balanced_mistral*.json` cover per‑condition sweeps; pair and triplet follow‑ups live alongside (`run_h5_*mistral*.json`).
+4. Analysis scripts — regenerate figures and tables via the Python utilities in `paper/scripts/`.
+5. Paper build — `cd paper && make` uses `latexmk` to compile `paper/main.pdf` from source.
 
 All runs log reproducibility metadata (`config.json`, hashes, seeds, git commit) into their respective `lab/runs/<run_id>/` directories.
 
-For a quick orientation of directories, see [docs/STRUCTURE.md](docs/STRUCTURE.md).
+For a quick orientation of directories, see `docs/STRUCTURE.md`.
 
-### Multi-token Evaluation (new)
+### Multi‑token Evaluation
 
 Set `"metric_span": "full_target"` in any config to enable span-aware metrics that score the entire target vs foil continuation under teacher forcing. New metrics are added alongside existing first‑token metrics and flow into the standard tables:
 
@@ -72,11 +87,43 @@ After running H1/H5/H6, regenerate all standardized exports (summaries, rankings
 make postprocess
 ```
 
-Key outputs land in `reports/` and are indexed by `reports/RESULTS_MANIFEST.json`. Open `notebooks/results_summary.ipynb` for a quick manifest‑driven viewer.
+Key outputs land in `reports/` and are indexed by `reports/RESULTS_MANIFEST.json`.
+
+## Reproduce the Geometric Signature
+
+Run the activation‑entropy and curvature analysis for a given task (examples use GPT‑2 Medium, heads 0:2, 0:4, 0:7; 64 samples and 50 random controls):
+
+```bash
+source .venv/bin/activate
+python -m lab.analysis.activation_entropy \
+  --config lab/configs/run_h1_cross_condition_balanced.json \
+  --tag facts \
+  --device mps \
+  --samples 64 \
+  --heads 2 4 7 \
+  --random-samples 50 \
+  --entropy-methods subspace,diagonal,per_token \
+  --output reports/activation_entropy_gpt2medium_facts_robust.json
+
+# Repeat with --tag cf, neg, logic
+```
+
+Generate the figure shown above:
+
+```bash
+python paper/scripts/geometric_signature.py
+# writes paper/figures/geometric_signature.{pdf,png}
+```
+
+Observed deltas for GPT‑2 Medium:
+- Facts: ΔH_out = −2.44 (p < 0.02), Δ curvature (early) ≈ −14.6
+- Counterfactual: ΔH_out = −3.49 (p < 0.02), Δ curvature (early) ≈ −15.2
+- Negation: ΔH_out = −3.81 (p < 0.02), Δ curvature (early) ≈ −15.2
+- Logic: ΔH_out = −3.08 (p < 0.02), Δ curvature (early) ≈ −16.1
 
 ---
 
-## Release & Submission
+## Release and Submission
 
 This repository is tagged with a release for the paper (e.g., `v1.0-suppressor-paper`). To access the exact version used for submission:
 
@@ -106,18 +153,17 @@ The bundle includes the manifest, head rankings, OV reports, and docs for indepe
 
 ## Available Artefacts
 
-- **GPT‑2 head sweeps** – `lab/runs/h1_cross_condition_physics_balanced_*`
-- **Mistral head sweeps** – `lab/runs/h1_cross_condition_balanced_mistral_*`
-- **Pair/triplet ablations** – `lab/runs/h5_layer0_*`
-- **Reverse patching** – `lab/runs/h6_layer_targets_window_balanced_*`
-- **OV projections & partial patches** – `reports/ov_report_*.json`, `reports/facts_partial_summary.json`
-- **Generated figures** – `paper/figures/*.pdf`
+- GPT‑2 head sweeps — `lab/runs/h1_cross_condition_physics_balanced_*`
+- Mistral head sweeps — `lab/runs/h1_cross_condition_balanced_mistral_*`
+- Pair and triplet ablations — `lab/runs/h5_layer0_*`
+- Reverse patching — `lab/runs/h6_layer_targets_window_balanced_*`
+- OV projections and partial patches — `reports/ov_report_*.json`, `reports/facts_partial_summary.json`
+- Geometric signature reports — `reports/activation_entropy_gpt2medium_*_robust.json`
+- Geometric signature figure — `paper/figures/geometric_signature.pdf` and `.png`
 
 Feel free to inspect these directly or rerun analyses using the scripts referenced in `Results.md`.
 
-## Documentation
-
-## Development & Quality Checks
+## Development and Quality Checks
 
 - Install dev dependencies: `pip install -e .[dev]`
 - Enable git hooks: `pre-commit install`
@@ -125,9 +171,9 @@ Feel free to inspect these directly or rerun analyses using the scripts referenc
 - Ensure reports manifest is consistent: `python scripts/verify_manifest.py`
 - GitHub Actions runs the same checks plus `smoke_test.py` on every PR.
 
-- [docs/suppressor_handover.md](docs/suppressor_handover.md) – narrative overview, status, and next steps.
-- [docs/REPLICATION.md](docs/REPLICATION.md) – definitive reproduction checklist with expected outputs.
-- [Results.md](Results.md) – mapping from each figure/table to the generating script and its inputs.
+- `docs/suppressor_handover.md` — narrative overview, status, and next steps.
+- `docs/REPLICATION.md` — definitive reproduction checklist with expected outputs.
+- `Results.md` — mapping from each figure and table to the generating script and its inputs.
 
 ## Contributing
 
