@@ -1,0 +1,130 @@
+[
+  {
+    "tag": "facts",
+    "mode": "greedy",
+    "ablate": false,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "facts",
+    "mode": "nucleus",
+    "ablate": false,
+    "hedge_rate": 0.04,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "facts",
+    "mode": "greedy",
+    "ablate": true,
+    "hedge_rate": 0.08,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "facts",
+    "mode": "nucleus",
+    "ablate": true,
+    "hedge_rate": 0.04,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "neg",
+    "mode": "greedy",
+    "ablate": false,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "neg",
+    "mode": "nucleus",
+    "ablate": false,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "neg",
+    "mode": "greedy",
+    "ablate": true,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "neg",
+    "mode": "nucleus",
+    "ablate": true,
+    "hedge_rate": 0.04,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "cf",
+    "mode": "greedy",
+    "ablate": false,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "cf",
+    "mode": "nucleus",
+    "ablate": false,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "cf",
+    "mode": "greedy",
+    "ablate": true,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "cf",
+    "mode": "nucleus",
+    "ablate": true,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "logic",
+    "mode": "greedy",
+    "ablate": false,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "logic",
+    "mode": "nucleus",
+    "ablate": false,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "logic",
+    "mode": "greedy",
+    "ablate": true,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  },
+  {
+    "tag": "logic",
+    "mode": "nucleus",
+    "ablate": true,
+    "hedge_rate": 0.0,
+    "factual_rate": 0.0,
+    "n": 25
+  }
+]

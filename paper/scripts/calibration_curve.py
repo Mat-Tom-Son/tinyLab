@@ -3,6 +3,8 @@ from pathlib import Path
 from typing import List
 
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+from cycler import cycler
 import numpy as np
 import torch
 from transformer_lens import HookedTransformer
@@ -73,7 +75,7 @@ for tag, path in DATASETS:
 bins = np.linspace(0, 1, 11)
 centers = 0.5 * (bins[1:] + bins[:-1])
 
-fig, ax = plt.subplots(figsize=(4, 3))
+fig, ax = plt.subplots(figsize=(5.2, 3.6))
 for condition in ['baseline', 'ablated']:
     subset = [r for r in records if r['condition'] == condition]
     probs = np.array([r['prob'] for r in subset])
@@ -89,7 +91,8 @@ for condition in ['baseline', 'ablated']:
         else:
             bin_acc.append(np.nan)
             bin_conf.append(np.nan)
-    ax.plot(bin_conf, bin_acc, marker='o', label=condition)
+    marker = 'o' if condition == 'baseline' else '^'
+    ax.plot(bin_conf, bin_acc, marker=marker, label=condition)
 
 ax.plot([0, 1], [0, 1], linestyle='--', color='gray')
 ax.set_xlabel('Predicted probability (target)')
@@ -123,3 +126,13 @@ for condition in ['baseline', 'ablated']:
 
 (SUPPLEMENT / 'calibration_metrics.json').write_text(json.dumps(metrics, indent=2))
 print('Wrote calibration curve and metrics')
+mpl.rcParams.update({
+    'font.size': 12,
+    'axes.labelsize': 12,
+    'legend.fontsize': 10,
+    'savefig.dpi': 200,
+    'lines.linewidth': 1.8,
+})
+mpl.rcParams['axes.prop_cycle'] = cycler(color=[
+    '#0072B2', '#D55E00', '#009E73', '#CC79A7', '#F0E442', '#56B4E9', '#E69F00', '#000000'
+])

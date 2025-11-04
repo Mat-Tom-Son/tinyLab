@@ -1,0 +1,61 @@
+{
+  "run_name": "h1_pythia_checkpoint_002000",
+  "battery": "lab/configs/battery_h1_heads_zero.json",
+  "shared": {
+    "seeds": [
+      0
+    ],
+    "device": "mps",
+    "model": {
+      "family": "pythia",
+      "name": "pythia-160m",
+      "revision": "step2000",
+      "dtype": "float16"
+    },
+    "dataset": {
+      "id": "facts_single_token_v1_pythia",
+      "split": "train",
+      "clean_field": "clean",
+      "corrupt_field": "corrupt",
+      "target_field": "target",
+      "foil_field": "foil"
+    },
+    "metrics": [
+      "logit_diff",
+      "acc_flip_rate"
+    ],
+    "batch_size": 8,
+    "max_seq_len": 256,
+    "metric_span": "first_token"
+  },
+  "conditions": [
+    {
+      "tag": "facts",
+      "dataset": {
+        "id": "facts_single_token_v1_pythia",
+        "split": "train"
+      }
+    },
+    {
+      "tag": "neg",
+      "dataset": {
+        "id": "negation_single_token_v1_pythia",
+        "split": "train"
+      }
+    },
+    {
+      "tag": "cf",
+      "dataset": {
+        "id": "counterfactual_single_token_v1_pythia",
+        "split": "train"
+      }
+    },
+    {
+      "tag": "logic",
+      "dataset": {
+        "id": "logical_single_token_v1_pythia",
+        "split": "train"
+      }
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{"clean": "If cats are mammals, then they have fur", "corrupt": "If rocks are mammals, then they have scales", "target": " fur", "foil": " scales"}
+{"clean": "If dogs are loyal, then they show care", "corrupt": "If stones are loyal, then they show rust", "target": " care", "foil": " rust"}
+{"clean": "If birds can fly, then they use wings", "corrupt": "If rocks can fly, then they use roots", "target": " wings", "foil": " roots"}
+{"clean": "If fish can swim, then they use fins", "corrupt": "If trees can swim, then they use roots", "target": " fins", "foil": " roots"}
+{"clean": "If bees make honey, then they produce honey", "corrupt": "If clouds make honey, then they produce vapor", "target": " honey", "foil": " vapor"}
+{"clean": "If cows chew grass, then they chew grass", "corrupt": "If cars chew grass, then they chew metal", "target": " grass", "foil": " metal"}
+{"clean": "If wolves hunt prey, then they chase prey", "corrupt": "If flowers hunt prey, then they chase pollen", "target": " prey", "foil": " pollen"}
+{"clean": "If lions roar loudly, then they sound loud", "corrupt": "If leaves roar loudly, then they sound quiet", "target": " loud", "foil": " quiet"}
+{"clean": "If owls see at night, then they use eyes", "corrupt": "If pebbles see at night, then they use dust", "target": " eyes", "foil": " dust"}
+{"clean": "If bats navigate caves, then they use echo", "corrupt": "If chairs navigate caves, then they use wood", "target": " echo", "foil": " wood"}
+{"clean": "If horses gallop fast, then they move fast", "corrupt": "If pillars gallop fast, then they move still", "target": " fast", "foil": " still"}
+{"clean": "If sheep grow wool, then they grow wool", "corrupt": "If clouds grow wool, then they grow vapor", "target": " wool", "foil": " vapor"}
+{"clean": "If goats climb cliffs, then they use legs", "corrupt": "If waters climb cliffs, then they use waves", "target": " legs", "foil": " waves"}
+{"clean": "If ducks swim well, then they float on water", "corrupt": "If stones swim well, then they float on dust", "target": " water", "foil": " dust"}
+{"clean": "If geese migrate yearly, then they travel in group", "corrupt": "If tables migrate yearly, then they travel in silence", "target": " group", "foil": " silence"}
+{"clean": "If frogs leap high, then they jump high", "corrupt": "If rocks leap high, then they jump still", "target": " high", "foil": " still"}
+{"clean": "If snakes slither, then they move smooth", "corrupt": "If bricks slither, then they move rigid", "target": " smooth", "foil": " rigid"}
+{"clean": "If turtles wear shells, then they carry shells", "corrupt": "If trees wear shells, then they carry bark", "target": " shells", "foil": " bark"}
+{"clean": "If whales breathe air, then they need air", "corrupt": "If pebbles breathe air, then they need stone", "target": " air", "foil": " stone"}
+{"clean": "If sharks hunt fish, then they hunt fish", "corrupt": "If flowers hunt fish, then they hunt pollen", "target": " fish", "foil": " pollen"}
+{"clean": "If plants need light, then they need light", "corrupt": "If rocks need light, then they need shade", "target": " light", "foil": " shade"}
+{"clean": "If trees grow leaves, then they grow leaves", "corrupt": "If statues grow leaves, then they grow dust", "target": " leaves", "foil": " dust"}
+{"clean": "If seeds sprout, then they become plants", "corrupt": "If coins sprout, then they become metal", "target": " plants", "foil": " metal"}
+{"clean": "If glaciers melt, then they become water", "corrupt": "If fires melt, then they become ash", "target": " water", "foil": " ash"}
+{"clean": "If snow melts, then it becomes water", "corrupt": "If embers melt, then it becomes dust", "target": " water", "foil": " dust"}
+{"clean": "If rain falls, then it makes water", "corrupt": "If smoke falls, then it makes dust", "target": " water", "foil": " dust"}
+{"clean": "If sun rises daily, then the sky turns bright", "corrupt": "If rocks rise daily, then the sky turns dim", "target": " bright", "foil": " dim"}
+{"clean": "If moon shines nightly, then the night is light", "corrupt": "If sand shines nightly, then the night is dark", "target": " light", "foil": " dark"}
+{"clean": "If wind blows, then the air feels cool", "corrupt": "If walls blow, then the air feels hard", "target": " cool", "foil": " hard"}
+{"clean": "If waves crash, then the shore becomes wet", "corrupt": "If hills crash, then the shore becomes dry", "target": " wet", "foil": " dry"}
+{"clean": "If fire burns fuel, then it gives heat", "corrupt": "If ice burns fuel, then it gives frost", "target": " heat", "foil": " frost"}
+{"clean": "If ice freezes water, then it turns to ice", "corrupt": "If flames freeze water, then it turns to smoke", "target": " ice", "foil": " smoke"}
+{"clean": "If metal rusts, then it turns red", "corrupt": "If clouds rust, then it turns blue", "target": " red", "foil": " blue"}
+{"clean": "If clay hardens, then it becomes solid", "corrupt": "If steam hardens, then it becomes vapor", "target": " solid", "foil": " vapor"}
+{"clean": "If fog lifts, then the view is clear", "corrupt": "If stones lift, then the view is hidden", "target": " clear", "foil": " hidden"}
+{"clean": "If storms gather, then the clouds grow dark", "corrupt": "If books gather, then the clouds grow dull", "target": " dark", "foil": " dull"}
+{"clean": "If volcanoes erupt, then they release lava", "corrupt": "If rivers erupt, then they release water", "target": " lava", "foil": " water"}
+{"clean": "If magnets attract metal, then they pull metal", "corrupt": "If feathers attract metal, then they pull dust", "target": " metal", "foil": " dust"}
+{"clean": "If lightning flashes, then the sky grows bright", "corrupt": "If puddles flash, then the sky grows dim", "target": " bright", "foil": " dim"}
+{"clean": "If thunder rumbles, then the air becomes loud", "corrupt": "If petals rumble, then the air becomes quiet", "target": " loud", "foil": " quiet"}
+{"clean": "If alarms ring, then people wake", "corrupt": "If pillows ring, then people sleep", "target": " wake", "foil": " sleep"}
+{"clean": "If clocks tick, then they measure time", "corrupt": "If clouds tick, then they measure vapor", "target": " time", "foil": " vapor"}
+{"clean": "If engines run, then they need fuel", "corrupt": "If caves run, then they need stone", "target": " fuel", "foil": " stone"}
+{"clean": "If circuits close, then the current will flow", "corrupt": "If mirrors close, then the current will stop", "target": " flow", "foil": " stop"}
+{"clean": "If switches flip, then the lights can turn", "corrupt": "If rivers flip, then the lights can flood", "target": " turn", "foil": " flood"}
+{"clean": "If rockets launch, then they reach space", "corrupt": "If roots launch, then they reach soil", "target": " space", "foil": " soil"}
+{"clean": "If cameras record, then they capture light", "corrupt": "If winds record, then they capture noise", "target": " light", "foil": " noise"}
+{"clean": "If keys unlock, then they open the door", "corrupt": "If leaves unlock, then they open the dust", "target": " door", "foil": " dust"}
+{"clean": "If locks jam, then the gate stays shut", "corrupt": "If streams jam, then the gate stays open", "target": " shut", "foil": " open"}
+{"clean": "If bridges span rivers, then they cross the river", "corrupt": "If clouds span rivers, then they cross the sky", "target": " river", "foil": " sky"}
+{"clean": "If tunnels dig earth, then they pass through soil", "corrupt": "If storms dig earth, then they pass through sky", "target": " soil", "foil": " sky"}
+{"clean": "If gears turn, then machines will move", "corrupt": "If shadows turn, then machines will still", "target": " move", "foil": " still"}
+{"clean": "If levers lift loads, then they raise the load", "corrupt": "If petals lift loads, then they raise the scent", "target": " load", "foil": " scent"}
+{"clean": "If pulleys hoist loads, then they raise a load", "corrupt": "If mirrors hoist loads, then they raise a glare", "target": " load", "foil": " glare"}
+{"clean": "If ropes pull loads, then they pull the load", "corrupt": "If beams pull loads, then they pull the dust", "target": " load", "foil": " dust"}
+{"clean": "If boats float, then they stay on water", "corrupt": "If stones float, then they stay on dust", "target": " water", "foil": " dust"}
+{"clean": "If planes fly, then they travel through air", "corrupt": "If logs fly, then they travel through mud", "target": " air", "foil": " mud"}
+{"clean": "If cars roll, then they move on wheels", "corrupt": "If trees roll, then they move on roots", "target": " wheels", "foil": " roots"}
+{"clean": "If trains glide, then they ride on tracks", "corrupt": "If clouds glide, then they ride on wind", "target": " tracks", "foil": " wind"}
+{"clean": "If bikes balance, then they use wheels", "corrupt": "If rocks balance, then they use dust", "target": " wheels", "foil": " dust"}
+{"clean": "If skaters glide, then they move smooth", "corrupt": "If statues glide, then they move still", "target": " smooth", "foil": " still"}
+{"clean": "If singers sing, then they use their voice", "corrupt": "If stones sing, then they use their dust", "target": " voice", "foil": " dust"}
+{"clean": "If writers write, then they use a pen", "corrupt": "If clouds write, then they use a mist", "target": " pen", "foil": " mist"}
+{"clean": "If artists paint, then they use color", "corrupt": "If waves paint, then they use foam", "target": " color", "foil": " foam"}
+{"clean": "If chefs cook, then they use heat", "corrupt": "If pages cook, then they use paper", "target": " heat", "foil": " paper"}
+{"clean": "If farmers plant, then they plant seeds", "corrupt": "If storms plant, then they plant dust", "target": " seeds", "foil": " dust"}
+{"clean": "If miners dig, then they use a tool", "corrupt": "If breezes dig, then they use a gust", "target": " tool", "foil": " gust"}
+{"clean": "If builders build, then they lift stone", "corrupt": "If rivers build, then they lift water", "target": " stone", "foil": " water"}
+{"clean": "If teachers teach, then they share facts", "corrupt": "If rocks teach, then they share silence", "target": " facts", "foil": " silence"}
+{"clean": "If doctors heal, then they give care", "corrupt": "If shadows heal, then they give cold", "target": " care", "foil": " cold"}
+{"clean": "If nurses help, then they offer aid", "corrupt": "If sparks help, then they offer smoke", "target": " aid", "foil": " smoke"}
+{"clean": "If pilots fly, then they steer plane", "corrupt": "If roots fly, then they steer soil", "target": " plane", "foil": " soil"}
+{"clean": "If sailors sail, then they guide ship", "corrupt": "If mountains sail, then they guide cliffs", "target": " ship", "foil": " cliffs"}
+{"clean": "If captains steer, then they hold the wheel", "corrupt": "If clouds steer, then they hold the mist", "target": " wheel", "foil": " mist"}
+{"clean": "If drivers steer, then they turn the wheel", "corrupt": "If stones steer, then they turn the dust", "target": " wheel", "foil": " dust"}
+{"clean": "If walkers walk, then they use their feet", "corrupt": "If pillars walk, then they use their stone", "target": " feet", "foil": " stone"}
+{"clean": "If runners sprint, then they move fast", "corrupt": "If chairs sprint, then they move still", "target": " fast", "foil": " still"}
+{"clean": "If climbers climb, then they use their hands", "corrupt": "If rivers climb, then they use their waves", "target": " hands", "foil": " waves"}
+{"clean": "If divers dive, then they enter water", "corrupt": "If fires dive, then they enter flame", "target": " water", "foil": " flame"}
+{"clean": "If swimmers swim, then they move through water", "corrupt": "If clouds swim, then they move through air", "target": " water", "foil": " air"}
+{"clean": "If actors act, then they play a role", "corrupt": "If storms act, then they play a gust", "target": " role", "foil": " gust"}
+{"clean": "If leaders lead, then they guide the team", "corrupt": "If waves lead, then they guide the spray", "target": " team", "foil": " spray"}
+{"clean": "If readers read, then they turn the page", "corrupt": "If stones read, then they turn the dust", "target": " page", "foil": " dust"}
+{"clean": "If speakers speak, then they share words", "corrupt": "If mountains speak, then they share silence", "target": " words", "foil": " silence"}
+{"clean": "If thinkers think, then they form ideas", "corrupt": "If clouds think, then they form vapor", "target": " ideas", "foil": " vapor"}
+{"clean": "If inventors invent, then they build tools", "corrupt": "If rivers invent, then they build current", "target": " tools", "foil": " current"}
+{"clean": "If scientists test, then they run trials", "corrupt": "If storms test, then they run thunder", "target": " trials", "foil": " thunder"}
+{"clean": "If artists sketch, then they draw lines", "corrupt": "If shadows sketch, then they draw smoke", "target": " lines", "foil": " smoke"}
+{"clean": "If gardeners water, then they pour water", "corrupt": "If stones water, then they pour sand", "target": " water", "foil": " sand"}
+{"clean": "If bakers bake, then they heat bread", "corrupt": "If winds bake, then they heat air", "target": " bread", "foil": " air"}
+{"clean": "If tailors sew, then they stitch cloth", "corrupt": "If waves sew, then they stitch foam", "target": " cloth", "foil": " foam"}
+{"clean": "If poets write, then they craft poems", "corrupt": "If rivers write, then they craft river", "target": " poems", "foil": " river"}
+{"clean": "If students learn, then they gain ideas", "corrupt": "If rocks learn, then they gain silence", "target": " ideas", "foil": " silence"}
+{"clean": "If musicians play, then they play music", "corrupt": "If mountains play, then they play stone", "target": " music", "foil": " stone"}
+{"clean": "If painters paint, then they paint lines", "corrupt": "If clouds paint, then they paint mist", "target": " lines", "foil": " mist"}
+{"clean": "If drivers stop, then they press the brake", "corrupt": "If clouds stop, then they press the breeze", "target": " brake", "foil": " breeze"}
+{"clean": "If pilots land, then they land the plane", "corrupt": "If rivers land, then they land the stream", "target": " plane", "foil": " stream"}
+{"clean": "If sailors dock, then they tie the ship", "corrupt": "If storms dock, then they tie the gust", "target": " ship", "foil": " gust"}
+{"clean": "If miners blast, then they break the rock", "corrupt": "If waves blast, then they break the foam", "target": " rock", "foil": " foam"}
+{"clean": "If farmers harvest, then they collect the crops", "corrupt": "If thunder harvests, then they collect the roar", "target": " crops", "foil": " roar"}
+{"clean": "If chefs season, then they add spice", "corrupt": "If shadows season, then they add dusk", "target": " spice", "foil": " dusk"}
+{"clean": "If writers edit, then they change words", "corrupt": "If winds edit, then they change gust", "target": " words", "foil": " gust"}
+{"clean": "If coders code, then they write logic", "corrupt": "If rivers code, then they write current", "target": " logic", "foil": " current"}
+{"clean": "If gamers play, then they enjoy games", "corrupt": "If stones play, then they enjoy dust", "target": " games", "foil": " dust"}
+{"clean": "If singers harmonize, then they blend voice", "corrupt": "If storms harmonize, then they blend thunder", "target": " voice", "foil": " thunder"}
+{"clean": "If readers imagine, then they picture scenes", "corrupt": "If pillars imagine, then they picture stone", "target": " scenes", "foil": " stone"}
+{"clean": "If gardeners prune, then they trim plants", "corrupt": "If clouds prune, then they trim mist", "target": " plants", "foil": " mist"}
+{"clean": "If teachers guide, then they lead the class", "corrupt": "If mountains guide, then they lead the cliff", "target": " class", "foil": " cliff"}
+{"clean": "If doctors diagnose, then they find causes", "corrupt": "If shadows diagnose, then they find dusk", "target": " causes", "foil": " dusk"}
+{"clean": "If nurses monitor, then they check vital", "corrupt": "If waves monitor, then they check foam", "target": " vital", "foil": " foam"}
+{"clean": "If pilots navigate, then they follow routes", "corrupt": "If rocks navigate, then they follow dust", "target": " routes", "foil": " dust"}
+{"clean": "If captains command, then they lead the crew", "corrupt": "If grains command, then they lead the sand", "target": " crew", "foil": " sand"}
+{"clean": "If leaders inspire, then they spark hope", "corrupt": "If storms inspire, then they spark wind", "target": " hope", "foil": " wind"}
+{"clean": "If thinkers reason, then they shape logic", "corrupt": "If mountains reason, then they shape stone", "target": " logic", "foil": " stone"}
+{"clean": "If The color of grass is green, then the answer is green", "corrupt": "If The color of coal is green, then the answer is black", "target": " green", "foil": " black"}
+{"clean": "If The animal that barks is the dog, then the answer is dog", "corrupt": "If The animal that purrs is the dog, then the answer is cat", "target": " dog", "foil": " cat"}
+{"clean": "If The organ that pumps blood is the heart, then the answer is heart", "corrupt": "If The organ that controls thought is the heart, then the answer is brain", "target": " heart", "foil": " brain"}
+{"clean": "If The fruit that is red is the apple, then the answer is apple", "corrupt": "If The fruit that is yellow is the apple, then the answer is banana", "target": " apple", "foil": " banana"}
+{"clean": "If Two plus two equals 4, then the answer is 4", "corrupt": "If Three plus three equals 4, then the answer is 6", "target": " 4", "foil": " 6"}
+{"clean": "If The capital of France is Paris, then the answer is Paris", "corrupt": "If The capital of Italy is Paris, then the answer is Rome", "target": " Paris", "foil": " Rome"}
+{"clean": "If The season with snow is winter, then the answer is winter", "corrupt": "If The season with rain showers is winter, then the answer is spring", "target": " winter", "foil": " spring"}
+{"clean": "If The color of grass is green, then the answer is green", "corrupt": "If The color of snow is green, then the answer is white", "target": " green", "foil": " white"}
+{"clean": "If The animal that barks is the dog, then the answer is dog", "corrupt": "If The animal that howls is the dog, then the answer is wolf", "target": " dog", "foil": " wolf"}
+{"clean": "If The organ that pumps blood is the heart, then the answer is heart", "corrupt": "If The organ that absorbs oxygen is the heart, then the answer is lung", "target": " heart", "foil": " lung"}
+{"clean": "If Two plus two equals 4, then the answer is 4", "corrupt": "If Four times two equals 4, then the answer is 8", "target": " 4", "foil": " 8"}
+{"clean": "If The capital of France is Paris, then the answer is Paris", "corrupt": "If The capital of Germany is Paris, then the answer is Berlin", "target": " Paris", "foil": " Berlin"}
+{"clean": "If The season with snow is winter, then the answer is winter", "corrupt": "If The season with heatwaves is winter, then the answer is summer", "target": " winter", "foil": " summer"}
+{"clean": "If The color of grass is green, then the answer is green", "corrupt": "If The color of lemons is green, then the answer is yellow", "target": " green", "foil": " yellow"}
+{"clean": "If The animal that barks is the dog, then the answer is dog", "corrupt": "If The animal that roars is the dog, then the answer is lion", "target": " dog", "foil": " lion"}
+{"clean": "If The organ that pumps blood is the heart, then the answer is heart", "corrupt": "If The organ that filters toxins is the heart, then the answer is liver", "target": " heart", "foil": " liver"}
+{"clean": "If The fruit that is red is the apple, then the answer is apple", "corrupt": "If The fruit that is green is the apple, then the answer is pear", "target": " apple", "foil": " pear"}
+{"clean": "If Two plus two equals 4, then the answer is 4", "corrupt": "If Five plus five equals 4, then the answer is 10", "target": " 4", "foil": " 10"}
+{"clean": "If The capital of France is Paris, then the answer is Paris", "corrupt": "If The capital of Spain is Paris, then the answer is Madrid", "target": " Paris", "foil": " Madrid"}
+{"clean": "If The season with snow is winter, then the answer is winter", "corrupt": "If The season with falling leaves is winter, then the answer is autumn", "target": " winter", "foil": " autumn"}
+{"clean": "If The color of grass is green, then the answer is green", "corrupt": "If The color of pumpkins is green, then the answer is orange", "target": " green", "foil": " orange"}
+{"clean": "If The organ that pumps blood is the heart, then the answer is heart", "corrupt": "If The organ that filters blood is the heart, then the answer is kidney", "target": " heart", "foil": " kidney"}
+{"clean": "If The fruit that is red is the apple, then the answer is apple", "corrupt": "If The fruit that is purple is the apple, then the answer is plum", "target": " apple", "foil": " plum"}
+{"clean": "If Two plus two equals 4, then the answer is 4", "corrupt": "If Nine minus three equals 4, then the answer is 6", "target": " 4", "foil": " 6"}
+{"clean": "If The capital of France is Paris, then the answer is Paris", "corrupt": "If The capital of Austria is Paris, then the answer is Vienna", "target": " Paris", "foil": " Vienna"}
+{"clean": "If The season with snow is winter, then the answer is winter", "corrupt": "If Frozen water from the sky is called winter, then the answer is snow", "target": " winter", "foil": " snow"}
+{"clean": "If The color of grass is green, then the answer is green", "corrupt": "If The color of lavender is green, then the answer is purple", "target": " green", "foil": " purple"}
+{"clean": "If The animal that barks is the dog, then the answer is dog", "corrupt": "If The animal that gallops is the dog, then the answer is horse", "target": " dog", "foil": " horse"}
+{"clean": "If The organ that pumps blood is the heart, then the answer is heart", "corrupt": "If The organ that digests food is the heart, then the answer is stomach", "target": " heart", "foil": " stomach"}
+{"clean": "If The fruit that is red is the apple, then the answer is apple", "corrupt": "If The fruit that grows in clusters is the apple, then the answer is grape", "target": " apple", "foil": " grape"}
+{"clean": "If Two plus two equals 4, then the answer is 4", "corrupt": "If Six minus four equals 4, then the answer is 2", "target": " 4", "foil": " 2"}
+{"clean": "If The capital of France is Paris, then the answer is Paris", "corrupt": "If The capital of Sweden is Paris, then the answer is Stockholm", "target": " Paris", "foil": " Stockholm"}
+{"clean": "If The season with snow is winter, then the answer is winter", "corrupt": "If Water falling from the sky is called winter, then the answer is rain", "target": " winter", "foil": " rain"}
+{"clean": "If The color of grass is green, then the answer is green", "corrupt": "If The color of sand is green, then the answer is brown", "target": " green", "foil": " brown"}
+{"clean": "If The animal that barks is the dog, then the answer is dog", "corrupt": "If The animal that gives wool is the dog, then the answer is sheep", "target": " dog", "foil": " sheep"}
+{"clean": "If The organ that pumps blood is the heart, then the answer is heart", "corrupt": "If The organ that protects the body is the heart, then the answer is skin", "target": " heart", "foil": " skin"}
+{"clean": "If The fruit that is red is the apple, then the answer is apple", "corrupt": "If The fruit that is sour and yellow is the apple, then the answer is lemon", "target": " apple", "foil": " lemon"}
+{"clean": "If Two plus two equals 4, then the answer is 4", "corrupt": "If Eight divided by two equals 4, then the answer is 4", "target": " 4", "foil": " 4"}
+{"clean": "If The capital of France is Paris, then the answer is Paris", "corrupt": "If The capital of Norway is Paris, then the answer is Oslo", "target": " Paris", "foil": " Oslo"}
+{"clean": "If The season with snow is winter, then the answer is winter", "corrupt": "If Moving air is called winter, then the answer is wind", "target": " winter", "foil": " wind"}
+{"clean": "If The color of grass is green, then the answer is green", "corrupt": "If The color of the sky is green, then the answer is blue", "target": " green", "foil": " blue"}
+{"clean": "If The animal that barks is the dog, then the answer is dog", "corrupt": "If The animal that climbs cliffs is the dog, then the answer is goat", "target": " dog", "foil": " goat"}
+{"clean": "If The organ that pumps blood is the heart, then the answer is heart", "corrupt": "If The fluid that carries oxygen is heart, then the answer is blood", "target": " heart", "foil": " blood"}
+{"clean": "If The fruit that is red is the apple, then the answer is apple", "corrupt": "If The fruit that is tart and green is the apple, then the answer is lime", "target": " apple", "foil": " lime"}
+{"clean": "If Two plus two equals 4, then the answer is 4", "corrupt": "If Ten minus seven equals 4, then the answer is 3", "target": " 4", "foil": " 3"}
+{"clean": "If The capital of France is Paris, then the answer is Paris", "corrupt": "If The capital of Finland is Paris, then the answer is Helsinki", "target": " Paris", "foil": " Helsinki"}
+{"clean": "If The season with snow is winter, then the answer is winter", "corrupt": "If A violent rotating storm is a winter, then the answer is tornado", "target": " winter", "foil": " tornado"}
+{"clean": "If The color of grass is green, then the answer is green", "corrupt": "If The color of clouds is green, then the answer is gray", "target": " green", "foil": " gray"}
+{"clean": "If The animal that barks is the dog, then the answer is dog", "corrupt": "If The animal that quacks is the dog, then the answer is duck", "target": " dog", "foil": " duck"}
+{"clean": "If The organ that pumps blood is the heart, then the answer is heart", "corrupt": "If The organ that sees light is the heart, then the answer is eye", "target": " heart", "foil": " eye"}
+{"clean": "If Two plus two equals 4, then the answer is 4", "corrupt": "If Seven plus one equals 4, then the answer is 8", "target": " 4", "foil": " 8"}
+{"clean": "If The capital of France is Paris, then the answer is Paris", "corrupt": "If The capital of Russia is Paris, then the answer is Moscow", "target": " Paris", "foil": " Moscow"}
+{"clean": "If The season with snow is winter, then the answer is winter", "corrupt": "If The measure of heat is called winter, then the answer is temperature", "target": " winter", "foil": " temperature"}
+{"clean": "If The color of grass is green, then the answer is green", "corrupt": "If The color of steel is green, then the answer is silver", "target": " green", "foil": " silver"}
+{"clean": "If The animal that barks is the dog, then the answer is dog", "corrupt": "If The animal that produces milk is the dog, then the answer is cow", "target": " dog", "foil": " cow"}
+{"clean": "If The organ that pumps blood is the heart, then the answer is heart", "corrupt": "If The organ that hears sound is the heart, then the answer is ear", "target": " heart", "foil": " ear"}
+{"clean": "If The fruit that is red is the apple, then the answer is apple", "corrupt": "If The drink made from roasted beans is apple, then the answer is coffee", "target": " apple", "foil": " coffee"}
+{"clean": "If Two plus two equals 4, then the answer is 4", "corrupt": "If Nine minus five equals 4, then the answer is 4", "target": " 4", "foil": " 4"}
+{"clean": "If The capital of France is Paris, then the answer is Paris", "corrupt": "If The capital of Japan is Paris, then the answer is Tokyo", "target": " Paris", "foil": " Tokyo"}
+{"clean": "If The season with rain showers is spring, then the answer is spring", "corrupt": "If The season with snow is spring, then the answer is winter", "target": " spring", "foil": " winter"}
+{"clean": "If The color of grass is green, then the answer is green", "corrupt": "If The color of gold is green, then the answer is gold", "target": " green", "foil": " gold"}
+{"clean": "If The animal that barks is the dog, then the answer is dog", "corrupt": "If The insect that makes honey is the dog, then the answer is bee", "target": " dog", "foil": " bee"}
+{"clean": "If The organ that pumps blood is the heart, then the answer is heart", "corrupt": "If The organ that smells is the heart, then the answer is nose", "target": " heart", "foil": " nose"}
+{"clean": "If The fruit that is red is the apple, then the answer is apple", "corrupt": "If The drink made from leaves is apple, then the answer is tea", "target": " apple", "foil": " tea"}
+{"clean": "If Two plus two equals 4, then the answer is 4", "corrupt": "If Six plus three equals 4, then the answer is 9", "target": " 4", "foil": " 9"}
+{"clean": "If The capital of France is Paris, then the answer is Paris", "corrupt": "If The capital of China is Paris, then the answer is Beijing", "target": " Paris", "foil": " Beijing"}
+{"clean": "If The season with rain showers is spring, then the answer is spring", "corrupt": "If The season with heatwaves is spring, then the answer is summer", "target": " spring", "foil": " summer"}
+{"clean": "If The color of grass is green, then the answer is green", "corrupt": "If The color of clay is green, then the answer is red", "target": " green", "foil": " red"}
+{"clean": "If The animal that barks is the dog, then the answer is dog", "corrupt": "If The insect that builds colonies is the dog, then the answer is ant", "target": " dog", "foil": " ant"}
+{"clean": "If The organ that pumps blood is the heart, then the answer is heart", "corrupt": "If The organ that tastes is the heart, then the answer is mouth", "target": " heart", "foil": " mouth"}
+{"clean": "If The fruit that is red is the apple, then the answer is apple", "corrupt": "If The grain used for bread is apple, then the answer is wheat", "target": " apple", "foil": " wheat"}
+{"clean": "If Two plus two equals 4, then the answer is 4", "corrupt": "If Five minus two equals 4, then the answer is 3", "target": " 4", "foil": " 3"}
+{"clean": "If The capital of France is Paris, then the answer is Paris", "corrupt": "If The capital of Canada is Paris, then the answer is Ottawa", "target": " Paris", "foil": " Ottawa"}
+{"clean": "If The season with rain showers is spring, then the answer is spring", "corrupt": "If The season with falling leaves is spring, then the answer is autumn", "target": " spring", "foil": " autumn"}
+{"clean": "If The color of coal is black, then the answer is black", "corrupt": "If The color of grass is black, then the answer is green", "target": " black", "foil": " green"}
+{"clean": "If The animal that purrs is the cat, then the answer is cat", "corrupt": "If The animal that barks is the cat, then the answer is dog", "target": " cat", "foil": " dog"}
+{"clean": "If The organ that controls thought is the brain, then the answer is brain", "corrupt": "If The organ that pumps blood is the brain, then the answer is heart", "target": " brain", "foil": " heart"}
+{"clean": "If The fruit that is yellow is the banana, then the answer is banana", "corrupt": "If The fruit that is red is the banana, then the answer is apple", "target": " banana", "foil": " apple"}
+{"clean": "If Three plus three equals 6, then the answer is 6", "corrupt": "If Two plus two equals 6, then the answer is 4", "target": " 6", "foil": " 4"}
+{"clean": "If The capital of Italy is Rome, then the answer is Rome", "corrupt": "If The capital of France is Rome, then the answer is Paris", "target": " Rome", "foil": " Paris"}
+{"clean": "If The season with rain showers is spring, then the answer is spring", "corrupt": "If Frozen water from the sky is called spring, then the answer is snow", "target": " spring", "foil": " snow"}
