@@ -41,6 +41,15 @@ mlruns/*
 *.html
 *.pdf
 
+# LaTeX aux files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.toc
+
 # IDE
 .vscode/
 .idea/
