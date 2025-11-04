@@ -40,7 +40,6 @@ mlruns/*
 *.png
 *.html
 *.pdf
-!paper/figures/geometric_signature.png
 
 # LaTeX aux files
 *.aux

@@ -2,7 +2,7 @@
 
 A reproducible, local‑first workspace for mechanistic interpretability on Apple Silicon. This repository accompanies the October 2025 study **“Layer‑0 Suppressors Ground Hallucination Inevitability”**, and ships end‑to‑end code to replicate the findings on GPT‑2 Medium and Mistral‑7B. It now includes the geometric validation of suppressors via output entropy and trajectory curvature.
 
-Paper PDF: `paper/main.pdf`
+Paper PDF: `paper/main.pdf` | Archive: https://zenodo.org/records/17524770
 
 Key idea: circuits that implement the factuality vs hedging tradeoff crystallize at the first bottleneck (layer 0). We validate this prediction with dual observables (power: ΔLD; information: calibration), random head baselines, cross‑architecture checks, path mediation, and now geometric signatures.
 
@@ -15,11 +15,6 @@ Key idea: circuits that implement the factuality vs hedging tradeoff crystallize
 - Location is forced by geometry: the operation appears at layer 0; implementation varies by model.
 - Fully reproducible harness and figure scripts; all key reports are committed.
 
-### Geometric Signature Figure
-
-![Geometric signature](paper/figures/geometric_signature.png)
-
-Left: distribution of output‑entropy deltas from random layer‑0 head sets (gray). Vertical lines show observed deltas for the four tasks under ablation of heads (0:2, 0:4, 0:7) in GPT‑2 Medium. Right: early curvature deltas (all negative), consistent with removal of an early hedging attractor.
 
 ## Table of Contents
 
@@ -159,7 +154,7 @@ The bundle includes the manifest, head rankings, OV reports, and docs for indepe
 - Reverse patching — `lab/runs/h6_layer_targets_window_balanced_*`
 - OV projections and partial patches — `reports/ov_report_*.json`, `reports/facts_partial_summary.json`
 - Geometric signature reports — `reports/activation_entropy_gpt2medium_*_robust.json`
-- Geometric signature figure — `paper/figures/geometric_signature.pdf` and `.png`
+- Geometric signature reports — JSONs in `reports/` (see above). Figure scripts in `paper/scripts/` can regenerate plots locally.
 
 Feel free to inspect these directly or rerun analyses using the scripts referenced in `Results.md`.
 
