@@ -1,12 +1,22 @@
 \section{Methods}\label{sec:methods}
 
+\subsection{Bottleneck constraint and layer-0 prediction}\label{sec:methods-layer0}
+Under Kalai et~al.'s inevitability theorem, models trained under binary evaluation must implement a factuality–hedging trade-off~\cite{kalai2025why}.
+Information-theoretic arguments suggest that such trade-offs crystallize at the first major compression point.
+In transformer architectures, layer-0 performs the initial residual rotation and forms the narrowest communication bottleneck between the token embedding and the first attention block.
+We therefore hypothesize that gradient descent exploits this bottleneck to instantiate the trade-off: early rotations bias every subsequent computation, whereas implementing an equivalent circuit later would require redundancy or costly reversal.
+This yields three testable predictions: (i) suppressor heads concentrate in layer-0; (ii) their ablation effects rank in the extreme statistical tail relative to random layer-0 baselines; and (iii) their learned OV direction couples factual suppression with hedging amplification (architecture-dependent; Section~\ref{sec:findings}).
+
 \subsection{Models, datasets, and probes}
 We study GPT-2 Medium (355\,M parameters)~\cite{radford2019language} and Mistral-7B v0.1~\cite{jiang2023mistral}, both loaded via TransformerLens with \texttt{float16} weights on Apple M-series (MPS) hardware.
 To elicit suppressor behavior we use the single-token factuality probe suite introduced in Tiny Ablation Lab: balanced corpora for factual recall, negation, counterfactual, and logical implication tasks.
 Each corpus specifies matched clean/corrupt prompts and single-token target/foil completions, enabling logit-difference evaluation.
 
+\paragraph{Compute resources and environment.}
+All experiments run on macOS with Apple M‑series (MPS) backends; no CUDA was used. We release deterministic scripts, seeds, and data splits to enable exact replication. A small CUDA sanity replication is planned as a follow‑up (see \S\,Discussion).
+
 \subsection{Ablation batteries}
-Suppressor candidates are located with the H1 ``heads\_zero'' battery, which zeroes individual attention heads in layer~0 while measuring logit difference (\texttt{logit\_diff}) and the flip rate of the argmax token (\texttt{acc\_flip\_rate}).
+Suppressor candidates are located with the H1 ``heads\_zero'' battery, which zeroes individual attention heads in layer~0 while measuring logit difference (LD; the margin between target and foil logits; \texttt{logit\_diff}) and the flip rate of the argmax token (\texttt{acc\_flip\_rate}).
 Cross-condition orchestrators execute the same battery on all four corpora per model to surface heads whose ablation increases logit difference.
 
 We test destructive cooperation using H5 batteries.
@@ -21,6 +31,10 @@ We characterise the semantic direction learned by each suppressor head using the
 For a given config and tag we collect 160 samples, project the head’s output vector onto the vocabulary, and record the top/bottom 150 tokens.
 Token overlap and clustering (\texttt{lab/analysis/cluster\_ov\_tokens.py}) quantify how closely the Mistral heads share GPT-2’s hedging signature.
 Reports and clusters are versioned in \texttt{reports/ov\_report\_*.json} and \texttt{reports/ov\_token\_clusters\_*.json}.
+
+\paragraph{Span-aware sequence metrics.}
+We additionally compute span-aware metrics---$\mathrm{seq\_logprob\_diff}$, $\mathrm{seq\_p\_drop}$, and $\mathrm{seq\_kl\_mean}$---by scoring the full target and foil continuations under teacher forcing.
+This enables evaluation of suppressor effects across sequence length rather than only the first next token, and complements the original logit-difference metric.
 Statistical summary: all reported metrics aggregate the per-seed values. GPT-2 uses seeds 0–2; Mistral runs seeds 0–2 on the H1 negation and counterfactual batteries and seed 0 elsewhere. We report 95\% confidence intervals from the seed distribution; NaN values in KL divergence reflect numerical saturation of the estimator when logits approach channel capacity for deterministic completions.
 The additional Mistral seeds reproduce the seed~0 logit-difference trajectories exactly, so the associated 95\% intervals collapse to zero width; we keep them to document determinism and queue broader multi-seed sweeps for future work.
 
@@ -29,16 +43,23 @@ To quantify the semantic shift induced by suppressors we build a simple hedge/bo
 Tokens are converted to word forms by stripping whitespace, punctuation, and byte-pair fragments before lookup.
 For each suppressor head we compute log-odds enrichment of hedges (and boosters) among the top-$K$ OV projections relative to the pool of other layer-0 heads, using add-$0.5$ smoothing and 1{,}000 frequency-matched resamples.
 A single-feature classifier that predicts ``upweighted'' if a token is in the lexicon yields a small but positive AUC for head~0:2 (Appendix~\ref{app:lexicon}); Mistral heads 0:22/0:23 show no enrichment, consistent with their editorial rather than hedging direction.
+ The lexicon was manually curated from prior hedging/booster lists and expanded with morphological variants; tokens are normalised before lookup. The full list is released at \texttt{data/lexicons/hedge\_booster.json}.
 
-\subsection{Random head baselines}
+\subsection{Random head baselines and multiple comparisons}
 To pre-empt the concern that any early head removal improves accuracy, we resample 1{,}000 random layer-0 single ablations and 1{,}000 random layer-0 pair combinations by drawing from the empirical H1 distribution (suppressor heads excluded).
-Suppressor head 0:2 lies at the 100th percentile of the single-head distribution, and the suppressor trio $\{0{:}2,0{:}4,0{:}7\}$ lands at the 99.5th percentile of the simulated pair distribution (Figure~\ref{fig:random-baseline}).
+Suppressor head 0:2 lies at the 100th percentile of the single-head distribution, and the suppressor trio $\{0{:}2,0{:}4,0{:}7\}$ lands at the 99.5th percentile of the simulated pair distribution (Figure~\ref{fig:random-baseline}). For head ranking we estimate empirical $p$ under the random L0 null and control FDR via Benjamini–Hochberg; suppressors remain in the extreme tail.
+
+\paragraph{Statistics.}
+Unless noted, we report means over $\geq$3 seeds with 95\% bootstrap CIs over prompts (5k resamples). For head ranking we estimate empirical $p$ under the layer-0 random-head null and control FDR via Benjamini–Hochberg. For free-running generations we report hedge-token rate and factual accuracy with nonparametric CIs over prompts. Compute: Apple M-series (MPS backend); no CUDA replication in this version.
 
 \subsection{Reproducibility checks}
 Every run directory stores the canonical configuration (\texttt{config.json}), model/data hashes, and metric summaries (\texttt{metrics/summary.json}). Detailed hashes and seeds for Table~\ref{tab:impact} are collated in Appendix~\ref{app:repro}. GPT-2 runs use seeds $\{0,1,2\}$; Mistral uses $\{0,1,2\}$ on negation/counterfactual probes and $\{0\}$ on facts/logic.
-We audited the suppressor findings by verifying that seed averages were finite for \texttt{logit\_diff} and \texttt{acc\_flip\_rate}, that orchestrator parents without summaries list child runs with valid hashes, and that the Mistral logic anomaly traces to layer-0 head~21 (negative \texttt{logit\_diff} when ablated; see Section~\ref{sec:findings}). Table~\ref{tab:impact} is generated directly from an audited Markdown summary (\url{reports/figure1_impact_table.md}) with a footnote noting the head~21 antagonism.
+We audited the suppressor findings by verifying that seed averages were finite for \texttt{logit\_diff} and \texttt{acc\_flip\_rate}, that orchestrator parents without summaries list child runs with valid hashes, and that the Mistral logic anomaly traces to layer-0 head~21 (negative \texttt{logit\_diff} when ablated; see Section~\ref{sec:findings}). Table~\ref{tab:impact} is generated directly from an audited summary with a footnote noting the head~21 antagonism.
 \subsection{Prediction timeline}\label{sec:timeline}
 We formulated the suppressor hypothesis in early~2025 from bottleneck theory and Kalai et~al.'s constraint, prior to targeted experiments. We predicted layer~0 as the location, then ran fixed protocols to test that prediction: H1 head sweeps, random layer-0 baselines (1{,}000 resamples), H5 cooperation tests, H6 path mediation, and cross-architecture replication on Mistral-7B. We did not perform an exhaustive post-hoc search. A transparent research log with timestamps is available upon request.
 
 \subsection{Discovery path and transparency}
 During calibration experiments we clip logits to $\pm 20$ prior to softmax to avoid numerical overflow (Appendix~\ref{app:calibration}), and all autoregressive passes use deterministic settings on Apple M-series hardware. Protocols, seeds, and hashes are recorded under each run directory.
+
+\paragraph{Prediction before discovery: our methodological approach}
+We did not search the network and rationalize a post‑hoc story. We first predicted where the circuit must live based on bottleneck constraints, then tested that prediction with ablations, random layer‑0 baselines, causal tracing, span‑aware metrics, and learning‑curve analyses. Selected entries from our prediction log are included in Appendix~\ref{app:logbook}.

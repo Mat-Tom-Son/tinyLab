@@ -34,11 +34,16 @@ def load_transformerlens(model_cfg, device="auto"):
 
     name = model_cfg.get("name", "gpt2-small")
     hf_repo = model_cfg.get("hf_model")
+    revision = model_cfg.get("revision")  # Optional HF revision/tag (e.g., step checkpoints)
     print(f"Loading model: {name} to {device} with {dtype}")
     if hf_repo:
-        model = HookedTransformer.from_pretrained(
-            name, device=device, dtype=dtype, hf_model=hf_repo
-        )
+        kwargs = {"device": device, "dtype": dtype, "hf_model": hf_repo}
+        if revision:
+            kwargs["revision"] = revision
+        model = HookedTransformer.from_pretrained(name, **kwargs)
     else:
-        model = HookedTransformer.from_pretrained(name, device=device, dtype=dtype)
+        kwargs = {"device": device, "dtype": dtype}
+        if revision:
+            kwargs["revision"] = revision
+        model = HookedTransformer.from_pretrained(name, **kwargs)
     return model

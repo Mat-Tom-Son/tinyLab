@@ -1,23 +1,26 @@
 \section{Introduction}
 
-Information bottleneck theory tells us where dimensionality compression—and therefore geometric constraint—occurs in deep networks. Kalai et~al.~\cite{kalai2025why} formalize what trade-off language models must learn: benchmarks that reward confidence will select for hedging when ground truth is uncertain. We combine these views into a \emph{bottleneck prediction}: circuits implementing the factuality–hedging trade-off should crystallize at the first major bottleneck—layer~0. This paper validates that prediction.
+Information bottleneck theory predicts that dimensionality compression—and thus the highest geometric constraint—occurs at layer-0. Kalai et~al.~\cite{kalai2025why} formalize the objective-level pressure: under binary evaluation, models must balance factuality with hedging when ground truth is uncertain. We conjecture that any circuit instantiating this trade-off will crystallize at layer-0: early residual rotations constrain all downstream computation, making later reversal costly. This yields a falsifiable prediction: if suppressors exist, they should concentrate at layer-0 and rank in the extreme tail under random baselines. We validate that prediction.
+
+\paragraph{A narrow doorway.}
+Imagine a transformer as a multi‑storey building. At ground level, raw tokens enter through a narrow doorway—layer~0—where the representation is compressed and rotated before any higher‑level “thinking” occurs. Choices made at this doorway are hard to undo: early rotations constrain every floor above. This physical metaphor anchors why bottleneck theory makes falsifiable predictions about early layers and motivates our focus on layer~0.
 
 We identify and characterize a family of circuits we call \emph{layer-0 suppressors}.
 Suppressors are small coalitions of attention heads in the very first transformer layer that systematically down-weight factual continuations and boost uncertainty markers or meta-commentary.
 They are not idiosyncratic: ablating them recovers as much as $0.85$ logit-difference points on factual, negation, and counterfactual probes, and analogous motifs appear in both GPT-2 Medium (355\,M) and Mistral-7B despite their architectural differences.
 We operationalize an \emph{attractor} as a regime in which injecting suppressor activations into an otherwise clean run induces a stable hedging pattern that downstream layers do not undo (reverse-patch $\Delta \mathrm{LD} \geq 0.3$ for at least one probe).
 
-Our study contributes four findings.
+We report four main findings.
 \begin{enumerate}
     \item \textbf{Suppressors are structural.} Cross-task head-ablation sweeps show that the same layer-0 heads remain high-impact across diverse corpora, even after dataset rebalancing removes token-frequency confounds.
-    \item \textbf{They lock in behavioral modes.} Forward/reverse patch experiments demonstrate that suppressors act as entry points to the hedging attractor defined above.
+    \item \textbf{They bias downstream computation.} Forward/reverse patch experiments show that suppressor perturbations induce a hedging pattern that downstream layers do not fully correct under our protocols, consistent with an early-layer attractor.
     \item \textbf{Implementations adapt to architecture.} GPT-2 learns a unified suppressor trio that simultaneously suppresses factuality and boosts hedging, whereas Mistral learns a task-contingent pair opposed by an anti-suppressor on logic tasks and lacking the hedging boost.
     \item \textbf{The motif is learned.} Suppressors emerge during training as a behavioral prior consistent with Kalai et al.'s incentives; they are neither hard-coded nor artifacts of a single model family.
 \end{enumerate}
 
 By grounding Kalai et al.'s theoretical inevitability in concrete circuits, we bridge statistical and mechanistic interpretability.
-Our results imply that evaluation reform alone may not eliminate hallucinations: once suppressors have crystallised, they steer computation toward hedging by default.
+Our results imply that evaluation reform alone may not eliminate hallucinations: once suppressors have crystallized, they steer computation toward hedging by default.
 Direct circuit-level intervention or steering may therefore be required to restore truthful behavior.
 
 \subsection*{Why layer~0?}
-Layer~0 is both the first point of strong compression and the stage where optimization pressure is highest with respect to geometric constraints. If a model must encode a factuality–hedging trade-off anywhere, the bottleneck forces it to appear here: early residual rotations bias downstream computation, making later correction costly. This yields a falsifiable prediction: if suppressors exist, they should concentrate at layer~0 and rank in the extreme tail under random baselines.
+See Section~\ref{sec:methods-layer0} for a formal motivation based on bottleneck constraints and falsifiable predictions.

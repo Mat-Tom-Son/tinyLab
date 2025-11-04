@@ -29,6 +29,14 @@ def run(model: HookedTransformer, dset, cfg, battery, device):
     token_clean = model.to_tokens(clean_texts)
     token_corrupt = model.to_tokens(corrupt_texts)
 
+    # Prepare span-aware sequence batches once if requested
+    metric_span = cfg.get("metric_span", "first_token")
+    seq_batches = None
+    if metric_span != "first_token":
+        # For sequence evaluation, we always use clean prompt + {target, foil}
+        tokens_tgt, tokens_foil, cont_t, cont_f = M.build_sequence_batches(model, dset, cfg)
+        seq_batches = (tokens_tgt, tokens_foil, cont_t, cont_f)
+
     # Forward w/ cache to get baseline activations and logits
     with torch.no_grad():
         clean_logits, cache_clean = model.run_with_cache(token_clean)
@@ -108,6 +116,22 @@ def run(model: HookedTransformer, dset, cfg, battery, device):
         summary, per_ex = M.evaluate_outputs(
             model, baseline_logits, logits_patched, dset, cfg
         )
+        # Span-aware metrics (optional): evaluate on clean prompt + {target, foil}
+        if seq_batches is not None:
+            tokens_tgt, tokens_foil, cont_t, cont_f = seq_batches
+
+            def f_clean(tokens):
+                with torch.no_grad():
+                    return model(tokens)
+
+            def f_abl(tokens):
+                with torch.no_grad():
+                    return model.run_with_hooks(tokens, fwd_hooks=[(node, patch_fn)])
+
+            seq_metrics = M.compute_seq_metrics_from_forwards(
+                model, tokens_tgt, tokens_foil, cont_t, cont_f, f_clean, f_abl
+            )
+            summary.update(seq_metrics)
         summary["layer"] = layer
         if logits_patched.shape != baseline_logits.shape:
             seq_len = min(logits_patched.size(1), baseline_logits.size(1))
@@ -130,6 +154,9 @@ def run(model: HookedTransformer, dset, cfg, battery, device):
 
     # Aggregate metrics
     metric_names = ["logit_diff", "kl_div", "acc_flip_rate", "p_drop", "max_abs_delta"]
+    for m in ["seq_logprob_diff", "seq_p_drop", "seq_kl_mean"]:
+        if m in df:
+            metric_names.append(m)
     agg_summary = {m: float(df[m].mean()) for m in metric_names if m in df}
 
     # Create pivot table for heatmap

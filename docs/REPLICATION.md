@@ -17,6 +17,8 @@ python smoke_test.py  # optional sanity check
 
 The harness assumes PyTorch MPS; set `"device": "cpu"` in configs if you need CPU fallback (slow).
 
+Multi-token evaluation: set `"metric_span": "full_target"` to add span-aware metrics (`seq_logprob_diff`, `seq_p_drop`, `seq_kl_mean`) while preserving first-token metrics for comparability. These flow into the standard parquet tables.
+
 ## 1. Data & Tokeniser Variants
 
 The repository ships the exact corpora used:

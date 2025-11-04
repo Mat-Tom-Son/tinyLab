@@ -54,6 +54,16 @@ All runs log reproducibility metadata (`config.json`, hashes, seeds, git commit)
 
 For a quick orientation of directories, see [docs/STRUCTURE.md](docs/STRUCTURE.md).
 
+### Multi-token Evaluation (new)
+
+Set `"metric_span": "full_target"` in any config to enable span-aware metrics that score the entire target vs foil continuation under teacher forcing. New metrics are added alongside existing first‑token metrics and flow into the standard tables:
+
+- `seq_logprob_diff` — mean over examples of log p(target seq) − log p(foil seq) under the ablated model.
+- `seq_p_drop` — mean drop in log p(target seq) from clean to ablated.
+- `seq_kl_mean` — mean KL(p_clean || p_ablated) across continuation positions (target path).
+
+This works with current single‑token corpora and generalizes automatically to multi‑token corpora when provided.
+
 ### Regenerate Standardized Reports
 
 After running H1/H5/H6, regenerate all standardized exports (summaries, rankings, OV token tables, H5/H6 consolidated CSVs, manifest) with:

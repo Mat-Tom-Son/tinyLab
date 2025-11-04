@@ -5,6 +5,7 @@ Suppressors suggest a richer picture.
 When the suppressor trio fires in GPT-2---or the {22, 23} pair in Mistral---the residual stream exiting layer~0 already contains a hedging-oriented rotation of token probabilities.
 Downstream attention and feedforward blocks therefore operate in a regime where plausible meta-commentary is pre-selected, making it costly for later layers to reintroduce factual certainty.
 Reverse-patch experiments support this attractor view: inserting clean activations into an ablated run does not restore factuality, yet inserting corrupted suppressor activations into a clean run rapidly induces hedging.
+Like starting in the wrong lane on a highway, a layer‑0 bias forces later layers to spend capacity changing lanes; correction is possible but costly, so the early hedging trajectory tends to persist.
 Figure~\ref{fig:path-dag} summarises the mediated contribution on the facts probe: ablation alone yields $\Delta\mathrm{LD}=+0.40$, reinstating only the suppressor$\rightarrow$layer-11 path leaves $\Delta\mathrm{LD}=+0.13$, so $67\%$ of the effect is mediated by that path; the reciprocal reverse patch drives $\Delta\mathrm{LD}=-0.93$ in the clean model.
 
 In GPT-2, the semantic direction couples suppression and hedging: factual stems are demoted while hedging vocabulary is promoted.
@@ -19,8 +20,8 @@ Rather than toggling individual token probabilities late in the computation, the
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.48\textwidth]{figures/path_patch_dag.pdf}
-    \caption{Path patch DAG on the facts probe. Ablation yields $\Delta\mathrm{LD}=+0.40$; reinstating only the suppressor$\rightarrow$layer-11 path leaves $\Delta\mathrm{LD}=+0.13$ (mediated fraction $=\Delta\mathrm{LD}_{\text{path}}/\Delta\mathrm{LD}_{\text{ablation}}=0.67$). Reverse patching the corrupted residual stream into the clean model produces $\Delta\mathrm{LD}=-0.93$.}
+    \includegraphics[width=0.82\linewidth]{figures/path_patch_dag.pdf}
+    \caption{\textbf{Attractor mediation via path patching.} Forward patch (reinstated L0$\rightarrow$L11 path): $\Delta$LD $= +0.13$; Reverse patch at L11: $\Delta$LD $= -0.93$; Mediated fraction $= 0.13/0.40 \approx 67\%$. Interventions are applied to the residual stream at Layer~11; readout is at the unembedding.}
     \label{fig:path-dag}
 \end{figure}
 

@@ -7,3 +7,9 @@ Their presence across GPT-2 and Mistral, despite architectural differences, sugg
 Because suppressors operate at the very start of the computation, downstream layers inherit the hedging mode and reinforce it, explaining why truthful answers remain elusive even when models possess the requisite knowledge.
 Evaluation reform will be necessary to prevent new suppressors from forming, but existing models may also require direct circuit-level intervention.
 Understanding, cataloguing, and steering suppressors therefore offers a promising path toward reducing hallucinations while preserving calibrated uncertainty.
+
+\paragraph{Gatekeepers of doubt.}
+Layer‑0 suppressors act as gatekeepers of doubt—embedding cautious framing into the computation before the model has begun to reason. Once this trajectory is set, it echoes through the network, making downstream honesty harder to reclaim. Recognizing and steering these gatekeepers is therefore central to aligning confidence with knowledge.
+
+\paragraph{Objective-aware alignment.}
+Our measurements suggest suppressors are not merely idiosyncratic artefacts of a particular checkpoint, but attractors shaped by objectives and evaluation protocols. This motivates an \emph{objective-aware} approach to alignment: reason about which constraints force suppressors to emerge, then design training procedures (pretraining curricula, RLHF reward shaping, Constitutional rules) that avoid pathological attractors or make their activation task-contingent and auditable.

@@ -27,7 +27,31 @@ Table~\ref{tab:lexicon-logodds} summarises the resulting log-odds ratios and the
 
 The enrichment confirms that GPT-2 head~0:2 amplifies both hedges and boosters relative to other layer-0 heads, whereas the remaining GPT-2 heads and the Mistral pair exhibit no measurable enrichment. The AUC values stay near 0.50, as expected for a single-feature sanity check.
 
+\paragraph{Coverage.} Post-normalisation, the lexicon contains 36 hedging terms and 21 boosters.
+
 \input{generated/token_tables.tex}
+
+\section{Multi-token OV summaries for recovery heads}
+\label{app:multitoken-ov}
+
+To contextualise the span-aware results on negation/logic, Table~\ref{tab:ov-recovery-heads} summarises representative OV tokens for the recovery-leaning layer-0 heads and contrasts them with the canonical suppressor head~0:2.
+
+\begin{table}[h]
+    \centering
+    \caption{Representative OV tokens for heads implicated by span-aware metrics. ``Lexicon Match'' reports matches against the hedge/booster lexicon in Appendix~\ref{app:lexicon}.}
+    \label{tab:ov-recovery-heads}
+    \small
+    \begin{tabular}{@{}p{0.07\linewidth}p{0.10\linewidth}p{0.40\linewidth}p{0.15\linewidth}p{0.18\linewidth}@{}}
+        \toprule
+        Head & Task & Top Tokens (rep.) & Lexicon Match & Interpretation \\
+        \midrule
+        0:2  & Facts & \emph{perhaps}, \emph{maybe}, \emph{seems}, \emph{totally} & Hedges $(+1.2)$, Boosters $(+4.3)$ & Factuality suppression + hedging amplification \\
+        0:11 & Negation & \emph{EntityItem}, \emph{Entry}, \emph{guiName} & None & Structural/technical reframing \\
+        0:12 & Logic & \emph{respectfully}, \emph{politely}, \emph{silently} & None & Editorial manner adverbial \\
+        0:14 & Logic & \emph{envisioned}, \emph{lamented}, \emph{feared} & None & Past-tense narrative framing \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \section{Calibration and numerical stability}
 \label{app:calibration}
@@ -49,3 +73,6 @@ To avoid numerical overflow we clip logits to the range $[-20,20]$ before applyi
 
 \section{Discovery path and transparency}\label{app:transparency}
 We formulated a layer~0 prediction prior to targeted experiments based on bottleneck theory and Kalai et~al.'s constraint. We then ran fixed protocols: H1 head sweeps, random layer~0 baselines (1{,}000 resamples), H5 cooperation tests, H6 path mediation, and cross-architecture replication. We did not perform an exhaustive post-hoc search. A timestamped research log is available upon request.
+
+\section{Research logbook (selected entries)}\label{app:logbook}
+We include brief excerpts that document the prediction‑first path, falsification strategies, and the development of the suppressor hypothesis. A fuller notebook and time‑stamped logs are maintained in the repository’s \texttt{devlog/} directory and associated GitHub releases. We encourage evaluation of null results and alternative hypotheses; publishing the null is part of our methodology.

@@ -17,9 +17,10 @@
       "target_field": "target",
       "foil_field": "foil"
     },
-    "metrics": ["logit_diff", "acc_flip_rate"],
+    "metrics": ["logit_diff", "acc_flip_rate", "p_drop", "kl_div", "seq_logprob_diff", "seq_p_drop", "seq_kl_mean"],
     "batch_size": 8,
-    "max_seq_len": 256
+    "max_seq_len": 256,
+    "metric_span": "full_target"
   },
   "conditions": [
     {

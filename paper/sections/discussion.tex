@@ -12,7 +12,7 @@ Mapping suppressors across GPT-3, Llama, Pythia, Qwen, and other families is nec
 
 \paragraph{Training dynamics.}
 We observe suppressors in fully-trained networks but did not instrument training.
-It remains unknown when suppressors crystallise, whether they emerge gradually or via abrupt phase transitions, and how alternative objectives (e.g.\ DPO, constitutional AI) modify them.
+It remains unknown when suppressors crystallize, whether they emerge gradually or via abrupt phase transitions, and how alternative objectives (e.g.\ DPO, constitutional AI) modify them.
 
 \paragraph{Methodological advance.}
 We did not search the full network and then rationalize what we found. We predicted layer~0 from first principles and validated it with tests designed to reject artifacts:
@@ -24,5 +24,34 @@ We did not search the full network and then rationalize what we found. We predic
 \end{itemize}
 This prediction-first framing strengthens the interpretation and provides a template for subsequent studies.
 
+\paragraph{Limitations.}
+\begin{itemize}
+    \item \textbf{Scope.} Our study focuses on decoder-only models, short prompts, and English-centric probe corpora. Multilingual settings and encoder–decoder architectures remain to be tested.
+    \item \textbf{Seeds.} Mistral facts/logic use a single seed; Pythia sweeps use a single seed per checkpoint. Trends are robust but we do not report full confidence intervals for learning dynamics.
+    \item \textbf{Generation.} We evaluate teacher-forced probabilities and short contexts; fully free-running, long-context behaviour is an open question.
+\end{itemize}
+
+\subsection{Suppressors as architectural solutions to conflicting objectives}
+Across GPT-2 and Mistral, we observe a conservation law: (i) \emph{function is conserved}—a circuit that implements the factuality–hedging trade-off; (ii) \emph{implementation adapts}—different heads, OV semantics, and task-contingency; and (iii) \emph{location is forced}—layer~0 in both architectures.
+This pattern—conserved function, adapted implementation, forced location—is precisely what information-theoretic constraint predicts.
+The objective (Kalai et~al.'s incentives) and geometry (the layer-0 bottleneck) are universal; architecture and training data determine \emph{how} the solution is instantiated.
+Overall, the evidence is \emph{consistent with constrained early-layer solutions}: location appears constrained by geometry, while implementation varies in form across models.
+
+\subsection{Training regime as a determinant of circuit structure}
+An important question follows from these results: are suppressors determined solely by information-geometric constraints, or do they also reflect the specific training regime? We observe layer-0 suppression under pure next-token prediction pretraining (Pythia learning dynamics; Section~\ref{sec:findings}), suggesting the objective alone is sufficient to induce a hedging attractor at the first bottleneck. However, modern production models undergo RLHF, Constitutional AI, and other fine-tuning procedures that explicitly reward hedging or rule-based caution.
+
+We predict these methodologies will not eliminate suppressors, but rather \emph{intensify and reorient} them, creating task-contingent attractor geometries tailored to the fine-tuning objective.
+
+\paragraph{Testable predictions.} (i) RLHF-fine-tuned models should show larger output-entropy flattening (more negative $\Delta H$) on factual probes than their pretrained counterparts, as human raters often reward cautious phrasing; (ii) Constitutional-AI models should exhibit task-contingent suppressor activation: stronger on harmful/safety-sensitive queries (where rules mandate caution), weaker on straightforward factual retrieval (where accuracy is rewarded). Different objectives carve different energy landscapes; suppressors are the attractors that emerge at information bottlenecks within those landscapes.
+
+This framing connects circuit structure to training design. Rather than treating suppressors as arbitrary learned behaviours, we can predict their form from constraints imposed by objectives, data distributions, and evaluation protocols. This suggests a path toward \emph{objective-aware alignment}: designing training regimes that avoid pathological circuits by understanding which constraints force their emergence.
+
+\paragraph{Geometric validation.}
+Direct measurements complement power and calibration: ablating suppressors reduces last-token output entropy by $2.4$–$3.8$~nats across all four probes (randomisation tests with 50 random head sets per probe yield $p<0.02$ in the predicted direction) and reduces early trajectory curvature at layer~0 (Section~\ref{sec:geom-signature}). Activation entropy estimates (full/diagonal/subspace/per-token) consistently decrease under ablation but are not extreme versus random controls, suggesting an expansion+rotation mechanism in activation space rather than naive compression—while outputs flatten in the baseline and sharpen upon ablation. These signatures reinforce layer~0 as the locus where the factuality–hedging trade-off is instantiated.
+
+As seen with Mistral’s anti-suppressor (Section~\ref{sec:findings}), circuit competition can yield task-contingent robustness—or fragility—depending on input distribution, motivating distribution-aware evaluations.
+
+We treat steering as task-scoped: the small effect sizes and smooth ECE behavior argue against global de-hedging; practical use should gate interventions by task and report calibration alongside accuracy.
+
 \paragraph{Threats to validity.}
-All experiments use deterministic Apple M-series (MPS) kernels; while we observed identical seeds across runs, CUDA backends may introduce numerical drift. Mistral results currently use a single seed, and we rely on byte-pair token cleanup when constructing the hedge/booster lexicon, so residual tokenization artifacts may remain. Finally, the probe suite covers single-token judgments; multi-token generation may surface additional suppressor interactions.
+All experiments use deterministic Apple M-series (MPS) kernels; while we observed identical seeds across runs, CUDA backends may introduce numerical drift. Mistral results currently use a single seed, and we rely on byte-pair token cleanup when constructing the hedge/booster lexicon, so residual tokenization artifacts may remain. We augmented single-token probes with span-aware, teacher-forced sequence metrics (Section~\ref{sec:findings}) and observed the same early-layer bias with partial downstream recovery across all four tasks, supporting robustness beyond single-token evaluation. Open questions remain for fully free-running generation and longer contexts.

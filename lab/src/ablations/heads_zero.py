@@ -33,6 +33,13 @@ def run(model, dset, cfg, battery, device):
 
     impact_rows, per_ex_rows = [], []
 
+    # Optional preparation for span-aware (multi-token) metrics
+    metric_span = cfg.get("metric_span", "first_token")
+    seq_batches = None
+    if metric_span != "first_token":
+        tokens_tgt, tokens_foil, cont_t, cont_f = M.build_sequence_batches(model, dset, cfg)
+        seq_batches = (tokens_tgt, tokens_foil, cont_t, cont_f)
+
     # Respect layer/head subsets
     layers = (
         range(model.cfg.n_layers)
@@ -80,6 +87,22 @@ def run(model, dset, cfg, battery, device):
                 summary, per_ex = M.evaluate_outputs(
                     model, clean_logits, logits_patched, dset, cfg
                 )
+                # Span-aware metrics (if requested via cfg["metric_span"])
+                if seq_batches is not None:
+                    tokens_tgt, tokens_foil, cont_t, cont_f = seq_batches
+
+                    def f_clean(tokens):
+                        with torch.no_grad():
+                            return model(tokens)
+
+                    def f_abl(tokens):
+                        with torch.no_grad():
+                            return model.run_with_hooks(tokens, fwd_hooks=[(node, zero_fn)])
+
+                    seq_metrics = M.compute_seq_metrics_from_forwards(
+                        model, tokens_tgt, tokens_foil, cont_t, cont_f, f_clean, f_abl
+                    )
+                    summary.update(seq_metrics)
                 summary.update({"layer": layer, "head": head, "scale": s})
                 impact_rows.append(summary)
 
@@ -88,9 +111,12 @@ def run(model, dset, cfg, battery, device):
                 per_ex_rows.extend(per_ex)
 
     df = pd.DataFrame(impact_rows)
-    agg_summary = {
-        m: float(df[m].mean()) for m in ["logit_diff", "kl_div", "acc_flip_rate", "p_drop"]
-    }
+    # Aggregate metrics, including sequence metrics if present
+    metric_names = ["logit_diff", "kl_div", "acc_flip_rate", "p_drop"]
+    for m in ["seq_logprob_diff", "seq_p_drop", "seq_kl_mean"]:
+        if m in df:
+            metric_names.append(m)
+    agg_summary = {m: float(df[m].mean()) for m in metric_names if m in df}
 
     # Pivot for heatmap
     impact_matrix = df.pivot_table(
@@ -101,7 +127,9 @@ def run(model, dset, cfg, battery, device):
     # Transform from wide to long format for machine-readable analysis
     impact_table_rows = []
     for _, row in df.iterrows():
-        for metric in ["logit_diff", "kl_div", "acc_flip_rate", "p_drop"]:
+        for metric in metric_names:
+            if metric not in row:
+                continue
             impact_table_rows.append({
                 "run_id": cfg.get("run_name", "unknown"),
                 "seed": cfg.get("seed", 0),
