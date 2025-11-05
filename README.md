@@ -28,6 +28,8 @@ Key idea: circuits that implement the factuality vs hedging tradeoff crystallize
 
 ## Quick Start
 
+### Apple Silicon (MPS)
+
 ```bash
 git clone https://github.com/Mat-Tom-Son/tinyLab.git
 cd tinyLab
@@ -36,8 +38,19 @@ source .venv/bin/activate
 python smoke_test.py  # optional sanity check
 ```
 
-- `setup_env.sh` installs all pinned dependencies (see `pyproject.toml`) and validates PyTorch MPS.
-- `smoke_test.py` loads GPT‑2‑small and checks the harness wiring; skip it if you know your environment is ready.
+### NVIDIA GPUs (CUDA)
+
+```bash
+git clone https://github.com/Mat-Tom-Son/tinyLab.git
+cd tinyLab
+bash scripts/setup_env_cuda.sh
+source .venv/bin/activate
+python smoke_test_cuda.py  # optional sanity check
+```
+
+- `setup_env.sh` (MPS) or `setup_env_cuda.sh` (CUDA) installs all pinned dependencies (see `pyproject.toml`) and validates PyTorch.
+- Smoke tests load GPT‑2‑small and check the harness wiring; skip if you know your environment is ready.
+- For CUDA-specific setup and optimization guide, see [docs/CUDA_SETUP.md](docs/CUDA_SETUP.md).
 - For an annotated walkthrough of the harness, see [QUICKSTART.md](QUICKSTART.md).
 
 ## Repository Layout
@@ -218,11 +231,12 @@ Feel free to inspect these directly or rerun analyses using the scripts referenc
 
 ## Contributing
 
-Bug reports, replication notes, and PRs are welcome. The harness targets macOS on Apple Silicon with PyTorch MPS; CPU/LINUX support is unoptimised but functional. Before opening a PR, please:
+Bug reports, replication notes, and PRs are welcome. The harness targets macOS on Apple Silicon with PyTorch MPS, but now has full CUDA/NVIDIA support. CPU support is unoptimized but functional. Before opening a PR, please:
 
-1. Run `python smoke_test.py`.
+1. Run `python smoke_test.py` (MPS) or `python smoke_test_cuda.py` (CUDA).
 2. Regenerate any touched figures via the scripts in `paper/scripts/`.
 3. Ensure `cd paper && make` completes without errors.
+4. For CUDA changes, verify on at least one NVIDIA GPU and document VRAM requirements.
 
 ## Citation
 
