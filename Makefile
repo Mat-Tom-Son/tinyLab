@@ -2,12 +2,13 @@
 
 .PHONY: all postprocess mistral_summaries gpt2m_summaries gpt2l_summaries \
 	mistral_head_rankings gpt2m_head_rankings gpt2l_head_rankings \
-	ov_mistral ov_gpt2 h5_h6 manifest help
+	ov_mistral ov_gpt2 h5_h6 manifest help figures binder_postprocess sharpener_postprocess
 
 help:
 	@echo "Targets:"
 	@echo "  make all            # run every postprocess step"
 	@echo "  make postprocess    # alias for all"
+	@echo "  make figures        # postprocess + binder/sharpener figures"
 	@echo "  make manifest       # rebuild reports/RESULTS_MANIFEST.json"
 	@echo "  make mistral_summaries gpt2m_summaries gpt2l_summaries"
 	@echo "  make mistral_head_rankings gpt2m_head_rankings gpt2l_head_rankings"
@@ -18,7 +19,7 @@ all: postprocess
 
 postprocess: mistral_summaries gpt2m_summaries gpt2l_summaries \
 	mistral_head_rankings gpt2m_head_rankings gpt2l_head_rankings \
-	ov_mistral ov_gpt2 h5_h6 manifest
+	ov_mistral ov_gpt2 h5_h6 binder_postprocess sharpener_postprocess manifest
 
 # ---- Summaries (tables + trio percentiles) ----
 
@@ -118,6 +119,31 @@ h5_h6:
 
 manifest:
 	python3 -m lab.analysis.build_manifest
+
+# ---- Binder sweep ingestion (CSV/fig/markdown) ----
+.PHONY: binder_postprocess
+binder_postprocess:
+	@mkdir -p figs
+	@set -e; for f in reports/*binder_sweep*.json; do \
+	  if [ -f "$$f" ]; then \
+	    echo "Binder: $$f"; \
+	    python3 paper/scripts/binder_plot.py --input "$$f" --outdir figs --top-k 10 --metric d_ld; \
+	  fi; \
+	done || true
+
+.PHONY: sharpener_postprocess
+sharpener_postprocess:
+	@mkdir -p figs
+	@set -e; for f in reports/*layer_entropy_scan*.json; do \
+	  if [ -f "$$f" ]; then \
+	    echo "Sharpener overlay: $$f"; \
+	    python3 paper/scripts/entropy_sharpener_plot.py --input "$$f" --out figs/entropy_overlay; \
+	  fi; \
+	done || true
+
+figures: postprocess
+
+ 
 
 # ============================================================================
 # REVIEWER BUNDLE: Package key results for external reviewers

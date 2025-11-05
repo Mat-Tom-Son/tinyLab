@@ -31,7 +31,8 @@ pip install \
   orjson==3.11.4 \
   rich==14.2.0 \
   pyarrow==21.0.0 \
-  pydantic==2.12.3
+  pydantic==2.12.3 \
+  tqdm==4.67.1
 
 # SAELens (pin to a stable commit or use main)
 echo "Installing SAELens..."

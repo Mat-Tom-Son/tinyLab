@@ -118,6 +118,52 @@ Observed deltas for GPT‑2 Medium:
 
 ---
 
+## Explore Other Layers (Binder + Bottlenecks + Sharpeners)
+
+Fast, exploratory scripts to probe beyond layer‑0:
+
+- Binder‑head sweep (L6–L14) on a tiny synthetic binding dataset:
+
+  ```bash
+  python -m lab.analysis.binder_sweep \
+    --model-name gpt2-medium \
+    --device mps \
+    --layer-range 6:14 \
+    --output reports/binder_sweep_gpt2medium.json
+  ```
+
+  Outputs CSV/JSON with per‑head Δ metrics (ΔLD, Δacc, Δp_drop, ΔKL) to spot high‑impact “binder” heads.
+
+- PCA rank curve (intrinsic dimension vs layer) on clean prompts of a condition:
+
+  ```bash
+  python -m lab.analysis.layer_pca_rank \
+    --config lab/configs/run_h1_cross_condition_balanced.json \
+    --tag facts \
+    --model-name gpt2-medium \
+    --device mps \
+    --samples 256 \
+    --var-frac 0.90 \
+    --output reports/layer_pca_rank_gpt2medium_facts.json
+  ```
+
+  Writes a CSV and a simple figure plotting layer index vs PCs @ 90% variance.
+
+- Late‑layer “sharpeners”: baseline entropy profile + scan heads in the last K layers:
+
+  ```bash
+  python -m lab.analysis.layer_entropy_and_sharpener_scan \
+    --config lab/configs/run_h1_cross_condition_balanced.json \
+    --tag facts \
+    --model-name gpt2-medium \
+    --device mps \
+    --samples 128 \
+    --last-k 3 \
+    --output reports/layer_entropy_scan_gpt2medium_facts.json
+  ```
+
+  Heads with positive d_entropy_final (ablated − baseline) are candidates that force commitment late.
+
 ## Release and Submission
 
 This repository is tagged with a release for the paper (e.g., `v1.0-suppressor-paper`). To access the exact version used for submission:

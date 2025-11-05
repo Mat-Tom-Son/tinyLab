@@ -1,0 +1,27 @@
+{
+  "heads": [
+    {
+      "layer": 23,
+      "head": 6,
+      "acc_base": 0.14375,
+      "acc_abl": 0.11875,
+      "acc_resc": 0.14375,
+      "ld_base": 1.483984375,
+      "ld_abl": 1.422265625,
+      "ld_resc": 1.483984375,
+      "within_1pct": true
+    },
+    {
+      "layer": 23,
+      "head": 4,
+      "acc_base": 0.14375,
+      "acc_abl": 0.14375,
+      "acc_resc": 0.14375,
+      "ld_base": 1.483984375,
+      "ld_abl": 1.4650390625,
+      "ld_resc": 1.483984375,
+      "within_1pct": true
+    }
+  ],
+  "n_examples": 160
+}

@@ -19,7 +19,7 @@ TruthfulQA demonstrates that models mimic human falsehoods even when they could 
 Recent theory proves that calibrated language models must hallucinate on certain fact types~\cite{kalai2023calibrated}, and that training pipelines rewarding guessing reinforce the behavior~\cite{kalai2025why}. We provide the first mechanistic instantiation of these predictions: layer-0 suppressors implement the loss-reducing, truth-degrading trade-off predicted under binary evaluation.
 
 \subsection{Reproducible infrastructure and geometry}
-In the circuits ethos, we standardise ablation, patching, probe suites, and reporting to facilitate reuse~\cite{olah2020zoom}. Observed expansion--compression patterns and low intrinsic dimensionality in transformer representations~\cite{aghajanyan2021better,valeriani2023geometry} suggest stable geometry across scales, consistent with suppressors appearing in both GPT-2 Small and Medium.
+In the circuits ethos, we standardise ablation, patching, probe suites, and reporting to facilitate reuse~\cite{olah2020zoom}. Observed expansion--compression patterns and low intrinsic dimensionality in transformer representations~\cite{aghajanyan2021better,simsek2021geometry} suggest stable geometry across scales, consistent with suppressors appearing in both GPT-2 Small and Medium.
 
 \subsection{Gap clarified}
 While prior work has characterised capability-enhancing circuits and later-layer copy-suppression mechanisms, none has mechanistically grounded why models trade factuality for hedging under uncertainty. Our identification of layer-0 suppressors bridges this gap, linking statistical predictions to concrete transformer circuitry.

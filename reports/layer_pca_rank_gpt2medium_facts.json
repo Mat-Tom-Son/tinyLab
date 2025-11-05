@@ -1,0 +1,111 @@
+{
+  "config": "lab/configs/run_h1_cross_condition_balanced.json",
+  "tag": "facts",
+  "model": {
+    "family": "gpt2",
+    "name": "gpt2-medium",
+    "dtype": "float16"
+  },
+  "device": "mps",
+  "data_hash": "80daded96a9d3e33621c490aa67cc424656bb4d19e73ddf41b8653aadb89aa69",
+  "n_examples": 128,
+  "var_frac": 0.9,
+  "layer_ranks": [
+    {
+      "layer": 0,
+      "k": 1
+    },
+    {
+      "layer": 1,
+      "k": 1
+    },
+    {
+      "layer": 2,
+      "k": 1
+    },
+    {
+      "layer": 3,
+      "k": 1
+    },
+    {
+      "layer": 4,
+      "k": 1
+    },
+    {
+      "layer": 5,
+      "k": 1
+    },
+    {
+      "layer": 6,
+      "k": 1
+    },
+    {
+      "layer": 7,
+      "k": 1
+    },
+    {
+      "layer": 8,
+      "k": 1
+    },
+    {
+      "layer": 9,
+      "k": 1
+    },
+    {
+      "layer": 10,
+      "k": 1
+    },
+    {
+      "layer": 11,
+      "k": 1
+    },
+    {
+      "layer": 12,
+      "k": 1
+    },
+    {
+      "layer": 13,
+      "k": 1
+    },
+    {
+      "layer": 14,
+      "k": 1
+    },
+    {
+      "layer": 15,
+      "k": 1
+    },
+    {
+      "layer": 16,
+      "k": 1
+    },
+    {
+      "layer": 17,
+      "k": 1
+    },
+    {
+      "layer": 18,
+      "k": 2
+    },
+    {
+      "layer": 19,
+      "k": 2
+    },
+    {
+      "layer": 20,
+      "k": 2
+    },
+    {
+      "layer": 21,
+      "k": 2
+    },
+    {
+      "layer": 22,
+      "k": 3
+    },
+    {
+      "layer": 23,
+      "k": 3
+    }
+  ]
+}

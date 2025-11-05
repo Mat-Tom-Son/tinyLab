@@ -89,6 +89,15 @@ On GPT-2 Medium facts and counterfactual probes, the sequence metric mirrors fir
 On negation and logic the sequence effect is smaller—$14$--$22$\% of the first-token LD for head~0:2—revealing a clarifying dynamic: (i) suppressors act early and bias the first token strongly; (ii) downstream layers partially recover over longer spans when the sequence allows it; and (iii) different layer-0 heads matter for the recovery profile.
 Indeed, the full-span ranking elevates heads~0:11/0:12/0:14 on negation/logic, which show editorial and adverbial OV directions without hedging-lexicon enrichment, in contrast to head~0:2’s hedging/booster signature.
 
+\subsection{Mid- and late-layer motifs: binders and sharpeners}
+Beyond layer~0 suppressors, two complementary motifs appear at depth.
+
+\paragraph{Binder heads (mid-layers).} On GPT-2 Medium, single-head ablations over layers~8--12 on a binding probe (adjective--noun disambiguation) surface a consistent set of mid-layer heads whose removal lowers LD and accuracy; the five strongest are L10H14, L10H0, L8H0, L8H8, and L10H7 (synthetic dataset; $N{=}5{,}000$; top $\Delta$LDs range from $-0.30$ to $-0.10$). A natural-corpus variant (vehicles+furniture nouns) reproduces the ranking up to small swaps, confirming these are not synthetic artifacts.
+
+\paragraph{Sharpeners (late layers).} Measuring last-position entropy per layer and scanning heads in the last three layers, we find candidates whose ablation \emph{raises} entropy (weakened commitment). On GPT-2 Medium, heads L23H6 and L23H4 produce the largest positive $\Delta H$ when ablated, while the baseline entropy profile shows a shallow dip in the high teens before rising toward the unembedding.
+
+\paragraph{Causal rescue.} For both motifs, patching the head’s activations back into an ablated run (H6-style) restores LD and accuracy to within $\pm1$\% of baseline, providing a clean causal sanity check that the ablation effects are specific to the implicated heads rather than a global perturbation.
+
 \subsection{Mistral layer-0 suppressors}
 On Mistral-7B the H1 battery flags layer-0 heads~22 and~23 as suppressors on counterfactual and negation probes, but the effect is task-contingent: facts show minimal change, and logic improves when either head is zeroed.
 Replicating the H1 batteries at seeds~1 and~2 reproduces the seed~0 logit-difference trajectories to float-level precision (95\%~CI~$\approx 0$), so we continue to report the shared point estimates with a dagger in Table~\ref{tab:impact}.
