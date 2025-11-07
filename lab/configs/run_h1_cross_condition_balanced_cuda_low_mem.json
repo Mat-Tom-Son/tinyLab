@@ -2,7 +2,7 @@
   "run_name": "h1_cross_condition_physics_balanced_cuda_low_mem",
   "battery": "lab/configs/battery_h1_heads_zero.json",
   "shared": {
-    "seeds": [0],
+    "seeds": [0, 1, 2],
     "device": "cuda",
     "model": {
       "family": "gpt2",

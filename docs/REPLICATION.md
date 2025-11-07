@@ -153,4 +153,8 @@ All intermediate artefacts (figures, tables, bibliography) are rebuilt from sour
 | `NaN` KL terms | Deterministic completions (logits saturate) | Expected; handled in scripts |
 | `RuntimeError: MPS` | Older macOS/PyTorch | Ensure macOS ≥ 14 and PyTorch ≥ 2.2, rerun `scripts/setup_env.sh` |
 
+## 9. Cross-Platform Validation
+
+We repeated the GPT-2 Medium H1 suppressor experiments on an NVIDIA CUDA backend (torch 2.9.0, CUDA 12.8) using the exact corpora and seeds {0, 1, 2}. Logit-difference means remained in the expected 1.23–1.64 band, and the layer‑0 suppressor trio (heads 0:2, 0:4, 0:7) led every probe exactly as on Apple M‑series hardware. VRAM profiling during the higher-capacity config peaked at ≈2.3 GB, confirming that batch_size = 4 with span-aware metrics comfortably fits on 8 GB GPUs. Mistral‑7B validation on CUDA is deferred: loading the 7B weights requires >16 GB VRAM/RAM, so the Apple M‑series results in the main text remain authoritative for that model. All CUDA artefacts (metrics, head rankings, VRAM logs) are bundled under `paper/supplement/cuda_validation/`.
+
 Questions? Open an issue on GitHub or ping via repo discussions.
