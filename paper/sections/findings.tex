@@ -98,6 +98,8 @@ Beyond layer~0 suppressors, two complementary motifs appear at depth.
 
 \paragraph{Causal rescue.} For both motifs, patching the head’s activations back into an ablated run (H6-style) restores LD and accuracy to within $\pm1$\% of baseline, providing a clean causal sanity check that the ablation effects are specific to the implicated heads rather than a global perturbation.
 
+\paragraph{GPT-2 Small replicates the motifs.} On GPT-2 Small (12 layers) the synthetic binder sweep ($N{=}5{,}000$; float16 CUDA) flags \textbf{L11H0} as the strongest binder ($\Delta$LD$\approx-0.64$; $\Delta$acc$\approx-19$~pp), followed by \textbf{L7H1}, \textbf{L7H6}, \textbf{L6H9}, and \textbf{L10H0} ($\Delta$LD$\approx-0.29$ to $-0.23$). A corpus-derived variant ($N{=}5{,}000$) reproduces the ordering with smaller magnitudes. Causal-rescue on the top five heads restores both LD and accuracy to baseline within $\pm1$\% (2{,}048 examples), confirming head-specific effects. For late-layer sharpeners, the layer-entropy profile dips mid-network and rises near the unembedding; scanning the last three layers identifies \textbf{L11H0} and \textbf{L10H0} as top candidates on \emph{facts} (d\_entropy\_final $=+0.081$, $+0.074$). Per-probe rescues (facts/neg/cf/logic) reverse the ablation effect within $\pm1$\%. H6 path patching on Small shows the largest recoveries in the \emph{facts} window at layers 8--11 (per-layer $\Delta$LD $\approx 0.216$), with \emph{cf} peaking around layers 7--10 and earlier layers dominating \emph{neg}/\emph{logic}. The geometry battery on Small under L0 ablation (heads~\{0:2,0:4,0:7\}) shows small positive last-token entropy deltas across probes (facts $+0.03$, cf $+0.15$, neg $+0.17$, logic $+0.34$; non-extreme vs random controls), suggesting the strong output-flattening signature seen on Medium weakens at smaller scale. Together with GPT-2 Medium, this indicates the binding/sharpening division persists across scale, with indices shifting but roles conserved.
+
 \subsection{Mistral layer-0 suppressors}
 On Mistral-7B the H1 battery flags layer-0 heads~22 and~23 as suppressors on counterfactual and negation probes, but the effect is task-contingent: facts show minimal change, and logic improves when either head is zeroed.
 Replicating the H1 batteries at seeds~1 and~2 reproduces the seed~0 logit-difference trajectories to float-level precision (95\%~CI~$\approx 0$), so we continue to report the shared point estimates with a dagger in Table~\ref{tab:impact}.
@@ -111,8 +113,46 @@ OV analysis corroborates the behavioral divergence: heads~22/23 suppress factual
 Layer-0 suppressors persist across GPT-2 scale. On GPT-2 Small (124M) the layer-0 heads {0:2, 0:4, 0:7} increase logit difference by $+0.38$, $+0.12$, and $+0.11$, respectively. GPT-2 Medium reproduces the same hierarchy with $+0.41$, $+0.13$, and $+0.12$, demonstrating that the circuit is architectural rather than a one-off checkpoint artifact. We report the Medium results in the main text to align with prior GPT-2-Medium analyses while noting that the motif already exists at smaller scale.
 \subsection{Cross-model comparison}
 Both models learn a layer-0 mechanism that degrades factual continuations, and ablations restore performance across multiple tasks, supporting the suppressor motif as a conserved behavioral prior.
+Mid- and late-layer motifs likewise replicate across GPT-2 scale: GPT-2 Small surfaces binders (L11H0, L7H1, L7H6, L6H9, L10H0) and late sharpeners (L11H0, L10H0) analogous to GPT-2 Medium, with causal rescues verifying specificity; see the consolidated summary.
 Yet the implementations diverge: GPT-2’s trio jointly suppresses factuality and amplifies hedging, while Mistral’s pair suppresses factuality without a hedging boost and encounters opposition from a neighbouring head on logic.
 The contrast suggests that although transformers converge on early suppressor behavior, the supporting circuitry adapts to architecture and training data, producing task-contingent variants rather than a single universal implementation.
+
+\subsection{Capacity-Contingent Attractor Dynamics}
+Layer-0 suppressors are present at both GPT-2 Small (124M) and Medium (355M), as evidenced by strong H1 individual ablation effects. However, their functional role diverges qualitatively with model scale.
+
+\paragraph{Small scale (\texorpdfstring{$d_\text{eff}\,\approx\,15$}{d_eff ≈ 15}).}
+Individual ablations of heads~\{0:2, 0:4, 0:7\} on high-uncertainty tasks (negation, counterfactual, logic) reduce logit difference by \textbf{1.1–5.5\%} relative to baseline (per-head mean \(\Delta\)LD: \emph{neg} 0:2~\(\,-0.042\), 0:4~\(\,-0.101\), 0:7~\(\,-0.032\); \emph{cf} 0:2~\(\,-0.030\), 0:4~\(\,-0.039\), 0:7~\(\,-0.017\); \emph{logic} 0:2~\(\,-0.054\), 0:4~\(\,-0.067\), 0:7~\(\,-0.019\)).
+The L0 triplet shows identical direction (mean \(\Delta\)LD, \emph{neg} \(\,-0.150\) [\(\,-0.202,\,-0.111\)], \emph{cf} \(\,-0.081\), \emph{logic} \(\,-0.097\) [\(\,-0.130,\,-0.057\)]), while \emph{facts} is weakly positive (\(\,+0.026\)).
+H6 path mediation on \emph{facts} is minimal (\(\approx\,\)\textbf{5.9\%} [\(\,1.8\%,\,10.1\%\)] for layers~8–11).
+Output-entropy deltas under L0 ablation are small and positive (\(\Delta H\,=\,+0.03\) to \(+0.34\)~nats).
+Together this suggests that at Small, suppressors act as capacity-consuming gates rather than global attractor-setters; ablation can improve factuality on uncertainty-heavy tasks by forcing the model to reallocate limited capacity toward the task.
+
+\paragraph{Medium scale (\texorpdfstring{$d_\text{eff}\,\approx\,50$--$80$}{d_eff ≈ 50–80}).}
+Identical ablations improve logit difference by \textbf{40--85\%} across all probes (mean \(\Delta\)LD: \emph{facts} \(+0.40\), \emph{neg} \(+0.84\), \emph{cf} \(+0.85\), \emph{logic} \(+0.55\)).
+H6 path mediation is robust (\(\approx\,\)\textbf{67\%} on \emph{facts}), and the geometry signature is strong (output-entropy \(\Delta H\,=\,-2.4\) to \(-3.8\)~nats).
+Here suppressors stabilize a global hedging attractor; downstream layers inherit and reinforce the bias toward uncertainty.
+
+\paragraph{Interpretation.}
+Below a capacity threshold (\(d_\text{eff}\,\approx\,30\)--50?), suppressors are \emph{maladaptive}: they consume representational capacity that could otherwise solve the task.
+At and above the threshold, suppressors become \emph{optimal}: they partition representation space into stable (hedged) and plastic zones, allowing the system to satisfy both predictive accuracy and calibration.
+This is consistent with our constrained predictive geometry framing: constraint-induced geometry depends critically on effective capacity \(d_\text{eff}\). Suppressors emerge at all scales, but their role—from emergency brake to global basin—is capacity-contingent.
+
+\begin{table}[t]
+  \centering
+  \caption{Cross-scale summary: early-layer coalition and downstream dynamics. Small numbers are GPT-2 Small (124M); Medium are GPT-2 Medium (355M).}
+  \label{tab:capacity-contingent}
+  \begin{tabular}{lccc}
+    \toprule
+    Metric & Small (124M) & Medium (355M) & Interpretation \\
+    \midrule
+    L0 triplet \(\Delta\)LD (neg)   & \(\,-0.150\) [\(\,-0.202,\,-0.111\)] & \(+0.842\) & Sign flip: maladaptive \(\to\) adaptive \\
+    L0 triplet \(\Delta\)LD (logic) & \(\,-0.097\) [\(\,-0.130,\,-0.057\)] & \(+0.552\) & Sign flip: maladaptive \(\to\) adaptive \\
+    H6 mediation (facts)              & \(\,5.9\%\) [\(\,1.8\%,\,10.1\%\)] & \(\,67\%\,\pm\,4\%\) & Attractor basin only at scale \\
+    Output entropy \(\Delta H\)     & \(+0.03\) to \(+0.34\) & \(-2.4\) to \(-3.8\) & Geometry scales with capacity \\
+    Interpretation                    & Local gates; capacity-limited & Global attractor; stable basin & Phase-transition regime \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \subsection{Learning dynamics on Pythia-160M}
 To validate that suppressors are learned solutions rather than architectural artifacts or random initializations, we instrumented the Pythia-160M training trajectory via EleutherAI’s checkpoint tags and applied the H1 head-zero battery at nine checkpoints from initialisation ($0$) to $128$k steps (single seed; Pythia-tokenizer variants of our probe corpora).

@@ -1,0 +1,316 @@
+{
+  "config": "lab/configs/run_h1_cross_condition_balanced_gpt2small.json",
+  "tag": "neg",
+  "model": {
+    "family": "gpt2",
+    "name": "gpt2-small",
+    "dtype": "float16"
+  },
+  "device": "cuda",
+  "n_examples": 14,
+  "data_hash": "2bc87b979e908405c1e81f44871dff9c6182dadb2bdf06a842cf8a888a0683bd",
+  "layer_entropy_profile": [
+    {
+      "layer": 0,
+      "entropy": 4.3584818840026855
+    },
+    {
+      "layer": 1,
+      "entropy": 4.0791120529174805
+    },
+    {
+      "layer": 2,
+      "entropy": 2.8039345741271973
+    },
+    {
+      "layer": 3,
+      "entropy": 2.8855204582214355
+    },
+    {
+      "layer": 4,
+      "entropy": 3.251652956008911
+    },
+    {
+      "layer": 5,
+      "entropy": 3.156683921813965
+    },
+    {
+      "layer": 6,
+      "entropy": 3.3267722129821777
+    },
+    {
+      "layer": 7,
+      "entropy": 3.8063011169433594
+    },
+    {
+      "layer": 8,
+      "entropy": 3.8283321857452393
+    },
+    {
+      "layer": 9,
+      "entropy": 4.199342250823975
+    },
+    {
+      "layer": 10,
+      "entropy": 4.8831071853637695
+    },
+    {
+      "layer": 11,
+      "entropy": 5.949486255645752
+    }
+  ],
+  "sharpener_scan": [
+    {
+      "layer": 9,
+      "head": 0,
+      "entropy_final_abl": 5.950181007385254,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.0004582405090332031
+    },
+    {
+      "layer": 9,
+      "head": 1,
+      "entropy_final_abl": 5.954655647277832,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.004932880401611328
+    },
+    {
+      "layer": 9,
+      "head": 2,
+      "entropy_final_abl": 5.952703475952148,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.0029807090759277344
+    },
+    {
+      "layer": 9,
+      "head": 3,
+      "entropy_final_abl": 5.94074821472168,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.008974552154541016
+    },
+    {
+      "layer": 9,
+      "head": 4,
+      "entropy_final_abl": 5.935872554779053,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.013850212097167969
+    },
+    {
+      "layer": 9,
+      "head": 5,
+      "entropy_final_abl": 5.934037685394287,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.015685081481933594
+    },
+    {
+      "layer": 9,
+      "head": 6,
+      "entropy_final_abl": 5.947098731994629,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.002624034881591797
+    },
+    {
+      "layer": 9,
+      "head": 7,
+      "entropy_final_abl": 5.94921350479126,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.0005092620849609375
+    },
+    {
+      "layer": 9,
+      "head": 8,
+      "entropy_final_abl": 5.942698001861572,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.0070247650146484375
+    },
+    {
+      "layer": 9,
+      "head": 9,
+      "entropy_final_abl": 5.9482855796813965,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.0014371871948242188
+    },
+    {
+      "layer": 9,
+      "head": 10,
+      "entropy_final_abl": 5.966142654418945,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.01641988754272461
+    },
+    {
+      "layer": 9,
+      "head": 11,
+      "entropy_final_abl": 5.949641704559326,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -8.106231689453125e-05
+    },
+    {
+      "layer": 10,
+      "head": 0,
+      "entropy_final_abl": 5.946572780609131,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.0031499862670898438
+    },
+    {
+      "layer": 10,
+      "head": 1,
+      "entropy_final_abl": 5.960339546203613,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.010616779327392578
+    },
+    {
+      "layer": 10,
+      "head": 2,
+      "entropy_final_abl": 5.97752571105957,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.02780294418334961
+    },
+    {
+      "layer": 10,
+      "head": 3,
+      "entropy_final_abl": 5.952719688415527,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.0029969215393066406
+    },
+    {
+      "layer": 10,
+      "head": 4,
+      "entropy_final_abl": 5.929872989654541,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.019849777221679688
+    },
+    {
+      "layer": 10,
+      "head": 5,
+      "entropy_final_abl": 5.96394157409668,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.014218807220458984
+    },
+    {
+      "layer": 10,
+      "head": 6,
+      "entropy_final_abl": 5.948350429534912,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.0013723373413085938
+    },
+    {
+      "layer": 10,
+      "head": 7,
+      "entropy_final_abl": 5.902708053588867,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.047014713287353516
+    },
+    {
+      "layer": 10,
+      "head": 8,
+      "entropy_final_abl": 5.918508529663086,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.031214237213134766
+    },
+    {
+      "layer": 10,
+      "head": 9,
+      "entropy_final_abl": 5.959930896759033,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.0102081298828125
+    },
+    {
+      "layer": 10,
+      "head": 10,
+      "entropy_final_abl": 5.923110008239746,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.02661275863647461
+    },
+    {
+      "layer": 10,
+      "head": 11,
+      "entropy_final_abl": 5.978988170623779,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.029265403747558594
+    },
+    {
+      "layer": 11,
+      "head": 0,
+      "entropy_final_abl": 5.847473621368408,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.1022491455078125
+    },
+    {
+      "layer": 11,
+      "head": 1,
+      "entropy_final_abl": 5.961595058441162,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.011872291564941406
+    },
+    {
+      "layer": 11,
+      "head": 2,
+      "entropy_final_abl": 5.961194038391113,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.011471271514892578
+    },
+    {
+      "layer": 11,
+      "head": 3,
+      "entropy_final_abl": 5.945779323577881,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.003943443298339844
+    },
+    {
+      "layer": 11,
+      "head": 4,
+      "entropy_final_abl": 5.895682334899902,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.05404043197631836
+    },
+    {
+      "layer": 11,
+      "head": 5,
+      "entropy_final_abl": 5.945883274078369,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.0038394927978515625
+    },
+    {
+      "layer": 11,
+      "head": 6,
+      "entropy_final_abl": 5.962385177612305,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.012662410736083984
+    },
+    {
+      "layer": 11,
+      "head": 7,
+      "entropy_final_abl": 5.938729763031006,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.010993003845214844
+    },
+    {
+      "layer": 11,
+      "head": 8,
+      "entropy_final_abl": 6.006027698516846,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.056304931640625
+    },
+    {
+      "layer": 11,
+      "head": 9,
+      "entropy_final_abl": 5.959829807281494,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": 0.010107040405273438
+    },
+    {
+      "layer": 11,
+      "head": 10,
+      "entropy_final_abl": 5.9478983879089355,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.0018243789672851562
+    },
+    {
+      "layer": 11,
+      "head": 11,
+      "entropy_final_abl": 5.945611476898193,
+      "entropy_final_base": 5.949722766876221,
+      "d_entropy_final": -0.004111289978027344
+    }
+  ]
+}

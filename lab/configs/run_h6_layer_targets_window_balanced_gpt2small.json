@@ -1,0 +1,72 @@
+{
+  "run_name": "h6_layer_targets_window_balanced_gpt2small",
+  "battery": "lab/configs/battery_h6_layer0_x2c.json",
+  "shared": {
+    "seeds": [0, 1, 2],
+    "device": "cuda",
+    "model": {
+      "family": "gpt2",
+      "name": "gpt2-small",
+      "dtype": "float16"
+    },
+    "dataset": {
+      "id": "facts_single_token_v1_balanced",
+      "split": "train",
+      "clean_field": "clean",
+      "corrupt_field": "corrupt",
+      "target_field": "target",
+      "foil_field": "foil"
+    },
+    "metrics": [
+      "logit_diff",
+      "acc_flip_rate",
+      "p_drop",
+      "kl_div",
+      "seq_logprob_diff",
+      "seq_p_drop",
+      "seq_kl_mean"
+    ],
+    "batch_size": 8,
+    "max_seq_len": 256,
+    "metric_span": "full_target",
+    "verify_slice": {
+      "device": "cpu",
+      "n_examples": 10
+    }
+  },
+  "conditions": [
+    {
+      "tag": "facts",
+      "dataset": {
+        "id": "facts_single_token_v1_balanced",
+        "split": "train"
+      },
+      "battery": "lab/configs/battery_h6_layer_window_facts_gpt2small.json"
+    },
+    {
+      "tag": "neg",
+      "dataset": {
+        "id": "negation_single_token_v1_balanced",
+        "split": "train"
+      },
+      "battery": "lab/configs/battery_h6_layer_window_neg.json"
+    },
+    {
+      "tag": "cf",
+      "dataset": {
+        "id": "counterfactual_single_token_v1_balanced",
+        "split": "train"
+      },
+      "battery": "lab/configs/battery_h6_layer_window_cf.json"
+    },
+    {
+      "tag": "logic",
+      "dataset": {
+        "id": "logical_single_token_v1_balanced",
+        "split": "train"
+      },
+      "battery": "lab/configs/battery_h6_layer_window_logic.json"
+    }
+  ]
+}
+
