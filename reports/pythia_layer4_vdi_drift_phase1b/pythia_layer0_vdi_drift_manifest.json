@@ -1,0 +1,20 @@
+{
+  "model_name": "pythia-2.8b-deduped",
+  "device": "cuda",
+  "vdi_main_csv": "reports/pythia_layer4_vdi_drift_phase1b/pythia_layer0_vdi_sigma_0.050.csv",
+  "drift_csv": "reports/pythia_layer4_vdi_drift_phase1b/pythia_layer0_drift_trajectories.csv",
+  "between_csv": "reports/pythia_layer4_vdi_drift_phase1b/pythia_layer0_drift_between.csv",
+  "vdi_sigma": 0.05,
+  "vdi_sigma_alt": 0.02,
+  "top_heads": [
+    21,
+    22,
+    13,
+    28,
+    7,
+    9
+  ],
+  "n_layers": 32,
+  "drift_mid_layer_index": 16,
+  "drift_last_layer_index": 31
+}
