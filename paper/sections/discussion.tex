@@ -6,9 +6,10 @@ Long-context failures, decoder sampling artifacts, and post-training alignment u
 Our results therefore identify a \emph{primary} mechanism, not an exhaustive catalogue.
 
 \paragraph{Scale and coverage.}
-We studied GPT-2 Medium and Mistral-7B.
-Larger models may migrate suppressor functionality to deeper layers or distribute it across more heads.
-Mapping suppressors across GPT-3, Llama, Pythia, Qwen, and other families is necessary before claiming full universality.
+We studied GPT-2 Medium and Mistral-7B in depth, and added a small structural probe on Pythia models.
+In Pythia-2.8B the first block forms a strong variance bottleneck with a clear spectrum of variance-dampening and variance-amplifying heads, while deeper blocks and a smaller Pythia-410M variant show much weaker per-head structure.
+This suggests that early-layer variance shaping is concentrated at the first bottleneck and becomes more pronounced at larger scales.
+Mapping suppressors and related motifs across GPT-3, Llama, Qwen, and other families---and testing whether variance-based diagnostics predict suppressor behaviour there---is necessary before claiming full universality.
 
 \paragraph{Training dynamics.}
 We observe suppressors in fully-trained networks but did not instrument training.

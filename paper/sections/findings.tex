@@ -42,6 +42,28 @@ We directly measured activation and output entropies, plus trajectory curvature,
 
 \paragraph{Activation geometry (expansion rather than compression).} Contrary to our initial compression prediction, activation entropies decrease under ablation across multiple estimators: full last-position MVN (facts $\Delta = -160.7$), diagonal (variance-only; $\Delta = -195.3$), and per-token averages (facts $\Delta = -203.8$); subspace entropies (PCA at 95\% variance) are small and mostly negative, occasionally near-zero or slightly positive depending on task. None of these deltas lie in an extreme tail versus random controls (two‑tailed $p\,\approx\,0.24$–$0.48$ across tasks/estimators). The consistent direction suggests suppressors \emph{expand} the activation cloud into a wide hedging region rather than compress it into a narrow subspace—while simultaneously flattening outputs. This rotation+expansion mechanism coheres with the curvature results and strengthens the bottleneck interpretation: at layer~0, suppressors allocate additional representational degrees of freedom to steer toward hedging, then distribute probability mass broadly at the output.
 
+\subsection{Early-layer variance shaping in Pythia}\label{sec:pythia-vdi}
+The GPT-2/Mistral experiments establish that layer~0 suppressors are structural, high-impact, and form a hedging attractor.
+To test whether early layers in other families show a comparable structural motif, we applied the variance-based diagnostic from Section~\ref{sec:methods-vdi} to Pythia models.
+
+\paragraph{Layer-0 as a variance bottleneck.}
+On Pythia-2.8B, the first block behaves as a strong noise amplifier: with small Gaussian perturbations to the embeddings (noise scale $\sigma$ chosen as a fraction of the mean embedding norm), the variance of the residual stream grows by two orders of magnitude across block~0 (block-level $\mathrm{VDI}_\text{full} \ll 0$).
+Within that block, per-head VDI reveals a structured spectrum similar in spirit to the GPT-2 suppressors: a small set of heads act as relative dampeners (positive $\mathrm{vdi\_effect}$; removing them increases variance), and a small set act as amplifiers (large negative $\mathrm{vdi\_effect}$).
+The ordering of heads along this dampener–amplifier axis is highly stable across noise scales ($\sigma\in\{0.03,0.05,0.08\}$), reinforcing the view of layer~0 as a variance bottleneck whose internal structure is carved out by training.
+
+\paragraph{Depth and scale.}
+Repeating the VDI probe at layers 4, 8, and 16 in Pythia-2.8B shows a sharp attenuation of the effect: block-level VDI moves toward zero, and per-head $\mathrm{vdi\_effect}$ values shrink, with no pronounced tails.
+At these depths, heads still reshape variance slightly, but the strong expansion and variance shaping is concentrated at the earliest blocks.
+A cross-scale check on Pythia-410M finds that its layer-0 block also amplifies noise, but the per-head VDI spectrum lacks robust positive tails: almost all heads have small negative or near-zero $\mathrm{vdi\_effect}$.
+This suggests that strongly dampening heads are a scale-emergent motif: they appear clearly in Pythia-2.8B but only weakly, if at all, in smaller models.
+
+\paragraph{Behavioural load-bearing in Pythia.}
+To connect VDI to behaviour we ran small-sample drift experiments on Pythia-2.8B, comparing base runs to ablations of high-VDI and low-VDI heads.
+Within-trajectory drift at the final layer does not show a simple monotone relationship to VDI: ablations of some high-VDI heads slightly reduce step-to-step drift rather than increase it.
+However, paired base-versus-ablated metrics tell a clearer story: heads with larger positive $\mathrm{vdi\_effect}$ produce larger cosine divergence between base and ablated trajectories and larger KL divergence between the corresponding logit distributions.
+In other words, early dampeners are \emph{load-bearing} for the downstream computation: removing them changes where the model goes in representation space, even if local drift metrics sometimes go down.
+We treat these Pythia results as structural and mechanistic support for the bottleneck picture rather than as a full behavioural replication of the GPT-2/Mistral hallucination results.
+
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/geometric_signature.pdf}
