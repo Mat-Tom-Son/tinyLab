@@ -64,7 +64,7 @@ To avoid numerical overflow we clip logits to the range $[-20,20]$ before applyi
 
 \begin{itemize}
     \item \textbf{Models.} GPT-2 Medium (355\,M) via TransformerLens 2.16.1; Mistral-7B v0.1 via the same interface.
-    \item \textbf{Hardware.} Apple M-series (M3 Max) with macOS; computations run in deterministic mode (no dropout, fixed seeds).
+    \item \textbf{Hardware.} Apple M-series (M3 Max) with macOS for all primary experiments; GPT-2 suppressor batteries additionally validated on a single NVIDIA GPU (torch 2.9.0, CUDA 12.8) with matching metrics and head rankings. All runs use deterministic settings where available (no dropout, fixed seeds).
     \item \textbf{Datasets.} Single-token probe suite (stored under \texttt{lab/data/corpora}); frequency summaries in \texttt{reports/token\_frequency\_summary.json}.
     \item \textbf{Runs.} Config and data hashes for Table~\ref{tab:impact} appear in \texttt{paper/supplement/supplement.md}; seeds are $\{0,1,2\}$ for GPT-2 and $\{0,1,2\}$ (neg/cf) / $\{0\}$ (facts/logic) for Mistral.
     \item \textbf{Commands.} \texttt{python -m lab.src.orchestrators.conditions <config>} (see Table~\ref{tab:impact} for the specific JSON files).

@@ -13,7 +13,7 @@ To elicit suppressor behavior we use the single-token factuality probe suite int
 Each corpus specifies matched clean/corrupt prompts and single-token target/foil completions, enabling logit-difference evaluation.
 
 \paragraph{Compute resources and environment.}
-All experiments run on macOS with Apple M‑series (MPS) backends; no CUDA was used. We release deterministic scripts, seeds, and data splits to enable exact replication. A small CUDA sanity replication is planned as a follow‑up (see \S\,Discussion).
+Primary experiments run on macOS with Apple M‑series (MPS) backends. For GPT-2 Medium we additionally repeated the H1 suppressor battery on an NVIDIA CUDA backend (torch 2.9.0, CUDA 12.8) using the same corpora and seeds $\{0,1,2\}$; logit-difference means and layer-0 head rankings matched the MPS runs within numerical noise (see the CUDA validation bundle in the supplement). We release deterministic scripts, seeds, and data splits to enable exact replication.
 
 \subsection{Ablation batteries}
 Suppressor candidates are located with the H1 ``heads\_zero'' battery, which zeroes individual attention heads in layer~0 while measuring logit difference (LD; the margin between target and foil logits; \texttt{logit\_diff}) and the flip rate of the argmax token (\texttt{acc\_flip\_rate}).
@@ -50,7 +50,7 @@ To pre-empt the concern that any early head removal improves accuracy, we resamp
 Suppressor head 0:2 lies at the 100th percentile of the single-head distribution, and the suppressor trio $\{0{:}2,0{:}4,0{:}7\}$ lands at the 99.5th percentile of the simulated pair distribution (Figure~\ref{fig:random-baseline}). For head ranking we estimate empirical $p$ under the random L0 null and control FDR via Benjamini–Hochberg; suppressors remain in the extreme tail.
 
 \paragraph{Statistics.}
-Unless noted, we report means over $\geq$3 seeds with 95\% bootstrap CIs over prompts (5k resamples). For head ranking we estimate empirical $p$ under the layer-0 random-head null and control FDR via Benjamini–Hochberg. For free-running generations we report hedge-token rate and factual accuracy with nonparametric CIs over prompts. Compute: Apple M-series (MPS backend); no CUDA replication in this version.
+Unless noted, we report means over $\geq$3 seeds with 95\% bootstrap CIs over prompts (5k resamples). For head ranking we estimate empirical $p$ under the layer-0 random-head null and control FDR via Benjamini–Hochberg. Compute: Apple M-series (MPS backend) for the primary runs, with a CUDA replication of the GPT-2 suppressor battery documented in the supplement.
 
 \subsection{Reproducibility checks}
 Every run directory stores the canonical configuration (\texttt{config.json}), model/data hashes, and metric summaries (\texttt{metrics/summary.json}). Detailed hashes and seeds for Table~\ref{tab:impact} are collated in Appendix~\ref{app:repro}. GPT-2 runs use seeds $\{0,1,2\}$; Mistral uses $\{0,1,2\}$ on negation/counterfactual probes and $\{0\}$ on facts/logic.
