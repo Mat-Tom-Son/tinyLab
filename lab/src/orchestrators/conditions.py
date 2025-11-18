@@ -1,5 +1,5 @@
 """Cross-condition orchestrator for multi-condition experiments (v1.1)."""
-import json
+
 import sys
 from pathlib import Path
 import pandas as pd
@@ -58,7 +58,9 @@ def main(config_path):
         print(f"\n[cyan]Running condition: {tag}[/cyan]")
 
         # Build per-condition config
-        child_cfg = deep_merge(shared, {k: v for k, v in cond.items() if k != "battery_overrides"})
+        child_cfg = deep_merge(
+            shared, {k: v for k, v in cond.items() if k != "battery_overrides"}
+        )
         child_cfg["run_name"] = f"{run_name}_{tag}"
         child_cfg["battery"] = cond.get("battery", battery_path)
         battery_cfg = io.load_json(child_cfg["battery"])
@@ -153,14 +155,18 @@ def main(config_path):
     }
 
     if all_head_impacts:
-        parent_manifest["head_matrix"] = str(head_matrix_path.relative_to(parent_run_dir))
+        parent_manifest["head_matrix"] = str(
+            head_matrix_path.relative_to(parent_run_dir)
+        )
 
     if all_layer_impacts:
-        parent_manifest["layer_matrix"] = str(layer_matrix_path.relative_to(parent_run_dir))
+        parent_manifest["layer_matrix"] = str(
+            layer_matrix_path.relative_to(parent_run_dir)
+        )
 
     io.save_json(parent_manifest, parent_run_dir / "manifest.json")
 
-    print(f"\n[green]Cross-condition run complete![/green]")
+    print("\n[green]Cross-condition run complete![/green]")
     print(f"[green]Parent run dir: {parent_run_dir}[/green]")
 
 

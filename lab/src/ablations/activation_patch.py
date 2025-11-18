@@ -1,4 +1,5 @@
 """Activation patching ablation for layer-wise causal analysis."""
+
 import pandas as pd
 import torch
 from transformer_lens import HookedTransformer
@@ -34,7 +35,9 @@ def run(model: HookedTransformer, dset, cfg, battery, device):
     seq_batches = None
     if metric_span != "first_token":
         # For sequence evaluation, we always use clean prompt + {target, foil}
-        tokens_tgt, tokens_foil, cont_t, cont_f = M.build_sequence_batches(model, dset, cfg)
+        tokens_tgt, tokens_foil, cont_t, cont_f = M.build_sequence_batches(
+            model, dset, cfg
+        )
         seq_batches = (tokens_tgt, tokens_foil, cont_t, cont_f)
 
     # Forward w/ cache to get baseline activations and logits
@@ -98,7 +101,9 @@ def run(model: HookedTransformer, dset, cfg, battery, device):
                     warned_nodes.add(node_name)
                 patched = act.clone()
                 if act.shape[0] != src.shape[0]:
-                    raise ValueError(f"Batch mismatch at {node_name}: {act.shape} vs {src.shape}")
+                    raise ValueError(
+                        f"Batch mismatch at {node_name}: {act.shape} vs {src.shape}"
+                    )
                 # Assume sequence dimension is index 1 (batch, seq, ...)
                 seq_dim = 1
                 seq_len = min(act.shape[seq_dim], src.shape[seq_dim])
@@ -110,7 +115,9 @@ def run(model: HookedTransformer, dset, cfg, battery, device):
 
         # Run patched target pass
         with torch.no_grad():
-            logits_patched = model.run_with_hooks(tgt_tokens, fwd_hooks=[(node, patch_fn)])
+            logits_patched = model.run_with_hooks(
+                tgt_tokens, fwd_hooks=[(node, patch_fn)]
+            )
 
         # Compute metrics against the baseline logits
         summary, per_ex = M.evaluate_outputs(
@@ -169,14 +176,16 @@ def run(model: HookedTransformer, dset, cfg, battery, device):
         for metric in metric_names:
             if metric not in row:
                 continue
-            impact_table_rows.append({
-                "run_id": cfg.get("run_name", "unknown"),
-                "seed": cfg.get("seed", 0),
-                "layer": int(row["layer"]),
-                "granularity": gran,
-                "metric": metric,
-                "value": float(row[metric])
-            })
+            impact_table_rows.append(
+                {
+                    "run_id": cfg.get("run_name", "unknown"),
+                    "seed": cfg.get("seed", 0),
+                    "layer": int(row["layer"]),
+                    "granularity": gran,
+                    "metric": metric,
+                    "value": float(row[metric]),
+                }
+            )
 
     layer_impact_table = pd.DataFrame(impact_table_rows)
 

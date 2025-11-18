@@ -20,7 +20,7 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Sequence
+from typing import Dict, List
 
 import numpy as np
 import pandas as pd
@@ -205,7 +205,9 @@ def compute_vdi_for_sigma(
 
     var_before = sum_sq_delta0 / float(n_positions)
     var_after_full = sum_sq_delta1_full / float(n_positions)
-    vdi_full = (var_before - var_after_full) / var_before if var_before > 0 else float("nan")
+    vdi_full = (
+        (var_before - var_after_full) / var_before if var_before > 0 else float("nan")
+    )
 
     # Per-head ablation: measure how much Var_after grows when a head is removed.
     n_heads = model.cfg.n_heads
@@ -272,9 +274,17 @@ def compute_vdi_for_sigma(
 
         v_after_minus = sum_sq_delta1_minus / float(n_positions)
         var_after_minus.append(v_after_minus)
-        vdi_m = (var_before - v_after_minus) / var_before if var_before > 0 else float("nan")
+        vdi_m = (
+            (var_before - v_after_minus) / var_before
+            if var_before > 0
+            else float("nan")
+        )
         vdi_minus.append(vdi_m)
-        vdi_eff = (v_after_minus - var_after_full) / var_before if var_before > 0 else float("nan")
+        vdi_eff = (
+            (v_after_minus - var_after_full) / var_before
+            if var_before > 0
+            else float("nan")
+        )
         vdi_effect.append(vdi_eff)
 
     return {
@@ -411,7 +421,9 @@ def main() -> None:
         model_cfg["hf_model"] = args.hf_model
 
     model = load_model.load_transformerlens(model_cfg, device=device)
-    print(f"Loaded model with {model.cfg.n_layers} layers and {model.cfg.n_heads} heads per layer.")
+    print(
+        f"Loaded model with {model.cfg.n_layers} layers and {model.cfg.n_heads} heads per layer."
+    )
 
     vdi_cfg = VDIConfig(
         n_prompts=args.n_prompts,
@@ -426,7 +438,9 @@ def main() -> None:
 
     # Prompts and tokens
     if args.prompt_file:
-        prompts = load_prompts_from_file(Path(args.prompt_file), vdi_cfg.n_prompts, vdi_cfg.seed)
+        prompts = load_prompts_from_file(
+            Path(args.prompt_file), vdi_cfg.n_prompts, vdi_cfg.seed
+        )
     else:
         prompts = make_synthetic_prompts(vdi_cfg.n_prompts, vdi_cfg.seed)
 

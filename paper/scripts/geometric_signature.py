@@ -39,13 +39,15 @@ def gather_random_deltas(data: Dict[str, Dict]) -> List[float]:
 
 def fig_geometric_signature(data: Dict[str, Dict]) -> Path:
     # Styling
-    mpl.rcParams.update({
-        "font.size": 11,
-        "axes.labelsize": 11,
-        "legend.fontsize": 9,
-        "savefig.dpi": 200,
-        "lines.linewidth": 1.8,
-    })
+    mpl.rcParams.update(
+        {
+            "font.size": 11,
+            "axes.labelsize": 11,
+            "legend.fontsize": 9,
+            "savefig.dpi": 200,
+            "lines.linewidth": 1.8,
+        }
+    )
     mpl.rcParams["axes.prop_cycle"] = cycler(
         color=["#0072B2", "#D55E00", "#009E73", "#CC79A7"]
     )
@@ -59,7 +61,9 @@ def fig_geometric_signature(data: Dict[str, Dict]) -> Path:
     # Lower-tail percentiles (predicted negative direction)
     p1, p5 = np.percentile(rand, [1, 5])
 
-    ax1.hist(rand, bins=30, color="lightgray", edgecolor="white", label="Random L0 heads")
+    ax1.hist(
+        rand, bins=30, color="lightgray", edgecolor="white", label="Random L0 heads"
+    )
     ax1.axvline(p5, color="gray", linestyle=":", label="5th pct (lower tail)")
     ax1.axvline(p1, color="gray", linestyle="--", label="1st pct (lower tail)")
 
@@ -76,7 +80,14 @@ def fig_geometric_signature(data: Dict[str, Dict]) -> Path:
     tasks = list(data.keys())
     curv_early = [float(data[t]["deltas"]["curv_early"]) for t in tasks]
     x = np.arange(len(tasks))
-    ax2.bar(x, curv_early, color=[mpl.rcParams["axes.prop_cycle"].by_key()["color"][i % 8] for i in range(len(tasks))])
+    ax2.bar(
+        x,
+        curv_early,
+        color=[
+            mpl.rcParams["axes.prop_cycle"].by_key()["color"][i % 8]
+            for i in range(len(tasks))
+        ],
+    )
     ax2.set_xticks(x)
     ax2.set_xticklabels(tasks, rotation=15)
     ax2.set_ylabel("Δ Curvature (early)\n(ablated − baseline; lower = straighter)")
@@ -98,4 +109,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -34,7 +34,9 @@ class FakeModel:
 
     def to_tokens(self, texts):
         batch = len(texts)
-        tokens = torch.zeros((batch, self.seq_len), dtype=torch.long, device=self.cfg.device)
+        tokens = torch.zeros(
+            (batch, self.seq_len), dtype=torch.long, device=self.cfg.device
+        )
         for i, text in enumerate(texts):
             tokens[i, 0] = self.vocab.get(text, 0)
         return tokens
@@ -128,4 +130,7 @@ def test_sham_control_is_identity():
     result = activation_patch.run(model, dset, cfg, battery, device="cpu")
     layer_table = result["layer_impact_table"]
     sham_deltas = layer_table[layer_table["metric"] == "max_abs_delta"]["value"]
-    assert torch.isclose(torch.tensor(sham_deltas.values), torch.zeros_like(torch.tensor(sham_deltas.values))).all()
+    assert torch.isclose(
+        torch.tensor(sham_deltas.values),
+        torch.zeros_like(torch.tensor(sham_deltas.values)),
+    ).all()

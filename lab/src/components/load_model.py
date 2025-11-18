@@ -1,4 +1,5 @@
 """Model loading utilities for TransformerLens."""
+
 import torch
 from transformer_lens import HookedTransformer
 
@@ -49,7 +50,7 @@ def load_transformerlens(model_cfg, device="auto"):
             if torch.cuda.get_device_capability()[0] >= 8:
                 torch.backends.cuda.matmul.allow_tf32 = True
                 torch.backends.cudnn.allow_tf32 = True
-            print(f"✓ Low-memory mode enabled for CUDA")
+            print("✓ Low-memory mode enabled for CUDA")
 
         # Display CUDA memory info
         if torch.cuda.is_available():
@@ -60,7 +61,9 @@ def load_transformerlens(model_cfg, device="auto"):
 
     name = model_cfg.get("name", "gpt2-small")
     hf_repo = model_cfg.get("hf_model")
-    revision = model_cfg.get("revision")  # Optional HF revision/tag (e.g., step checkpoints)
+    revision = model_cfg.get(
+        "revision"
+    )  # Optional HF revision/tag (e.g., step checkpoints)
 
     print(f"Loading model: {name} to {device} with {dtype}")
 

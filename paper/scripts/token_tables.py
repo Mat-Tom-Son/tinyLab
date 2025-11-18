@@ -123,7 +123,9 @@ def render_tables() -> str:
             "bottom": meaningful_tokens(report[head]["bottom"]),
         }
         label = f"{model}, head {head[0]}:{head[1]}"
-        short_label = f"{('gpt2' if model.startswith('GPT-2') else 'mistral')}-{head[0]}{head[1]}"
+        short_label = (
+            f"{('gpt2' if model.startswith('GPT-2') else 'mistral')}-{head[0]}{head[1]}"
+        )
         # Column width tuning: keep total at ~0.90\linewidth so the table
         # stays visually compact and centered with comfortable margins.
         token_w = 0.68
@@ -133,17 +135,19 @@ def render_tables() -> str:
         latex = [
             r"\begin{table}[t]",
             r"\centering",
-            fr"\caption{{\textbf{{Representative OV tokens for {label}.}} Top/bottom-5 tokens by OV score ($v_{{\text{{OV}}}}\cdot E[t]$). A leading \texttt{{\textperiodcentered}} denotes a preceding space.}}",
-            fr"\label{{tab:ov-tokens-{short_label}}}",
+            rf"\caption{{\textbf{{Representative OV tokens for {label}.}} Top/bottom-5 tokens by OV score ($v_{{\text{{OV}}}}\cdot E[t]$). A leading \texttt{{\textperiodcentered}} denotes a preceding space.}}",
+            rf"\label{{tab:ov-tokens-{short_label}}}",
             r"\small",
-            fr"\begin{{tabular}}{{@{{}}p{{{token_w}\linewidth}}p{{{score_w}\linewidth}}@{{}}}}",
+            rf"\begin{{tabular}}{{@{{}}p{{{token_w}\linewidth}}p{{{score_w}\linewidth}}@{{}}}}",
             r"\toprule",
             r"\textbf{Token (\texttt{BPE})} & \textbf{OV score} \\",
             r"\midrule",
             r"\textbf{Upweighted (Top-5)} & \\ ",
-                    ]
+        ]
         # Upweighted (strictly sorted)
-        top_sorted = sorted(tokens["top"], key=lambda e: e.get("logit", 0.0), reverse=True)[:5]
+        top_sorted = sorted(
+            tokens["top"], key=lambda e: e.get("logit", 0.0), reverse=True
+        )[:5]
         for entry in top_sorted:
             raw = entry.get("token", "")
             score = entry.get("logit", 0.0)
@@ -153,7 +157,7 @@ def render_tables() -> str:
             [
                 r"\midrule",
                 r"\textbf{Downweighted (Bottom-5)} & \\ ",
-                            ]
+            ]
         )
         bottom_sorted = sorted(tokens["bottom"], key=lambda e: e.get("logit", 0.0))[:5]
         for entry in bottom_sorted:
@@ -165,7 +169,7 @@ def render_tables() -> str:
                 r"\bottomrule",
                 r"\end{tabular}",
                 r"\vspace{2pt}",
-                fr"\begin{{minipage}}{{{table_w}\linewidth}}\raggedright \footnotesize Notes: Scores are OV--embedding dot products for the specified head, averaged over frequency-matched resamples. \texttt{{\textperiodcentered}} marks leading space; tokens are lowercased for display.\end{{minipage}}",
+                rf"\begin{{minipage}}{{{table_w}\linewidth}}\raggedright \footnotesize Notes: Scores are OV--embedding dot products for the specified head, averaged over frequency-matched resamples. \texttt{{\textperiodcentered}} marks leading space; tokens are lowercased for display.\end{{minipage}}",
                 r"\end{table}",
             ]
         )

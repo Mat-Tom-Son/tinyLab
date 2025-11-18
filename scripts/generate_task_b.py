@@ -26,7 +26,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import List, Tuple
+from typing import List
 
 import numpy as np
 
@@ -149,4 +149,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

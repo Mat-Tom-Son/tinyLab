@@ -81,14 +81,22 @@ def save_jsonl(path: Path, rows: Iterable[dict]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Filter dataset to single-token targets/foils.")
+    parser = argparse.ArgumentParser(
+        description="Filter dataset to single-token targets/foils."
+    )
     parser.add_argument("input", type=Path, help="Input JSONL corpus.")
-    parser.add_argument("output", type=Path, help="Output JSONL path for filtered corpus.")
     parser.add_argument(
-        "--target-field", default="target", help="Field containing the correct token (default: target)."
+        "output", type=Path, help="Output JSONL path for filtered corpus."
     )
     parser.add_argument(
-        "--foil-field", default="foil", help="Field containing the foil token (default: foil)."
+        "--target-field",
+        default="target",
+        help="Field containing the correct token (default: target).",
+    )
+    parser.add_argument(
+        "--foil-field",
+        default="foil",
+        help="Field containing the foil token (default: foil).",
     )
     parser.add_argument(
         "--tokenizer",
@@ -100,9 +108,18 @@ def main() -> None:
         type=Path,
         help="Optional output path for a split json (train/val/test indices).",
     )
-    parser.add_argument("--train-frac", type=float, default=0.7, help="Train fraction (default: 0.7).")
-    parser.add_argument("--val-frac", type=float, default=0.15, help="Validation fraction (default: 0.15).")
-    parser.add_argument("--seed", type=int, default=13, help="Random seed for split shuffling.")
+    parser.add_argument(
+        "--train-frac", type=float, default=0.7, help="Train fraction (default: 0.7)."
+    )
+    parser.add_argument(
+        "--val-frac",
+        type=float,
+        default=0.15,
+        help="Validation fraction (default: 0.15).",
+    )
+    parser.add_argument(
+        "--seed", type=int, default=13, help="Random seed for split shuffling."
+    )
 
     args = parser.parse_args()
 
@@ -118,7 +135,9 @@ def main() -> None:
     )
 
     if not filtered:
-        raise SystemExit("All rows were filtered out. Provide more single-token examples.")
+        raise SystemExit(
+            "All rows were filtered out. Provide more single-token examples."
+        )
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     save_jsonl(args.output, filtered)

@@ -4,6 +4,7 @@
 Moves any h1_* run directory without metrics/summary.json into lab/runs/_archive/.
 Blessed runs referenced by the manifest are never archived.
 """
+
 from __future__ import annotations
 
 import json
@@ -55,4 +56,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

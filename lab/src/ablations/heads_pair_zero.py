@@ -1,4 +1,5 @@
 """Pairwise head zeroing for backup circuit analysis."""
+
 import pandas as pd
 import torch
 from ..components import metrics as M
@@ -47,7 +48,9 @@ def run(model, dset, cfg, battery, device):
             return z
 
         with torch.no_grad():
-            logits_patched = model.run_with_hooks(toks, fwd_hooks=[(node, zero_pair_fn)])
+            logits_patched = model.run_with_hooks(
+                toks, fwd_hooks=[(node, zero_pair_fn)]
+            )
 
         summary, per_ex = M.evaluate_outputs(
             model, clean_logits, logits_patched, dset, cfg
@@ -60,9 +63,7 @@ def run(model, dset, cfg, battery, device):
         per_ex_rows.extend(per_ex)
 
     df = pd.DataFrame(impact_rows)
-    agg_summary = {
-        m: float(df[m].mean()) for m in metric_names if m in df
-    }
+    agg_summary = {m: float(df[m].mean()) for m in metric_names if m in df}
 
     # Build standardized table for cross-run analysis
     pair_impact_rows = []

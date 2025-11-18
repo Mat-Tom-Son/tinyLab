@@ -52,7 +52,15 @@ def patch_head(model, cache, layer: int, head: int):
     return hook
 
 
-def run(config: Path, tag: str, head: int, layer: int, heads_to_zero, samples: int, seed: int):
+def run(
+    config: Path,
+    tag: str,
+    head: int,
+    layer: int,
+    heads_to_zero,
+    samples: int,
+    seed: int,
+):
     cfg = build_cfg(config, tag)
     determinism.set_seed(seed)
     rows, _, _ = datasets.load_split(cfg["dataset"])
@@ -68,20 +76,38 @@ def run(config: Path, tag: str, head: int, layer: int, heads_to_zero, samples: i
     with torch.no_grad():
         logits_clean, cache = model.run_with_cache(tokens)
 
-    baseline_summary, _ = metrics.evaluate_outputs(model, logits_clean, logits_clean, rows, {"dataset": cfg["dataset"], "seed": seed})
+    baseline_summary, _ = metrics.evaluate_outputs(
+        model,
+        logits_clean,
+        logits_clean,
+        rows,
+        {"dataset": cfg["dataset"], "seed": seed},
+    )
 
     zero_hook = zero_heads(layer, heads_to_zero)
     node = f"blocks.{layer}.attn.hook_z"
     with torch.no_grad():
         logits_zero = model.run_with_hooks(tokens, fwd_hooks=[(node, zero_hook)])
-    zero_summary, _ = metrics.evaluate_outputs(model, logits_clean, logits_zero, rows, {"dataset": cfg["dataset"], "seed": seed})
+    zero_summary, _ = metrics.evaluate_outputs(
+        model,
+        logits_clean,
+        logits_zero,
+        rows,
+        {"dataset": cfg["dataset"], "seed": seed},
+    )
 
     patch_hook = patch_head(model, cache, layer, head)
     with torch.no_grad():
         logits_half = model.run_with_hooks(
             tokens, fwd_hooks=[(node, zero_hook), (node, patch_hook)]
         )
-    patch_summary, _ = metrics.evaluate_outputs(model, logits_clean, logits_half, rows, {"dataset": cfg["dataset"], "seed": seed})
+    patch_summary, _ = metrics.evaluate_outputs(
+        model,
+        logits_clean,
+        logits_half,
+        rows,
+        {"dataset": cfg["dataset"], "seed": seed},
+    )
 
     return {
         "baseline": baseline_summary,
@@ -117,4 +143,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

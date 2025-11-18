@@ -51,9 +51,13 @@ def collect(parent_cfg_path: Path) -> None:
             )
             if candidates:
                 child_run_dir = candidates[0]
-                print(f"[yellow]Using latest run dir for {tag}: {child_run_dir.name}[/yellow]")
+                print(
+                    f"[yellow]Using latest run dir for {tag}: {child_run_dir.name}[/yellow]"
+                )
             else:
-                print(f"[yellow]Missing child run dir for {tag}: {child_run_dir}[/yellow]")
+                print(
+                    f"[yellow]Missing child run dir for {tag}: {child_run_dir}[/yellow]"
+                )
                 continue
         child_runs.append({"tag": tag, "run_dir": str(child_run_dir)})
 
@@ -125,7 +129,9 @@ def collect(parent_cfg_path: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("parent_config", help="Path to parent config.json (from run dir)")
+    parser.add_argument(
+        "parent_config", help="Path to parent config.json (from run dir)"
+    )
     args = parser.parse_args()
     collect(Path(args.parent_config))
 

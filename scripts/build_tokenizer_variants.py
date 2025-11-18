@@ -14,7 +14,14 @@ from curate_single_token_dataset import (
 )
 
 
-def write_split(indices: List[int], output_path: Path, data_hash: str, seed: int, train_frac: float, val_frac: float):
+def write_split(
+    indices: List[int],
+    output_path: Path,
+    data_hash: str,
+    seed: int,
+    train_frac: float,
+    val_frac: float,
+):
     import random
 
     random.seed(seed)
@@ -40,7 +47,9 @@ def write_split(indices: List[int], output_path: Path, data_hash: str, seed: int
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build tokenizer-specific corpora variants.")
+    parser = argparse.ArgumentParser(
+        description="Build tokenizer-specific corpora variants."
+    )
     parser.add_argument(
         "--tokenizer",
         required=True,
@@ -95,10 +104,11 @@ def main() -> None:
         data_hash = hash_file(out_path)
         indices = list(range(len(filtered)))
         split_path = split_dir / f"{new_id}.split.json"
-        write_split(indices, split_path, data_hash, args.seed, args.train_frac, args.val_frac)
+        write_split(
+            indices, split_path, data_hash, args.seed, args.train_frac, args.val_frac
+        )
         print(f"       wrote split → {split_path}")
 
 
 if __name__ == "__main__":
     main()
-

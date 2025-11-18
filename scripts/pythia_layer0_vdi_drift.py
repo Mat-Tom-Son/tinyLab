@@ -14,11 +14,10 @@ from __future__ import annotations
 
 import argparse
 import json
-import math
 import random
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
@@ -205,7 +204,9 @@ def compute_vdi_for_sigma(
 
     var_before = sum_sq_delta0 / float(n_positions)
     var_after_full = sum_sq_delta1_full / float(n_positions)
-    vdi_full = (var_before - var_after_full) / var_before if var_before > 0 else float("nan")
+    vdi_full = (
+        (var_before - var_after_full) / var_before if var_before > 0 else float("nan")
+    )
 
     # Per-head ablation: measure how much Var_after grows when a head is removed.
     n_heads = model.cfg.n_heads
@@ -272,9 +273,17 @@ def compute_vdi_for_sigma(
 
         v_after_minus = sum_sq_delta1_minus / float(n_positions)
         var_after_minus.append(v_after_minus)
-        vdi_m = (var_before - v_after_minus) / var_before if var_before > 0 else float("nan")
+        vdi_m = (
+            (var_before - v_after_minus) / var_before
+            if var_before > 0
+            else float("nan")
+        )
         vdi_minus.append(vdi_m)
-        vdi_eff = (v_after_minus - var_after_full) / var_before if var_before > 0 else float("nan")
+        vdi_eff = (
+            (v_after_minus - var_after_full) / var_before
+            if var_before > 0
+            else float("nan")
+        )
         vdi_effect.append(vdi_eff)
 
     return {
@@ -706,8 +715,14 @@ def run_between_condition_metrics(
                         logits_base = model.run_with_hooks(
                             tokens_base,
                             fwd_hooks=[
-                                (f"blocks.{mid_layer}.hook_resid_post", hook_r_mid_base),
-                                (f"blocks.{n_layers-1}.hook_resid_post", hook_r_final_base),
+                                (
+                                    f"blocks.{mid_layer}.hook_resid_post",
+                                    hook_r_mid_base,
+                                ),
+                                (
+                                    f"blocks.{n_layers-1}.hook_resid_post",
+                                    hook_r_final_base,
+                                ),
                             ],
                         )
 
@@ -751,8 +766,14 @@ def run_between_condition_metrics(
                             tokens_ablate,
                             fwd_hooks=[
                                 (attn_z_name, zero_head),
-                                (f"blocks.{mid_layer}.hook_resid_post", hook_r_mid_ablate),
-                                (f"blocks.{n_layers-1}.hook_resid_post", hook_r_final_ablate),
+                                (
+                                    f"blocks.{mid_layer}.hook_resid_post",
+                                    hook_r_mid_ablate,
+                                ),
+                                (
+                                    f"blocks.{n_layers-1}.hook_resid_post",
+                                    hook_r_final_ablate,
+                                ),
                             ],
                         )
 
@@ -790,7 +811,9 @@ def run_between_condition_metrics(
                 log_probs_base = F.log_softmax(logits_base_all, dim=-1)
                 log_probs_ablate = F.log_softmax(logits_ablate_all, dim=-1)
                 probs_base = log_probs_base.exp()
-                kl_per_t = (probs_base * (log_probs_base - log_probs_ablate)).sum(dim=-1)
+                kl_per_t = (probs_base * (log_probs_base - log_probs_ablate)).sum(
+                    dim=-1
+                )
                 # Mask any non-finite values
                 kl_per_t = torch.where(
                     torch.isfinite(kl_per_t),
@@ -809,9 +832,11 @@ def run_between_condition_metrics(
 
                 rows.append(
                     {
-                        "model": model.cfg.model_name
-                        if hasattr(model.cfg, "model_name")
-                        else "unknown",
+                        "model": (
+                            model.cfg.model_name
+                            if hasattr(model.cfg, "model_name")
+                            else "unknown"
+                        ),
                         "head": head,
                         "prompt_index": prompt_idx,
                         "sample_index": sample_idx,
@@ -987,7 +1012,9 @@ def main() -> None:
     n_layers = model.cfg.n_layers
     mid_layer_index = n_layers // 2
     last_layer_index = n_layers - 1
-    print(f"Model has {n_layers} layers (mid={mid_layer_index}, last={last_layer_index})")
+    print(
+        f"Model has {n_layers} layers (mid={mid_layer_index}, last={last_layer_index})"
+    )
 
     # Phase 1a: VDI on layer 0
     vdi_cfg = VDIConfig(
@@ -1034,7 +1061,9 @@ def main() -> None:
 
     # Determine heads to use for drift experiment
     if args.drift_heads_list:
-        head_list = [int(h.strip()) for h in args.drift_heads_list.split(",") if h.strip()]
+        head_list = [
+            int(h.strip()) for h in args.drift_heads_list.split(",") if h.strip()
+        ]
         drift_heads = head_list
         print(f"[Drift] Using fixed head list for drift: {drift_heads}")
     else:

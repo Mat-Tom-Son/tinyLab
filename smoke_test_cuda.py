@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """CUDA-specific smoke test to validate the lab setup on NVIDIA GPUs."""
+
 import sys
 import torch
 from transformer_lens import HookedTransformer
@@ -43,16 +44,16 @@ try:
     dtype = torch.float16 if device == "cuda" else torch.float32
     print(f"   Using dtype: {dtype}")
 
-    model = HookedTransformer.from_pretrained(
-        "gpt2-small", device=device, dtype=dtype
-    )
+    model = HookedTransformer.from_pretrained("gpt2-small", device=device, dtype=dtype)
     print(f"   ✓ Model loaded ({model.cfg.n_layers} layers, {model.cfg.n_heads} heads)")
 
     # Memory after model load
     if device == "cuda":
         allocated = torch.cuda.memory_allocated(0) / (1024**3)
         reserved = torch.cuda.memory_reserved(0) / (1024**3)
-        print(f"   CUDA memory after load: {allocated:.2f} GB allocated, {reserved:.2f} GB reserved")
+        print(
+            f"   CUDA memory after load: {allocated:.2f} GB allocated, {reserved:.2f} GB reserved"
+        )
 except Exception as e:
     print(f"   ✗ Failed to load model: {e}")
     sys.exit(1)
@@ -69,7 +70,9 @@ try:
     if device == "cuda":
         allocated = torch.cuda.memory_allocated(0) / (1024**3)
         reserved = torch.cuda.memory_reserved(0) / (1024**3)
-        print(f"   CUDA memory after forward: {allocated:.2f} GB allocated, {reserved:.2f} GB reserved")
+        print(
+            f"   CUDA memory after forward: {allocated:.2f} GB allocated, {reserved:.2f} GB reserved"
+        )
 except Exception as e:
     print(f"   ✗ Forward pass failed: {e}")
     sys.exit(1)
@@ -85,7 +88,8 @@ try:
 
     with torch.no_grad():
         model.run_with_hooks(
-            tokens, fwd_hooks=[(f"blocks.{model.cfg.n_layers-1}.hook_resid_post", hook_fn)]
+            tokens,
+            fwd_hooks=[(f"blocks.{model.cfg.n_layers-1}.hook_resid_post", hook_fn)],
         )
     print(f"   ✓ Hooks work (captured {len(cache)} activations)")
 
@@ -93,7 +97,9 @@ try:
     if device == "cuda":
         allocated = torch.cuda.memory_allocated(0) / (1024**3)
         reserved = torch.cuda.memory_reserved(0) / (1024**3)
-        print(f"   CUDA memory after hooks: {allocated:.2f} GB allocated, {reserved:.2f} GB reserved")
+        print(
+            f"   CUDA memory after hooks: {allocated:.2f} GB allocated, {reserved:.2f} GB reserved"
+        )
 except Exception as e:
     print(f"   ✗ Hooks failed: {e}")
     sys.exit(1)
@@ -109,7 +115,9 @@ try:
         )
         print(f"   ✓ Loaded {len(dset)} examples (hash: {data_hash[:12]}...)")
     else:
-        print("   ⚠ Sample data not found (run: python3 scripts/facts_make_split.py facts_v1)")
+        print(
+            "   ⚠ Sample data not found (run: python3 scripts/facts_make_split.py facts_v1)"
+        )
 except Exception as e:
     print(f"   ✗ Data loading failed: {e}")
 
@@ -144,7 +152,9 @@ try:
         torch.cuda.empty_cache()
         allocated = torch.cuda.memory_allocated(0) / (1024**3)
         reserved = torch.cuda.memory_reserved(0) / (1024**3)
-        print(f"   CUDA memory after cleanup: {allocated:.2f} GB allocated, {reserved:.2f} GB reserved")
+        print(
+            f"   CUDA memory after cleanup: {allocated:.2f} GB allocated, {reserved:.2f} GB reserved"
+        )
         print("   ✓ Memory cleanup successful")
 except Exception as e:
     print(f"   ⚠ Cleanup warning: {e}")
@@ -156,16 +166,22 @@ if device == "cuda":
     total_mem = torch.cuda.get_device_properties(0).total_memory / (1024**3)
     print(f"  - Total VRAM: {total_mem:.2f} GB")
     if total_mem < 16:
-        print(f"  - ⚠ Limited VRAM detected. Use these settings:")
-        print(f"    • GPT-2 Medium: float16, batch_size=4-8")
-        print(f"    • Mistral-7B: float16, batch_size=1-2, gradient checkpointing if training")
-        print(f"    • Enable 'low_memory': true in model config")
+        print("  - ⚠ Limited VRAM detected. Use these settings:")
+        print("    • GPT-2 Medium: float16, batch_size=4-8")
+        print(
+            "    • Mistral-7B: float16, batch_size=1-2, gradient checkpointing if training"
+        )
+        print("    • Enable 'low_memory': true in model config")
     else:
-        print(f"  - ✓ Sufficient VRAM for most experiments")
-        print(f"    • GPT-2 Medium: float16, batch_size=8-16")
-        print(f"    • Mistral-7B: float16, batch_size=2-4")
+        print("  - ✓ Sufficient VRAM for most experiments")
+        print("    • GPT-2 Medium: float16, batch_size=8-16")
+        print("    • Mistral-7B: float16, batch_size=2-4")
 
 print("\nNext steps:")
-print("  1. Update configs to use 'cuda' device (or use scripts/convert_configs_to_cuda.py)")
-print("  2. Run an experiment: python -m lab.src.harness lab/configs/run_h1_cross_condition_balanced.json")
+print(
+    "  1. Update configs to use 'cuda' device (or use scripts/convert_configs_to_cuda.py)"
+)
+print(
+    "  2. Run an experiment: python -m lab.src.harness lab/configs/run_h1_cross_condition_balanced.json"
+)
 print("  3. Monitor GPU usage: watch -n 1 nvidia-smi")

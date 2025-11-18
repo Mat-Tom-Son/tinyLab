@@ -1,4 +1,5 @@
 """Zero arbitrary sets of attention heads for cooperative circuit analysis."""
+
 import pandas as pd
 import torch
 
@@ -19,7 +20,9 @@ def run(model, dset, cfg, battery, device):
 
     groups = battery.get("groups")
     if not groups:
-        raise ValueError("heads_subset_zero battery requires a non-empty 'groups' list.")
+        raise ValueError(
+            "heads_subset_zero battery requires a non-empty 'groups' list."
+        )
 
     clean_texts = [ex[cfg["dataset"]["clean_field"]] for ex in dset]
     toks = model.to_tokens(clean_texts)
@@ -45,7 +48,9 @@ def run(model, dset, cfg, battery, device):
         with torch.no_grad():
             logits_patched = model.run_with_hooks(toks, fwd_hooks=[(node, zero_subset)])
 
-        summary, per_ex = M.evaluate_outputs(model, clean_logits, logits_patched, dset, cfg)
+        summary, per_ex = M.evaluate_outputs(
+            model, clean_logits, logits_patched, dset, cfg
+        )
         summary.update({"layer": layer, "heads": heads, "label": label})
         impact_rows.append(summary)
 

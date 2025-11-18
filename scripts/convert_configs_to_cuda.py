@@ -69,12 +69,12 @@ def convert_config_to_cuda(
                 print(f"  Updated dtype: {old_dtype} → {dtype}")
             elif model_cfg.get("dtype") == "float32":
                 model_cfg["dtype"] = "float16"
-                print(f"  Updated dtype: float32 → float16 (CUDA optimization)")
+                print("  Updated dtype: float32 → float16 (CUDA optimization)")
 
             # Enable low memory mode if requested
             if low_memory:
                 model_cfg["low_memory"] = True
-                print(f"  Enabled low_memory mode")
+                print("  Enabled low_memory mode")
 
         # Update batch size if requested
         if batch_size is not None and "batch_size" in config["shared"]:
@@ -93,12 +93,12 @@ def convert_config_to_cuda(
             print(f"  Updated dtype: {old_dtype} → {dtype}")
         elif model_cfg.get("dtype") == "float32":
             model_cfg["dtype"] = "float16"
-            print(f"  Updated dtype: float32 → float16 (CUDA optimization)")
+            print("  Updated dtype: float32 → float16 (CUDA optimization)")
 
         # Enable low memory mode if requested
         if low_memory:
             model_cfg["low_memory"] = True
-            print(f"  Enabled low_memory mode")
+            print("  Enabled low_memory mode")
 
     # Update batch size at top level if present
     if batch_size is not None and "batch_size" in config:

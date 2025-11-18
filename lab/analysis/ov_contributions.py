@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, Tuple
 
 import torch
 
@@ -18,7 +18,9 @@ def parse_head(arg: str) -> Tuple[int, int]:
         layer_str, head_str = arg.split(":")
         return int(layer_str), int(head_str)
     except ValueError as exc:
-        raise argparse.ArgumentTypeError(f"Invalid head spec '{arg}'. Use L:H.") from exc
+        raise argparse.ArgumentTypeError(
+            f"Invalid head spec '{arg}'. Use L:H."
+        ) from exc
 
 
 def build_child_cfg(config_path: Path, tag: str) -> Dict:
@@ -108,7 +110,9 @@ def main():
         t_id = model.to_single_token(ex[child_cfg["dataset"]["target_field"]])
         f_id = model.to_single_token(ex[child_cfg["dataset"]["foil_field"]])
         if t_id is None or f_id is None:
-            raise ValueError("All examples must have single-token target/foil for OV analysis.")
+            raise ValueError(
+                "All examples must have single-token target/foil for OV analysis."
+            )
         target_ids.append(t_id)
         foil_ids.append(f_id)
 

@@ -1,4 +1,5 @@
 """Validation tests for v1.1 features."""
+
 import pandas as pd
 from pathlib import Path
 
@@ -93,8 +94,9 @@ def validate_cross_condition_matrix(df, expected_conditions):
     assert "condition" in df.columns, "Missing 'condition' column"
 
     conditions = df["condition"].unique()
-    assert len(conditions) == len(expected_conditions), \
-        f"Expected {len(expected_conditions)} conditions, found {len(conditions)}"
+    assert len(conditions) == len(
+        expected_conditions
+    ), f"Expected {len(expected_conditions)} conditions, found {len(conditions)}"
 
     for cond in expected_conditions:
         assert cond in conditions, f"Missing condition: {cond}"
@@ -162,6 +164,7 @@ def test_schemas_on_files(run_dir):
     verify_path = run_path / "metrics" / "verify.json"
     if verify_path.exists():
         import json
+
         with open(verify_path) as f:
             verify_data = json.load(f)
         validate_verify_json(verify_data)

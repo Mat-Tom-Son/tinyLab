@@ -78,7 +78,9 @@ def load_matrices(specs: Iterable[MatrixSpec], metric: str) -> Dict[str, pd.Data
                 key=lambda p: p.stat().st_mtime,
             )
             if not matches:
-                raise FileNotFoundError(f"No files matched pattern '{path_str}' for tag '{spec.tag}'")
+                raise FileNotFoundError(
+                    f"No files matched pattern '{path_str}' for tag '{spec.tag}'"
+                )
             path = matches[-1]
         else:
             path = spec.path
@@ -125,10 +127,7 @@ def build_summary(
         for condition, cond_df in df.groupby("condition"):
             layers = sorted(cond_df["layer"].unique())
             mean_by_layer = (
-                cond_df.groupby("layer")["value"]
-                .mean()
-                .reindex(layers)
-                .fillna(0.0)
+                cond_df.groupby("layer")["value"].mean().reindex(layers).fillna(0.0)
             )
             values = mean_by_layer.to_numpy(dtype=float)
             if values.size == 0:

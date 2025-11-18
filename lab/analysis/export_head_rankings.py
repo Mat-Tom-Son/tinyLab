@@ -19,7 +19,6 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
-from typing import Dict, List, Tuple
 
 import glob
 import pandas as pd
@@ -41,9 +40,13 @@ def parse_args() -> argparse.Namespace:
         help="Restrict to this layer (e.g., 0). Use -1 for all layers.",
     )
     p.add_argument("--top-k", type=int, default=10, help="Export top-K worst heads.")
-    p.add_argument("--bottom-k", type=int, default=5, help="Export bottom-K best heads.")
+    p.add_argument(
+        "--bottom-k", type=int, default=5, help="Export bottom-K best heads."
+    )
     p.add_argument("--outdir", type=Path, default=Path("reports"), help="Output dir.")
-    p.add_argument("--prefix", type=str, default="mistral", help="Filename prefix (model tag).")
+    p.add_argument(
+        "--prefix", type=str, default="mistral", help="Filename prefix (model tag)."
+    )
     return p.parse_args()
 
 
@@ -67,12 +70,14 @@ def load_head_impact(path: Path, metric: str, only_layer: int) -> pd.DataFrame:
 def rank_heads(df: pd.DataFrame) -> pd.DataFrame:
     # Mean across seeds per (layer, head)
     agg = (
-        df.groupby(["layer", "head"])['value']
+        df.groupby(["layer", "head"])["value"]
         .mean()
         .reset_index()
         .rename(columns={"value": "mean_value"})
     )
-    agg = agg.sort_values("mean_value", ascending=True, kind="mergesort").reset_index(drop=True)
+    agg = agg.sort_values("mean_value", ascending=True, kind="mergesort").reset_index(
+        drop=True
+    )
     agg["rank"] = agg.index + 1
     return agg
 

@@ -40,9 +40,8 @@ import json
 from dataclasses import dataclass
 from random import Random
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
-import numpy as np
 import torch
 
 from ..src.components import load_model, metrics as M
@@ -52,12 +51,39 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--model-name", "--model", type=str, default="gpt2-medium")
     p.add_argument("--device", type=str, default="auto")
-    p.add_argument("--dtype", type=str, default="float16", choices=["float16", "float32", "bfloat16"])
-    p.add_argument("--layer-range", type=str, default="8:12", help="Inclusive:exclusive layer range, e.g. 8:12")
-    p.add_argument("--layer-start", type=int, default=None, help="Optional start layer (overrides --layer-range)")
-    p.add_argument("--layer-end", type=int, default=None, help="Optional end layer (exclusive; overrides --layer-range)")
-    p.add_argument("--scale", type=float, default=0.0, help="Zeroing scale (0.0 = full ablation)")
-    p.add_argument("--max-examples", type=int, default=5000, help="Max synthetic examples after filtering")
+    p.add_argument(
+        "--dtype",
+        type=str,
+        default="float16",
+        choices=["float16", "float32", "bfloat16"],
+    )
+    p.add_argument(
+        "--layer-range",
+        type=str,
+        default="8:12",
+        help="Inclusive:exclusive layer range, e.g. 8:12",
+    )
+    p.add_argument(
+        "--layer-start",
+        type=int,
+        default=None,
+        help="Optional start layer (overrides --layer-range)",
+    )
+    p.add_argument(
+        "--layer-end",
+        type=int,
+        default=None,
+        help="Optional end layer (exclusive; overrides --layer-range)",
+    )
+    p.add_argument(
+        "--scale", type=float, default=0.0, help="Zeroing scale (0.0 = full ablation)"
+    )
+    p.add_argument(
+        "--max-examples",
+        type=int,
+        default=5000,
+        help="Max synthetic examples after filtering",
+    )
     p.add_argument("--batch-size", type=int, default=64, help="Batch size for forwards")
     p.add_argument("--seed", type=int, default=13)
     p.add_argument("--output", "--out", type=Path, required=True)
@@ -72,16 +98,41 @@ def synthetic_binding_dataset(max_examples: int, seed: int) -> List[Dict[str, st
     """
     rng = Random(seed)
     colors = [
-        "red", "blue", "green", "black", "white", "yellow", "purple", "pink", "orange", "brown",
-        "silver", "gold"
+        "red",
+        "blue",
+        "green",
+        "black",
+        "white",
+        "yellow",
+        "purple",
+        "pink",
+        "orange",
+        "brown",
+        "silver",
+        "gold",
     ]
     sizes = ["big", "small", "tiny", "huge", "little", "massive"]
     materials = ["wooden", "metal", "plastic", "leather", "paper"]
     adjs = colors + sizes + materials
 
     nouns = [
-        "car", "truck", "boat", "bike", "dog", "cat", "chair", "table", "sofa", "bed",
-        "lamp", "hat", "coat", "bag", "shoe", "book", "cup"
+        "car",
+        "truck",
+        "boat",
+        "bike",
+        "dog",
+        "cat",
+        "chair",
+        "table",
+        "sofa",
+        "bed",
+        "lamp",
+        "hat",
+        "coat",
+        "bag",
+        "shoe",
+        "book",
+        "cup",
     ]
 
     def pluralize(n: str) -> str:
@@ -148,9 +199,9 @@ def compute_baseline(model, dset: List[Dict[str, str]], batch_size: int):
         toks = model.to_tokens([ex["clean"] for ex in chunk])
         with torch.no_grad():
             clean_logits = model(toks)
-        t_ids, f_ids = M._first_token_ids(model, chunk, {
-            "dataset": {"target_field": "target", "foil_field": "foil"}
-        })
+        t_ids, f_ids = M._first_token_ids(
+            model, chunk, {"dataset": {"target_field": "target", "foil_field": "foil"}}
+        )
         ld = M.logit_diff_first_token(clean_logits, t_ids, f_ids)
         preds = torch.softmax(clean_logits[:, -1, :], dim=-1).argmax(dim=-1)
         acc = (preds == t_ids).float().mean().item()
@@ -185,7 +236,7 @@ def run() -> None:
     for ex in raw:
         try:
             tid = model.to_single_token(ex["target"])  # type: ignore[arg-type]
-            fid = model.to_single_token(ex["foil"])    # type: ignore[arg-type]
+            fid = model.to_single_token(ex["foil"])  # type: ignore[arg-type]
         except Exception:
             tid, fid = None, None
         if tid is not None and fid is not None:
@@ -195,7 +246,9 @@ def run() -> None:
         raise RuntimeError("Too few single-token binding examples after filtering.")
     ok = ok[: args.max_examples]
 
-    baseline_logits_batches, t_ids_batches, ld_base, acc_base = compute_baseline(model, ok, args.batch_size)
+    baseline_logits_batches, t_ids_batches, ld_base, acc_base = compute_baseline(
+        model, ok, args.batch_size
+    )
 
     results = {
         "model": args.model_name,
@@ -230,9 +283,13 @@ def run() -> None:
 
                 clean_logits = baseline_logits_batches[bi]
                 t_ids = t_ids_batches[bi]
-                summary, _ = M.evaluate_outputs(model, clean_logits, ablated_logits, chunk, {
-                    "dataset": {"target_field": "target", "foil_field": "foil"}
-                })
+                summary, _ = M.evaluate_outputs(
+                    model,
+                    clean_logits,
+                    ablated_logits,
+                    chunk,
+                    {"dataset": {"target_field": "target", "foil_field": "foil"}},
+                )
                 n = ablated_logits.size(0)
                 total += n
                 sum_ld += float(summary.get("logit_diff", 0.0)) * n

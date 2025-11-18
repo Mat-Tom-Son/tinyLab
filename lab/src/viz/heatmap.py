@@ -1,4 +1,5 @@
 """Heatmap visualization for ablation impact matrices."""
+
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
@@ -21,9 +22,7 @@ def save_heatmap(pivot_df, out_path_png: Path):
             y=[str(i) for i in pivot_df.index],  # Ensure index is string-like
             color_continuous_scale="RdBu_r",  # Red-Blue reversed (blue=positive)
             aspect="auto",
-            labels=dict(
-                x="Columns", y="Node", color=pivot_df.columns.name or "Value"
-            ),
+            labels=dict(x="Columns", y="Node", color=pivot_df.columns.name or "Value"),
         )
         fig.update_layout(title="Ablation Impact Heatmap")
 

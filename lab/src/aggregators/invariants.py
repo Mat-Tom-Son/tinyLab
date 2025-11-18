@@ -1,4 +1,5 @@
 """Invariants detector for finding conserved components across conditions (v1.1)."""
+
 import sys
 import argparse
 from pathlib import Path
@@ -126,7 +127,8 @@ def main(cross_condition_dir, k=10, metrics=None):
         for metric in metrics:
             invariant_heads = find_invariant_heads(df_heads, k=k, metric=metric)
             invariants["heads"][metric] = [
-                {"layer": int(layer), "head": int(head)} for layer, head in invariant_heads
+                {"layer": int(layer), "head": int(head)}
+                for layer, head in invariant_heads
             ]
             print(f"  {metric}: {len(invariant_heads)} invariant heads")
 
@@ -150,7 +152,9 @@ def main(cross_condition_dir, k=10, metrics=None):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Find invariant components across conditions")
+    parser = argparse.ArgumentParser(
+        description="Find invariant components across conditions"
+    )
     parser.add_argument("cross_condition_dir", help="Path to cross_condition directory")
     parser.add_argument("--k", type=int, default=10, help="Top-k threshold")
     parser.add_argument(

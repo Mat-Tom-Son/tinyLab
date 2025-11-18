@@ -20,13 +20,15 @@ def topk_by_metric(rows: List[Dict], metric: str, k: int) -> List[Dict]:
 
 def fig_binder_bar(rows: List[Dict], title: str, out: Path, ylabel: str) -> None:
     # Styling similar to geometric_signature.py
-    mpl.rcParams.update({
-        "font.size": 11,
-        "axes.labelsize": 11,
-        "legend.fontsize": 9,
-        "savefig.dpi": 200,
-        "lines.linewidth": 1.8,
-    })
+    mpl.rcParams.update(
+        {
+            "font.size": 11,
+            "axes.labelsize": 11,
+            "legend.fontsize": 9,
+            "savefig.dpi": 200,
+            "lines.linewidth": 1.8,
+        }
+    )
     mpl.rcParams["axes.prop_cycle"] = cycler(color=["#0072B2"])  # blue
 
     labels = [f"L{int(r['layer'])}H{int(r['head'])}" for r in rows]
@@ -49,7 +51,9 @@ def fig_binder_bar(rows: List[Dict], title: str, out: Path, ylabel: str) -> None
 def write_markdown(rows: List[Dict], out_md: Path) -> None:
     out_md.parent.mkdir(parents=True, exist_ok=True)
     with out_md.open("w") as f:
-        f.write("| Layer | Head | d_acc | d_ld | acc_base | acc_abl | p_drop | kl_div |\n")
+        f.write(
+            "| Layer | Head | d_acc | d_ld | acc_base | acc_abl | p_drop | kl_div |\n"
+        )
         f.write("| --- | --- | ---:| ---:| ---:| ---:| ---:| ---:|\n")
         for r in rows:
             f.write(
@@ -65,7 +69,13 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", type=Path, required=True, help="binder_sweep JSON path")
     ap.add_argument("--top-k", type=int, default=10)
-    ap.add_argument("--metric", type=str, default="d_ld", choices=["d_ld", "d_acc"], help="Ranking metric")
+    ap.add_argument(
+        "--metric",
+        type=str,
+        default="d_ld",
+        choices=["d_ld", "d_acc"],
+        help="Ranking metric",
+    )
     ap.add_argument("--outdir", type=Path, default=Path("figs"))
     args = ap.parse_args()
 
@@ -76,8 +86,17 @@ def main() -> None:
 
     stem = args.input.stem.replace(".json", "")
     out_base = args.outdir / f"binder_{stem}_top{args.top_k}"
-    ylab = "Δ Logit Diff (ablated − baseline)" if args.metric == "d_ld" else "Δ Accuracy (ablated − baseline)"
-    fig_binder_bar(top, title=f"Binder Sweep: Top {args.top_k} by {args.metric} (lower is worse)", out=out_base, ylabel=ylab)
+    ylab = (
+        "Δ Logit Diff (ablated − baseline)"
+        if args.metric == "d_ld"
+        else "Δ Accuracy (ablated − baseline)"
+    )
+    fig_binder_bar(
+        top,
+        title=f"Binder Sweep: Top {args.top_k} by {args.metric} (lower is worse)",
+        out=out_base,
+        ylabel=ylab,
+    )
     write_markdown(top, out_base.with_suffix(".md"))
     print(f"Wrote {out_base}.pdf/.png and {out_base}.md")
 

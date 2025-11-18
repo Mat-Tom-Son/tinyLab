@@ -5,6 +5,7 @@ Searches lab/runs for child runs matching h1_pythia_checkpoint_XXXXXX_<tag>_*
 and concatenates their head_impact.parquet into a single long-form table with
 checkpoint_step and condition columns, saving to reports/.
 """
+
 from __future__ import annotations
 
 import re
@@ -52,4 +53,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

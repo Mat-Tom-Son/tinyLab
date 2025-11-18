@@ -13,7 +13,7 @@ Intended use (Stage 1A pilot):
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, List, Tuple
+from typing import Dict, List, Tuple
 
 import torch
 
@@ -49,7 +49,7 @@ def make_layer_head_scaler(layer: int, head_to_alpha: Dict[int, float]) -> HookS
 
 
 def build_scaling_hooks(
-    layer_head_config: Dict[Tuple[int, int], float]
+    layer_head_config: Dict[Tuple[int, int], float],
 ) -> List[HookSpec]:
     """Build scaling hooks from a {(layer, head): alpha} mapping.
 
@@ -83,4 +83,3 @@ def example_usage(model) -> None:
     hooks = build_scaling_hooks(config)
     tokens = model.to_tokens("Example prompt")
     _ = model.run_with_hooks(tokens, fwd_hooks=hooks)
-

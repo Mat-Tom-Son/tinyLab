@@ -35,12 +35,29 @@ from ..src.utils import io
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--config", type=Path, required=True, help="Cross-condition or single-run config JSON")
-    p.add_argument("--tag", type=str, required=True, help="Condition tag (for cross-condition configs)")
-    p.add_argument("--model-name", type=str, default=None, help="Override model name (default from config)")
+    p.add_argument(
+        "--config",
+        type=Path,
+        required=True,
+        help="Cross-condition or single-run config JSON",
+    )
+    p.add_argument(
+        "--tag",
+        type=str,
+        required=True,
+        help="Condition tag (for cross-condition configs)",
+    )
+    p.add_argument(
+        "--model-name",
+        type=str,
+        default=None,
+        help="Override model name (default from config)",
+    )
     p.add_argument("--device", type=str, default=None, help="Override device")
     p.add_argument("--samples", type=int, default=256, help="Max examples to sample")
-    p.add_argument("--var-frac", type=float, default=0.90, help="Variance fraction for PCA rank")
+    p.add_argument(
+        "--var-frac", type=float, default=0.90, help="Variance fraction for PCA rank"
+    )
     p.add_argument("--output", type=Path, required=True)
     return p.parse_args()
 
@@ -80,7 +97,7 @@ def svd_rank_for_fraction(x: np.ndarray, var_frac: float = 0.9) -> int:
     except np.linalg.LinAlgError:
         return 0
     n = x.shape[0]
-    eigvals = (s ** 2) / max(n - 1, 1)
+    eigvals = (s**2) / max(n - 1, 1)
     total = float(np.sum(eigvals))
     if total <= 0:
         return 0
@@ -103,7 +120,9 @@ def main() -> None:
 
     clean_texts = [ex[child["dataset"]["clean_field"]] for ex in rows]
 
-    model = load_model.load_transformerlens(child["model"], device=child.get("device", "auto"))
+    model = load_model.load_transformerlens(
+        child["model"], device=child.get("device", "auto")
+    )
     model.eval()
     toks = model.to_tokens(clean_texts)
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Quick smoke test to validate the lab setup."""
+
 import sys
 import torch
 from transformer_lens import HookedTransformer
@@ -49,7 +50,8 @@ try:
 
     with torch.no_grad():
         model.run_with_hooks(
-            tokens, fwd_hooks=[(f"blocks.{model.cfg.n_layers-1}.hook_resid_post", hook_fn)]
+            tokens,
+            fwd_hooks=[(f"blocks.{model.cfg.n_layers-1}.hook_resid_post", hook_fn)],
         )
     print(f"   ✓ Hooks work (captured {len(cache)} activations)")
 except Exception as e:
@@ -67,7 +69,9 @@ try:
         )
         print(f"   ✓ Loaded {len(dset)} examples (hash: {data_hash[:12]}...)")
     else:
-        print("   ⚠ Sample data not found (run: python3 scripts/facts_make_split.py facts_v1)")
+        print(
+            "   ⚠ Sample data not found (run: python3 scripts/facts_make_split.py facts_v1)"
+        )
 except Exception as e:
     print(f"   ✗ Data loading failed: {e}")
 
@@ -95,5 +99,7 @@ except Exception as e:
 print("\n=== ✓ All checks passed! ===")
 print("\nNext steps:")
 print("  1. Ensure sample data exists: python3 scripts/facts_make_split.py facts_v1")
-print("  2. Run an experiment: python3 -m lab.src.harness lab/configs/run_h2_layer_geom_c2x.json")
+print(
+    "  2. Run an experiment: python3 -m lab.src.harness lab/configs/run_h2_layer_geom_c2x.json"
+)
 print("  3. View results: mlflow ui --backend-store-uri file://$(pwd)/mlruns")

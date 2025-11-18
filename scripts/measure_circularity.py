@@ -116,9 +116,13 @@ def collect_activations(
 
     resid = cache["resid"].cpu()  # [batch, seq_len, d_model]
     batch_size, seq_len, d_model = resid.shape
-    pos = cfg.position_index if cfg.position_index >= 0 else seq_len + cfg.position_index
+    pos = (
+        cfg.position_index if cfg.position_index >= 0 else seq_len + cfg.position_index
+    )
     if pos < 0 or pos >= seq_len:
-        raise ValueError(f"Position index {cfg.position_index} is out of range for seq_len={seq_len}")
+        raise ValueError(
+            f"Position index {cfg.position_index} is out of range for seq_len={seq_len}"
+        )
     acts = resid[:, pos, :]  # [batch, d_model]
     return acts.numpy()
 

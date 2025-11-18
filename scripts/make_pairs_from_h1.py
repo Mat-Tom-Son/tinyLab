@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Generate head pair configs from H1 (heads_zero) results."""
+
 import json
 import argparse
 from pathlib import Path

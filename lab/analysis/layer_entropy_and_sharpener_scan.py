@@ -26,7 +26,6 @@ import json
 from pathlib import Path
 from typing import Dict, List
 
-import numpy as np
 import torch
 
 from ..src.components import load_model, datasets
@@ -40,7 +39,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--model-name", type=str, default=None)
     p.add_argument("--device", type=str, default=None)
     p.add_argument("--samples", type=int, default=128)
-    p.add_argument("--last-k", type=int, default=3, help="Scan last K layers for sharpeners")
+    p.add_argument(
+        "--last-k", type=int, default=3, help="Scan last K layers for sharpeners"
+    )
     p.add_argument("--output", type=Path, required=True)
     return p.parse_args()
 
@@ -132,7 +133,9 @@ def main() -> None:
 
     clean_texts = [ex[child["dataset"]["clean_field"]] for ex in rows]
 
-    model = load_model.load_transformerlens(child["model"], device=child.get("device", "auto"))
+    model = load_model.load_transformerlens(
+        child["model"], device=child.get("device", "auto")
+    )
     model.eval()
     toks = model.to_tokens(clean_texts)
 
@@ -164,13 +167,15 @@ def main() -> None:
             with torch.no_grad():
                 logits_a = model.run_with_hooks(toks, fwd_hooks=[hook])
             H_a = softmax_entropy_last(logits_a)
-            head_rows.append({
-                "layer": int(L),
-                "head": int(h),
-                "entropy_final_abl": float(H_a),
-                "entropy_final_base": float(H_final_base),
-                "d_entropy_final": float(H_a - H_final_base),
-            })
+            head_rows.append(
+                {
+                    "layer": int(L),
+                    "head": int(h),
+                    "entropy_final_abl": float(H_a),
+                    "entropy_final_base": float(H_final_base),
+                    "d_entropy_final": float(H_a - H_final_base),
+                }
+            )
 
     out = {
         "config": str(args.config),

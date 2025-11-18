@@ -76,8 +76,12 @@ def check_runs() -> list[str]:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--check-only", action="store_true", help="Return non-zero on issues, no fixes.")
-    ap.add_argument("--fix", action="store_true", help="Suggest make targets to regenerate outputs.")
+    ap.add_argument(
+        "--check-only", action="store_true", help="Return non-zero on issues, no fixes."
+    )
+    ap.add_argument(
+        "--fix", action="store_true", help="Suggest make targets to regenerate outputs."
+    )
     args = ap.parse_args()
 
     print("== Manifest Verification ==")

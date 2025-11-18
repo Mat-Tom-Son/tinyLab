@@ -19,7 +19,6 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import List
 
 import numpy as np
 import torch
@@ -42,7 +41,9 @@ def parse_args():
     return ap.parse_args()
 
 
-def per_example_ld(logits: torch.Tensor, t_ids: torch.Tensor, f_ids: torch.Tensor) -> np.ndarray:
+def per_example_ld(
+    logits: torch.Tensor, t_ids: torch.Tensor, f_ids: torch.Tensor
+) -> np.ndarray:
     last = logits[:, -1, :]
     t = last[torch.arange(last.size(0)), t_ids]
     f = last[torch.arange(last.size(0)), f_ids]
@@ -65,7 +66,9 @@ def main():
 
     dset, _, _ = D.load_split(dcfg)
 
-    model = load_model.load_transformerlens({"name": args.model_name, "dtype": shared["model"]["dtype"]}, device=args.device)
+    model = load_model.load_transformerlens(
+        {"name": args.model_name, "dtype": shared["model"]["dtype"]}, device=args.device
+    )
     model.eval()
 
     clean_texts = [ex[dcfg["clean_field"]] for ex in dset]
@@ -75,11 +78,13 @@ def main():
 
     # Ablated (subset-zero) forward
     node = f"blocks.{args.layer}.attn.hook_z"
+
     def zero_subset(z, hook):
         z = z.clone()
         for h in args.heads:
             z[:, :, h, :] = 0.0
         return z
+
     with torch.no_grad():
         logits_abl = model.run_with_hooks(toks, fwd_hooks=[(node, zero_subset)])
 
@@ -105,7 +110,7 @@ def main():
         "n_examples": n,
         "boot": args.boot,
         "mean_delta_ld": float(np.mean(diffs)),
-        "ci95": [float(lo), float(hi)]
+        "ci95": [float(lo), float(hi)],
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(out, indent=2))
@@ -114,4 +119,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

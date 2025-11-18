@@ -1,18 +1,16 @@
 """Main experiment harness for running ablation batteries."""
+
 import json
-import os
-import time
 import subprocess
 import sys
 import platform
 from importlib import metadata as importlib_metadata
 from pathlib import Path
-import numpy as np
 import torch
 import pandas as pd
 from rich import print
 
-from .components import tracking, datasets, load_model, metrics, profiling
+from .components import tracking, datasets, load_model, profiling
 from .utils import hashing, determinism, io, stats
 
 
@@ -87,7 +85,9 @@ def main(cfg_path):
     else:
         device = device_cfg
         if device == "mps" and not torch.backends.mps.is_available():
-            print("[yellow]Requested MPS but backend is unavailable. Falling back to CPU.[/yellow]")
+            print(
+                "[yellow]Requested MPS but backend is unavailable. Falling back to CPU.[/yellow]"
+            )
             device = "cpu"
 
     # Create run dir
@@ -149,8 +149,12 @@ def main(cfg_path):
     verify_cfg = cfg.get("verify_slice")
     verify_results = None
     if verify_cfg and device != "cpu":
-        print(f"[yellow]Running CPU verify slice ({verify_cfg.get('n_examples', 20)} examples)...[/yellow]")
-        verify_results = run_verify_slice(model, dset, cfg, battery_cfg, verify_cfg, device, seeds)
+        print(
+            f"[yellow]Running CPU verify slice ({verify_cfg.get('n_examples', 20)} examples)...[/yellow]"
+        )
+        verify_results = run_verify_slice(
+            model, dset, cfg, battery_cfg, verify_cfg, device, seeds
+        )
     try:
         for s in seeds:
             print(f"[cyan]Running seed {s}...[/cyan]")
@@ -303,7 +307,9 @@ def run_verify_slice(model, dset, cfg, battery_cfg, verify_cfg, main_device, see
     main_summaries = []
     for s in seeds:
         determinism.set_seed(s)
-        results = run_battery(model, verify_dset, {**cfg, "seed": s}, battery_cfg, main_device)
+        results = run_battery(
+            model, verify_dset, {**cfg, "seed": s}, battery_cfg, main_device
+        )
         main_summaries.append(results["summary"])
 
     # Aggregate main results
@@ -318,7 +324,9 @@ def run_verify_slice(model, dset, cfg, battery_cfg, verify_cfg, main_device, see
     verify_summaries = []
     for s in seeds:
         determinism.set_seed(s)
-        results = run_battery(model, verify_dset, {**cfg, "seed": s}, battery_cfg, verify_device)
+        results = run_battery(
+            model, verify_dset, {**cfg, "seed": s}, battery_cfg, verify_device
+        )
         verify_summaries.append(results["summary"])
 
     # Aggregate verify results
@@ -336,14 +344,14 @@ def run_verify_slice(model, dset, cfg, battery_cfg, verify_cfg, main_device, see
         "device_verify": verify_device,
         "n_examples": len(verify_dset),
         "n_seeds": len(seeds),
-        "metrics": {}
+        "metrics": {},
     }
 
     for metric in main_agg.keys():
         comparison["metrics"][metric] = {
             "main": main_agg[metric],
             "verify": verify_agg[metric],
-            "abs_diff": abs(main_agg[metric] - verify_agg[metric])
+            "abs_diff": abs(main_agg[metric] - verify_agg[metric]),
         }
 
     return comparison

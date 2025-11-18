@@ -27,7 +27,9 @@ def parse_head(arg: str) -> Tuple[int, int]:
         layer_str, head_str = arg.split(":")
         return int(layer_str), int(head_str)
     except ValueError as exc:
-        raise argparse.ArgumentTypeError(f"Invalid head spec '{arg}'. Use L:H.") from exc
+        raise argparse.ArgumentTypeError(
+            f"Invalid head spec '{arg}'. Use L:H."
+        ) from exc
 
 
 def build_child_cfg(config_path: Path, tag: str) -> Dict:
@@ -92,7 +94,9 @@ def collect_attention(
     return results
 
 
-def run_analysis(config: Path, tag: str, heads: List[Tuple[int, int]], samples: int, output: Path):
+def run_analysis(
+    config: Path, tag: str, heads: List[Tuple[int, int]], samples: int, output: Path
+):
     child_cfg = build_child_cfg(config, tag)
     rows, split, data_hash = load_subset(child_cfg, samples)
 
@@ -166,7 +170,9 @@ def run_analysis(config: Path, tag: str, heads: List[Tuple[int, int]], samples: 
                 "head": head,
                 "baseline_logit_diff": float(baseline_summary["logit_diff"]),
                 "ablated_logit_diff": float(zero_summary["logit_diff"]),
-                "delta": float(zero_summary["logit_diff"] - baseline_summary["logit_diff"]),
+                "delta": float(
+                    zero_summary["logit_diff"] - baseline_summary["logit_diff"]
+                ),
                 "mean_target_delta": float(target_delta.mean().item()),
                 "mean_foil_delta": float(foil_delta.mean().item()),
                 "attention": attn_info,
@@ -192,10 +198,16 @@ def run_analysis(config: Path, tag: str, heads: List[Tuple[int, int]], samples: 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", required=True, type=Path, help="Cross-condition config JSON.")
+    parser.add_argument(
+        "--config", required=True, type=Path, help="Cross-condition config JSON."
+    )
     parser.add_argument("--tag", required=True, help="Condition tag inside the config.")
     parser.add_argument(
-        "--heads", nargs="+", type=parse_head, required=True, help="Heads to inspect (L:H)."
+        "--heads",
+        nargs="+",
+        type=parse_head,
+        required=True,
+        help="Heads to inspect (L:H).",
     )
     parser.add_argument(
         "--samples",
@@ -203,7 +215,9 @@ def parse_args() -> argparse.Namespace:
         default=5,
         help="Number of examples to inspect (default: 5).",
     )
-    parser.add_argument("--output", type=Path, required=True, help="Where to write the JSON report.")
+    parser.add_argument(
+        "--output", type=Path, required=True, help="Where to write the JSON report."
+    )
     return parser.parse_args()
 
 

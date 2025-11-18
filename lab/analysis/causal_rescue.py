@@ -25,7 +25,6 @@ import torch
 from ..src.components import load_model, datasets as D, metrics as M
 from .binder_sweep import synthetic_binding_dataset as synth_binder
 from .layer_pca_rank import build_child_cfg as build_child
-from ..src.utils import io
 
 
 def head_zero_hook(layer: int, head: int):
@@ -60,9 +59,9 @@ def eval_chunk(model, chunk: List[Dict[str, str]]):
     toks = model.to_tokens([ex["clean"] for ex in chunk])
     with torch.no_grad():
         clean_logits, cache = model.run_with_cache(toks)
-    t_ids, f_ids = M._first_token_ids(model, chunk, {
-        "dataset": {"target_field": "target", "foil_field": "foil"}
-    })
+    t_ids, f_ids = M._first_token_ids(
+        model, chunk, {"dataset": {"target_field": "target", "foil_field": "foil"}}
+    )
     base_acc = accuracy_from_logits(clean_logits, t_ids)
     base_ld = M.logit_diff_first_token(clean_logits, t_ids, f_ids)
     return toks, clean_logits, cache, t_ids, f_ids, float(base_acc), float(base_ld)
@@ -76,7 +75,9 @@ def rescue_for_head(model, layer: int, head: int, toks, cache, t_ids, f_ids):
 
     with torch.no_grad():
         logits_abl = model.run_with_hooks(toks, fwd_hooks=[(node_zero, fn_zero)])
-        logits_resc = model.run_with_hooks(toks, fwd_hooks=[(node_zero, fn_zero), (node_patch, fn_patch)])
+        logits_resc = model.run_with_hooks(
+            toks, fwd_hooks=[(node_zero, fn_zero), (node_patch, fn_patch)]
+        )
 
     acc_abl = accuracy_from_logits(logits_abl, t_ids)
     ld_abl = M.logit_diff_first_token(logits_abl, t_ids, f_ids)
@@ -94,13 +95,17 @@ def aggregate(vals: List[Tuple[float, float]]):
 
 
 def run_binder(args) -> Dict:
-    model = load_model.load_transformerlens({"name": args.model_name, "dtype": args.dtype}, device=args.device)
+    model = load_model.load_transformerlens(
+        {"name": args.model_name, "dtype": args.dtype}, device=args.device
+    )
     model.eval()
 
     # Load heads: top-K worst d_ld
     data = json.loads(Path(args.binder_input).read_text())
     rows = data.get("rows", [])
-    rows_sorted = sorted(rows, key=lambda r: float(r.get("d_ld", 0.0)))[: args.binder_top_k]
+    rows_sorted = sorted(rows, key=lambda r: float(r.get("d_ld", 0.0)))[
+        : args.binder_top_k
+    ]
     heads = [(int(r["layer"]), int(r["head"])) for r in rows_sorted]
 
     # Dataset
@@ -110,7 +115,7 @@ def run_binder(args) -> Dict:
     for ex in raw:
         try:
             t_ok = model.to_single_token(ex["target"]) is not None  # type: ignore[arg-type]
-            f_ok = model.to_single_token(ex["foil"]) is not None    # type: ignore[arg-type]
+            f_ok = model.to_single_token(ex["foil"]) is not None  # type: ignore[arg-type]
         except AssertionError:
             t_ok, f_ok = False, False
         if not (t_ok and f_ok):
@@ -125,11 +130,23 @@ def run_binder(args) -> Dict:
 
     # Evaluate per-chunk and aggregate per head
     for layer, head in heads:
-        acc_base_w, ld_base_w, acc_abl_w, ld_abl_w, acc_resc_w, ld_resc_w, n_w = [], [], [], [], [], [], []
+        acc_base_w, ld_base_w, acc_abl_w, ld_abl_w, acc_resc_w, ld_resc_w, _n_w = (
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+        )
         for i in range(0, len(ok), args.batch_size):
             chunk = ok[i : i + args.batch_size]
-            toks, clean_logits, cache, t_ids, f_ids, acc_b, ld_b = eval_chunk(model, chunk)
-            acc_a, ld_a, acc_r, ld_r = rescue_for_head(model, layer, head, toks, cache, t_ids, f_ids)
+            toks, clean_logits, cache, t_ids, f_ids, acc_b, ld_b = eval_chunk(
+                model, chunk
+            )
+            acc_a, ld_a, acc_r, ld_r = rescue_for_head(
+                model, layer, head, toks, cache, t_ids, f_ids
+            )
             n = clean_logits.size(0)
             acc_base_w.append((acc_b, n))
             ld_base_w.append((ld_b, n))
@@ -145,19 +162,24 @@ def run_binder(args) -> Dict:
         acc_resc = aggregate(acc_resc_w)
         ld_resc = aggregate(ld_resc_w)
         within_1pct = (acc_base - acc_resc) <= 0.01
-        results["heads"].append({
-            "layer": layer,
-            "head": head,
-            "acc_base": acc_base,
-            "acc_abl": acc_abl,
-            "acc_resc": acc_resc,
-            "ld_base": ld_base,
-            "ld_abl": ld_abl,
-            "ld_resc": ld_resc,
-            "within_1pct": within_1pct,
-        })
+        results["heads"].append(
+            {
+                "layer": layer,
+                "head": head,
+                "acc_base": acc_base,
+                "acc_abl": acc_abl,
+                "acc_resc": acc_resc,
+                "ld_base": ld_base,
+                "ld_abl": ld_abl,
+                "ld_resc": ld_resc,
+                "within_1pct": within_1pct,
+            }
+        )
 
-    out = Path(args.outdir) / f"causal_rescue_binder_{args.model_name.replace('/', '_')}.json"
+    out = (
+        Path(args.outdir)
+        / f"causal_rescue_binder_{args.model_name.replace('/', '_')}.json"
+    )
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(results, indent=2))
     print(f"Wrote {out}")
@@ -165,12 +187,16 @@ def run_binder(args) -> Dict:
 
 
 def run_sharpener(args) -> Dict:
-    model = load_model.load_transformerlens({"name": args.model_name, "dtype": args.dtype}, device=args.device)
+    model = load_model.load_transformerlens(
+        {"name": args.model_name, "dtype": args.dtype}, device=args.device
+    )
     model.eval()
 
     data = json.loads(Path(args.sharpener_input).read_text())
     rows = data.get("sharpener_scan", [])
-    rows_sorted = sorted(rows, key=lambda r: float(r.get("d_entropy_final", 0.0)), reverse=True)[: args.sharpener_top_k]
+    rows_sorted = sorted(
+        rows, key=lambda r: float(r.get("d_entropy_final", 0.0)), reverse=True
+    )[: args.sharpener_top_k]
     heads = [(int(r["layer"]), int(r["head"])) for r in rows_sorted]
 
     # Load facts split from config
@@ -182,11 +208,23 @@ def run_sharpener(args) -> Dict:
     results = {"heads": [], "n_examples": len(rows_ds)}
 
     for layer, head in heads:
-        acc_base_w, ld_base_w, acc_abl_w, ld_abl_w, acc_resc_w, ld_resc_w, n_w = [], [], [], [], [], [], []
+        acc_base_w, ld_base_w, acc_abl_w, ld_abl_w, acc_resc_w, ld_resc_w, _n_w = (
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+        )
         for i in range(0, len(rows_ds), args.batch_size):
             chunk = rows_ds[i : i + args.batch_size]
-            toks, clean_logits, cache, t_ids, f_ids, acc_b, ld_b = eval_chunk(model, chunk)
-            acc_a, ld_a, acc_r, ld_r = rescue_for_head(model, layer, head, toks, cache, t_ids, f_ids)
+            toks, clean_logits, cache, t_ids, f_ids, acc_b, ld_b = eval_chunk(
+                model, chunk
+            )
+            acc_a, ld_a, acc_r, ld_r = rescue_for_head(
+                model, layer, head, toks, cache, t_ids, f_ids
+            )
             n = clean_logits.size(0)
             acc_base_w.append((acc_b, n))
             ld_base_w.append((ld_b, n))
@@ -202,19 +240,24 @@ def run_sharpener(args) -> Dict:
         acc_resc = aggregate(acc_resc_w)
         ld_resc = aggregate(ld_resc_w)
         within_1pct = (acc_base - acc_resc) <= 0.01
-        results["heads"].append({
-            "layer": layer,
-            "head": head,
-            "acc_base": acc_base,
-            "acc_abl": acc_abl,
-            "acc_resc": acc_resc,
-            "ld_base": ld_base,
-            "ld_abl": ld_abl,
-            "ld_resc": ld_resc,
-            "within_1pct": within_1pct,
-        })
+        results["heads"].append(
+            {
+                "layer": layer,
+                "head": head,
+                "acc_base": acc_base,
+                "acc_abl": acc_abl,
+                "acc_resc": acc_resc,
+                "ld_base": ld_base,
+                "ld_abl": ld_abl,
+                "ld_resc": ld_resc,
+                "within_1pct": within_1pct,
+            }
+        )
 
-    out = Path(args.outdir) / f"causal_rescue_sharpener_{args.model_name.replace('/', '_')}.json"
+    out = (
+        Path(args.outdir)
+        / f"causal_rescue_sharpener_{args.model_name.replace('/', '_')}.json"
+    )
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(results, indent=2))
     print(f"Wrote {out}")
@@ -235,7 +278,11 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--seed", type=int, default=13)
     ap.add_argument("--outdir", type=Path, default=Path("reports"))
     # for sharpener facts
-    ap.add_argument("--config", type=Path, default=Path("lab/configs/run_h1_cross_condition_balanced.json"))
+    ap.add_argument(
+        "--config",
+        type=Path,
+        default=Path("lab/configs/run_h1_cross_condition_balanced.json"),
+    )
     ap.add_argument("--tag", type=str, default="facts")
     return ap.parse_args()
 

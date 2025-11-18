@@ -1,4 +1,5 @@
 """Head zeroing ablation for finding critical attention heads."""
+
 import numpy as np
 import pandas as pd
 import torch
@@ -37,7 +38,9 @@ def run(model, dset, cfg, battery, device):
     metric_span = cfg.get("metric_span", "first_token")
     seq_batches = None
     if metric_span != "first_token":
-        tokens_tgt, tokens_foil, cont_t, cont_f = M.build_sequence_batches(model, dset, cfg)
+        tokens_tgt, tokens_foil, cont_t, cont_f = M.build_sequence_batches(
+            model, dset, cfg
+        )
         seq_batches = (tokens_tgt, tokens_foil, cont_t, cont_f)
 
     # Respect layer/head subsets
@@ -97,7 +100,9 @@ def run(model, dset, cfg, battery, device):
 
                     def f_abl(tokens):
                         with torch.no_grad():
-                            return model.run_with_hooks(tokens, fwd_hooks=[(node, zero_fn)])
+                            return model.run_with_hooks(
+                                tokens, fwd_hooks=[(node, zero_fn)]
+                            )
 
                     seq_metrics = M.compute_seq_metrics_from_forwards(
                         model, tokens_tgt, tokens_foil, cont_t, cont_f, f_clean, f_abl
@@ -130,15 +135,17 @@ def run(model, dset, cfg, battery, device):
         for metric in metric_names:
             if metric not in row:
                 continue
-            impact_table_rows.append({
-                "run_id": cfg.get("run_name", "unknown"),
-                "seed": cfg.get("seed", 0),
-                "layer": int(row["layer"]),
-                "head": int(row["head"]),
-                "scale": float(row["scale"]),
-                "metric": metric,
-                "value": float(row[metric])
-            })
+            impact_table_rows.append(
+                {
+                    "run_id": cfg.get("run_name", "unknown"),
+                    "seed": cfg.get("seed", 0),
+                    "layer": int(row["layer"]),
+                    "head": int(row["head"]),
+                    "scale": float(row["scale"]),
+                    "metric": metric,
+                    "value": float(row[metric]),
+                }
+            )
 
     head_impact_table = pd.DataFrame(impact_table_rows)
 

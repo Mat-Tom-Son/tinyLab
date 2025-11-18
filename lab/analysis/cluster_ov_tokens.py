@@ -33,12 +33,8 @@ def summarise(report_paths: list[Path], limit: int | None = None, top_n: int = 4
     top_summary = to_counter.most_common(top_n)
     bottom_summary = bottom_counter.most_common(top_n)
     return {
-        "top": [
-            {"token": tok, "count": count} for tok, count in top_summary
-        ],
-        "bottom": [
-            {"token": tok, "count": count} for tok, count in bottom_summary
-        ],
+        "top": [{"token": tok, "count": count} for tok, count in top_summary],
+        "bottom": [{"token": tok, "count": count} for tok, count in bottom_summary],
     }
 
 
@@ -46,7 +42,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("reports", nargs="+", help="Path(s) to ov_report json files.")
     parser.add_argument("--top-n", type=int, default=40)
-    parser.add_argument("--limit", type=int, help="Only use the first LIMIT tokens per head list.")
+    parser.add_argument(
+        "--limit", type=int, help="Only use the first LIMIT tokens per head list."
+    )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
 

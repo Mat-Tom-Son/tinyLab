@@ -5,8 +5,8 @@ metrics. The new helpers allow ablation modules to provide callable forward
 passes so we can evaluate sequence log-probabilities under clean vs ablated
 settings without changing the harness surface.
 """
+
 import torch
-import numpy as np
 
 
 # --- Metric Helpers ---
@@ -22,9 +22,7 @@ def _first_token_ids(model, dset, cfg):
         # Safety: ensure single-token targets/foils
         tid = model.to_single_token(ex[target_field])
         if tid is None:
-            raise ValueError(
-                f"Target must be single-token, got: {ex[target_field]!r}"
-            )
+            raise ValueError(f"Target must be single-token, got: {ex[target_field]!r}")
 
         fid = model.to_single_token(ex[foil_field])
         if fid is None:
@@ -97,7 +95,7 @@ def evaluate_outputs(model, clean_logits, ablated_logits, dset, cfg):
     """
     # First-token metrics are the default and always computed for continuity
     # with prior results and downstream analysis.
-    metric_span = cfg.get("metric_span", "first_token")
+    cfg.get("metric_span", "first_token")
 
     t_ids, f_ids = _first_token_ids(model, dset, cfg)
 
@@ -126,7 +124,10 @@ def evaluate_outputs(model, clean_logits, ablated_logits, dset, cfg):
 
 # --- Span-aware helpers (multi-token) ---
 
-def _gather_next_log_probs(logits: torch.Tensor, token_ids: torch.Tensor) -> torch.Tensor:
+
+def _gather_next_log_probs(
+    logits: torch.Tensor, token_ids: torch.Tensor
+) -> torch.Tensor:
     """Return log p(x_t | x_<t) for each position, as a dense tensor.
 
     Args:
@@ -177,8 +178,12 @@ def build_sequence_batches(model, dset, cfg):
         for f in foil_texts:
             cont_lens_foil.append(int(model.to_tokens([f]).shape[1]))
     else:
-        cont_lens_target = [len(tok.encode(t, add_special_tokens=False)) for t in target_texts]
-        cont_lens_foil = [len(tok.encode(f, add_special_tokens=False)) for f in foil_texts]
+        cont_lens_target = [
+            len(tok.encode(t, add_special_tokens=False)) for t in target_texts
+        ]
+        cont_lens_foil = [
+            len(tok.encode(f, add_special_tokens=False)) for f in foil_texts
+        ]
 
     return tokens_target, tokens_foil, cont_lens_target, cont_lens_foil
 
@@ -199,7 +204,6 @@ def compute_seq_metrics_from_forwards(
       - seq_p_drop:       mean over batch of [log p_clean(target seq) - log p_abl(target seq)]
       - seq_kl_mean:      mean over batch of the per-position KL(p_clean || p_abl) on target continuation positions
     """
-    device = model.cfg.device
     with torch.no_grad():
         # Clean and ablated logits
         c_t = forward_clean(tokens_target)
@@ -209,7 +213,7 @@ def compute_seq_metrics_from_forwards(
 
         # Gather next-token log-probs
         lp_c_t = _gather_next_log_probs(c_t, tokens_target)
-        lp_c_f = _gather_next_log_probs(c_f, tokens_foil)
+        _gather_next_log_probs(c_f, tokens_foil)
         lp_a_t = _gather_next_log_probs(a_t, tokens_target)
         lp_a_f = _gather_next_log_probs(a_f, tokens_foil)
 

@@ -17,7 +17,7 @@ import argparse
 import glob
 import json
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Dict
 
 import pandas as pd
 
@@ -26,7 +26,9 @@ DEFAULT_SUMMARY = Path("reports/mistral_h1_logit_diff_summary.json")
 
 
 def most_recent(pattern: str) -> Path:
-    files = sorted(glob.glob(pattern), key=lambda p: Path(p).stat().st_mtime, reverse=True)
+    files = sorted(
+        glob.glob(pattern), key=lambda p: Path(p).stat().st_mtime, reverse=True
+    )
     if not files:
         raise FileNotFoundError(f"No files match: {pattern}")
     return Path(files[0])
@@ -47,10 +49,26 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--summary", type=Path, default=DEFAULT_SUMMARY)
     ap.add_argument("--outdir", type=Path, default=Path("reports"))
-    ap.add_argument("--neg", type=str, default="lab/runs/h1_mistral_neg_fullstack_3seed_*/metrics/head_impact.parquet")
-    ap.add_argument("--cf", type=str, default="lab/runs/h1_mistral_cf_fullstack_3seed_*/metrics/head_impact.parquet")
-    ap.add_argument("--logic", type=str, default="lab/runs/h1_mistral_logic_fullstack_3seed_*/metrics/head_impact.parquet")
-    ap.add_argument("--facts", type=str, default="lab/runs/h1_cross_condition_balanced_mistral_facts_*/metrics/head_impact.parquet")
+    ap.add_argument(
+        "--neg",
+        type=str,
+        default="lab/runs/h1_mistral_neg_fullstack_3seed_*/metrics/head_impact.parquet",
+    )
+    ap.add_argument(
+        "--cf",
+        type=str,
+        default="lab/runs/h1_mistral_cf_fullstack_3seed_*/metrics/head_impact.parquet",
+    )
+    ap.add_argument(
+        "--logic",
+        type=str,
+        default="lab/runs/h1_mistral_logic_fullstack_3seed_*/metrics/head_impact.parquet",
+    )
+    ap.add_argument(
+        "--facts",
+        type=str,
+        default="lab/runs/h1_cross_condition_balanced_mistral_facts_*/metrics/head_impact.parquet",
+    )
     args = ap.parse_args()
 
     args.outdir.mkdir(parents=True, exist_ok=True)
@@ -96,7 +114,9 @@ def main() -> None:
     trio_out: Dict[str, Dict[str, Dict[str, float]]] = {}
     for label, path in runs.items():
         df = load_head_impact(path)
-        df = df[(df["metric"] == "logit_diff") & (df["scale"] == 0.0) & (df["layer"] == 0)]
+        df = df[
+            (df["metric"] == "logit_diff") & (df["scale"] == 0.0) & (df["layer"] == 0)
+        ]
         vals = df["value"].astype(float)
         per_probe: Dict[str, Dict[str, float]] = {}
         for layer, head in trio:
@@ -119,4 +139,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

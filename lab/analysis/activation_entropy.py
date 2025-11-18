@@ -26,7 +26,7 @@ import argparse
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Dict, Iterable, Tuple
 
 import numpy as np
 import torch
@@ -50,23 +50,76 @@ class ChildCfg:
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--config", type=Path, required=True, help="Cross-condition or single-run config JSON.")
-    p.add_argument("--tag", type=str, required=True, help="Condition tag inside the config (for cross-condition configs).")
-    p.add_argument("--heads", type=int, nargs="*", default=None, help="Layer-0 heads to ablate (integers).")
-    p.add_argument("--layer", type=int, default=0, help="Layer index for residual hook (default: 0).")
-    p.add_argument("--samples", type=int, default=256, help="Max number of examples to load from the split.")
-    p.add_argument("--random-samples", type=int, default=0, help="Number of random L0 head sets to evaluate as control.")
+    p.add_argument(
+        "--config",
+        type=Path,
+        required=True,
+        help="Cross-condition or single-run config JSON.",
+    )
+    p.add_argument(
+        "--tag",
+        type=str,
+        required=True,
+        help="Condition tag inside the config (for cross-condition configs).",
+    )
+    p.add_argument(
+        "--heads",
+        type=int,
+        nargs="*",
+        default=None,
+        help="Layer-0 heads to ablate (integers).",
+    )
+    p.add_argument(
+        "--layer",
+        type=int,
+        default=0,
+        help="Layer index for residual hook (default: 0).",
+    )
+    p.add_argument(
+        "--samples",
+        type=int,
+        default=256,
+        help="Max number of examples to load from the split.",
+    )
+    p.add_argument(
+        "--random-samples",
+        type=int,
+        default=0,
+        help="Number of random L0 head sets to evaluate as control.",
+    )
     p.add_argument(
         "--entropy-methods",
         type=str,
         default="full,diagonal,subspace,per_token",
         help="Comma-separated list of activation entropy methods to compute: full,diagonal,subspace,per_token",
     )
-    p.add_argument("--subspace-var", type=float, default=0.95, help="Variance fraction for subspace entropy (default: 0.95).")
-    p.add_argument("--subspace-max-k", type=int, default=256, help="Max PCs for subspace entropy (default: 256).")
-    p.add_argument("--output", type=Path, required=True, help="Where to write the JSON report.")
-    p.add_argument("--device", type=str, default=None, help="Override device (cpu|mps|cuda|auto). Optional.")
-    p.add_argument("--model-name", type=str, default=None, help="Override model name (e.g., gpt2-large). Optional.")
+    p.add_argument(
+        "--subspace-var",
+        type=float,
+        default=0.95,
+        help="Variance fraction for subspace entropy (default: 0.95).",
+    )
+    p.add_argument(
+        "--subspace-max-k",
+        type=int,
+        default=256,
+        help="Max PCs for subspace entropy (default: 256).",
+    )
+    p.add_argument(
+        "--output", type=Path, required=True, help="Where to write the JSON report."
+    )
+    p.add_argument(
+        "--device",
+        type=str,
+        default=None,
+        help="Override device (cpu|mps|cuda|auto). Optional.",
+    )
+    p.add_argument(
+        "--model-name",
+        type=str,
+        default=None,
+        help="Override model name (e.g., gpt2-large). Optional.",
+    )
     return p.parse_args()
 
 
@@ -137,7 +190,13 @@ def gaussian_entropy_rel(x: np.ndarray, eps: float = 1e-3) -> float:
     return 0.5 * float(logdet)
 
 
-def gaussian_kl(p_mu: np.ndarray, p_cov: np.ndarray, q_mu: np.ndarray, q_cov: np.ndarray, eps: float = 1e-3) -> float:
+def gaussian_kl(
+    p_mu: np.ndarray,
+    p_cov: np.ndarray,
+    q_mu: np.ndarray,
+    q_cov: np.ndarray,
+    eps: float = 1e-3,
+) -> float:
     """KL(N_p || N_q) for multivariate Gaussians with ridge stabilization."""
     d = p_cov.shape[0]
     # Ridge for stability
@@ -170,14 +229,16 @@ def diagonal_entropy(x: np.ndarray, eps: float = 1e-3) -> float:
     if x.ndim != 2 or x.shape[0] < 2:
         return float("nan")
     v = np.var(x - x.mean(axis=0, keepdims=True), axis=0, ddof=1)
-    d = v.shape[0]
+    v.shape[0]
     ridge = eps * float(np.mean(v))
     v_reg = v + ridge
     v_reg = np.clip(v_reg, 1e-30, None)
     return 0.5 * float(np.sum(np.log(v_reg)))
 
 
-def subspace_entropy(x: np.ndarray, var_frac: float = 0.95, max_k: int = 256, eps: float = 1e-3) -> Tuple[float, int]:
+def subspace_entropy(
+    x: np.ndarray, var_frac: float = 0.95, max_k: int = 256, eps: float = 1e-3
+) -> Tuple[float, int]:
     """Entropy in PCA subspace capturing given variance fraction.
 
     Returns (entropy, k_components).
@@ -193,7 +254,7 @@ def subspace_entropy(x: np.ndarray, var_frac: float = 0.95, max_k: int = 256, ep
     except np.linalg.LinAlgError:
         return float("nan"), 0
     n = x.shape[0]
-    eigvals = (s ** 2) / max(n - 1, 1)
+    eigvals = (s**2) / max(n - 1, 1)
     total = float(np.sum(eigvals))
     if total <= 0:
         return float("nan"), 0
@@ -242,7 +303,11 @@ def simple_curvature(resid_seq: torch.Tensor, k_early: int = 5) -> Dict[str, flo
     """
     # resid_seq: [B, S, D]
     if resid_seq.size(1) < 2:
-        return {"curv_mean": float("nan"), "curv_early": float("nan"), "curv_late": float("nan")}
+        return {
+            "curv_mean": float("nan"),
+            "curv_early": float("nan"),
+            "curv_late": float("nan"),
+        }
     diffs = resid_seq[:, 1:, :] - resid_seq[:, :-1, :]
     curv = torch.linalg.vector_norm(diffs, dim=-1)  # [B, S-1]
     curv_mean = float(curv.mean().item())
@@ -297,7 +362,9 @@ def main() -> None:
     valid_methods = {"full", "diagonal", "subspace", "per_token"}
     for m in methods:
         if m not in valid_methods:
-            raise ValueError(f"Unknown entropy method '{m}'. Valid: {sorted(valid_methods)}")
+            raise ValueError(
+                f"Unknown entropy method '{m}'. Valid: {sorted(valid_methods)}"
+            )
 
     # Baseline forward
     base_logits, base_resid_seq = collect_resid_sequences(model, tokens, args.layer)
@@ -309,12 +376,16 @@ def main() -> None:
     if "diagonal" in methods:
         base_extra["activation_entropy_diagonal"] = diagonal_entropy(base_resid_last)
     if "subspace" in methods:
-        ent_s, k_s = subspace_entropy(base_resid_last, var_frac=args.subspace_var, max_k=args.subspace_max_k)
+        ent_s, k_s = subspace_entropy(
+            base_resid_last, var_frac=args.subspace_var, max_k=args.subspace_max_k
+        )
         base_extra["activation_entropy_subspace"] = ent_s
         base_extra["activation_entropy_subspace_k"] = float(k_s)
     if "per_token" in methods:
         seq_np = base_resid_seq.detach().to(torch.float32).cpu().numpy()
-        ents = [gaussian_entropy_rel(seq_np[:, pos, :]) for pos in range(seq_np.shape[1])]
+        ents = [
+            gaussian_entropy_rel(seq_np[:, pos, :]) for pos in range(seq_np.shape[1])
+        ]
         base_extra["activation_entropy_per_token_full"] = float(np.nanmean(ents))
 
     base_out_H = softmax_entropy_last(base_logits)
@@ -341,8 +412,12 @@ def main() -> None:
     ablated_metrics = None
     if args.heads and len(args.heads) > 0:
         hook = zero_heads_hook(args.layer, args.heads)
-        abl_logits, abl_resid_seq = collect_resid_sequences(model, tokens, args.layer, fwd_hooks=[hook])
-        abl_resid_last = abl_resid_seq[:, -1, :].detach().to(torch.float32).cpu().numpy()
+        abl_logits, abl_resid_seq = collect_resid_sequences(
+            model, tokens, args.layer, fwd_hooks=[hook]
+        )
+        abl_resid_last = (
+            abl_resid_seq[:, -1, :].detach().to(torch.float32).cpu().numpy()
+        )
         abl_mu, abl_cov = mvn_fit(abl_resid_last)
         abl_H = gaussian_entropy_rel(abl_resid_last)
         abl_out_H = softmax_entropy_last(abl_logits)
@@ -358,15 +433,23 @@ def main() -> None:
         }
         # Additional ablated activation entropy variants
         if "diagonal" in methods:
-            ablated_metrics["activation_entropy_diagonal"] = diagonal_entropy(abl_resid_last)
+            ablated_metrics["activation_entropy_diagonal"] = diagonal_entropy(
+                abl_resid_last
+            )
         if "subspace" in methods:
-            ent_sa, k_sa = subspace_entropy(abl_resid_last, var_frac=args.subspace_var, max_k=args.subspace_max_k)
+            ent_sa, k_sa = subspace_entropy(
+                abl_resid_last, var_frac=args.subspace_var, max_k=args.subspace_max_k
+            )
             ablated_metrics["activation_entropy_subspace"] = ent_sa
             ablated_metrics["activation_entropy_subspace_k"] = float(k_sa)
         if "per_token" in methods:
             seq_a = abl_resid_seq.detach().to(torch.float32).cpu().numpy()
-            ents_a = [gaussian_entropy_rel(seq_a[:, pos, :]) for pos in range(seq_a.shape[1])]
-            ablated_metrics["activation_entropy_per_token_full"] = float(np.nanmean(ents_a))
+            ents_a = [
+                gaussian_entropy_rel(seq_a[:, pos, :]) for pos in range(seq_a.shape[1])
+            ]
+            ablated_metrics["activation_entropy_per_token_full"] = float(
+                np.nanmean(ents_a)
+            )
         results["ablated"] = ablated_metrics
         results["deltas"] = {
             "activation_entropy": float(abl_H - base_H),
@@ -378,15 +461,18 @@ def main() -> None:
         # Deltas for additional methods
         if "diagonal" in methods and "activation_entropy_diagonal" in base_extra:
             results["deltas"]["activation_entropy_diagonal"] = float(
-                ablated_metrics["activation_entropy_diagonal"] - base_extra["activation_entropy_diagonal"]
+                ablated_metrics["activation_entropy_diagonal"]
+                - base_extra["activation_entropy_diagonal"]
             )
         if "subspace" in methods and "activation_entropy_subspace" in base_extra:
             results["deltas"]["activation_entropy_subspace"] = float(
-                ablated_metrics["activation_entropy_subspace"] - base_extra["activation_entropy_subspace"]
+                ablated_metrics["activation_entropy_subspace"]
+                - base_extra["activation_entropy_subspace"]
             )
         if "per_token" in methods and "activation_entropy_per_token_full" in base_extra:
             results["deltas"]["activation_entropy_per_token_full"] = float(
-                ablated_metrics["activation_entropy_per_token_full"] - base_extra["activation_entropy_per_token_full"]
+                ablated_metrics["activation_entropy_per_token_full"]
+                - base_extra["activation_entropy_per_token_full"]
             )
 
     # Random head controls (same cardinality)
@@ -402,23 +488,42 @@ def main() -> None:
             "activation_entropy_per_token_full": [],
         }
         for _ in tqdm(range(args.random_samples), desc="Random controls"):
-            sample = sorted(rng.choice(np.arange(n_heads), size=k, replace=False).tolist())
+            sample = sorted(
+                rng.choice(np.arange(n_heads), size=k, replace=False).tolist()
+            )
             hook = zero_heads_hook(args.layer, sample)
-            r_logits, r_seq = collect_resid_sequences(model, tokens, args.layer, fwd_hooks=[hook])
+            r_logits, r_seq = collect_resid_sequences(
+                model, tokens, args.layer, fwd_hooks=[hook]
+            )
             r_last = r_seq[:, -1, :].detach().to(torch.float32).cpu().numpy()
             r_H = gaussian_entropy_rel(r_last)
             r_out_H = softmax_entropy_last(r_logits)
             rand_deltas_H.append(r_H - base_H)
             rand_deltas["output_entropy"].append(r_out_H - base_out_H)
             if "diagonal" in methods and "activation_entropy_diagonal" in base_extra:
-                rand_deltas["activation_entropy_diagonal"].append(diagonal_entropy(r_last) - base_extra["activation_entropy_diagonal"])
+                rand_deltas["activation_entropy_diagonal"].append(
+                    diagonal_entropy(r_last) - base_extra["activation_entropy_diagonal"]
+                )
             if "subspace" in methods and "activation_entropy_subspace" in base_extra:
-                r_sub, _ = subspace_entropy(r_last, var_frac=args.subspace_var, max_k=args.subspace_max_k)
-                rand_deltas["activation_entropy_subspace"].append(r_sub - base_extra["activation_entropy_subspace"])
-            if "per_token" in methods and "activation_entropy_per_token_full" in base_extra:
+                r_sub, _ = subspace_entropy(
+                    r_last, var_frac=args.subspace_var, max_k=args.subspace_max_k
+                )
+                rand_deltas["activation_entropy_subspace"].append(
+                    r_sub - base_extra["activation_entropy_subspace"]
+                )
+            if (
+                "per_token" in methods
+                and "activation_entropy_per_token_full" in base_extra
+            ):
                 r_seq_np = r_seq.detach().to(torch.float32).cpu().numpy()
-                ents_r = [gaussian_entropy_rel(r_seq_np[:, pos, :]) for pos in range(r_seq_np.shape[1])]
-                rand_deltas["activation_entropy_per_token_full"].append(float(np.nanmean(ents_r)) - base_extra["activation_entropy_per_token_full"])
+                ents_r = [
+                    gaussian_entropy_rel(r_seq_np[:, pos, :])
+                    for pos in range(r_seq_np.shape[1])
+                ]
+                rand_deltas["activation_entropy_per_token_full"].append(
+                    float(np.nanmean(ents_r))
+                    - base_extra["activation_entropy_per_token_full"]
+                )
         results["random_control"] = {
             "k": k,
             "samples": args.random_samples,
@@ -428,8 +533,16 @@ def main() -> None:
                 "values": [float(x) for x in rand_deltas_H],
             },
             "delta_output_entropy": {
-                "mean": float(np.mean(rand_deltas["output_entropy"])) if rand_deltas["output_entropy"] else float("nan"),
-                "std": float(np.std(rand_deltas["output_entropy"])) if rand_deltas["output_entropy"] else float("nan"),
+                "mean": (
+                    float(np.mean(rand_deltas["output_entropy"]))
+                    if rand_deltas["output_entropy"]
+                    else float("nan")
+                ),
+                "std": (
+                    float(np.std(rand_deltas["output_entropy"]))
+                    if rand_deltas["output_entropy"]
+                    else float("nan")
+                ),
                 "values": [float(x) for x in rand_deltas["output_entropy"]],
             },
         }
@@ -471,7 +584,11 @@ def main() -> None:
                 }
             }
             # Output entropy: predicted negative => lower tail
-            rand_out = np.array(results["random_control"]["delta_output_entropy"]["values"]) if results["random_control"]["delta_output_entropy"]["values"] else np.array([])
+            rand_out = (
+                np.array(results["random_control"]["delta_output_entropy"]["values"])
+                if results["random_control"]["delta_output_entropy"]["values"]
+                else np.array([])
+            )
             if rand_out.size > 0:
                 p_lower_out = float((rand_out <= dout).mean())
                 results["random_control"]["pvals"]["output_entropy"] = {
@@ -482,9 +599,15 @@ def main() -> None:
             for key_name, rc_key in [
                 ("activation_entropy_diagonal", "delta_activation_entropy_diagonal"),
                 ("activation_entropy_subspace", "delta_activation_entropy_subspace"),
-                ("activation_entropy_per_token_full", "delta_activation_entropy_per_token_full"),
+                (
+                    "activation_entropy_per_token_full",
+                    "delta_activation_entropy_per_token_full",
+                ),
             ]:
-                if key_name in results["deltas"] and rc_key in results["random_control"]:
+                if (
+                    key_name in results["deltas"]
+                    and rc_key in results["random_control"]
+                ):
                     arr = np.array(results["random_control"][rc_key]["values"])  # type: ignore[index]
                     if arr.size > 0:
                         obs = results["deltas"][key_name]

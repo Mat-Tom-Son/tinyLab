@@ -32,16 +32,44 @@ from .binder_sweep import head_zero_hook
 
 SEED_ADJS = {
     "colors": [
-        "red", "blue", "green", "black", "white", "yellow", "purple", "pink", "orange", "brown",
-        "silver", "gold"
+        "red",
+        "blue",
+        "green",
+        "black",
+        "white",
+        "yellow",
+        "purple",
+        "pink",
+        "orange",
+        "brown",
+        "silver",
+        "gold",
     ],
     "sizes": ["big", "small", "tiny", "huge", "little", "massive"],
     "materials": ["wooden", "metal", "plastic", "leather", "paper"],
 }
 
 SEED_NOUNS = [
-    "car", "truck", "boat", "bike", "dog", "cat", "chair", "table", "sofa", "bed",
-    "lamp", "hat", "coat", "bag", "shoe", "book", "cup", "house", "tree", "train"
+    "car",
+    "truck",
+    "boat",
+    "bike",
+    "dog",
+    "cat",
+    "chair",
+    "table",
+    "sofa",
+    "bed",
+    "lamp",
+    "hat",
+    "coat",
+    "bag",
+    "shoe",
+    "book",
+    "cup",
+    "house",
+    "tree",
+    "train",
 ]
 
 
@@ -96,8 +124,11 @@ def harvest_pools() -> tuple[list[str], list[str]]:
     return adjs, nouns
 
 
-def build_dataset(adjs: list[str], nouns: list[str], model, max_examples: int) -> List[Dict[str, str]]:
+def build_dataset(
+    adjs: list[str], nouns: list[str], model, max_examples: int
+) -> List[Dict[str, str]]:
     import random
+
     rng = random.Random(13)
     exs: List[Dict[str, str]] = []
     attempts, max_attempts = 0, max_examples * 10
@@ -119,7 +150,10 @@ def build_dataset(adjs: list[str], nouns: list[str], model, max_examples: int) -
         foil = f" {n2p}"
         # Filter for single-token target/foil
         try:
-            if model.to_single_token(target) is None or model.to_single_token(foil) is None:
+            if (
+                model.to_single_token(target) is None
+                or model.to_single_token(foil) is None
+            ):
                 continue
         except AssertionError:
             continue
@@ -129,7 +163,9 @@ def build_dataset(adjs: list[str], nouns: list[str], model, max_examples: int) -
 
 def run() -> None:
     args = parse_args()
-    model = load_model.load_transformerlens({"name": args.model_name, "dtype": args.dtype}, device=args.device)
+    model = load_model.load_transformerlens(
+        {"name": args.model_name, "dtype": args.dtype}, device=args.device
+    )
     model.eval()
 
     adjs, nouns = harvest_pools()
@@ -145,7 +181,9 @@ def run() -> None:
             nouns = [n for n in nouns if n in allowed]
     dset = build_dataset(adjs, nouns, model, args.max_examples)
     if len(dset) < 512:
-        raise SystemExit("Too few corpus-derived examples; refine pools or increase corpus")
+        raise SystemExit(
+            "Too few corpus-derived examples; refine pools or increase corpus"
+        )
 
     # Baseline (batched to avoid large MPS graphs)
     total = 0
@@ -158,9 +196,16 @@ def run() -> None:
         toks = model.to_tokens([ex["clean"] for ex in chunk])
         with torch.no_grad():
             logits = model(toks)
-        t_ids, f_ids = M._first_token_ids(model, chunk, {"dataset": {"target_field": "target", "foil_field": "foil"}})
+        t_ids, f_ids = M._first_token_ids(
+            model, chunk, {"dataset": {"target_field": "target", "foil_field": "foil"}}
+        )
         ld = M.logit_diff_first_token(logits, t_ids, f_ids)
-        acc = (torch.softmax(logits[:, -1, :], dim=-1).argmax(dim=-1) == t_ids).float().mean().item()
+        acc = (
+            (torch.softmax(logits[:, -1, :], dim=-1).argmax(dim=-1) == t_ids)
+            .float()
+            .mean()
+            .item()
+        )
         n = logits.size(0)
         total += n
         sum_ld += float(ld) * n
@@ -195,31 +240,45 @@ def run() -> None:
                     logits_a = model.run_with_hooks(toks, fwd_hooks=[(node, fn)])
                 # Recompute f_ids for this chunk (same chunk boundaries as baseline)
                 chunk = dset[i0 : i0 + args.batch_size]
-                _, f_ids = M._first_token_ids(model, chunk, {"dataset": {"target_field": "target", "foil_field": "foil"}})
+                _, f_ids = M._first_token_ids(
+                    model,
+                    chunk,
+                    {"dataset": {"target_field": "target", "foil_field": "foil"}},
+                )
                 ld_a = M.logit_diff_first_token(logits_a, t_ids, f_ids)
-                acc_a = (torch.softmax(logits_a[:, -1, :], dim=-1).argmax(dim=-1) == t_ids).float().mean().item()
+                acc_a = (
+                    (torch.softmax(logits_a[:, -1, :], dim=-1).argmax(dim=-1) == t_ids)
+                    .float()
+                    .mean()
+                    .item()
+                )
                 n = logits_a.size(0)
                 total += n
                 sum_ld_a += float(ld_a) * n
                 sum_acc_a += float(acc_a) * n
             ld_a = sum_ld_a / max(1, total)
             acc_a = sum_acc_a / max(1, total)
-            results["rows"].append({
-                "layer": layer,
-                "head": head,
-                "ld_abl": float(ld_a),
-                "ld_base": float(base_ld),
-                "d_ld": float(ld_a - base_ld),
-                "acc_abl": float(acc_a),
-                "acc_base": float(base_acc),
-                "d_acc": float(acc_a - base_acc),
-            })
+            results["rows"].append(
+                {
+                    "layer": layer,
+                    "head": head,
+                    "ld_abl": float(ld_a),
+                    "ld_base": float(base_ld),
+                    "d_ld": float(ld_a - base_ld),
+                    "acc_abl": float(acc_a),
+                    "acc_base": float(base_acc),
+                    "d_acc": float(acc_a - base_acc),
+                }
+            )
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(results, indent=2))
     try:
         import pandas as pd
-        pd.DataFrame(results["rows"]).to_csv(args.output.with_suffix(".csv"), index=False)
+
+        pd.DataFrame(results["rows"]).to_csv(
+            args.output.with_suffix(".csv"), index=False
+        )
     except Exception:
         pass
     print(f"Wrote {args.output}")

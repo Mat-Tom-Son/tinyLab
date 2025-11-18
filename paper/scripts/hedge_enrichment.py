@@ -1,9 +1,8 @@
 import json
 import math
 import pathlib
-import random
 import re
-from collections import Counter, defaultdict
+from collections import defaultdict
 from typing import Dict, Iterable, List, Tuple
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -48,7 +47,9 @@ def aggregate_tokens(files: Iterable[pathlib.Path]) -> Dict[Tuple[int, int], Lis
     return agg
 
 
-def log_odds(head_tokens: List[str], background_tokens: List[str], lexicon: set) -> float:
+def log_odds(
+    head_tokens: List[str], background_tokens: List[str], lexicon: set
+) -> float:
     head_hedge = sum(tok in lexicon for tok in head_tokens)
     head_total = len(head_tokens)
     back_hedge = sum(tok in lexicon for tok in background_tokens)
@@ -59,7 +60,12 @@ def log_odds(head_tokens: List[str], background_tokens: List[str], lexicon: set)
     return math.log(odds_head / odds_back)
 
 
-def auc_for_lexicon(head_tokens: List[str], background_tokens: List[str], lexicon: set, n_samples: int = 5000) -> float:
+def auc_for_lexicon(
+    head_tokens: List[str],
+    background_tokens: List[str],
+    lexicon: set,
+    n_samples: int = 5000,
+) -> float:
     positives = [1 if tok in lexicon else 0 for tok in head_tokens]
     negatives = [1 if tok in lexicon else 0 for tok in background_tokens]
     # Score is binary membership; ROC points collapse to two thresholds.
@@ -96,7 +102,9 @@ def main() -> None:
     mistral_tokens = aggregate_tokens(mistral_files)
 
     # Build background pools
-    def background_pool(tokens: Dict[Tuple[int, int], List[str]], exclude: Tuple[int, int]) -> List[str]:
+    def background_pool(
+        tokens: Dict[Tuple[int, int], List[str]], exclude: Tuple[int, int]
+    ) -> List[str]:
         pool = []
         for key, vals in tokens.items():
             if key != exclude:
@@ -107,14 +115,46 @@ def main() -> None:
     for head in [(0, 2), (0, 4), (0, 7)]:
         head_toks = gpt2_tokens[head]
         back = background_pool(gpt2_tokens, head)
-        results.append(("gpt2", head, "hedge", log_odds(head_toks, back, lex["hedges"]), auc_for_lexicon(head_toks, back, lex["hedges"])))
-        results.append(("gpt2", head, "booster", log_odds(head_toks, back, lex["boosters"]), auc_for_lexicon(head_toks, back, lex["boosters"])))
+        results.append(
+            (
+                "gpt2",
+                head,
+                "hedge",
+                log_odds(head_toks, back, lex["hedges"]),
+                auc_for_lexicon(head_toks, back, lex["hedges"]),
+            )
+        )
+        results.append(
+            (
+                "gpt2",
+                head,
+                "booster",
+                log_odds(head_toks, back, lex["boosters"]),
+                auc_for_lexicon(head_toks, back, lex["boosters"]),
+            )
+        )
 
     for head in [(0, 22), (0, 23)]:
         head_toks = mistral_tokens[head]
         back = background_pool(mistral_tokens, head)
-        results.append(("mistral", head, "hedge", log_odds(head_toks, back, lex["hedges"]), auc_for_lexicon(head_toks, back, lex["hedges"])))
-        results.append(("mistral", head, "booster", log_odds(head_toks, back, lex["boosters"]), auc_for_lexicon(head_toks, back, lex["boosters"])))
+        results.append(
+            (
+                "mistral",
+                head,
+                "hedge",
+                log_odds(head_toks, back, lex["hedges"]),
+                auc_for_lexicon(head_toks, back, lex["hedges"]),
+            )
+        )
+        results.append(
+            (
+                "mistral",
+                head,
+                "booster",
+                log_odds(head_toks, back, lex["boosters"]),
+                auc_for_lexicon(head_toks, back, lex["boosters"]),
+            )
+        )
 
     out = ROOT / "paper" / "supplement" / "hedge_enrichment.json"
     structured = []
@@ -127,7 +167,9 @@ def main() -> None:
                 "lexicon": lex_name,
                 "log_odds": logodds,
                 "auc": auc,
-                "token_count": len(gpt2_tokens[head] if model == "gpt2" else mistral_tokens[head])
+                "token_count": len(
+                    gpt2_tokens[head] if model == "gpt2" else mistral_tokens[head]
+                ),
             }
         )
     out.write_text(json.dumps(structured, indent=2))

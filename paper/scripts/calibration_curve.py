@@ -10,19 +10,21 @@ import torch
 from transformer_lens import HookedTransformer
 
 ROOT = Path(__file__).resolve().parents[2]
-OUTPUT_DIR = ROOT / 'paper' / 'figures'
-SUPPLEMENT = ROOT / 'paper' / 'supplement'
+OUTPUT_DIR = ROOT / "paper" / "figures"
+SUPPLEMENT = ROOT / "paper" / "supplement"
 DATASETS = [
-    ('facts', ROOT / 'lab' / 'data' / 'corpora' / 'facts_single_token_v1.jsonl'),
-    ('neg', ROOT / 'lab' / 'data' / 'corpora' / 'negation_single_token_v1.jsonl'),
-    ('cf', ROOT / 'lab' / 'data' / 'corpora' / 'counterfactual_single_token_v1.jsonl'),
-    ('logic', ROOT / 'lab' / 'data' / 'corpora' / 'logical_single_token_v1.jsonl')
+    ("facts", ROOT / "lab" / "data" / "corpora" / "facts_single_token_v1.jsonl"),
+    ("neg", ROOT / "lab" / "data" / "corpora" / "negation_single_token_v1.jsonl"),
+    ("cf", ROOT / "lab" / "data" / "corpora" / "counterfactual_single_token_v1.jsonl"),
+    ("logic", ROOT / "lab" / "data" / "corpora" / "logical_single_token_v1.jsonl"),
 ]
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 SUPPLEMENT.mkdir(parents=True, exist_ok=True)
 
-model = HookedTransformer.from_pretrained('gpt2-medium', device='cpu', dtype=torch.float32)
+model = HookedTransformer.from_pretrained(
+    "gpt2-medium", device="cpu", dtype=torch.float32
+)
 SUPPRESSOR_HEADS = {(0, 2), (0, 4), (0, 7)}
 
 
@@ -37,7 +39,11 @@ def zero_hook_builder(layer: int):
 
     return hook
 
-HOOKS = [(f'blocks.{layer}.attn.hook_z', zero_hook_builder(layer)) for layer, _ in SUPPRESSOR_HEADS]
+
+HOOKS = [
+    (f"blocks.{layer}.attn.hook_z", zero_hook_builder(layer))
+    for layer, _ in SUPPRESSOR_HEADS
+]
 
 
 def load_dataset(path: Path) -> List[dict]:
@@ -56,9 +62,9 @@ records = []
 for tag, path in DATASETS:
     dataset = load_dataset(path)
     for rec in dataset:
-        clean = rec['clean']
-        target_id = to_token_id(rec['target'])
-        foil_id = to_token_id(rec['foil'])
+        clean = rec["clean"]
+        target_id = to_token_id(rec["target"])
+        foil_id = to_token_id(rec["foil"])
         tokens = model.to_tokens(clean, prepend_bos=True)
         with torch.no_grad():
             logits = model(tokens)[:, -1, :]
@@ -69,17 +75,25 @@ for tag, path in DATASETS:
         ablated_prob = torch.sigmoid(ablated_diff).item()
         base_correct = logits[0, target_id] > logits[0, foil_id]
         ablated_correct = logits_zero[0, target_id] > logits_zero[0, foil_id]
-        records.append({'condition': 'baseline', 'prob': base_prob, 'correct': int(base_correct)})
-        records.append({'condition': 'ablated', 'prob': ablated_prob, 'correct': int(ablated_correct)})
+        records.append(
+            {"condition": "baseline", "prob": base_prob, "correct": int(base_correct)}
+        )
+        records.append(
+            {
+                "condition": "ablated",
+                "prob": ablated_prob,
+                "correct": int(ablated_correct),
+            }
+        )
 
 bins = np.linspace(0, 1, 11)
 centers = 0.5 * (bins[1:] + bins[:-1])
 
 fig, ax = plt.subplots(figsize=(5.2, 3.6))
-for condition in ['baseline', 'ablated']:
-    subset = [r for r in records if r['condition'] == condition]
-    probs = np.array([r['prob'] for r in subset])
-    labels = np.array([r['correct'] for r in subset])
+for condition in ["baseline", "ablated"]:
+    subset = [r for r in records if r["condition"] == condition]
+    probs = np.array([r["prob"] for r in subset])
+    labels = np.array([r["correct"] for r in subset])
     bin_indices = np.digitize(probs, bins) - 1
     bin_acc = []
     bin_conf = []
@@ -91,22 +105,22 @@ for condition in ['baseline', 'ablated']:
         else:
             bin_acc.append(np.nan)
             bin_conf.append(np.nan)
-    marker = 'o' if condition == 'baseline' else '^'
+    marker = "o" if condition == "baseline" else "^"
     ax.plot(bin_conf, bin_acc, marker=marker, label=condition)
 
-ax.plot([0, 1], [0, 1], linestyle='--', color='gray')
-ax.set_xlabel('Predicted probability (target)')
-ax.set_ylabel('Empirical accuracy')
-ax.set_title('Calibration on probe suite (10 bins)')
+ax.plot([0, 1], [0, 1], linestyle="--", color="gray")
+ax.set_xlabel("Predicted probability (target)")
+ax.set_ylabel("Empirical accuracy")
+ax.set_title("Calibration on probe suite (10 bins)")
 ax.legend()
 fig.tight_layout()
-fig.savefig(OUTPUT_DIR / 'calibration_curve.pdf')
+fig.savefig(OUTPUT_DIR / "calibration_curve.pdf")
 
 metrics = {}
-for condition in ['baseline', 'ablated']:
-    subset = [r for r in records if r['condition'] == condition]
-    probs = np.array([r['prob'] for r in subset])
-    labels = np.array([r['correct'] for r in subset])
+for condition in ["baseline", "ablated"]:
+    subset = [r for r in records if r["condition"] == condition]
+    probs = np.array([r["prob"] for r in subset])
+    labels = np.array([r["correct"] for r in subset])
     bin_indices = np.digitize(probs, bins) - 1
     ece = 0.0
     for i in range(len(centers)):
@@ -118,21 +132,28 @@ for condition in ['baseline', 'ablated']:
     brier = float(np.mean((probs - labels) ** 2))
     clipped = np.clip(probs, 1e-6, 1 - 1e-6)
     nll = float(np.mean(-labels * np.log(clipped) - (1 - labels) * np.log(1 - clipped)))
-    metrics[condition] = {
-        'ece': float(ece),
-        'brier': brier,
-        'nll': nll
-    }
+    metrics[condition] = {"ece": float(ece), "brier": brier, "nll": nll}
 
-(SUPPLEMENT / 'calibration_metrics.json').write_text(json.dumps(metrics, indent=2))
-print('Wrote calibration curve and metrics')
-mpl.rcParams.update({
-    'font.size': 12,
-    'axes.labelsize': 12,
-    'legend.fontsize': 10,
-    'savefig.dpi': 200,
-    'lines.linewidth': 1.8,
-})
-mpl.rcParams['axes.prop_cycle'] = cycler(color=[
-    '#0072B2', '#D55E00', '#009E73', '#CC79A7', '#F0E442', '#56B4E9', '#E69F00', '#000000'
-])
+(SUPPLEMENT / "calibration_metrics.json").write_text(json.dumps(metrics, indent=2))
+print("Wrote calibration curve and metrics")
+mpl.rcParams.update(
+    {
+        "font.size": 12,
+        "axes.labelsize": 12,
+        "legend.fontsize": 10,
+        "savefig.dpi": 200,
+        "lines.linewidth": 1.8,
+    }
+)
+mpl.rcParams["axes.prop_cycle"] = cycler(
+    color=[
+        "#0072B2",
+        "#D55E00",
+        "#009E73",
+        "#CC79A7",
+        "#F0E442",
+        "#56B4E9",
+        "#E69F00",
+        "#000000",
+    ]
+)

@@ -8,19 +8,19 @@ This document captures the full context of the suppressor-analysis work complete
 
 ## 1. High-Level Story
 
-1. **GPT‑2 (medium & large)**  
-   - Layer‑0 head 2 injects a “hedge/meta-commentary” direction (OV top tokens like `totally`, `solid`, `...`) while suppressing factual/logical continuations (`Recomm`, `trave`, …).  
-   - Heads 4 and 7 amplify head 2 but contribute much smaller logit deltas.  
-   - Partial interventions (zero all three, patch one back) show head 2 alone recovers ~60–70 % of the damage.  
+1. **GPT‑2 (medium & large)**
+   - Layer‑0 head 2 injects a “hedge/meta-commentary” direction (OV top tokens like `totally`, `solid`, `...`) while suppressing factual/logical continuations (`Recomm`, `trave`, …).
+   - Heads 4 and 7 amplify head 2 but contribute much smaller logit deltas.
+   - Partial interventions (zero all three, patch one back) show head 2 alone recovers ~60–70 % of the damage.
    - Pair/Triplet runs confirm destructive cooperation, reverse patch windows stay asymmetric.
 
-2. **LLaMA attempt**  
-   - TransformerLens currently only loads LLaMA checkpoints that require Meta gating. `meta-llama/Llama-2-7b-hf` returned 403, and `openlm-research/open_llama_7b` isn’t in the official allowlist; so the run was blocked.  
+2. **LLaMA attempt**
+   - TransformerLens currently only loads LLaMA checkpoints that require Meta gating. `meta-llama/Llama-2-7b-hf` returned 403, and `openlm-research/open_llama_7b` isn’t in the official allowlist; so the run was blocked.
    - Path forward: request access for an allowed LLaMA repo (`meta-llama/Meta-Llama-3-8B`, etc.) or extend the loader to handle unlisted models manually.
 
-3. **Mistral-7B (in progress)**  
-   - Tokenizer-specific corpora built via `scripts/build_tokenizer_variants.py` produce `*_mistral.jsonl` datasets & splits.  
-   - H1/H5 runs completed per condition (`seed=0`, 24-train split). Layer‑0 head 21 emerged as the primary suppressor (logit diff ~0.09–0.35 on neg/logic), mirroring the GPT‑2 pattern.  
+3. **Mistral-7B (in progress)**
+   - Tokenizer-specific corpora built via `scripts/build_tokenizer_variants.py` produce `*_mistral.jsonl` datasets & splits.
+   - H1/H5 runs completed per condition (`seed=0`, 24-train split). Layer‑0 head 21 emerged as the primary suppressor (logit diff ~0.09–0.35 on neg/logic), mirroring the GPT‑2 pattern.
    - Reverse-patch (H6) per condition is queued next; the orchestrator timeouts mean we’ll run each config through `lab/src/harness` directly.
 
 ---
@@ -67,8 +67,8 @@ python scripts/build_tokenizer_variants.py \
 This filters each corpus to single-token targets/foils under the given tokenizer and rewrites the split files. Update configs to consume the new IDs (e.g., `facts_single_token_v1_mistral`).
 
 ### 2.4 Partial patch & OV tooling
-- `lab/analysis/h5_partial_patch.py`: zero {head2,4,7}, patch one back; outputs summary JSON (baseline/zero/patch deltas).  
-- `lab/analysis/ov_report.py`: full per-head OV projections (top/bottom tokens, vector norms).  
+- `lab/analysis/h5_partial_patch.py`: zero {head2,4,7}, patch one back; outputs summary JSON (baseline/zero/patch deltas).
+- `lab/analysis/ov_report.py`: full per-head OV projections (top/bottom tokens, vector norms).
 - `lab/analysis/cluster_ov_tokens.py`: cluster tokens across multiple reports.
 
 Example OV command:
@@ -130,11 +130,11 @@ Next actions (short term):
 ---
 
 ## 5. Quick Start for New Researchers
-1. **Install** dependencies, activate `.venv`, log in to Hugging Face.  
-2. **Pick a config** (e.g., `run_h1_cross_condition_balanced.json`) and run it:  
-   `python -m lab.src.orchestrators.conditions lab/configs/<config>.json`.  
-3. **Inspect outputs** under `lab/runs/<run_id>/metrics/*.json`/`*.parquet`; cross-condition matrices are in `.../artifacts/cross_condition/`.  
-4. Use the **analysis scripts** (OV reports, partial patch, clustering) to interpret results.  
+1. **Install** dependencies, activate `.venv`, log in to Hugging Face.
+2. **Pick a config** (e.g., `run_h1_cross_condition_balanced.json`) and run it:
+   `python -m lab.src.orchestrators.conditions lab/configs/<config>.json`.
+3. **Inspect outputs** under `lab/runs/<run_id>/metrics/*.json`/`*.parquet`; cross-condition matrices are in `.../artifacts/cross_condition/`.
+4. Use the **analysis scripts** (OV reports, partial patch, clustering) to interpret results.
 5. To adapt to a new tokenizer/model, run `scripts/build_tokenizer_variants.py`, adjust configs, and repeat.
 
 The workflow is intentionally modular: every new architecture just needs ① matching corpora/splits, ② a set of configs pointing to the right model name, and ③ the same command sequence. All intermediate and final artefacts stay under `lab/runs/` and `reports/`, so results are traceable and reproducible.
@@ -213,10 +213,10 @@ The repository ships pre-configured heatmap exporters (`lab/src/viz/heatmap.py`)
 ---
 
 ## 7. Contacts / Next Steps
-- **Current owner**: the suppressor harness is documented in `docs/suppressor_analysis_runbook.md` and this handover file.  
-- **Open tasks**:  
-  - Complete Mistral H6 + OV clustering.  
-  - Automate OV report comparisons (scripts currently cover facts/neg/cf/logic separately).  
+- **Current owner**: the suppressor harness is documented in `docs/suppressor_analysis_runbook.md` and this handover file.
+- **Open tasks**:
+  - Complete Mistral H6 + OV clustering.
+  - Automate OV report comparisons (scripts currently cover facts/neg/cf/logic separately).
   - Once a LLaMA checkpoint is accessible, rerun the full suite for parity with GPT‑2/Mistral.
 
-Happy probing!  
+Happy probing!

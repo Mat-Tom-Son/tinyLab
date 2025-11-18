@@ -16,7 +16,6 @@ from typing import Dict, List
 
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-import numpy as np
 from cycler import cycler
 
 
@@ -32,14 +31,18 @@ def plot_entropy_overlay(data: Dict, out: Path) -> None:
     ent = [float(x["entropy"]) for x in prof]
 
     # Styling
-    mpl.rcParams.update({
-        "font.size": 11,
-        "axes.labelsize": 11,
-        "legend.fontsize": 9,
-        "savefig.dpi": 200,
-        "lines.linewidth": 1.8,
-    })
-    mpl.rcParams["axes.prop_cycle"] = cycler(color=["#0072B2", "#D55E00", "#009E73", "#CC79A7"])
+    mpl.rcParams.update(
+        {
+            "font.size": 11,
+            "axes.labelsize": 11,
+            "legend.fontsize": 9,
+            "savefig.dpi": 200,
+            "lines.linewidth": 1.8,
+        }
+    )
+    mpl.rcParams["axes.prop_cycle"] = cycler(
+        color=["#0072B2", "#D55E00", "#009E73", "#CC79A7"]
+    )
 
     fig, ax = plt.subplots(figsize=(10.5, 4.2))
     ax.plot(layers, ent, marker="o", label="Baseline entropy (last position)")
@@ -89,4 +92,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

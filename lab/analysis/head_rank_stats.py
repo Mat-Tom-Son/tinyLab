@@ -136,7 +136,9 @@ def zscore(series: pd.Series) -> np.ndarray:
     return (arr - mean) / std
 
 
-def observed_stats(table_a: pd.DataFrame, table_b: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray]:
+def observed_stats(
+    table_a: pd.DataFrame, table_b: pd.DataFrame
+) -> Tuple[np.ndarray, np.ndarray]:
     # Align heads present in both tables.
     common_heads = sorted(set(table_a.columns).intersection(table_b.columns))
     if not common_heads:

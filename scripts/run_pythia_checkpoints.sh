@@ -11,4 +11,3 @@ done
 
 echo "[info] Aggregating head trajectories"
 python3 scripts/analyze_pythia_learning.py
-

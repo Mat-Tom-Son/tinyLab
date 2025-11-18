@@ -30,13 +30,19 @@ def top_binder(p: Path, k: int = 5) -> str:
 
 def top_sharpener(p: Path, k: int = 2) -> str:
     d = json.loads(p.read_text())
-    rows = sorted(d.get("sharpener_scan", []), key=lambda r: float(r.get("d_entropy_final", 0.0)), reverse=True)[:k]
+    rows = sorted(
+        d.get("sharpener_scan", []),
+        key=lambda r: float(r.get("d_entropy_final", 0.0)),
+        reverse=True,
+    )[:k]
     return ";".join([f"L{int(r['layer'])}H{int(r['head'])}" for r in rows])
 
 
 def main() -> None:
     reports = Path("reports")
-    binder_files = list(reports.glob("binder_sweep_*.json")) + list(reports.glob("binder_sweep_corpus_*.json"))
+    binder_files = list(reports.glob("binder_sweep_*.json")) + list(
+        reports.glob("binder_sweep_corpus_*.json")
+    )
     sharp_files = list(reports.glob("layer_entropy_scan_*.json"))
 
     rows = {}
@@ -58,4 +64,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -24,7 +24,9 @@ def ensure_single(texts: Sequence[str], context: str) -> None:
         raise ValueError(f"{context}: non single-token entries detected: {bad[:5]}")
 
 
-def pairwise_examples(items: Sequence[Tuple[str, str]]) -> List[Tuple[str, str, str, str]]:
+def pairwise_examples(
+    items: Sequence[Tuple[str, str]],
+) -> List[Tuple[str, str, str, str]]:
     """Build (clean, corrupt, target, foil) by pairing prompts from the item set."""
     examples: List[Tuple[str, str, str, str]] = []
     for i, (prompt_a, target_a) in enumerate(items):
@@ -35,7 +37,9 @@ def pairwise_examples(items: Sequence[Tuple[str, str]]) -> List[Tuple[str, str, 
     return examples
 
 
-def round_robin(lists: Sequence[List[Tuple[str, str, str, str]]]) -> Iterator[Tuple[str, str, str, str]]:
+def round_robin(
+    lists: Sequence[List[Tuple[str, str, str, str]]],
+) -> Iterator[Tuple[str, str, str, str]]:
     queues = [list(lst) for lst in lists if lst]
     idx = 0
     while queues:
@@ -214,7 +218,7 @@ def make_negation_pairs() -> List[Tuple[str, str]]:
         ("Sucre", "the capital of Bolivia"),
         ("Bogota", "the capital of Colombia"),
         ("Caracas", "the capital of Venezuela"),
-        ("Brasilia", "the capital of Brazil")
+        ("Brasilia", "the capital of Brazil"),
     ]
 
     for subject, predicate in capitals:
@@ -242,7 +246,7 @@ def make_negation_pairs() -> List[Tuple[str, str]]:
             ("Seals", "divers"),
             ("Otters", "hunters"),
             ("Lions", "predators"),
-            ("Tigers", "predators")
+            ("Tigers", "predators"),
         ],
         "plants": [
             ("Flowers", "plants"),
@@ -254,7 +258,7 @@ def make_negation_pairs() -> List[Tuple[str, str]]:
             ("Vines", "climbers"),
             ("Moss", "plants"),
             ("Ferns", "plants"),
-            ("Cacti", "succulents")
+            ("Cacti", "succulents"),
         ],
         "food": [
             ("Apples", "fruit"),
@@ -271,7 +275,7 @@ def make_negation_pairs() -> List[Tuple[str, str]]:
             ("Garlic", "bulbs"),
             ("Peppers", "vegetables"),
             ("Spinach", "greens"),
-            ("Lettuce", "greens")
+            ("Lettuce", "greens"),
         ],
         "elements": [
             ("Water", "wet"),
@@ -297,7 +301,7 @@ def make_negation_pairs() -> List[Tuple[str, str]]:
             ("Wood", "flammable"),
             ("Metal", "strong"),
             ("Glass", "transparent"),
-            ("Clay", "malleable")
+            ("Clay", "malleable"),
         ],
         "people": [
             ("Singers", "artists"),
@@ -319,8 +323,8 @@ def make_negation_pairs() -> List[Tuple[str, str]]:
             ("Leaders", "guides"),
             ("Artists", "creatives"),
             ("Scientists", "researchers"),
-            ("Engineers", "designers")
-        ]
+            ("Engineers", "designers"),
+        ],
     }
 
     for group in categories.values():
@@ -351,7 +355,9 @@ def make_negation_pairs() -> List[Tuple[str, str]]:
 
 
 def build_counterfactual_candidates() -> List[Tuple[str, str, str, str]]:
-    def make(clean_ant: str, corrupt_ant: str, suffix: str, target: str, foil: str) -> Tuple[str, str, str, str]:
+    def make(
+        clean_ant: str, corrupt_ant: str, suffix: str, target: str, foil: str
+    ) -> Tuple[str, str, str, str]:
         clean_stmt = f"If {clean_ant}, then{suffix} {target.strip()}"
         corrupt_stmt = f"If {corrupt_ant}, then{suffix} {foil.strip()}"
         return clean_stmt, corrupt_stmt, target, foil
@@ -361,43 +367,95 @@ def build_counterfactual_candidates() -> List[Tuple[str, str, str, str]]:
         make("dogs are loyal", "stones are loyal", " they show", " care", " rust"),
         make("birds can fly", "rocks can fly", " they use", " wings", " roots"),
         make("fish can swim", "trees can swim", " they use", " fins", " roots"),
-        make("bees make honey", "clouds make honey", " they produce", " honey", " vapor"),
+        make(
+            "bees make honey", "clouds make honey", " they produce", " honey", " vapor"
+        ),
         make("cows chew grass", "cars chew grass", " they chew", " grass", " metal"),
-        make("wolves hunt prey", "flowers hunt prey", " they chase", " prey", " pollen"),
-        make("lions roar loudly", "leaves roar loudly", " they sound", " loud", " quiet"),
-        make("owls see at night", "pebbles see at night", " they use", " eyes", " dust"),
-        make("bats navigate caves", "chairs navigate caves", " they use", " echo", " wood"),
-        make("horses gallop fast", "pillars gallop fast", " they move", " fast", " still"),
+        make(
+            "wolves hunt prey", "flowers hunt prey", " they chase", " prey", " pollen"
+        ),
+        make(
+            "lions roar loudly", "leaves roar loudly", " they sound", " loud", " quiet"
+        ),
+        make(
+            "owls see at night", "pebbles see at night", " they use", " eyes", " dust"
+        ),
+        make(
+            "bats navigate caves",
+            "chairs navigate caves",
+            " they use",
+            " echo",
+            " wood",
+        ),
+        make(
+            "horses gallop fast", "pillars gallop fast", " they move", " fast", " still"
+        ),
         make("sheep grow wool", "clouds grow wool", " they grow", " wool", " vapor"),
-        make("goats climb cliffs", "waters climb cliffs", " they use", " legs", " waves"),
-        make("ducks swim well", "stones swim well", " they float on", " water", " dust"),
-        make("geese migrate yearly", "tables migrate yearly", " they travel in", " group", " silence"),
+        make(
+            "goats climb cliffs", "waters climb cliffs", " they use", " legs", " waves"
+        ),
+        make(
+            "ducks swim well", "stones swim well", " they float on", " water", " dust"
+        ),
+        make(
+            "geese migrate yearly",
+            "tables migrate yearly",
+            " they travel in",
+            " group",
+            " silence",
+        ),
         make("frogs leap high", "rocks leap high", " they jump", " high", " still"),
         make("snakes slither", "bricks slither", " they move", " smooth", " rigid"),
-        make("turtles wear shells", "trees wear shells", " they carry", " shells", " bark"),
-        make("whales breathe air", "pebbles breathe air", " they need", " air", " stone"),
+        make(
+            "turtles wear shells",
+            "trees wear shells",
+            " they carry",
+            " shells",
+            " bark",
+        ),
+        make(
+            "whales breathe air", "pebbles breathe air", " they need", " air", " stone"
+        ),
         make("sharks hunt fish", "flowers hunt fish", " they hunt", " fish", " pollen"),
     ]
 
     nature_rules = [
         make("plants need light", "rocks need light", " they need", " light", " shade"),
-        make("trees grow leaves", "statues grow leaves", " they grow", " leaves", " dust"),
+        make(
+            "trees grow leaves", "statues grow leaves", " they grow", " leaves", " dust"
+        ),
         make("seeds sprout", "coins sprout", " they become", " plants", " metal"),
         make("glaciers melt", "fires melt", " they become", " water", " ash"),
         make("snow melts", "embers melt", " it becomes", " water", " dust"),
         make("rain falls", "smoke falls", " it makes", " water", " dust"),
-        make("sun rises daily", "rocks rise daily", " the sky turns", " bright", " dim"),
-        make("moon shines nightly", "sand shines nightly", " the night is", " light", " dark"),
+        make(
+            "sun rises daily", "rocks rise daily", " the sky turns", " bright", " dim"
+        ),
+        make(
+            "moon shines nightly",
+            "sand shines nightly",
+            " the night is",
+            " light",
+            " dark",
+        ),
         make("wind blows", "walls blow", " the air feels", " cool", " hard"),
         make("waves crash", "hills crash", " the shore becomes", " wet", " dry"),
         make("fire burns fuel", "ice burns fuel", " it gives", " heat", " frost"),
-        make("ice freezes water", "flames freeze water", " it turns to", " ice", " smoke"),
+        make(
+            "ice freezes water", "flames freeze water", " it turns to", " ice", " smoke"
+        ),
         make("metal rusts", "clouds rust", " it turns", " red", " blue"),
         make("clay hardens", "steam hardens", " it becomes", " solid", " vapor"),
         make("fog lifts", "stones lift", " the view is", " clear", " hidden"),
         make("storms gather", "books gather", " the clouds grow", " dark", " dull"),
         make("volcanoes erupt", "rivers erupt", " they release", " lava", " water"),
-        make("magnets attract metal", "feathers attract metal", " they pull", " metal", " dust"),
+        make(
+            "magnets attract metal",
+            "feathers attract metal",
+            " they pull",
+            " metal",
+            " dust",
+        ),
         make("lightning flashes", "puddles flash", " the sky grows", " bright", " dim"),
         make("thunder rumbles", "petals rumble", " the air becomes", " loud", " quiet"),
     ]
@@ -413,12 +471,38 @@ def build_counterfactual_candidates() -> List[Tuple[str, str, str, str]]:
         make("cameras record", "winds record", " they capture", " light", " noise"),
         make("keys unlock", "leaves unlock", " they open the", " door", " dust"),
         make("locks jam", "streams jam", " the gate stays", " shut", " open"),
-        make("bridges span rivers", "clouds span rivers", " they cross the", " river", " sky"),
-        make("tunnels dig earth", "storms dig earth", " they pass through", " soil", " sky"),
+        make(
+            "bridges span rivers",
+            "clouds span rivers",
+            " they cross the",
+            " river",
+            " sky",
+        ),
+        make(
+            "tunnels dig earth",
+            "storms dig earth",
+            " they pass through",
+            " soil",
+            " sky",
+        ),
         make("gears turn", "shadows turn", " machines will", " move", " still"),
-        make("levers lift loads", "petals lift loads", " they raise the", " load", " scent"),
-        make("pulleys hoist loads", "mirrors hoist loads", " they raise a", " load", " glare"),
-        make("ropes pull loads", "beams pull loads", " they pull the", " load", " dust"),
+        make(
+            "levers lift loads",
+            "petals lift loads",
+            " they raise the",
+            " load",
+            " scent",
+        ),
+        make(
+            "pulleys hoist loads",
+            "mirrors hoist loads",
+            " they raise a",
+            " load",
+            " glare",
+        ),
+        make(
+            "ropes pull loads", "beams pull loads", " they pull the", " load", " dust"
+        ),
         make("boats float", "stones float", " they stay on", " water", " dust"),
         make("planes fly", "logs fly", " they travel through", " air", " mud"),
         make("cars roll", "trees roll", " they move on", " wheels", " roots"),
@@ -467,13 +551,23 @@ def build_counterfactual_candidates() -> List[Tuple[str, str, str, str]]:
         make("pilots land", "rivers land", " they land the", " plane", " stream"),
         make("sailors dock", "storms dock", " they tie the", " ship", " gust"),
         make("miners blast", "waves blast", " they break the", " rock", " foam"),
-        make("farmers harvest", "thunder harvests", " they collect the", " crops", " roar"),
+        make(
+            "farmers harvest",
+            "thunder harvests",
+            " they collect the",
+            " crops",
+            " roar",
+        ),
         make("chefs season", "shadows season", " they add", " spice", " dusk"),
         make("writers edit", "winds edit", " they change", " words", " gust"),
         make("coders code", "rivers code", " they write", " logic", " current"),
         make("gamers play", "stones play", " they enjoy", " games", " dust"),
-        make("singers harmonize", "storms harmonize", " they blend", " voice", " thunder"),
-        make("readers imagine", "pillars imagine", " they picture", " scenes", " stone"),
+        make(
+            "singers harmonize", "storms harmonize", " they blend", " voice", " thunder"
+        ),
+        make(
+            "readers imagine", "pillars imagine", " they picture", " scenes", " stone"
+        ),
         make("gardeners prune", "clouds prune", " they trim", " plants", " mist"),
         make("teachers guide", "mountains guide", " they lead the", " class", " cliff"),
         make("doctors diagnose", "shadows diagnose", " they find", " causes", " dusk"),
@@ -504,8 +598,13 @@ def build_counterfactual_candidates() -> List[Tuple[str, str, str, str]]:
             seen.add(key)
             deduped_rules.append(rule)
 
-    ensure_single([rule[2] for rule in deduped_rules] + [rule[3] for rule in deduped_rules], "counterfactual targets/foils")
+    ensure_single(
+        [rule[2] for rule in deduped_rules] + [rule[3] for rule in deduped_rules],
+        "counterfactual targets/foils",
+    )
     return deduped_rules[:300]
+
+
 def build_logical_candidates() -> List[Tuple[str, str, str, str]]:
     true_statements = [
         "Dogs are mammals",

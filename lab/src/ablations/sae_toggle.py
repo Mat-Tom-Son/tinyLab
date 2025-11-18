@@ -1,6 +1,6 @@
 """SAE feature toggling module (stub for SAELens integration)."""
+
 import pandas as pd
-from ..components import metrics as M
 
 
 def run(model, dset, cfg, battery_cfg, sae, device):
@@ -23,7 +23,9 @@ def run(model, dset, cfg, battery_cfg, sae, device):
         Dict with summary, per_example, and impact_matrix
     """
     # TODO: Implement SAE feature toggling with SAELens
-    print("[yellow]Warning: SAE toggling not yet implemented. Returning stub results.[/yellow]")
+    print(
+        "[yellow]Warning: SAE toggling not yet implemented. Returning stub results.[/yellow]"
+    )
 
     # Return stub results
     agg_summary = {

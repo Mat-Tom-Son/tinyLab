@@ -24,7 +24,7 @@ def main() -> None:
 
     for ax, cond in zip(axes, conditions):
         sub = df[df["condition"] == cond]
-        steps = sorted(sub.checkpoint_step.unique())
+        sorted(sub.checkpoint_step.unique())
         for h in heads:
             hs = sub[sub["head"] == h].sort_values("checkpoint_step")
             if hs.empty:
@@ -53,13 +53,24 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-mpl.rcParams.update({
-    'font.size': 12,
-    'axes.labelsize': 12,
-    'legend.fontsize': 10,
-    'savefig.dpi': 200,
-    'lines.linewidth': 1.8,
-})
-mpl.rcParams['axes.prop_cycle'] = cycler(color=[
-    '#0072B2', '#D55E00', '#009E73', '#CC79A7', '#F0E442', '#56B4E9', '#E69F00', '#000000'
-])
+mpl.rcParams.update(
+    {
+        "font.size": 12,
+        "axes.labelsize": 12,
+        "legend.fontsize": 10,
+        "savefig.dpi": 200,
+        "lines.linewidth": 1.8,
+    }
+)
+mpl.rcParams["axes.prop_cycle"] = cycler(
+    color=[
+        "#0072B2",
+        "#D55E00",
+        "#009E73",
+        "#CC79A7",
+        "#F0E442",
+        "#56B4E9",
+        "#E69F00",
+        "#000000",
+    ]
+)

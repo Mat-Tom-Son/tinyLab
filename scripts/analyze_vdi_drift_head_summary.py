@@ -72,7 +72,9 @@ def build_head_summary(
         & (drift["condition"] == "base")
         & (drift["layer"] == "logits")
     ]
-    base_drift_final = float(base_final["mean_drift"].mean()) if not base_final.empty else np.nan
+    base_drift_final = (
+        float(base_final["mean_drift"].mean()) if not base_final.empty else np.nan
+    )
     base_entropy_logits = (
         float(base_logits["mean_entropy"].mean()) if not base_logits.empty else np.nan
     )
@@ -244,4 +246,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -21,7 +21,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict
 
 import numpy as np
 import pandas as pd
@@ -92,7 +92,9 @@ def mediation_for_child(child_manifest: Dict) -> Dict:
             frac = (ld_patched - ld_corrupt) / denom if denom != 0 else float("nan")
             fracs.append(frac)
         m, (lo, hi) = mean_ci(np.array(fracs))
-        out_rows.append({"layer": int(layer), "n": len(fracs), "mean": m, "ci95": [lo, hi]})
+        out_rows.append(
+            {"layer": int(layer), "n": len(fracs), "mean": m, "ci95": [lo, hi]}
+        )
 
     out = {
         "run_dir": str(run_dir),
@@ -106,9 +108,21 @@ def mediation_for_child(child_manifest: Dict) -> Dict:
 
 def parse_args():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--parent", type=Path, required=True, help="Path to H6 parent manifest.json")
-    ap.add_argument("--tag", type=str, required=True, help="Condition tag to summarise (facts|neg|cf|logic)")
-    ap.add_argument("--window", type=str, default="", help="Comma-separated window layers to aggregate (e.g., '8,9,10,11')")
+    ap.add_argument(
+        "--parent", type=Path, required=True, help="Path to H6 parent manifest.json"
+    )
+    ap.add_argument(
+        "--tag",
+        type=str,
+        required=True,
+        help="Condition tag to summarise (facts|neg|cf|logic)",
+    )
+    ap.add_argument(
+        "--window",
+        type=str,
+        default="",
+        help="Comma-separated window layers to aggregate (e.g., '8,9,10,11')",
+    )
     ap.add_argument("--out", type=Path, required=True)
     return ap.parse_args()
 
@@ -136,4 +150,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

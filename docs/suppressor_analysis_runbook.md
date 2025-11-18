@@ -6,16 +6,16 @@ This note captures the full workflow we ran today to characterise the layer‑0 
 
 ## 1. Highlights & Findings
 
-- **Suppressor circuit confirmed (gpt2‑medium & gpt2‑large)**  
+- **Suppressor circuit confirmed (gpt2‑medium & gpt2‑large)**
   Layer‑0 head 2 consistently injects a “hedge/meta-commentary” direction, boosting tokens such as `totally`, `solid`, punctuation runs, etc., while suppressing factual stems (`Recomm`, `trave`, `circumst`, …). Partial interventions show that restoring head 2 alone recovers ~60–70 % of the damage; heads 4/7 add only minor residual effects.
 
-- **Cooperative behaviour**  
+- **Cooperative behaviour**
   Pair ablations and triplet removal (`run_h5_layer0_pairs_balanced*.json`, `run_h5_layer0_triplet_balanced.json`) demonstrate that any pair containing head 2 remains highly destructive, confirming it is the core suppressor.
 
-- **Directional asymmetry**  
+- **Directional asymmetry**
   Reverse patches (`h2_cross_condition_physics_probe*.json`) remain asymmetric across ±2 layer windows; corrupt→clean swaps fail to recover clean logits, reinforcing that the circuit pushes activations away from factual answers.
 
-- **Reusable OV tooling**  
+- **Reusable OV tooling**
   `lab/analysis/ov_report.py` + `cluster_ov_tokens.py` generalise to any model/config and give a full semantic fingerprint of each head’s contribution.
 
 ---
@@ -102,48 +102,48 @@ Comparable commands were run for `neg`, `cf`, and `logic`, producing:
 
 ## 3. Plug-and-Play Instructions for New Models / Architectures
 
-1. **Copy a baseline config**  
+1. **Copy a baseline config**
    Duplicate the relevant config (`run_h1_cross_condition_balanced.json`, `run_h5_layer0_pairs_balanced.json`, etc.) and change the `model.name` to the target architecture. Update `run_name` to avoid collisions.
 
-2. **Run the orchestrator**  
+2. **Run the orchestrator**
    Execute the corresponding `lab/src/orchestrators/conditions` command; the harness automatically logs runs and builds cross-condition matrices.
 
-3. **Generate OV reports**  
+3. **Generate OV reports**
    Use `lab/analysis/ov_report.py` with the new config/tag to emit top/bottom tokens. Combine reports via `cluster_ov_tokens.py` to get semantic clusters.
 
-4. **Partial patches & triplet runs**  
+4. **Partial patches & triplet runs**
    `lab/analysis/h5_partial_patch.py` accepts any config; no model-specific changes required.
 
-5. **Reverse patch windows**  
+5. **Reverse patch windows**
    Adjust `battery_h6_layer_window_*.json` to target the appropriate layer window for the new model, then run the orchestrator config.
 
-6. **Automation tip**  
+6. **Automation tip**
    All configs can be scripted: create a new directory (e.g., `configs/models/gptj/`) with copies of the JSON files and tweak model/device settings. The orchestrator picks up per-condition battery overrides automatically.
 
 ### 3.1 LLaMA Quick-Start
 
 We already dropped LLaMA-ready configs in `lab/configs/` (look for files ending with `_llama.json`). To replicate the full suppressor suite on a LLaMA checkpoint:
 
-1. **Accept / download the model**  
+1. **Accept / download the model**
    Make sure `huggingface-cli login` is configured and the `llama-7b` weights are available to TransformerLens. Adjust `model.name` in the configs if you want a larger variant.
 
-2. **Run the balanced heads scan**  
+2. **Run the balanced heads scan**
    ```bash
    python -m lab.src.orchestrators.conditions lab/configs/run_h1_cross_condition_balanced_llama.json
    ```
 
-3. **Pairs & triplet**  
+3. **Pairs & triplet**
    ```bash
    python -m lab.src.orchestrators.conditions lab/configs/run_h5_layer0_pairs_balanced_llama.json
    python -m lab.src.orchestrators.conditions lab/configs/run_h5_layer0_triplet_balanced_llama.json
    ```
 
-4. **Reverse-patch windows**  
+4. **Reverse-patch windows**
    ```bash
    python -m lab.src.orchestrators.conditions lab/configs/run_h6_layer_targets_window_balanced_llama.json
    ```
 
-5. **OV projections & clustering**  
+5. **OV projections & clustering**
    Swap in the LLaMA config when calling `ov_report.py`, e.g.:
    ```bash
    python -m lab.analysis.ov_report \
@@ -156,7 +156,7 @@ We already dropped LLaMA-ready configs in `lab/configs/` (look for files ending 
      --output reports/ov_token_clusters_facts_llama_vs_gpt2.json
    ```
 
-6. **Partial interventions**  
+6. **Partial interventions**
    Reuse `h5_partial_patch.py` by pointing to the LLaMA config and desired heads; e.g., `--patch-head 2` isolates the suppressor.
 
 Tip: If you experiment with LLaMA‑13B/65B, duplicate the configs again and update `model.name`. All supporting scripts work unchanged.
