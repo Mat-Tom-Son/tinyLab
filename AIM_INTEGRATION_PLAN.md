@@ -4,11 +4,15 @@
 **Date:** 2025-11-18
 **Purpose:** Add comprehensive experiment tracking with web UI for mechanistic interpretability research
 
+**Note:** This plan now includes Stage-1A developmental interpretability metrics (VDI, circularity, induction head emergence) alongside the core suppressor analysis work.
+
 ---
 
 ## Overview
 
 This document outlines the integration of [Aim](https://aimstack.io/) experiment tracking into tinyLab. Aim will provide an interactive web UI to browse experiments, compare runs, and visualize mechanistic interpretability metrics in real-time.
+
+**Coverage:** Supports both the main suppressor paper experiments AND the Stage-1A preregistered pilot on early-layer synchronization control.
 
 ### Why Aim?
 

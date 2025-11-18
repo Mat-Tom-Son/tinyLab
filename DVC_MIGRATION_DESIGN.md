@@ -17,11 +17,13 @@ This document outlines the design for migrating tinyLab to use DVC (Data Version
 | Raw Data | `lab/data/corpora/` | 18 | ~370K | JSONL datasets (facts, counterfactual, logical, negation) |
 | Data Splits | `lab/data/splits/` | 18 | ~29K | Train/val/test indices |
 | Lexicons | `data/lexicons/` | 1 | 949B | Hedge/booster word lists |
-| Results (CSV) | `reports/` | 161 | ~4.5MB | Head rankings, layer sweeps, summaries |
-| Results (JSON) | `reports/` | 137 | ~2.8MB | Metrics, analyses, manifests |
+| Stage-1A Data | `lab/data/task_b_weekdays.jsonl` | 1 | ~10K | Task-B weekday modular addition data |
+| Results (CSV) | `reports/` | 161+ | ~4.5MB | Head rankings, layer sweeps, summaries |
+| Results (JSON) | `reports/` | 137+ | ~2.8MB | Metrics, analyses, manifests |
+| Stage-1A Results | `reports/task_b_circularity_*.json`, `reports/pilot_stage1a/` | 5+ | ~50K | Circularity summaries, VDI runs |
 | Paper Supplements | `paper/supplement/` | 20+ | ~150K | Bootstrap CI, calibration, validation data |
 
-**Total data to track with DVC: ~7.4 MB across 355+ files**
+**Total data to track with DVC: ~7.5 MB across 360+ files** (including Stage-1A pilot artifacts)
 
 ### Data Already Gitignored (stays ignored)
 
@@ -96,9 +98,9 @@ tinyLab/
 
 **DVC Tracking Scheme:**
 - `data/lexicons/*.json` → Track individual files
-- `lab/data/corpora/` → Track entire directory
+- `lab/data/corpora/` → Track entire directory (includes task_b_weekdays.jsonl)
 - `lab/data/splits/` → Track entire directory
-- `reports/` → Track entire directory (includes all CSV/JSON)
+- `reports/` → Track entire directory (includes all CSV/JSON, Stage-1A circularity/VDI results)
 - `paper/supplement/` → Track entire directory
 
 ---
