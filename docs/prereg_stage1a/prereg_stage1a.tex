@@ -1,0 +1,560 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+\title{Early-Layer Synchronization Control of Induction Head Emergence:\\Stage 1A Pilot Study}
+\author{Mat Thompson\\Independent Researcher}
+\date{November 17, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{Preregistration for Open Science Framework}
+
+\paragraph{Version.} 1.0 (Stage 1A Pilot)
+
+\paragraph{Study status.} Not yet initiated (pre-data collection).
+
+\paragraph{Contact.} \texttt{mat.tom.son@protonmail.com}
+
+\paragraph{Project repository.} \url{https://github.com/Mat-Tom-Son/tinyLab} (implementation will build on the Tiny Ablation Lab codebase).
+
+\section*{Executive Summary}
+
+This preregistration describes a pilot study testing whether early-layer attention heads with variance-dampening properties (``suppressors'') causally control the timing of induction head (IH) emergence during transformer training. Using perturbation-based interventions (output scaling), we will test whether modulating suppressor activity systematically shifts the phase-transition timing at which IH circuits and related geometric structures crystallize.
+
+Key methodological features in v2.0:
+\begin{itemize}
+  \item \textbf{Geometric ground truth.} Inclusion of a modular arithmetic task to track the emergence of circular representations, providing a cleaner geometric signature than generic induction alone.
+  \item \textbf{Circuit decomposition.} Explicit separation of attention-pattern formation (QK/OV) from final task accuracy (MLP/readout) to identify which components are bottlenecked by early-layer geometry.
+  \item \textbf{Validity controls.} Rigorous out-of-distribution (OOD) and pathology checks to distinguish mechanistic control of emergence timing from generic model degradation.
+\end{itemize}
+
+This Stage-1A pilot is exploratory and descriptive. It will establish baseline dynamics, validate suppressor identification protocols in small models, and estimate effect sizes to inform a fully powered confirmatory Stage-2 study.
+
+\section*{Table of Contents}
+
+\begin{enumerate}
+  \item Research Context and Motivation
+  \item Research Questions and Hypotheses
+  \item Study Design and Tasks
+  \item Phase Structure (Pilot vs.\ Confirmatory)
+  \item Suppressor Identification Protocol
+  \item Baseline Characterization
+  \item Perturbation Conditions
+  \item Measurement Protocols and Metrics
+  \item Analysis Plan
+  \item Power, Sample Size, and Decision Logic
+  \item Falsification Criteria
+  \item Scope, Limitations, and Generalizability
+  \item Deviations Protocol
+  \item Ethics and Broader Impacts
+  \item Timeline and Resources
+  \item Data and Code Availability
+  \item Confirmation
+\end{enumerate}
+
+\section{Research Context and Motivation}
+
+\subsection{Background}
+
+Transformer language models exhibit discrete capability phase transitions during training. The most well-characterized example is induction head (IH) emergence~\cite{olsson2022induction}, where attention patterns enabling in-context learning crystallize abruptly. This emergence requires the synchronization of multiple subcomponents:
+\begin{itemize}
+  \item QK (query-key) alignment: prefix-matching attention.
+  \item OV (output-value) copying: token information transport.
+  \item Positional routing: integration of relative positions.
+\end{itemize}
+
+Recent work on representation geometry suggests that, for tasks with periodic structure (for example days of the week), models learn low-dimensional circular or manifold-like representations in early layers~\cite{aghajanyan2021better,simsek2021geometry}. These geometric structures likely function as preconditions for downstream attention heads.
+
+Complementing this, prior work in the Tiny Ablation Lab has identified early-layer ``suppressor'' heads in large pretrained models (GPT-2, Mistral-7B)~\cite{thompson2025suppressors}. These heads strongly reshape residual-stream variance and geometry at layer~0 and implement a factuality--hedging trade-off. A variance-based diagnostic (Variance Dampening Index, VDI) shows that strong variance-dampening heads concentrate at the first bottleneck in Pythia-2.8B~\cite{biderman2023pythia}, suggesting that early-layer variance control is a structural motif.
+
+\subsection{Core Hypothesis}
+
+We propose that early-layer suppressor heads (heads that dampen residual-stream variance) act as synchronization controllers during training. By structuring the representational geometry (for example adjusting curvature, concentrating or expanding attractor basins), they modulate the preconditions required for IHs and circular features to form.
+
+We hypothesize that perturbing these suppressors during training will causally shift the timing of phase transitions (emergence of IHs and circular representations). This moves interpretability from descriptive (finding circuits post hoc) to interventional (controlling when circuits form).
+
+\section{Research Questions and Hypotheses}
+
+\subsection{Primary Research Question}
+
+Do early-layer suppressor heads causally influence the timing of induction head emergence and related geometric structure formation during transformer training?
+
+\subsection{Secondary Research Questions}
+
+\paragraph{Specificity.}
+Is any observed timing control specific to suppressor heads (versus random early heads) and to induction-like tasks (versus simpler positional copying)?
+
+\paragraph{Decomposition.}
+Does perturbation primarily affect attention-pattern formation (QK/OV metrics) or does it also shift downstream task accuracy (MLP/readout)?
+
+\paragraph{Validity.}
+Are observed timing shifts compatible with healthy optimization dynamics, or are they better explained by generic out-of-distribution degradation or pathology?
+
+\subsection{Hypotheses (Pilot Scope)}
+
+This Stage-1A pilot is underpowered for confirmatory testing; hypotheses are directional and will be evaluated descriptively.
+
+\paragraph{H1 (Main: directional dose-response).}
+Scaling suppressor output by a factor $\alpha$ will change emergence timing $T$ in a consistent direction.
+
+H1a (damping, $\alpha = 0.5$): emergence is delayed relative to baseline, $\Delta T = T_{\text{damped}} - T_0 > 0$.
+
+H1b (amplification, $\alpha = 1.5$): emergence is accelerated, $\Delta T = T_{\text{amplified}} - T_0 < 0$.
+
+We expect a qualitatively monotone relationship between $|\Delta T|$ and $|\log \alpha|$ across $\alpha \in \{0.5, 1.0, 1.5\}$. We will exploratorily fit simple functional forms (for example $\Delta T \approx k \cdot \log \alpha$), but we do not preregister a specific $R^2$ threshold or functional form as a success criterion in this pilot.
+
+\paragraph{H2 (Geometric control).}
+Suppressor perturbations that shift IH emergence timing on the generic induction task will also shift the emergence of circular representations in the modular arithmetic task (Task~B), suggesting a shared underlying geometric mechanism.
+
+\paragraph{H3 (Component-level desynchronization).}
+Perturbations may desynchronize subcomponents. We hypothesize a specific pattern: QK alignment and OV fidelity emergence times will shift directly with suppressor scaling (earlier under amplification, later under damping), while task-level accuracy will lag or show compounded delays if MLP or readout layers must adapt to the altered early-layer geometry.
+
+\paragraph{H4 (Specificity relative to random heads).}
+Suppressor perturbations produce larger timing shifts than random-head perturbations at the same scaling factor: $|\Delta T_{\text{suppressor}}| > |\Delta T_{\text{random}}|$ for a given $\alpha \in \{0.5, 1.5\}$.
+
+\section{Study Design and Tasks}
+
+\subsection{Training Tasks}
+
+To ensure robustness and leverage geometric ground truth, we train on two primary tasks and preregister a backup geometric task.
+
+\paragraph{Task A: Generic induction (primary).}
+Format: $[A][B] \ldots [A] \rightarrow$ predict $[B]$. Dataset: synthetic random tokens. Vocabulary size: $V = 50$ for the pilot (controls copying difficulty). Goal: replicate standard IH emergence dynamics~\cite{olsson2022induction}.
+
+\paragraph{Task B: Weekday modular addition (secondary or exploratory).}
+Format: $[Day_1] [+] [Offset] [=] \rightarrow$ predict $[Day_2]$. Example: ``Monday + 3 days = Thursday''. Goal: track the formation of circular representations (a known 2D geometric structure) in activation space. Rationale: provides a clearer, interpretable geometric signature (circular code over days) than generic induction alone.
+
+\paragraph{Task C: Backup geometric task (parity) -- preregistered contingency.}
+Task~C will be used only if Task~B fails to produce a clear geometric signal in unperturbed baseline runs.
+
+Definition:
+\begin{itemize}
+  \item Input: $[num1]\,[num2]\,[num3] \rightarrow$ predict $[even]$ or $[odd]$ (parity of the sum).
+  \item Data: synthetic integers in a fixed range with balanced labels.
+  \item Geometry: the task induces an approximately linear decision boundary in activation space at a fixed readout layer.
+\end{itemize}
+
+\paragraph{Contingency rule.}
+After running the two baseline seeds for Task~B, we will compute CircularityScore trajectories (Section~\ref{sec:circle}) and define a baseline plateau as the mean of the final five checkpoints. If the maximum CircularityScore across training for both seeds is less than $0.4$, indicating failure to learn a nontrivial circular structure, we will:
+\begin{itemize}
+  \item treat Task~B results as exploratory only,
+  \item introduce Task~C as a preregistered backup geometric task, and
+  \item apply perturbation and analysis logic analogous to Task~B, using a linear separability metric in place of CircularityScore.
+\end{itemize}
+This contingency is based only on unperturbed Task~B baselines and does not depend on perturbed-run outcomes.
+
+\subsection{Training Architecture}
+
+Model: decoder-only transformer. Depth: 2 layers. Heads: 8 attention heads per layer. Hidden dimensionality: $d_{\text{model}} = 256$. Positional encoding: Rotary (RoPE)~\cite{su2021roformer}. Optimizer: AdamW (learning rate $1\times10^{-3}$, cosine decay schedule). Checkpointing: save model and metrics every 100 training steps. Initialization and regularization: standard TransformerLens-style initialization~\cite{nanda2022transformerlens}; no dropout for clarity of dynamics.
+
+\section{Phase Structure}
+
+\subsection{Stage 1A: Pilot Study (Current)}
+
+Goal: proof-of-mechanism, effect-size estimation, and protocol validation in small models.
+
+Run configuration (total 10 runs):
+\begin{itemize}
+  \item Task~A baseline: 2 seeds (no perturbation).
+  \item Task~A suppressor scaling: 2 seeds with early-layer suppressor output scaled, $\alpha \in \{0.5, 1.5\}$.
+  \item Task~A random-head scaling (control): 2 seeds with a non-suppressor early head scaled, $\alpha \in \{0.5, 1.5\}$.
+  \item Task~B modular arithmetic baseline: 2 seeds (no perturbation; exploratory).
+  \item Task~B modular arithmetic suppressor scaling: 2 seeds with suppressor damping ($\alpha = 0.5$; exploratory).
+\end{itemize}
+
+Stage-1A will not perform formal null-hypothesis significance tests. It will summarize trajectories, effect sizes, and qualitative patterns.
+
+\subsection{Stage 2: Confirmatory Study (Future)}
+
+A confirmatory Stage-2 study will be considered if the pilot shows:
+\begin{itemize}
+  \item directionally consistent $\Delta T$ for suppressor scaling across seeds;
+  \item $|\Delta T_{\text{suppressor}}|$ materially larger than baseline variability (rough heuristic: $|\Delta T_{\text{suppressor}}| \gtrsim \sigma_{\text{baseline}}$);
+  \item no evidence of severe out-of-distribution pathologies (Section~\ref{sec:ood}).
+\end{itemize}
+
+Stage-2 would:
+\begin{itemize}
+  \item increase seeds to $N = 3$--5 per condition;
+  \item explore additional vocabulary sizes $V \in \{50, 100, 200\}$;
+  \item treat hypotheses as confirmatory with pre-specified tests.
+\end{itemize}
+
+\section{Suppressor Identification Protocol}
+
+Metric: Variance Dampening Index (VDI). VDI is a noise-based structural diagnostic over the residual stream:
+\begin{itemize}
+  \item inject small Gaussian noise at the embedding layer;
+  \item measure variance of residual-stream deviations before and after a block;
+  \item define block-level and per-head VDI as in prior Pythia analyses.
+\end{itemize}
+
+Positive per-head VDI effect ($\mathrm{vdi\_effect}[h] > 0$) indicates a relative dampener (removing the head increases variance). Negative values indicate relative amplifiers.
+
+Selection procedure (pre-perturbation, revised for temporal stability):
+\begin{enumerate}
+  \item Train 2 baseline seeds for Task~A (no perturbation).
+  \item For each baseline seed, compute per-head VDI for layer-0 heads at checkpoints $t \in \{500, 1000, 1500\}$ training steps (corresponding to checkpoints 5, 10, and 15 if we checkpoint every 100 steps).
+  \item For each head, average VDI across these three checkpoints and across seeds to obtain a stable ensemble VDI profile.
+  \item \textbf{Suppressor head selection:}
+    \begin{itemize}
+      \item Primary rule: select the layer-0 head that has the highest mean positive VDI and appears in the top-3 VDI values at all three checkpoints and for both seeds.
+      \item If no head satisfies this consistency condition, select the head with the highest mean positive VDI across checkpoints and seeds, and report this deviation explicitly in the Deviations Addendum.
+    \end{itemize}
+  \item \textbf{Random-head control selection:}
+    \begin{itemize}
+      \item Select a layer-0 head whose mean VDI is closest to the median VDI value at checkpoint $t = 1000$, with no obvious suppressor signature (for example not in the top-3 VDI at any checkpoint).
+      \item This head is used as the random early-layer control.
+    \end{itemize}
+\end{enumerate}
+
+Suppressor and random-head identities are fixed for all subsequent perturbed runs. We do not re-identify suppressors after applying perturbations.
+
+\section{Baseline Characterization}
+
+We will establish baseline emergence timing and variability for unperturbed runs.
+
+Baseline metrics to report:
+\begin{itemize}
+  \item IH prefix-match score trajectory over training (Task~A).
+  \item Circularity score trajectory over training (Task~B; see Section~\ref{sec:circle}).
+  \item VDI consistency across seeds (for example Spearman $\rho$ between per-head VDI vectors) and over time (stability of per-head VDI rankings across checkpoints), allowing us to compare when suppressor identities stabilize to when IH and geometric structures emerge.
+  \item Loss convergence curves and final losses.
+\end{itemize}
+
+We define baseline emergences $T_0$ (IH) and $T_{\text{circle},0}$ (Task~B) and estimate their variability across the two baseline seeds, and we record baseline final plateau values (for example $\bar{S}_{\text{final}}$ for IH, $\bar{C}_{\text{final}}$ for CircularityScore) to enable comparison of both timing and asymptotic performance under perturbations.
+
+\section{Perturbation Conditions}
+
+\subsection{Mechanism}
+
+Output scaling: multiply the output of the selected layer-0 head $h$ by $\alpha$ before adding it back into the residual stream:
+\[
+  \mathrm{resid\_post} \leftarrow \mathrm{resid\_pre} + \alpha \cdot z_h + \sum_{h' \neq h} z_{h'}.
+\]
+
+Scaling is applied at every training step from step~0 onward and remains constant throughout training for that run.
+
+\subsection{Conditions}
+
+\begin{itemize}
+  \item Control: $\alpha = 1.0$ (no scaling).
+  \item Damping: $\alpha = 0.5$ (hypothesized delay in emergence).
+  \item Amplification: $\alpha = 1.5$ (hypothesized acceleration).
+\end{itemize}
+
+These conditions are applied separately to the identified suppressor head and to the random-head control.
+
+\section{Measurement Protocols and Metrics}
+
+All metrics are computed on a fixed evaluation set (for example $N = 100$ sequences per task) that is held constant across checkpoints and conditions.
+
+\subsection{Primary Outcome: IH Emergence Timing $T_{\text{emerge}}$ (Task A)}
+
+IH score (prefix-match accuracy). We follow Olsson et al.~\cite{olsson2022induction}, computing a prefix-match attention metric and converting it into an IH score for the candidate IH head or heads at relevant layers.
+
+\paragraph{Emergence definition.}
+Let $S_t$ be the IH score at checkpoint $t$. Let $\bar{S}_{\text{final}}$ be the mean IH score over the final $k$ checkpoints of the baseline runs (for example last 5 checkpoints), averaged across baseline seeds. Smooth scores with a small moving average (for example window size~3).
+
+We define $T_{\text{emerge}}$ as the first checkpoint at which the smoothed IH score exceeds a fixed fraction of the baseline final score and remains above that threshold:
+\[
+  T_{\text{emerge}} = \min \{ t : \tilde{S}_t \ge 0.5 \cdot \bar{S}_{\text{final}} \text{ for at least 3 consecutive checkpoints} \}.
+\]
+
+If the threshold is never met, we treat $T_{\text{emerge}}$ as censored at the final checkpoint and report this explicitly (for example ``$> T_{\max}$'').
+
+\subsection{Secondary Outcome: Circular Emergence $T_{\text{circle}}$ (Task B)}
+\label{sec:circle}
+
+\paragraph{Circularity score.}
+For each checkpoint and seed, we:
+\begin{enumerate}
+  \item Collect activations for day tokens in the modular arithmetic task at a fixed layer and position.
+  \item Project activations to 2D via PCA or another fixed linear dimension reduction method (chosen before data collection and held fixed across checkpoints and conditions).
+  \item Compute:
+    \begin{itemize}
+      \item Angular order correlation: Pearson correlation between the angular positions of the projected points on the 2D plane and the true day order (Mon, Tue, \ldots, Sun) mapped to equally spaced angles on the unit circle.
+      \item Radial consistency: $1 - \sigma_{\text{radius}} / \mu_{\text{radius}}$, the normalized spread of radii of the projected points.
+    \end{itemize}
+\end{enumerate}
+
+We then define
+\[
+  \text{CircularityScore} = \text{AngleCorrelation} \times \text{RadialConsistency}.
+\]
+
+\paragraph{Threshold definition and emergence timing.}
+To avoid tuning thresholds on pilot data, we adopt a relative threshold analogous to $T_{\text{emerge}}$. Let $C_t$ be CircularityScore at checkpoint $t$ for the Task~B baselines, and let $\bar{C}_{\text{final}}$ be the mean CircularityScore over the final $k$ checkpoints of the Task~B baseline runs, averaged across baseline seeds. We define
+\[
+  T_{\text{circle}} = \min \{ t : \tilde{C}_t \ge 0.5 \cdot \bar{C}_{\text{final}} \text{ for at least 3 consecutive checkpoints} \}.
+\]
+
+If the threshold is never reached, we treat $T_{\text{circle}}$ as censored at the final checkpoint and report this explicitly.
+
+\subsection{Circuit Decomposition Metrics (QK, OV, Accuracy)}
+
+To distinguish attention-level learning from downstream readout adaptation, we track three families of metrics.
+
+\paragraph{QK alignment.}
+For a given head $h$ and checkpoint $t$ on Task~A: let $A_{\text{empirical}}$ be the empirical attention matrix for that head and layer (averaged over evaluation sequences as needed), and let $A_{\text{ideal}}$ be an ideal prefix-matching attention pattern, where $A_{\text{ideal}}[i, j] = 1$ when token $j$ is the position of the most recent occurrence of the token at position $i$, and 0 otherwise, with appropriate normalization for attention rows. We then compute
+\[
+  \rho_{\text{QK}}(h, t) = \mathrm{corr}\big( \mathrm{vec}(A_{\text{empirical}}), \mathrm{vec}(A_{\text{ideal}}) \big),
+\]
+where $\mathrm{corr}$ denotes Pearson correlation.
+
+\paragraph{OV fidelity.}
+For a given head $h$, we use the standard OV ``virtual weights'' diagnostic for induction heads. At a fixed layer and position:
+\begin{enumerate}
+  \item Compute the virtual OV weight matrix $W_{\text{OV},h} = W_{O,h} W_{V,h}$.
+  \item For a token representation $x_{\text{prev}}$ that should be copied, form $y = W_{\text{OV},h} x_{\text{prev}}$.
+  \item Decode $y$ using the embedding matrix $W_E$ (for example via argmax over $W_E^\top y$).
+  \item Define OV reconstruction accuracy as the fraction of positions in the evaluation set for which the decoded token matches the ground-truth token to be copied.
+\end{enumerate}
+
+\paragraph{Task accuracy.}
+We track overall prediction accuracy on the evaluation set for each checkpoint and condition.
+
+\paragraph{Emergence timings.}
+For each metric $M$ in \{QK alignment, OV fidelity, task accuracy\}, we compute an emergence time $T_M$ analogous to $T_{\text{emerge}}$:
+\begin{itemize}
+  \item Compute a baseline final plateau $\bar{M}_{\text{final}}$ from the last $k$ checkpoints of the baseline runs.
+  \item Smooth $M_t$ over checkpoints with a small moving average.
+  \item Define $T_M = \min \{ t : \tilde{M}_t \ge 0.5 \cdot \bar{M}_{\text{final}} \text{ for at least 3 consecutive checkpoints} \}$.
+\end{itemize}
+
+These timings allow us to test whether suppressor perturbations primarily shift QK alignment, OV fidelity, or overall accuracy, and whether component-level desynchronization occurs.
+
+\subsection{Negative Control (Validity Check)}
+
+Task: duplicate token prediction. Sequence format: $[A][B][C][B] \rightarrow$ predict $[B]$. Mechanism: simple positional copying that does not require induction-style long-range pattern matching.
+
+Prediction (qualitative): suppressor perturbation may have some effect, but if duplicate-token emergence timing shifts by a similar fraction and pattern as IH, and out-of-distribution or pathology metrics look abnormal, this suggests generic degradation rather than targeted control of induction-like circuits.
+
+We will report timing shifts for the control task alongside IH to interpret specificity.
+
+\subsection{Out-of-Distribution Detection and Pathology Checks}
+\label{sec:ood}
+
+To ensure perturbations are not simply breaking the model, we log:
+
+\paragraph{Activation magnitude drift.}
+Compare distributions of residual-stream norms between baseline and perturbed runs per layer using KL divergence. Heuristic flag: layer-wise KL exceeding roughly 3 times the baseline-to-baseline KL across seeds.
+
+\paragraph{Gradient health.}
+At selected steps, compute the fraction of gradients with very small magnitude ($< 10^{-6}$) or very large magnitude ($> 10.0$). Heuristic flag: more than 10 times deviation from the baseline proportion.
+
+\paragraph{Loss topology.}
+Compare loss curves using Dynamic Time Warping (DTW). Heuristic flag: DTW distance qualitatively indicating radically different loss shapes (for example divergence or failure to decrease) rather than a shifted but similar curve.
+
+These thresholds are predefined heuristics used as flags. Flagged runs will be reported and interpreted as potential pathologies; we will not silently discard them.
+
+\section{Analysis Plan}
+
+\subsection{Pilot Analysis (Descriptive)}
+
+Given $N = 2$ seeds per condition, we will not conduct formal frequentist hypothesis tests. Instead, we will:
+\begin{itemize}
+  \item plot IH scores, CircularityScore, QK and OV metrics, and task accuracy over training for each condition and seed;
+  \item compute emergence times $T_{\text{emerge}}$ and $T_{\text{circle}}$ where defined, as well as $T_{\text{QK}}$, $T_{\text{OV}}$ and the analogous timing for task accuracy, and report final plateau values (for example $\bar{S}_{\text{final}}$, $\bar{C}_{\text{final}}$ and their perturbed counterparts) so that timing shifts can be separated from changes in asymptotic performance;
+  \item report effect sizes:
+    \begin{itemize}
+      \item Cohen's $d \approx (T_{\text{perturbed}} - T_0) / \sigma_0$ for IH emergence timing, where $\sigma_0$ is the standard deviation of $T_0$ across baseline seeds;
+      \item analogous descriptive effect sizes for circularity and other metrics;
+    \end{itemize}
+  \item examine dose-response qualitatively by plotting $\Delta T$ versus $\log \alpha$ across conditions;
+  \item visualize geometric shifts, including PCA trajectories of day-token activations over training and entropy/variance curves for key layers.
+\end{itemize}
+
+\subsection{Bayesian Interpretation and Stage-2 Decision Framework}
+
+For ambiguous results, we will use simple Bayesian reasoning for $d$ (effect size on timing). Prior: $d \sim \mathcal{N}(0, 0.3)$, reflecting an expectation of modest effects. For each condition, we compute a likelihood over $d$ based on observed $\Delta T$ and $\sigma_0$, and summarize with Bayes factors (for example $BF_{10}$, $BF_{01}$).
+
+We then apply a preregistered decision rule for moving to Stage~2.
+
+\paragraph{Stage-2 GO.}
+\begin{itemize}
+  \item $|d| \gtrsim 0.5$ for IH timing, based on suppressor perturbations.
+  \item At least one of the two suppressor-perturbed seeds shows a directionally consistent $\Delta T$ with the sign predicted by H1 (damping delays, amplification accelerates).
+  \item No strong out-of-distribution flags under Section~\ref{sec:ood} for the relevant conditions.
+\end{itemize}
+
+\paragraph{Stage-2 REVISE.}
+\begin{itemize}
+  \item $|d| \gtrsim 0.5$ but one or more strong out-of-distribution or pathology flags are raised.
+\end{itemize}
+
+In this case, we interpret the intervention method (for example simple output scaling) as suspect, plan to publish the pilot results, and design an alternative intervention for a future preregistration (for example parameter clamping or more localized gradient modification).
+
+\paragraph{Stage-2 NO-GO.}
+\begin{itemize}
+  \item $|d| < 0.3$ and $BF_{01} > 3$ for the main suppressor condition, indicating moderate Bayesian evidence for a null or near-null effect on timing.
+\end{itemize}
+
+In this case, we plan to publish the null result and reconsider either the suppressor-control hypothesis or the specific measurement targets, rather than moving directly to a confirmatory Stage-2 replication.
+
+\paragraph{Intermediate regime ($0.3 \le |d| < 0.5$).}
+We treat this as an inconclusive pilot and will document the ambiguity, including the full geometric and circuit-level analyses, and may either refine the protocol or treat this as a stand-alone exploratory result without launching Stage-2.
+
+\subsection{Visual Template for a Null Result}
+
+To make ``no effect'' visually and interpretively unambiguous, we commit to including in the final report a pre-specified ``null template'' figure:
+\begin{itemize}
+  \item plot baseline IH score trajectories and IH trajectories under $\alpha = 0.5$ and $\alpha = 1.5$ scaling for suppressor perturbations;
+  \item shade the region corresponding to $\pm 1$ standard deviation around the baseline $T_0$ across seeds.
+\end{itemize}
+
+We will interpret a pattern where all curves' emergence times lie within this shaded region, and $\Delta T$ values are within this baseline variability band for both $\alpha = 0.5$ and $\alpha = 1.5$, as evidence for practical indistinguishability from baseline. Under such a pattern, and absent strong geometric differences, we will treat H1 as not supported in this pilot.
+
+We will additionally include a corresponding geometric ``null template'' for Task~B (and Task~C if invoked), overlaying PCA trajectories of day-token (or parity-task) activations across conditions and shading the baseline variability band for CircularityScore (or the analogous separability metric). Overlapping trajectories and scores within this band will be interpreted as a null or near-null geometric effect in the pilot.
+
+\section{Power and Sample Size}
+
+Pilot (Stage-1A): $N = 2$ seeds per condition. This is explicitly underpowered for formal hypothesis testing and is intended for rough effect-size estimation, protocol debugging, and qualitative assessment of whether suppressor perturbations can shift emergence timing at all.
+
+Stage-2 projection (if pursued): assuming pilot effect sizes $d \approx 0.5$, standard power analyses suggest $N \approx 5$ seeds per condition to achieve approximately 0.8 power at $\alpha = 0.05$. Stage-2 details will be preregistered separately.
+
+\section{Falsification Criteria}
+
+We treat the following as evidence against the core hypothesis or as evidence that the current intervention method is invalid.
+
+\paragraph{No directional effect.}
+$\Delta T \approx 0$ for both $\alpha = 0.5$ and $\alpha = 1.5$ across suppressor conditions (within baseline noise), with clean out-of-distribution metrics.
+
+\paragraph{Wrong direction.}
+Damping ($\alpha = 0.5$) consistently accelerates IH emergence (negative $\Delta T$) while amplification delays it (positive $\Delta T$) for suppressor-perturbed runs, across both seeds.
+
+\paragraph{Lack of specificity.}
+Random-head perturbations produce $\Delta T$ of comparable magnitude and pattern to suppressor perturbations (after accounting for variability), suggesting non-specific early-layer sensitivity rather than suppressor-specific control captured by VDI.
+
+\paragraph{Global degradation or pathologies.}
+The duplicate-token control task is delayed or disrupted to a similar extent as IH while out-of-distribution or pathology metrics are strongly flagged (abnormal gradients, divergent loss, extreme activation drift), indicating that the perturbations primarily break optimization rather than modulate synchrony.
+
+\paragraph{Asymmetric or nonlinear effects.}
+If damping behaves as predicted (delays emergence) but amplification has little or no effect, or vice versa, we will interpret this as evidence for a nonlinear or saturating control mechanism rather than automatic falsification. These patterns will still be reported and will inform the design of subsequent interventions or Stage-2 hypotheses.
+
+In all cases, we will report results transparently and adjust future hypotheses or intervention methods accordingly.
+
+\section{Scope and Limitations}
+
+Model size: experiments are limited to 2-layer transformer models. We do not claim direct generalization to large language models with 7B parameters or more; the goal is mechanistic proof-of-concept.
+
+Vocabulary and tasks: vocabulary is fixed at $V = 50$ in the pilot. Results may be specific to synthetic induction, modular arithmetic, and the backup parity task; natural-language tasks are a future extension.
+
+Pilot nature: with $N = 2$ seeds per condition, all conclusions are exploratory and descriptive. Stage-2 would be needed for confirmatory claims.
+
+\section{Deviations Protocol}
+
+Any deviations from this protocol (for example changing checkpoint frequency for storage reasons, adjusting batch size for stability) will be logged in a Deviations Addendum on OSF with timestamps and justification.
+
+Prohibited deviations after data collection begins:
+\begin{itemize}
+  \item changing the primary outcome definition ($T_{\text{emerge}}$) or its thresholding rule;
+  \item changing the suppressor selection criteria or re-selecting suppressors based on perturbed runs;
+  \item changing the set of perturbation values $\alpha$ in Stage-1A;
+  \item changing the contingency rule for invoking Task~C.
+\end{itemize}
+
+\section{Ethics and Broader Impacts}
+
+Research type: computational simulation only; no human subjects.
+
+Dual use considerations: understanding training dynamics and circuit formation has potential to inform both capabilities and alignment. This work is focused on control and safety, in the sense of understanding how and when circuits form so that we can potentially steer or constrain them. Results and code will be documented in a way that emphasizes reproducibility and critical assessment rather than performance tuning.
+
+Open science: all code, configuration files, and analysis notebooks will be open-sourced under an MIT-compatible license; evaluation datasets and logs under CC-BY-compatible licenses.
+
+\section{Timeline and Resources}
+
+Assuming access to a single modern GPU (for example A100 or 3090):
+\begin{itemize}
+  \item Week~1: codebase finalization and a single-seed dry run (baseline Task~A).
+  \item Week~2: baseline runs for Task~A and Task~B; suppressor identification via VDI.
+  \item Week~3: perturbation runs (remaining 8 runs).
+  \item Week~4: analysis, out-of-distribution and pathology checks, and decision on whether to plan Stage-2.
+\end{itemize}
+
+Compute estimate: we expect total compute within $\le 30$ GPU-hours on a single 16--24\,GB GPU (including baselines, perturbation runs and analysis sweeps).
+
+\section{Data and Code Availability}
+
+Repository: \url{https://github.com/Mat-Tom-Son/tinyLab}. Implementation will reuse and extend the Tiny Ablation Lab codebase for model loading, training harnesses and analysis utilities.
+
+Data and artefacts:
+\begin{itemize}
+  \item full training logs (loss and metrics per checkpoint);
+  \item model checkpoints at the specified intervals;
+  \item evaluation datasets with fixed seeds and generation scripts;
+  \item analysis scripts and notebooks.
+\end{itemize}
+
+Licenses:
+\begin{itemize}
+  \item code: MIT (or equivalent permissive license);
+  \item synthetic datasets and logs: CC-BY 4.0.
+\end{itemize}
+
+\section{Confirmation}
+
+By submitting this preregistration, I commit to:
+\begin{itemize}
+  \item beginning data collection only after this document is finalized;
+  \item reporting all results, including null findings and failed out-of-distribution or pathology checks;
+  \item clearly marking any deviations from the preregistered protocol.
+\end{itemize}
+
+\bigskip
+
+\noindent\textbf{Researcher Signature:} Mat Thompson
+
+\noindent\textbf{Date:} November 17, 2025
+
+\begin{thebibliography}{99}
+
+\bibitem{aghajanyan2021better}
+A.~Aghajanyan, A.~Shrivastava, A.~Gupta, N.~Goyal, L.~Zettlemoyer, and S.~Gupta.
+\newblock Better fine-tuning by reducing representational collapse.
+\newblock In \emph{International Conference on Learning Representations}, 2021.
+
+\bibitem{biderman2023pythia}
+S.~Biderman, H.~B. Black, L.~DiPofi, et~al.
+\newblock Pythia: A suite for analyzing large language models across training and scaling.
+\newblock \emph{arXiv preprint arXiv:2304.01373}, 2023.
+
+\bibitem{nanda2022transformerlens}
+N.~Nanda and J.~Bloom.
+\newblock TransformerLens: A library for mechanistic interpretability of generative language models.
+\newblock \emph{GitHub repository}, 2022. \url{https://github.com/neelnanda-io/TransformerLens}
+
+\bibitem{olsson2022induction}
+C.~Olsson, N.~Elhage, N.~Nanda, et~al.
+\newblock In-context learning and induction heads.
+\newblock \emph{Transformer Circuits Thread}, 2022.
+
+\bibitem{simsek2021geometry}
+B.~Simsek, J.~Brea, T.~Hofmann, A.~Damianou, et~al.
+\newblock Geometry of the loss landscape in overparameterized neural networks: Symmetries and invariances.
+\newblock In \emph{International Conference on Machine Learning}, 2021.
+
+\bibitem{su2021roformer}
+J.~Su, Y.~Lu, S.~Pan, and Q.~Wen.
+\newblock RoFormer: Enhanced transformer with rotary position embedding.
+\newblock In \emph{Findings of the Association for Computational Linguistics: ACL 2021}, 2021.
+
+\bibitem{thompson2025suppressors}
+M.~Thompson.
+\newblock Layer-0 suppressors ground hallucination inevitability: A mechanistic account of how transformers trade factuality for hedging.
+\newblock \emph{Zenodo}, 2025. \url{https://doi.org/10.5281/zenodo.17627441}
+
+\bibitem{muller2007dtw}
+M.~M{\"u}ller.
+\newblock \emph{Information Retrieval for Music and Motion}.
+\newblock Springer, 2007. (Introduces dynamic time warping and related techniques.)
+
+\end{thebibliography}
+
+\end{document}

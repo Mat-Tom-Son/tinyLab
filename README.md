@@ -6,6 +6,8 @@ Paper PDF: `paper/main.pdf` | Archive: https://zenodo.org/records/17524770
 
 Key idea: circuits that implement the factuality vs hedging tradeoff crystallize at the first bottleneck (layer 0). We validate this prediction with dual observables (power: ΔLD; information: calibration), random head baselines, cross‑architecture checks, path mediation, and now geometric signatures.
 
+New in this repo: a preregistered Stage‑1A pilot on **early‑layer synchronization control of induction‑head emergence** (“developmental interpretability”). The preregistration PDF lives at `docs/prereg_stage1a/prereg_stage1a.pdf` and is backed by small‑model utilities for variance‑dampening (VDI), Task‑B weekday modular addition data, circularity measurements, and per‑head α‑scaling hooks.
+
 ## Highlights
 
 - Strong geometric signature under suppressor ablation across all probe families (facts, counterfactual, negation, logic):
@@ -53,6 +55,14 @@ python smoke_test_cuda.py  # optional sanity check
 - For CUDA-specific setup and optimization guide, see [docs/CUDA_SETUP.md](docs/CUDA_SETUP.md).
 - For an annotated walkthrough of the harness, see [QUICKSTART.md](QUICKSTART.md).
 
+To sanity‑check the new Stage‑1A utilities (Task‑B data, circularity metrics, VDI probe), run:
+
+```bash
+bash scripts/run_pilot_dry_run.sh
+```
+
+This runs a small, end‑to‑end dry‑run on `gpt2-small` to validate the geometry and structural probes without training the 2‑layer pilot model.
+
 ## Repository Layout
 
 | Path | Purpose |
@@ -61,7 +71,7 @@ python smoke_test_cuda.py  # optional sanity check
 | `lab/runs/` | Hash-stamped outputs referenced in the paper (configs, metrics, artefacts) |
 | `reports/` | Aggregated analysis dumps (OV projections, partial patch summaries) |
 | `paper/` | LaTeX source, figure scripts, and the compiled PDF |
-| `docs/` | Project notes (`suppressor_handover.md`, reproduction checklist, etc.) |
+| `docs/` | Project notes, replication guides, and prereg materials (`prereg_stage1a/prereg_stage1a.pdf`) |
 
 ## Reproducing the Study
 
@@ -214,6 +224,7 @@ The bundle includes the manifest, head rankings, OV reports, and docs for indepe
 - OV projections and partial patches — `reports/ov_report_*.json`, `reports/facts_partial_summary.json`
 - Geometric signature reports — `reports/activation_entropy_gpt2medium_*_robust.json`
 - Geometric signature reports — JSONs in `reports/` (see above). Figure scripts in `paper/scripts/` can regenerate plots locally.
+- Stage‑1A pilot utilities — Task‑B weekday modular data (`lab/data/task_b_weekdays.jsonl`), circularity summaries (`reports/task_b_circularity_*.json`), and small‑model VDI runs (`reports/pilot_stage1a/vdi_layer0_*.csv`) generated via the new scripts in `scripts/`.
 
 Feel free to inspect these directly or rerun analyses using the scripts referenced in `Results.md`.
 
