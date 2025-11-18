@@ -1,0 +1,5 @@
+outs:
+- md5: a6c2956f26e5807336ec407a571d3ee5
+  size: 949
+  hash: md5
+  path: hedge_booster.json

@@ -68,3 +68,18 @@ mlruns/*
 
 # Build artifacts
 build/
+
+# DVC - Data tracked by DVC (pointers in git, data in .dvcstore)
+/.dvcstore/
+/reports/*.csv
+/reports/*.json
+/reports/layer_sweep_*
+/reports/appendices
+/reports/pythia_layer*_vdi_drift*
+/lab/data/corpora
+/lab/data/splits
+/data/lexicons/*.json
+/paper/supplement/*.json
+/paper/supplement/*.csv
+/paper/supplement/cuda_validation
+/reports
