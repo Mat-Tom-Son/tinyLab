@@ -55,6 +55,8 @@ python smoke_test_cuda.py  # optional sanity check
 - For CUDA-specific setup and optimization guide, see [docs/CUDA_SETUP.md](docs/CUDA_SETUP.md).
 - For an annotated walkthrough of the harness, see [QUICKSTART.md](QUICKSTART.md).
 
+### Stage‑1A Pilot Utilities
+
 To sanity‑check the new Stage‑1A utilities (Task‑B data, circularity metrics, VDI probe), run:
 
 ```bash
@@ -62,6 +64,41 @@ bash scripts/run_pilot_dry_run.sh
 ```
 
 This runs a small, end‑to‑end dry‑run on `gpt2-small` to validate the geometry and structural probes without training the 2‑layer pilot model.
+
+## Data Management with DVC
+
+This project uses [DVC (Data Version Control)](https://dvc.org) to manage datasets, results, and artifacts. DVC keeps large data files out of Git while maintaining full version control and reproducibility.
+
+### First-time Setup
+
+After cloning the repository, pull all tracked data:
+
+```bash
+# Install DVC
+pip install dvc
+
+# Pull datasets and results
+dvc pull
+```
+
+This downloads:
+- Raw datasets (`lab/data/corpora/`)
+- Data splits (`lab/data/splits/`)
+- Results and metrics (`reports/`)
+- Paper supplements (`paper/supplement/`)
+
+### Why DVC?
+
+- **Version control for data** - Track dataset and result versions alongside code
+- **Efficient storage** - Large files stored separately from Git
+- **Reproducibility** - Exact data versions tied to code commits
+- **Scalability** - Seamlessly migrate to S3/GCS/Azure when needed
+
+### Documentation
+
+- [DVC_SETUP.md](DVC_SETUP.md) - Complete setup and usage guide
+- [DVC_MIGRATION_DESIGN.md](DVC_MIGRATION_DESIGN.md) - Architecture and design decisions
+- [DVC_TROUBLESHOOTING.md](DVC_TROUBLESHOOTING.md) - Common issues and solutions
 
 ## Repository Layout
 
