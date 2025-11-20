@@ -83,3 +83,6 @@ build/
 /paper/supplement/*.csv
 /paper/supplement/cuda_validation
 /reports
+
+# Aim experiment tracking (local runs only, do not commit)
+/.aim/

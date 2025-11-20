@@ -18,27 +18,16 @@ echo -e "${BLUE}║  tinyLab Aim Tracking Setup           ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════╝${NC}"
 echo
 
-# 1. Install Aim
+# 1. Install Aim (and dependencies)
 echo -e "${BLUE}[1/4]${NC} Installing Aim..."
-pip install aim
+pip install --upgrade pip wheel setuptools
+pip install Cython==3.0.10
+pip install --pre aimrocks==0.5.3.dev8
+pip install --no-build-isolation aim==3.21.0
 echo -e "${GREEN}✓${NC} Aim installed\n"
 
-# 2. Create tracking module
-echo -e "${BLUE}[2/4]${NC} Creating tracking module..."
-mkdir -p lab/tracking
-
-# Create __init__.py
-cat > lab/tracking/__init__.py << 'EOF'
-"""Experiment tracking with Aim."""
-from .tracker import TinyLabTracker
-
-__all__ = ['TinyLabTracker']
-EOF
-
-echo -e "${GREEN}✓${NC} Created lab/tracking/\n"
-
-# 3. Add .aim to .gitignore
-echo -e "${BLUE}[3/4]${NC} Updating .gitignore..."
+# 2. Ensure .aim is gitignored
+echo -e "${BLUE}[2/4]${NC} Updating .gitignore..."
 if ! grep -q "^/.aim/" .gitignore 2>/dev/null; then
     cat >> .gitignore << 'EOF'
 
@@ -50,8 +39,8 @@ else
     echo -e "${YELLOW}→${NC} .aim/ already in .gitignore\n"
 fi
 
-# 4. Initialize Aim repo
-echo -e "${BLUE}[4/4]${NC} Initializing Aim repository..."
+# 3. Initialize Aim repo
+echo -e "${BLUE}[3/4]${NC} Initializing Aim repository..."
 python << 'EOF'
 from aim import Repo
 repo = Repo.from_path('.', init=True)
@@ -65,10 +54,9 @@ echo -e "${GREEN}║  Setup Complete! 🎉                    ║${NC}"
 echo -e "${GREEN}╚════════════════════════════════════════╝${NC}"
 echo
 echo "Next steps:"
-echo "  1. Copy tracker.py from AIM_INTEGRATION_PLAN.md to lab/tracking/"
-echo "  2. Import historical results: python scripts/import_to_aim.py"
-echo "  3. Launch UI: aim up"
-echo "  4. Browse experiments at http://localhost:43800"
+echo "  1. Import historical results: python scripts/import_to_aim.py"
+echo "  2. Launch UI: aim up"
+echo "  3. Browse experiments at http://localhost:43800"
 echo
 echo "See AIM_INTEGRATION_PLAN.md for detailed integration guide."
 echo

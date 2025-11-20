@@ -6,12 +6,18 @@ import sys
 import platform
 from importlib import metadata as importlib_metadata
 from pathlib import Path
-import torch
+
 import pandas as pd
+import torch
 from rich import print
 
-from .components import tracking, datasets, load_model, profiling
-from .utils import hashing, determinism, io, stats
+try:  # Aim is optional; keep harness usable without it
+    from lab.tracking import TinyLabTracker
+except ImportError:  # pragma: no cover - optional dependency
+    TinyLabTracker = None  # type: ignore[assignment]
+
+from .components import datasets, load_model, profiling, tracking
+from .utils import determinism, hashing, io, stats
 
 
 def flatten_dict(d, parent_key="", sep="."):
@@ -110,13 +116,38 @@ def main(cfg_path):
     provenance = collect_provenance(device)
     io.save_json(provenance, run_dir / "provenance.json")
 
-    # Tracking
+    # Tracking: MLflow (primary) + optional Aim
     mlf = tracking.MLFlowTracker(
         experiment="tiny-ablation-lab", run_name=cfg["run_name"]
     )
     mlf.log_params(flatten_dict(cfg))
     for key, value in provenance.items():
         mlf.log_param(f"prov_{key}", value)
+
+    aim_tracker = None
+    if TinyLabTracker is not None:
+        # Derive simple tags for Aim from config
+        tags = []
+        run_name = cfg.get("run_name", "tinylab")
+        prefix = run_name.split("_", 1)[0].lower()
+        if prefix.startswith("h") and prefix[1:].isdigit():
+            tags.append(prefix.upper())  # e.g. H1, H5, H6
+        model_cfg = cfg.get("model") or cfg.get("shared", {}).get("model", {})
+        if model_cfg:
+            model_name = model_cfg.get("name") or model_cfg.get("family")
+            if model_name:
+                tags.append(str(model_name))
+        dataset_cfg = cfg.get("dataset") or cfg.get("shared", {}).get("dataset", {})
+        if dataset_cfg:
+            ds_id = dataset_cfg.get("id")
+            if ds_id:
+                tags.append(str(ds_id))
+
+        aim_tracker = TinyLabTracker(
+            experiment_name=run_name,
+            config=cfg,
+            tags=tags,
+        )
 
     # Load data
     dset, split_info, data_hash = datasets.load_split(cfg["dataset"])
@@ -178,6 +209,17 @@ def main(cfg_path):
             if "layer_impact_table" in results:
                 impact_tables.append(results["layer_impact_table"])
 
+            if aim_tracker is not None:
+                # Log per-seed summary metrics to Aim (step = seed)
+                for metric_name, metric_value in results["summary"].items():
+                    try:
+                        aim_tracker.log_metric(
+                            metric_name, float(metric_value), step=int(s)
+                        )
+                    except Exception:
+                        # Skip non-numeric metrics or logging errors
+                        continue
+
     except KeyboardInterrupt:
         print("[red]Interrupted by user.[/red]")
         io.save_json(
@@ -204,6 +246,8 @@ def main(cfg_path):
     if not seed_summaries:
         print("[red]No seeds completed. Exiting.[/red]")
         mlf.end_run()
+        if aim_tracker is not None:
+            aim_tracker.finish()
         return
 
     # Aggregate seeds
@@ -215,12 +259,20 @@ def main(cfg_path):
 
     io.save_json(agg_summary, out_dir / "summary.json")
 
-    # Log aggregated metrics to MLflow
+    # Log aggregated metrics to MLflow and Aim
     for k, v in agg_summary.items():
         mlf.log_metric(f"{k}_mean", v["mean"])
         if v["ci95"]:
             mlf.log_metric(f"{k}_ci_lower", v["ci95"][0])
             mlf.log_metric(f"{k}_ci_upper", v["ci95"][1])
+        if aim_tracker is not None:
+            try:
+                aim_tracker.log_metric(f"{k}_mean", float(v["mean"]))
+                if v["ci95"]:
+                    aim_tracker.log_metric(f"{k}_ci_lower", float(v["ci95"][0]))
+                    aim_tracker.log_metric(f"{k}_ci_upper", float(v["ci95"][1]))
+            except Exception:
+                continue
 
     # Save per-example results
     per_example = pd.concat(per_ex_all, ignore_index=True)
@@ -277,6 +329,8 @@ def main(cfg_path):
 
     io.save_json(manifest, run_dir / "manifest.json")
     mlf.end_run()
+    if aim_tracker is not None:
+        aim_tracker.finish()
     print(f"[green]Done[/green]. Run dir: {run_dir}")
 
 

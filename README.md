@@ -22,11 +22,12 @@ New in this repo: a preregistered Stage‑1A pilot on **early‑layer synchroniz
 
 1. [Quick Start](#quick-start)
 2. [Repository Layout](#repository-layout)
-3. [Reproducing the Study](#reproducing-the-study)
-4. [Available Artefacts](#available-artefacts)
-5. [Documentation](#documentation)
-6. [Contributing](#contributing)
-7. [Citation](#citation)
+3. [Everyday Workflow](#everyday-workflow)
+4. [Reproducing the Study](#reproducing-the-study)
+5. [Available Artefacts](#available-artefacts)
+6. [Documentation](#documentation)
+7. [Contributing](#contributing)
+8. [Citation](#citation)
 
 ## Quick Start
 
@@ -65,6 +66,65 @@ bash scripts/run_pilot_dry_run.sh
 
 This runs a small, end‑to‑end dry‑run on `gpt2-small` to validate the geometry and structural probes without training the 2‑layer pilot model.
 
+## Everyday Workflow
+
+Once the repo is set up, a typical “pull → run → log → push” cycle looks like:
+
+1. **Sync code and data**
+
+   ```bash
+   git pull
+   dvc pull
+   ```
+
+2. **Activate the environment**
+
+   ```bash
+   source .venv/bin/activate
+   ```
+
+3. **Run experiments or analysis**
+
+   Use the harness / scripts you need (e.g. orchestrators under `lab/src/orchestrators`, analysis modules under `lab/analysis`, or helper shell scripts under `scripts/`).
+
+4. **Update tracked results (when you care about them)**
+
+   For a full standardized refresh:
+
+   ```bash
+   make postprocess          # regenerate summaries, rankings, manifest, etc.
+   dvc add reports/          # update DVC pointer for reports
+   git add reports.dvc
+   dvc push                  # push updated artefacts to the DVC remote
+   ```
+
+   For a small new subdirectory of results:
+
+   ```bash
+   dvc add reports/<new_subdir>/
+   git add reports/<new_subdir>.dvc
+   dvc push
+   ```
+
+5. **Run pre‑commit and basic checks**
+
+   ```bash
+   .venv/bin/pre-commit run --all-files
+   # or, for the full checklist:
+   ./scripts/pre_submit_check.sh
+   ```
+
+6. **Commit and push**
+
+   ```bash
+   git status        # optional: inspect changes
+   git add .         # or select files
+   git commit -m "Brief message about this run"
+   git push
+   ```
+
+With this loop, CI should pass consistently, DVC stays in sync with Git, and `reports/RESULTS_MANIFEST.json` stays up to date.
+
 ## Data Management with DVC
 
 This project uses [DVC (Data Version Control)](https://dvc.org) to manage datasets, results, and artifacts. DVC keeps large data files out of Git while maintaining full version control and reproducibility.
@@ -99,6 +159,23 @@ This downloads:
 - [DVC_SETUP.md](DVC_SETUP.md) - Complete setup and usage guide
 - [DVC_MIGRATION_DESIGN.md](DVC_MIGRATION_DESIGN.md) - Architecture and design decisions
 - [DVC_TROUBLESHOOTING.md](DVC_TROUBLESHOOTING.md) - Common issues and solutions
+
+## Aim Experiment Tracking
+
+This repo logs runs to MLflow by default and can optionally mirror key metrics into [Aim](https://aimstack.io) for an interactive web UI.
+
+To enable Aim locally:
+
+```bash
+source .venv/bin/activate
+bash scripts/setup_aim.sh        # install Aim + init .aim/
+python scripts/import_to_aim.py  # import reports/ into Aim
+bash scripts/launch_aim_ui.sh    # launches UI at http://localhost:43800
+```
+
+- Historical results under `reports/` (head rankings, summaries, entropy scans, Pythia drift, Stage‑1A probes, …) are imported into Aim with descriptive experiments such as `imported_head_ranking`, `imported_entropy_scan`, `imported_drift_trajectories`.
+- New runs launched via `lab/src/harness.py` log per‑seed and aggregated metrics into Aim experiments named after `run_name` (e.g., `h1_heads_zero`, `h5_layer0_pairs_balanced_*`) when Aim is installed.
+- For a short, task‑oriented overview of how to explore H1/H5/H6 suppressors, geometric signatures, and Stage‑1A VDI/circularity in Aim, see [docs/AIM_USAGE.md](docs/AIM_USAGE.md).
 
 ## Repository Layout
 
