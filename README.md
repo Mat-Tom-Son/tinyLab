@@ -51,6 +51,16 @@ source .venv/bin/activate
 python smoke_test_cuda.py  # optional sanity check
 ```
 
+### Debian 12 / GCE (CUDA, one-liner)
+
+SSH into your NVIDIA T4 VM (Debian 12 with CUDA 12.x) and run:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Mat-Tom-Son/tinyLab/main/install_tinylab_linux.sh)"
+```
+
+This clones `tinyLab`, installs system deps, sets up the venv, installs CUDA wheels, pulls DVC data (if configured), runs the CUDA smoke test, and executes the Stage‑1A pilot dry‑run.
+
 - `setup_env.sh` (MPS) or `setup_env_cuda.sh` (CUDA) installs all pinned dependencies (see `pyproject.toml`) and validates PyTorch.
 - Smoke tests load GPT‑2‑small and check the harness wiring; skip if you know your environment is ready.
 - For CUDA-specific setup and optimization guide, see [docs/CUDA_SETUP.md](docs/CUDA_SETUP.md).
@@ -147,6 +157,16 @@ This downloads:
 - Results and metrics (`reports/`)
 - Paper supplements (`paper/supplement/`)
 
+### GCS remote (for GCE)
+
+To point DVC at a GCS bucket on GCE:
+
+```bash
+gcloud auth application-default login
+GCS_BUCKET=<your-bucket> GCS_PREFIX=tinylab bash scripts/configure_dvc_gcs.sh
+dvc pull  # or dvc push after runs
+```
+
 ### Why DVC?
 
 - **Version control for data** - Track dataset and result versions alongside code
@@ -159,6 +179,18 @@ This downloads:
 - [DVC_SETUP.md](DVC_SETUP.md) - Complete setup and usage guide
 - [DVC_MIGRATION_DESIGN.md](DVC_MIGRATION_DESIGN.md) - Architecture and design decisions
 - [DVC_TROUBLESHOOTING.md](DVC_TROUBLESHOOTING.md) - Common issues and solutions
+
+## Monitoring
+
+- GPU usage logging for cost-awareness: `bash scripts/log_gpu_usage.sh` (set `INTERVAL` and `OUT_FILE` as needed). CSV logs land under `logs/` by default.
+- After a run, back up results + commit quickly:
+  - Configure GCS remote once (see above).
+  - `bash scripts/post_run_backup.sh reports/pilot_stage1a "pilot: baseline run"` (DVC add + dvc push + git commit; set `GIT_PUSH=1` to push git, `DVC_PUSH=0` to skip data push).
+- Stage‑1A helper to reproduce the prereg battery (baseline circularity + VDI + dry run):  
+  `bash scripts/run_stage1a_suite.sh` (env toggles: `SEEDS`, `RUN_CIRCULARITY`, `RUN_VDI`, `RUN_DRY_RUN`, `DEVICE`, `TASK_B_SIZE`, `REPORTS_DIR`).
+- Stage‑1A prereg orchestrator (suite + auto head selection + templated training launcher):  
+  `bash scripts/run_stage1a_prereg.sh` with envs such as `TRAIN_CMD_TEMPLATE='python train_stage1a.py --cond {cond} --seed {seed} --omega {omega} --head {head} --head-kind {head_kind}'`.  
+  Other envs: `SEEDS`, `TRAIN_SEEDS`, `SUPPRESSOR_OMEGAS`, `RANDOM_OMEGAS`, `RUN_BASELINE/RUN_SUPPRESSOR/RUN_RANDOM`, `SUITE_FIRST`, `DEVICE`, `REPORTS_DIR`.
 
 ## Aim Experiment Tracking
 
@@ -198,6 +230,17 @@ A full, step‑by‑step guide covering dataset preparation, GPT‑2 and Mistral
 5. Paper build — `cd paper && make` uses `latexmk` to compile `paper/main.pdf` from source.
 
 All runs log reproducibility metadata (`config.json`, hashes, seeds, git commit) into their respective `lab/runs/<run_id>/` directories.
+
+## Containers
+
+An nvidia-docker image is available for CUDA 12.6 on Debian 12:
+
+```bash
+docker build --platform=linux/amd64 -t tinylab:cuda .
+docker run --gpus all --shm-size=16g -it tinylab:cuda bash scripts/run_pilot_dry_run.sh
+```
+
+Mount a host reports directory if you want outputs persisted: `-v $PWD/reports:/app/reports`.
 
 For a quick orientation of directories, see `docs/STRUCTURE.md`.
 

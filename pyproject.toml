@@ -13,11 +13,11 @@ dependencies = [
     "datasets==4.3.0",
     "mlflow==3.5.1",
     "umap-learn==0.5.9.post2",
-    "plotly==6.3.1",
-    "kaleido==1.1.0",
-    "matplotlib==3.10.7",
-    "pandas==2.3.3",
-    "numpy==2.3.3",
+  "plotly==6.3.1",
+  "kaleido==1.1.0",
+  "matplotlib==3.10.7",
+  "pandas==2.3.3",
+  "numpy==1.26.4",
     "psutil==7.1.2",
     "orjson==3.11.4",
     "rich==14.2.0",
@@ -36,6 +36,9 @@ dev = [
 [build-system]
 requires = ["setuptools>=65.0"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["lab"]
 
 [tool.black]
 line-length = 88

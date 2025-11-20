@@ -26,7 +26,7 @@ pip install \
   kaleido==1.1.0 \
   matplotlib==3.10.7 \
   pandas==2.3.3 \
-  numpy==2.3.3 \
+  numpy==1.26.4 \
   psutil==7.1.2 \
   orjson==3.11.4 \
   rich==14.2.0 \
