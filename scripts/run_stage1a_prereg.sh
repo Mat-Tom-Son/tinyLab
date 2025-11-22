@@ -44,6 +44,7 @@ RUN_BASELINE="${RUN_BASELINE:-1}"
 RUN_SUPPRESSOR="${RUN_SUPPRESSOR:-1}"
 RUN_RANDOM="${RUN_RANDOM:-1}"
 TRAIN_CMD_TEMPLATE="${TRAIN_CMD_TEMPLATE:-}"
+SEEDS_STR="${SEEDS[*]}"
 
 echo "[stage1a-prereg] ROOT=${ROOT_DIR}"
 
@@ -54,7 +55,7 @@ if [[ "${SUITE_FIRST}" == "1" ]]; then
 fi
 
 echo "[stage1a-prereg] Selecting suppressor/random heads from VDI CSVs..."
-${PYBIN} - <<'PY'
+${PYBIN} - <<PY
 import json
 from pathlib import Path
 import sys
@@ -62,7 +63,7 @@ import sys
 import pandas as pd
 
 reports_dir = Path("${REPORTS_DIR}")
-seeds = "${SEEDS}".split()
+seeds = "${SEEDS_STR}".split()
 out_path = Path("${HEAD_SELECTION_JSON}")
 
 paths = []
@@ -111,7 +112,7 @@ if [[ -z "${TRAIN_CMD_TEMPLATE}" ]]; then
   exit 0
 fi
 
-SUPPRESSOR_HEAD=$( ${PYBIN} - <<'PY'
+SUPPRESSOR_HEAD=$( ${PYBIN} - <<PY
 import json
 from pathlib import Path
 data = json.loads(Path("${HEAD_SELECTION_JSON}").read_text())
@@ -119,7 +120,7 @@ print(data["suppressor_head"])
 PY
 )
 
-RANDOM_HEAD=$( ${PYBIN} - <<'PY'
+RANDOM_HEAD=$( ${PYBIN} - <<PY
 import json
 from pathlib import Path
 data = json.loads(Path("${HEAD_SELECTION_JSON}").read_text())
