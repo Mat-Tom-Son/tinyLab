@@ -108,7 +108,8 @@ fi
 
 echo ""
 echo "Installing tiny-ablation-lab package for imports..."
-"${VENV_PY}" -m pip install -e .
+echo "Installing in editable mode (no dependency resolution)..."
+"${VENV_PY}" -m pip install -e . --no-deps
 
 echo ""
 echo "=== Validation ==="
