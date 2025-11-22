@@ -136,13 +136,22 @@ run_training() {
   local head_kind="$5"
 
   local cmd
+  STAGE1A_COND="$cond" \
+  STAGE1A_SEED="$seed" \
+  STAGE1A_OMEGA="$omega" \
+  STAGE1A_HEAD="$head" \
+  STAGE1A_HEAD_KIND="$head_kind" \
   cmd=$("${PYBIN}" - <<'PY'
-import os, sys
+import os
 tpl = os.environ["TRAIN_CMD_TEMPLATE"]
-cond, seed, omega, head, head_kind = sys.argv[1:6]
+cond = os.environ["STAGE1A_COND"]
+seed = os.environ["STAGE1A_SEED"]
+omega = os.environ["STAGE1A_OMEGA"]
+head = os.environ["STAGE1A_HEAD"]
+head_kind = os.environ["STAGE1A_HEAD_KIND"]
 print(tpl.format(cond=cond, seed=seed, omega=omega, head=head, head_kind=head_kind))
 PY
-  "$cond" "$seed" "$omega" "$head" "$head_kind")
+)
 
   echo "[stage1a-prereg] Running: ${cmd}"
   bash -lc "${cmd}"
