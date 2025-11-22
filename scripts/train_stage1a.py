@@ -82,6 +82,7 @@ class TransformerBlock(nn.Module):
         layer_idx: int,
         layer_head_config: Dict[Tuple[int, int], float] | None = None,
         attn_mask: torch.Tensor | None = None,
+        attn_store: Dict[int, torch.Tensor] | None = None,
     ) -> torch.Tensor:
         # x: [batch, seq, d_model]
         bsz, seq_len, _ = x.shape
@@ -97,6 +98,10 @@ class TransformerBlock(nn.Module):
         if attn_mask is not None:
             attn_scores = attn_scores + attn_mask  # mask should contain 0 or -inf
         attn_weights = F.softmax(attn_scores, dim=-1)
+
+        # Optionally store attention weights for analysis (e.g., IH score)
+        if attn_store is not None:
+            attn_store[layer_idx] = attn_weights.detach()
 
         # [batch, seq, n_heads, d_head]
         context = torch.einsum("bhts,bshd->bthd", attn_weights, v)
@@ -140,6 +145,7 @@ class Stage1ATransformer(nn.Module):
         self,
         input_ids: torch.Tensor,
         layer_head_config: Dict[Tuple[int, int], float] | None = None,
+        attn_store: Dict[int, torch.Tensor] | None = None,
     ) -> torch.Tensor:
         # input_ids: [batch, seq]
         bsz, seq_len = input_ids.shape
@@ -153,7 +159,7 @@ class Stage1ATransformer(nn.Module):
         attn_mask = self.attn_mask[:, :, :seq_len, :seq_len]
 
         for layer_idx, block in enumerate(self.blocks):
-            x = block(x, layer_idx, layer_head_config, attn_mask)
+            x = block(x, layer_idx, layer_head_config, attn_mask, attn_store)
 
         x = self.ln_f(x)
         logits = self.unembed(x)  # [batch, seq, vocab]
@@ -184,6 +190,52 @@ def make_induction_batch(
     reps = seq_len // 2
     tokens = pair.repeat(1, reps)  # [batch, seq_len]
     return tokens
+
+
+def compute_ih_score(
+    model: Stage1ATransformer,
+    cfg: TrainConfig,
+    layer_head_config: Dict[Tuple[int, int], float] | None,
+    head_idx: int,
+    device: torch.device,
+    n_seqs: int = 64,
+) -> float:
+    """Compute a simple induction-head-style score for layer-0 head `head_idx`.
+
+    For each position t, we find the last previous position j < t with the same
+    token and take the attention weight a[t, j]. The score is the mean of this
+    quantity over all applicable positions and sequences.
+    """
+    model.eval()
+    with torch.no_grad():
+        input_ids = make_induction_batch(
+            batch_size=n_seqs,
+            seq_len=cfg.max_seq_len,
+            vocab_size=cfg.vocab_size,
+            device=device,
+        )
+        attn_store: Dict[int, torch.Tensor] = {}
+        _ = model(input_ids, layer_head_config, attn_store=attn_store)
+        if 0 not in attn_store:
+            return 0.0
+        attn = attn_store[0]  # [batch, n_heads, seq, seq]
+
+        bsz, n_heads, seq_len, _ = attn.shape
+        if head_idx < 0 or head_idx >= n_heads:
+            return 0.0
+
+        scores = []
+        for b in range(bsz):
+            seq = input_ids[b]
+            for t in range(1, seq_len):
+                token = seq[t].item()
+                prev = (seq[:t] == token).nonzero(as_tuple=False)
+                if prev.numel() == 0:
+                    continue
+                j = prev[-1].item()
+                scores.append(float(attn[b, head_idx, t, j].item()))
+
+        return sum(scores) / len(scores) if scores else 0.0
 
 
 def train_stage1a(
@@ -262,16 +314,25 @@ def train_stage1a(
         opt.step()
 
         if step % cfg.log_every == 0 or step == 1:
+            ih_score = compute_ih_score(
+                model=model,
+                cfg=cfg,
+                layer_head_config=layer_head_config,
+                head_idx=int(args.head),
+                device=device,
+                n_seqs=min(64, cfg.batch_size),
+            )
             elapsed = time.time() - start_time
             msg = {
                 "step": step,
                 "loss": float(loss.item()),
                 "accuracy": acc,
+                "ih_score_head": float(ih_score),
                 "elapsed_s": elapsed,
             }
             print(
                 f"[step {step:5d}] loss={msg['loss']:.4f}, acc={msg['accuracy']:.3f}, "
-                f"elapsed={elapsed/60:.1f} min"
+                f"ih_head={ih_score:.3f}, elapsed={elapsed/60:.1f} min"
             )
             metrics_f.write(json.dumps(msg) + "\n")
             metrics_f.flush()
@@ -357,4 +418,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
