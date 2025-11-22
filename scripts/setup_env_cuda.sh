@@ -6,9 +6,10 @@ echo "=== Tiny Ablation Lab Setup (Debian 12 + CUDA) ==="
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${ROOT_DIR}"
 
-TORCH_VERSION="${TORCH_VERSION:-2.9.0}"
-TORCHVISION_VERSION="${TORCHVISION_VERSION:-0.24.0}"
-TORCHAUDIO_VERSION="${TORCHAUDIO_VERSION:-2.9.0}"
+# Default CUDA-compatible PyTorch versions for cu121 wheels
+TORCH_VERSION="${TORCH_VERSION:-2.5.1}"
+TORCHVISION_VERSION="${TORCHVISION_VERSION:-0.20.1}"
+TORCHAUDIO_VERSION="${TORCHAUDIO_VERSION:-2.5.1}"
 TORCH_INDEX="${TORCH_INDEX:-https://download.pytorch.org/whl/cu121}"
 VENV_DIR="${VENV_DIR:-.venv}"
 PYTHON_BIN="${PYTHON_BIN:-python3}"

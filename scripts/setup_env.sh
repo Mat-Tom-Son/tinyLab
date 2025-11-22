@@ -12,7 +12,7 @@ python -m pip install --upgrade pip wheel setuptools
 
 # PyTorch (MPS ships with the CPU wheel on macOS)
 echo "Installing PyTorch..."
-pip install torch==2.9.0 torchvision==0.24.0 torchaudio==2.9.0 --index-url https://download.pytorch.org/whl/cpu
+pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cpu
 
 # Core libs
 echo "Installing core dependencies..."
