@@ -32,7 +32,7 @@ PYBIN="${PYBIN:-python3}"
 echo "[stage1a] ROOT=${ROOT_DIR}"
 mkdir -p "${REPORTS_DIR}"
 
-if ! ${PYBIN} - <<'PY' >/dev/null 2>&1; then
+if ! ${PYBIN} - <<'PY' >/dev/null 2>&1
 import torch, sys
 print(torch.__version__)
 sys.exit(0)
