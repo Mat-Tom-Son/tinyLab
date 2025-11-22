@@ -10,9 +10,9 @@ source .venv/bin/activate
 # Upgrade pip
 python -m pip install --upgrade pip wheel setuptools
 
-# PyTorch (MPS ships with the CPU wheel on macOS)
+# PyTorch (MPS ships with the CPU wheel on macOS). No torchvision/torchaudio needed for text-only workloads.
 echo "Installing PyTorch..."
-pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
 
 # Core libs
 echo "Installing core dependencies..."

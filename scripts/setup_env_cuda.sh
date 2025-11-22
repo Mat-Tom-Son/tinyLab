@@ -6,10 +6,8 @@ echo "=== Tiny Ablation Lab Setup (Debian 12 + CUDA) ==="
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${ROOT_DIR}"
 
-# Default CUDA-compatible PyTorch versions for cu121 wheels
+# Default CUDA-compatible PyTorch version for cu121 wheels
 TORCH_VERSION="${TORCH_VERSION:-2.5.1}"
-TORCHVISION_VERSION="${TORCHVISION_VERSION:-0.20.1}"
-TORCHAUDIO_VERSION="${TORCHAUDIO_VERSION:-2.5.1}"
 TORCH_INDEX="${TORCH_INDEX:-https://download.pytorch.org/whl/cu121}"
 VENV_DIR="${VENV_DIR:-.venv}"
 PYTHON_BIN="${PYTHON_BIN:-python3}"
@@ -61,7 +59,7 @@ source "${VENV_DIR}/bin/activate"
 "${VENV_PY}" -m pip install --upgrade pip wheel setuptools
 
 echo ""
-echo "Installing PyTorch (CUDA preferred)..."
+echo "Installing PyTorch (CUDA preferred, no torchvision/torchaudio)..."
 if command -v nvidia-smi >/dev/null 2>&1; then
   TARGET_INDEX="${TORCH_INDEX}"
   echo "Using CUDA wheel index: ${TARGET_INDEX}"
@@ -70,11 +68,7 @@ else
   echo "GPU not detected; using CPU wheel index: ${TARGET_INDEX}"
 fi
 
-"${VENV_PY}" -m pip install \
-  "torch==${TORCH_VERSION}" \
-  "torchvision==${TORCHVISION_VERSION}" \
-  "torchaudio==${TORCHAUDIO_VERSION}" \
-  --index-url "${TARGET_INDEX}"
+"${VENV_PY}" -m pip install "torch==${TORCH_VERSION}" --index-url "${TARGET_INDEX}"
 
 echo ""
 echo "Installing core dependencies..."
