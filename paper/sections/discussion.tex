@@ -39,6 +39,10 @@ This pattern—conserved function, adapted implementation, forced location—is 
 The objective (Kalai et~al.'s incentives) and geometry (the layer-0 bottleneck) are universal; architecture and training data determine \emph{how} the solution is instantiated.
 Overall, the evidence is \emph{consistent with constrained early-layer solutions}: location appears constrained by geometry, while implementation varies in form across models.
 
+This bottleneck-constrained, conserved-function pattern is consistent with thermodynamic views of hierarchy in neural systems, where functional structure is tied to nonequilibrium dynamics and time-asymmetry.
+In the Thermodynamics of Mind framework, for example, Kringelbach et al.~\cite{kringelbach2024thermodynamics} quantify hierarchy in brain states via time-irreversibility of whole-brain activity.
+Our contribution makes that story concrete at a different scale and substrate: we identify a specific early-layer circuit implementing a factuality–hedging trade-off in transformers and show that bottleneck geometry forces it into layer~0, where it forms an operational attractor that can be steered.
+
 \subsection{Training regime as a determinant of circuit structure}
 An important question follows from these results: are suppressors determined solely by information-geometric constraints, or do they also reflect the specific training regime? We observe layer-0 suppression under pure next-token prediction pretraining (Pythia learning dynamics; Section~\ref{sec:findings}), suggesting the objective alone is sufficient to induce a hedging attractor at the first bottleneck. However, modern production models undergo RLHF, Constitutional AI, and other fine-tuning procedures that explicitly reward hedging or rule-based caution.
 
