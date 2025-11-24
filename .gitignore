@@ -86,3 +86,7 @@ build/
 
 # Aim experiment tracking (local runs only, do not commit)
 /.aim/
+/data_hard
+/data_parity
+/data_parity_medium
+/data_quad

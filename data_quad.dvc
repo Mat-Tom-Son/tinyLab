@@ -1,0 +1,6 @@
+outs:
+- md5: 2015420fae9315f8e5a9bbacc3566abc.dir
+  size: 793886
+  nfiles: 2
+  hash: md5
+  path: data_quad

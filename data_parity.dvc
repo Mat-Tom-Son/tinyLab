@@ -1,0 +1,6 @@
+outs:
+- md5: 27e41d1fa19063fc6ae5d537ee7fb861.dir
+  size: 893801
+  nfiles: 2
+  hash: md5
+  path: data_parity
