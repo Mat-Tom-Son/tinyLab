@@ -16,7 +16,20 @@
       "Bash(python:*)",
       "Bash(pdflatex:*)",
       "Bash(bibtex:*)",
-      "Bash(pdfinfo:*)"
+      "Bash(pdfinfo:*)",
+      "Bash(do echo \"=== Omega = $omega ===\" tail -1 reports/stage1b_grokking/train/stage1b_head0_omega$omega_seed0/metrics.jsonl)",
+      "Bash(timeout 120 python3:*)",
+      "Bash(cat:*)",
+      "Bash(tee:*)",
+      "Bash(bash scripts/run_stage1b_pilot.sh:*)",
+      "Bash(bash:*)",
+      "Bash(ln:*)",
+      "Bash(conda env list:*)",
+      "Bash(.venv/bin/python:*)",
+      "Bash(pkill:*)",
+      "Bash(dvc add:*)",
+      "Bash(.venv/bin/dvc:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
