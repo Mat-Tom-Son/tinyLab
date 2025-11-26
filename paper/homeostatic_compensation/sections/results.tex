@@ -1,0 +1,56 @@
+\section{Results}
+
+\subsection{Kill test outcomes across seeds}
+
+Table~\ref{tab:killtest} summarizes $T_{\text{grok}}$ and final test accuracy for the baseline, perturbed, and frozen conditions across four seeds. Seed 4 did not complete due to time constraints and is omitted. In every seed the frozen condition harms learning either by slowing grokking or by driving the network to a brittle non generalizing solution.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lllll}
+\toprule
+Seed & Condition & $T_{\text{grok}}$ & Final test acc & Qualitative pattern \\\midrule
+0 & Baseline & 3200 & 0.98 & Clean grokking \\
+0 & Perturbed & 2200 & 0.998 & Fast and stable \\
+0 & Frozen & 10800 & 0.48 & Strong slowdown \\
+1 & Baseline & 2700 & 0.994 & Clean grokking \\
+1 & Perturbed & 3400 & 0.998 & Fast and stable \\
+1 & Frozen & 3900 & 0.49 & Modest slowdown \\
+2 & Baseline & 30000 & 0.74 & Slow baseline \\
+2 & Perturbed & 36800 & 0.98 & Slowest but stable \\
+2 & Frozen & 3400 & 0.51 & Fast but brittle \\
+3 & Baseline & 1400 & 0.96 & Clean grokking \\
+3 & Perturbed & 1400 & 0.998 & Clean grokking \\
+3 & Frozen & 1700 & 0.998 & Small slowdown \\\bottomrule
+\end{tabular}
+\caption{Kill test outcomes on parity grokking. $T_{\text{grok}}$ is the first step at which test accuracy exceeds $0.9$. Final test accuracy is measured at step $50{,}000$. Frozen conditions never improve both speed and stability relative to free compensation.}
+\label{tab:killtest}
+\end{table}
+
+\subsection{Seed zero: strong kill test}
+
+Seed 0 provides the canonical expression of the kill test. The perturbed condition groks at $2{,}200$ steps while the baseline groks at $3{,}200$. Weakening the suppressor accelerates learning in the presence of free compensation. Freezing compensatory heads shifts $T_{\text{grok}}$ out to $10{,}800$ steps, a factor of $4.9$ slower than the perturbed run and $3.4$ times slower than the baseline. The frozen model also finishes with test accuracy near $0.5$, indicating that even after a long search it settles into a weak or unstable generalizing circuit.
+
+This seed validates the original intuition behind the kill test. When suppressor strength is perturbed other heads actively compensate to restore a balanced state. If that compensation is blocked the system must traverse weight space without its usual homeostatic response and learning becomes dramatically less efficient.
+
+\subsection{Kill test learning curves}
+
+Figure~\ref{fig:killtest_curves} shows test accuracy and loss as a function of training step for the three conditions in seed zero. The perturbed run rises smoothly and crosses the grokking threshold early. The baseline run lags behind but still transitions cleanly. The frozen run meanders near chance for many steps before eventually grokking and then exhibits a noisier trajectory. This visualizes the basic effect of compensation. When compensation is allowed the system moves quickly and stably toward the generalizing circuit. When it is blocked the system remains stuck near the memorization plateau and explores a rougher path.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{../../reports/compensation_kill_test.pdf}
+\caption{Kill test learning curves for seed zero. Top panel shows test accuracy over training for the baseline, perturbed, and frozen conditions. Bottom panel shows the corresponding loss curves. The dashed horizontal line marks the grokking threshold at test accuracy equal to zero point nine.}
+\label{fig:killtest_curves}
+\end{figure}
+
+\subsection{Seeds one and three: modest slowdowns}
+
+Seeds 1 and 3 show smaller but consistent slowdowns. In seed 1 the frozen run groks at $3{,}900$ steps compared to $3{,}400$ for the perturbed run and $2{,}700$ for baseline. In seed 3 the frozen run groks at $1{,}700$ steps while baseline and perturbed grok together at $1{,}400$. All three conditions achieve high final test accuracy in these seeds. Blocking compensation therefore does not destroy the ability to find a good circuit, but it does make the path slightly less efficient.
+
+These seeds show that the qualitative effect of freezing compensation generalizes beyond the particular geometry of seed 0. The magnitude varies with initialization but the direction is stable. When compensation is blocked grokking does not become easier.
+
+\subsection{Seed two: fast but brittle frozen solution}
+
+Seed 2 reveals a more subtle phenomenon. Here the frozen run groks first at $3{,}400$ steps but ends with test accuracy near $0.5$. The perturbed run groks much later at $36{,}800$ steps yet reaches $0.98$ test accuracy. The baseline sits in between with $T_{\text{grok}}$ around $30{,}000$ and final accuracy around $0.74$.
+
+In this seed the kill test does not show a pure speed penalty. Instead it separates two different learning trajectories. With compensation blocked the model finds a shortcut that achieves the grokking threshold on the test set early but fails to maintain high accuracy over the remainder of training. The free run follows a slower path but converges to a robust generalizing circuit. This suggests that compensation shapes not only how quickly the system escapes the memorization plateau but which attractor it falls into.

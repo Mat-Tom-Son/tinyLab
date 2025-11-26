@@ -92,7 +92,8 @@ def train_parity_frozen(args, cfg: ParityConfig):
 
     # Output directory
     freeze_str = f"_frozen{''.join(map(str, freeze_heads))}" if freeze_heads else ""
-    run_name = f"parity_head{args.head}_omega{args.omega}_seed{args.seed}{freeze_str}"
+    tag = f"_{args.tag}" if getattr(args, "tag", "") else ""
+    run_name = f"parity_head{args.head}_omega{args.omega}_seed{args.seed}{freeze_str}{tag}"
     out_dir = Path(f"reports/parity/train/{run_name}")
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -110,6 +111,7 @@ def train_parity_frozen(args, cfg: ParityConfig):
         'head': args.head,
         'seed': args.seed,
         'freeze_heads': freeze_heads,
+        'tag': getattr(args, "tag", ""),
     })
     with open(out_dir / "config.json", "w") as f:
         json.dump(config_dict, f, indent=2)
@@ -227,6 +229,7 @@ def parse_args_frozen():
     parser.add_argument("--steps", type=int, default=10000)
     parser.add_argument("--device", type=str, default="auto")
     parser.add_argument("--data-dir", type=str, default="data_parity")
+    parser.add_argument("--tag", type=str, default="", help="Optional run name suffix")
     return parser.parse_args()
 
 

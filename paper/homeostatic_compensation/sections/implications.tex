@@ -1,0 +1,21 @@
+\section{Implications}
+
+\subsection{Learning dynamics}
+
+These results flesh out the picture of grokking as a phase transition. The U shaped dependence of grokking time on omega already showed that the natural suppressor configuration is a metastable equilibrium. The kill test shows that compensation is the mechanism that maintains and breaks that equilibrium. With compensation active the system responds to perturbations by redistributing variance and creating the instability required to leave the memorization plateau. With compensation blocked the system either moves more slowly or drops into a qualitatively different solution that fails to generalize.
+
+This suggests that learning curves should be interpreted in light of homeostatic behaviour. Slow learning can indicate that the system is sitting near an equilibrium that resists change. Fast learning can indicate that compensation has destabilized that equilibrium. The seed two result shows that fast grokking is not always a sign of healthy generalization.
+
+The ironic rebound results of Mann et al.\ give a complementary view of the same story in a different regime \cite{mann2025dontthink}. In their setting early layers implement suppression in response to a negation instruction while sparse middle layer heads amplify the forbidden tokens under load. In my setting the key players are layer 0 suppressors and their compensators during grokking. In both cases suppression is not a static property of a single head. It is a dynamic process in which different parts of the circuit pull in opposite directions and the final behaviour depends on how that negotiation resolves over depth and time.
+
+\subsection{Developmental control}
+
+Papers one and two treated suppressors as developmental control knobs. By scaling suppressor strength I could shift the timing of critical windows and acceleration of circuit formation. The present results add a constraint. The system does not passively accept suppressor perturbations. It pushes back. When I weaken suppressors the other heads compensate. When I try to block that compensation the system either slows dramatically or finds brittle shortcuts.
+
+Developmental control therefore cannot rely on one dimensional knobs alone. It must account for the homeostatic response. To delay a dangerous circuit or accelerate a useful one I need to shape the equilibrium manifold itself, not just twist individual parameters. That means designing loss functions and regularization that make the safe circuits the easiest ones to find under the system's natural compensation dynamics.
+
+\subsection{Alignment}
+
+Alignment work often imagines a system that can be constrained by adding rules, penalties, or guard rails. The behaviour observed here suggests that such constraints will be routed around wherever compensation is possible. If a system maintains an internal equilibrium then mechanical constraints that do not change that equilibrium simply divert pressure elsewhere.
+
+A more promising view is to treat alignment as an equilibrium design problem. The question becomes: what quantities does the system try to conserve, and can I construct training regimes in which conserving those quantities implies aligned behaviour. The kill test provides an example at small scale. The suppressor equilibrium appears to favour circuits that generalize on parity. Breaking that equilibrium allows circuits that fit the training data but not the test distribution. Scaling this insight up is an open challenge, but the direction is clear. I need to understand and shape the homeostatic tendencies of my models rather than treating them as static optimizers.

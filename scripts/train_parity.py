@@ -276,7 +276,8 @@ def train_parity(args: argparse.Namespace, cfg: ParityConfig):
         layer_head_config[(0, int(args.head))] = float(args.omega)
 
     # Output directory
-    run_name = f"parity_head{args.head}_omega{args.omega:.1f}_seed{args.seed}"
+    tag = f"_{args.tag}" if getattr(args, "tag", "") else ""
+    run_name = f"parity_head{args.head}_omega{args.omega:.1f}_seed{args.seed}{tag}"
     out_dir = Path("reports/parity/train") / run_name
     out_dir.mkdir(parents=True, exist_ok=True)
     ckpt_dir = out_dir / "checkpoints"
@@ -379,6 +380,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--steps", type=int, default=10000, help="Training steps")
     parser.add_argument("--device", type=str, default="auto", help="Device")
     parser.add_argument("--data-dir", type=str, default="data_parity", help="Data directory")
+    parser.add_argument("--tag", type=str, default="", help="Optional run name suffix (e.g., medium)")
     return parser.parse_args()
 
 

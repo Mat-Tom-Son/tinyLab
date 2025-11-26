@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\title{Active Homeostatic Compensation in Transformer Grokking:\\Evidence for Le Chatelier's Principle in Neural Networks}
+\author{Mat Thompson\\Independent Researcher, Raleigh, NC}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Layer 0 suppressors implement factuality hedging in large language models by downweighting confident continuations and boosting hedging tokens. Prior work showed that ablating these heads improves factual preference and calibration, and that structured noise accelerates circuit formation only in sub saturated regimes. What remains unexplained is why the system keeps suppressors near a natural strength and why perturbations in either direction produce a non linear U shaped effect on grokking speed. I test the hypothesis that neural networks maintain a homeostatic equilibrium through active variance redistribution across attention heads. On a parity grokking task I scale a layer 0 suppressor with an omega parameter and then run a kill test in which I either allow or block compensation by freezing the remaining heads at initialization. Across seeds frozen heads either slow learning by up to 4.9 times or drive the network to brittle solutions that grok on the training distribution but fail to generalize. This behaviour is consistent with Le Chatelier's principle applied to neural networks and suggests that suppressor compensation shapes not only how fast circuits form but which circuits crystallize.
+\end{abstract}
+
+\paragraph{Contributions.}
+\begin{itemize}
+  \item \textbf{Kill test for homeostatic compensation.} I design a simple kill test on a parity grokking task and show that blocking compensation in layer 0 either causes severe slowdown or produces brittle non generalizing solutions across seeds.
+  \item \textbf{Speed versus stability trade off.} I demonstrate that compensation controls both how fast the network escapes the memorization plateau and which attractor it falls into, with one seed revealing a fast but unstable frozen solution versus a slower but robust free solution.
+  \item \textbf{Le Chatelier view of learning.} I frame suppressor compensation as a neural analogue of Le Chatelier's principle and connect the U shaped omega curve to a metastable equilibrium in suppressor strength.
+  \item \textbf{Developmental control at layer 0.} I extend the suppressor series by treating layer 0 compensation as a developmental control mechanism that shapes critical windows for circuit formation.
+  \item \textbf{Bridge to ironic negation circuits.} I place these results alongside recent work on ironic rebound in transformer models and argue that both phenomena reflect dynamic negotiations between suppression and amplification in different parts of the network.
+\end{itemize}
+
+\input{sections/introduction}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/implications}
+\input{sections/future_work}
+\input{sections/conclusion}
+
+\bibliographystyle{plain}
+\bibliography{../references}
+
+\end{document}

@@ -1,0 +1,11 @@
+\section{Future work}
+
+Several questions follow directly from these experiments.
+
+First, what quantity is being maintained. The data are consistent with conservation of some measure of information flow or representational capacity across heads, but I have not yet measured these directly. Future work will track mutual information, effective rank, gradient norms, and attention budgets over training to identify which quantity remains stable under compensation.
+
+Second, how general is the effect. Parity is a clean Zone 2 task but narrow. The same kill test should be applied to finite state automata, small algorithmic reasoning tasks, and eventually to layer 0 suppressors in full scale language models. If homeostatic compensation is a general property of multi head attention rather than a quirk of this setup it should appear in those settings as well.
+
+Third, how symmetric is compensation. The present experiments focus on $\omega = 0.5$. Prior omega sweeps show symmetric acceleration at $\omega = 0.5$ and $\omega = 1.5$. Running parallel kill tests at $\omega = 1.5$ and freezing different numbers of heads would reveal whether compensation capacity is symmetric and distributed or asymmetric and concentrated.
+
+Finally, can I harness compensation to steer learning. If compensation both accelerates escape from bad plateaus and favours generalizing circuits I may be able to design schedules that deliberately perturb and then restore suppressor strength to shape developmental windows. Doing so safely will require a clearer picture of the equilibrium manifold and of the failure modes revealed by seeds like seed 2.

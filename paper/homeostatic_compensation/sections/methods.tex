@@ -1,0 +1,27 @@
+\section{Methods}
+
+\subsection{Task}
+
+I use a binary parity task as the test bed for the kill test. Each example is a bit string of length $10$ to $12$ sampled uniformly from all possible strings in that range. The label is $1$ if the number of ones in the string is odd and $0$ if it is even. Parity is a Zone 2 task. The model must maintain a running parity state across positions and cannot solve the task by memorizing a static mapping from inputs to outputs. This makes it an ideal setting for studying grokking and circuit formation.
+
+The training set contains $1{,}000$ examples and the test set contains $500$ examples. These sizes are large enough that memorization alone is insufficient but small enough that a small transformer can eventually grok the task under high regularization.
+
+\subsection{Model}
+
+The model is a two layer transformer with four attention heads per layer and a model dimension of $64$. I use learned token and positional embeddings, a standard multi head self attention block, and a two layer feedforward network in each block. The classifier reads from the final token and outputs logits over the two parity classes. There is no dropout. I use AdamW with learning rate $1\times 10^{-3}$ and weight decay equal to $1.0$ to enforce a strong bias toward simpler circuits. All runs use the same architecture and hyperparameters; only the omega scaling and head freezing differ.
+
+\subsection{Omega scaling}
+
+I designate one head in layer 0 as the suppressor head. Its value projection output is multiplied by a scalar $\omega$ before the outputs of all heads are concatenated and passed through the output projection. Omega equal to $1.0$ leaves the head unmodified. Omega equal to $0.5$ halves its contribution. This is the same control parameter used in prior work on omega sweeps which showed that grokking time as a function of omega follows a U shaped curve with the slowest learning at $\omega = 1.0$ and faster learning at both $\omega = 0.5$ and $\omega = 1.5$.
+
+\subsection{Kill test conditions}
+
+For each random seed I train three conditions.
+
+\textbf{Baseline} uses $\omega = 1.0$ with all heads trainable. This is the natural equilibrium configuration.
+
+\textbf{Perturbed} uses $\omega = 0.5$ applied to the suppressor head in layer 0 while all heads remain trainable. Other heads are free to adjust their outputs and compensate.
+
+\textbf{Frozen} uses $\omega = 0.5$ and freezes heads 1, 2, and 3 in layer 0 at their initialization. Gradients into the corresponding slices of the query, key, value, and output projection matrices are zeroed at every step so these heads cannot adapt. Only the perturbed head and other layers remain trainable. This blocks variance redistribution across layer 0 heads and isolates the effect of compensation.
+
+All runs are trained for $50{,}000$ steps with batch size $256$. I log training and test accuracy every $100$ steps and record the first step at which test accuracy exceeds $0.9$ as $T_{\text{grok}}$.
