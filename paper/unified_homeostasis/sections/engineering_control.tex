@@ -1,0 +1,14 @@
+\section{Engineering Control}\label{sec:engineering}
+
+Because we know the equilibrium exists and is geometrically constrained, we can design for it. We demonstrate this by converting the discovery into an engineering acceleration method.
+
+\paragraph{Dual-Timescale Training.}
+Standard training forces the network to find the equilibrium via random walk (SGD). We propose "Dual-Timescale Training": explicitly constraining the "slow variables" (Effective Rank) to their target equilibrium values while letting "fast variables" (weights) adapt.
+
+In Experiment 4, we initialized a network with its Layer-0 EDI clamped to the target homeostatic value ($EDI \approx 0.61$).
+\begin{itemize}
+    \item \textbf{Standard Training:} Crystallization (Grokking) requires $\approx$ 1,500 steps.
+    \item \textbf{Dual-Timescale:} Crystallization occurs in \textbf{100 steps}.
+\end{itemize}
+
+This \textbf{93\% acceleration} confirms that the search for the homeostatic set-point is the primary bottleneck in grokking. By manually setting the thermostat, we bypass the "search phase" entirely.

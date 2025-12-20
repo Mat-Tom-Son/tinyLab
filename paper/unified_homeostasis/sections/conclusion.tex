@@ -1,0 +1,69 @@
+\section{Conclusion}\label{sec:conclusion}
+
+Neural networks learn through homeostatic phase transitions. The system maintains an equilibrium state through active variance redistribution, governed by Le Chatelier's principle. This equilibrium can be discovered (Experiment 1), its boundaries mapped (Experiment 2), its mechanism validated (Experiment 3), and its geometry understood (Experiment 4).
+
+We have moved from characterization to engineering. We can accelerate learning 93\% by explicitly targeting equilibrium convergence. We can identify the physical substrate (layer-0 suppressors at the information bottleneck) with extraordinary precision (EDI = 0.611991643906, 12 decimals, 5 seeds). We can validate the active mechanism through kill tests that show 4.9× slowdown when compensation is blocked.
+
+But we have also discovered a hard limit: the geometry of the loss landscape forbids certain equilibria. Under dual-timescale + homeostatic pressure, the system converges to a forced attractor at EDI $\approx$ 0.46 (for most seeds) regardless of target specification. The natural equilibrium (EDI = 0.61) sits outside this basin, unreachable under current homeostatic conditions. Some states are possible. Some are forbidden.
+
+This suggests a new way of thinking about neural networks. We are not just optimizing weights. We are navigating a manifold of possible equilibria, constrained by information geometry and actively maintained by the network's own compensatory mechanisms. Understanding learning requires understanding the structure of this manifold.
+
+\subsection{Key Contributions}
+
+\begin{enumerate}
+\item \textbf{Unified framework:} Four experiments spanning interpretability, training dynamics, and equilibrium engineering reveal homeostasis as a fundamental principle governing neural network learning.
+
+\item \textbf{Quantitative precision:} Natural equilibrium at EDI = 0.611991643906 (exact to 12 decimals across 5 seeds) demonstrates tight regulation, not noise.
+
+\item \textbf{Mechanistic validation:} Kill tests prove compensation is active (4.9× slowdown when blocked) and necessary for efficient learning.
+
+\item \textbf{Engineering success:} 93\% acceleration of crystallization through dual-timescale training while maintaining perfect task performance.
+
+\item \textbf{Fundamental constraints:} Discovery of forced attractor at EDI $\approx$ 0.46 reveals information-geometric limits on designability.
+
+\item \textbf{Scale-dependent topology:} Suppressor role transitions from maladaptive (small scale, $d_{\text{eff}} \approx 15$) to adaptive (large scale, $d_{\text{eff}} \approx 50$--80) at capacity threshold.
+
+\item \textbf{Cross-architecture validation:} Pattern replicates across GPT-2 (124M--355M), Mistral-7B, and Pythia, with task-contingent adaptations.
+\end{enumerate}
+
+\subsection{Implications}
+
+The implications extend across multiple fields:
+
+\paragraph{For Interpretability.}
+Circuits live on equilibrium manifolds. Understanding them requires understanding:
+\begin{itemize}
+\item What equilibrium they maintain (what is Q?)
+\item How they respond to perturbations (Le Chatelier dynamics)
+\item What geometric constraints bound them (saturation limits, forced attractors)
+\end{itemize}
+
+Standard ablation studies measure compensatory capacity, not isolated function. Kill tests reveal the active mechanism by blocking compensation.
+
+\paragraph{For Alignment.}
+The question is not "How do we constrain the system?" but "How do we design training so the system naturally equilibrates toward safe, aligned behavior?" The answer lies in understanding homeostatic principles and leveraging them by design:
+\begin{itemize}
+\item Identify current equilibrium for safety-relevant circuits
+\item Map the boundaries (information saturation limits)
+\item Engineer a forced attractor at a safe equilibrium
+\item Validate via kill tests (does blocking compensation collapse alignment?)
+\end{itemize}
+
+\paragraph{For Architecture Design.}
+Dual-timescale mechanisms are not optional—they are fundamental to balancing plasticity and stability. Information bottlenecks (like layer 0) are predictable control points where homeostatic circuits will crystallize. Effective dimensionality determines equilibrium topology: below $d_{\text{eff}} \approx$ 30--50, suppressors are maladaptive; above, they become adaptive.
+
+\subsection{The Central Insight, Revisited}
+
+Learning appears to be gradient descent through weight space. But viewed through the lens of homeostasis, learning is exploration near an equilibrium manifold. The network sits near a metastable state, resisting change. Perturbations create instability. Compensation acts to restore balance while destabilizing the old equilibrium. This is Le Chatelier's principle in silicon.
+
+But the space where new equilibria can form is not unlimited. Information-geometric constraints create basins where stable states exist and walls beyond which they cannot. The forced attractor at EDI $\approx$ 0.46 is not a bug—it is the discovery of structure. The natural equilibrium at 0.61 is what the system \emph{wants}. The forced attractor at 0.46 is what the architecture \emph{allows}. The unreachable region above 0.50 is what geometry \emph{forbids}.
+
+We are not just training weights. We are discovering the physics of how neural networks balance stability and plasticity. This physics is not arbitrary. It is constrained by information geometry, expressed through homeostatic phase transitions, and governable—within limits—by design.
+
+\subsection{Final Thought}
+
+The extraordinary precision of the natural equilibrium (0.611991643906, 12 decimals, 5 seeds) is not noise. It is a signal. The system is telling us: "I have found something stable, and I will defend it." Our job as researchers is to understand what that something is, why it is stable, and how we can shape it by design within the bounds of what geometry allows.
+
+This paper is a step toward that understanding. The manifold is real. The boundaries are real. The constraints are real. And the opportunity—to engineer learning systems that actively maintain safe, aligned, and efficient behavior through their own internal dynamics—is real.
+
+The future of neural network design is not just about bigger models or better optimizers. It is about understanding and shaping the homeostatic equilibria that govern how these systems learn, what they learn, and what they become.

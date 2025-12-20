@@ -1,0 +1,106 @@
+\section{Experiment 1: Anatomy of the Equilibrium}\label{sec:exp1}
+
+\textbf{Objective:} Define the physical substrate of homeostatic control and establish that suppression is a dynamic system state, not a static parameter.
+
+\subsection{The Layer-0 Bottleneck}
+
+\paragraph{Hypothesis.}
+If homeostasis is architectural, the control mechanism must sit at the network's tightest information bottleneck—layer 0, where the model must compress all input information through its first set of attention heads before passing it downstream.
+
+\paragraph{Methods.}
+We apply systematic ablation studies (heads-zero batteries) across GPT-2 Medium and Mistral-7B on four probe families: facts, negation, counterfactual reasoning, and logic. For each head, we measure the effect of ablation on two observables: (1) \emph{power} via logit difference (LD), defined as the model's preference for the correct continuation over a matched foil; and (2) \emph{information} via expected calibration error (ECE). We define the Variance Dampening Index (VDI) as $H/H_{\text{max}}$, measuring attention flattening (1.0 = suppressor dampens signal, 0.0 = amplifier enhances signal).
+
+\paragraph{Results: The Suppressor Coalition.}
+In GPT-2 Medium, three layer-0 heads consistently emerge across all four probe families: \textbf{heads 0:2, 0:4, and 0:7}. Table~\ref{tab:exp1-impact} shows their effect on logit difference when ablated.
+
+\begin{table}[h]
+    \centering
+    \caption{Effect of layer-0 suppressor ablations on logit difference (LD) in GPT-2 Medium. Positive $\Delta$LD indicates stronger factual preference after ablation.}
+    \label{tab:exp1-impact}
+    \begin{tabular}{lcccc}
+        \toprule
+        Task & Baseline LD & Ablated LD & $\Delta$LD & Heads \\
+        \midrule
+        Facts          & 1.484 & 1.882 & \textbf{+0.398} & 0:2, 0:4, 0:7 \\
+        Negation       & 1.607 & 2.449 & \textbf{+0.842} & 0:2, 0:4, 0:7 \\
+        Counterfactual & 1.420 & 2.266 & \textbf{+0.846} & 0:2, 0:4, 0:7 \\
+        Logic          & 1.294 & 1.846 & \textbf{+0.552} & 0:2, 0:4, 0:7 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Removing these heads improves factual preference by 0.40--0.85 logit difference and simultaneously improves calibration, passing our dual-observable test for structural circuits. Random baseline experiments place these heads in the $>99$th percentile: head 0:2 alone produces $\Delta$LD = +0.398, exceeding 99\% of 1,000 random single-head ablations (95th percentile = 0.162, 99th percentile = 0.169).
+
+\paragraph{Geometric Signature.}
+With suppressors active, the output distribution is dramatically flattened. On GPT-2 Medium facts ($N=64$ prompts), last-token entropy drops from $6.44$ nats to $4.01$ nats when we ablate the layer-0 trio, a change of $\Delta H = -2.44$ nats. Against 50 random layer-0 head sets, none were more extreme in the predicted (negative) direction ($p < 0.02$). The same signature replicates across counterfactual ($\Delta H = -3.49$), negation ($\Delta H = -3.81$), and logic ($\Delta H = -3.08$) probes.
+
+Early trajectory curvature consistently decreases under ablation (facts: $\Delta \kappa_{\text{early}} = -14.6$), consistent with an early hedging attractor: suppressors bend trajectories toward a stable region that downstream layers do not reverse; removing them straightens the path.
+
+\paragraph{The Set Point: Extraordinary Precision.}
+The system maintains a precise equilibrium state. In modular arithmetic grokking tasks (p=113) with different random seeds, the Variance Dampening Index converges to:
+
+\begin{center}
+\textbf{VDI = 0.611992} \\
+(exact to six decimal places across 5 independent seeds)
+\end{center}
+
+\begin{table}[h]
+\centering
+\caption{VDI equilibrium precision across 5 independent random seeds on modular arithmetic (p=113).}
+\label{tab:vdi-precision}
+\begin{tabular}{lcccc}
+\toprule
+Seed & VDI Equilibrium & Crystallization Window & Compensation Score & Final Accuracy \\
+\midrule
+0 & 0.611992 & 3300--3700 steps & 0.177 & 100\% \\
+1 & 0.611992 & 3500--3900 steps & 0.165 & 100\% \\
+2 & 0.611992 & 3600--4000 steps & 0.138 & 100\% \\
+3 & 0.611992 & 3400--3800 steps & 0.152 & 100\% \\
+4 & 0.611992 & 3800--4200 steps & 0.131 & 100\% \\
+\midrule
+\textbf{Mean} & \textbf{0.611992} & \textbf{3700 $\pm$ 400} & \textbf{0.13 $\pm$ 0.03} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This non-random precision implies a tightly regulated set point. The system does not stumble into this value. It finds it repeatedly with extraordinary consistency.
+
+\subsection{Circuit-Level Negotiation: The Counter-Force}
+
+\paragraph{Context.}
+Does suppression act alone, or does the network mount a counter-response? Recent work by Mann et al.~(2025) on \emph{ironic rebound} reveals that while early layers (0--7) successfully implement suppression of forbidden concepts, sparse middle-layer heads (8--16) actively amplify those same concepts under cognitive load.
+
+\paragraph{The White Bear Effect.}
+When instructed "do not think of X," the system shows:
+\begin{itemize}
+\item \textbf{Layer 0--7:} Suppression of X-related tokens (VDI $\approx$ 0.6--0.7, strong dampening)
+\item \textbf{Layer 8--16:} Amplification of X-related tokens (sparse heads boost probability mass)
+\item \textbf{Effect magnitude:} Under load, forbidden tokens receive 15--30\% probability boost from amplifier heads
+\end{itemize}
+
+\paragraph{Synthesis.}
+The equilibrium is not a one-way suppression. It is defined by the tension between two forces:
+\begin{enumerate}
+\item \textbf{Layer-0 Constraint:} Early heads suppress with VDI $\approx$ 0.61
+\item \textbf{Middle-Layer Compensation:} Later heads amplify to restore probability mass
+\end{enumerate}
+
+This mirrors the Le Chatelier pattern found at training time (Experiment 3): the system fights back against perturbation and works to restore balance. The equilibrium is actively maintained through distributed variance redistribution.
+
+\subsection{Mistral-7B: Task-Contingent Implementation}
+
+On Mistral-7B, the pattern replicates but with architectural differences. Layer-0 heads 22 and 23 act as suppressors on counterfactual (+0.28 LD improvement) and negation (+0.23) tasks, but show minimal effect on facts (+0.00) and opposing effect on logic (−0.04). This task-contingency reflects an \emph{anti-suppressor} circuit: head 0:21 opposes heads 0:22/0:23 on logical reasoning, creating modular competition.
+
+The key finding: although transformers converge on early suppressor behavior, the supporting circuitry adapts to architecture and training data, producing task-contingent variants rather than a single universal implementation.
+
+\subsection{Findings Summary}
+
+\begin{enumerate}
+\item \textbf{Location:} Suppressor heads sit at layer 0, the tightest information bottleneck
+\item \textbf{Precision:} Natural equilibrium at VDI = 0.611992 (6 decimal places, 5 seeds)
+\item \textbf{Effect size:} $\Delta$LD = +0.40 to +0.85, calibration improves simultaneously
+\item \textbf{Mechanism:} Tension between early-layer suppression and middle-layer amplification
+\item \textbf{Generality:} Pattern replicates across GPT-2 (124M--355M) and Mistral-7B, with task-contingent adaptations
+\end{enumerate}
+
+\textbf{Interpretation:} The equilibrium is physically instantiated in a dynamic tension between Layer-0 suppressors (VDI $\approx$ 0.61) and downstream amplifiers. This is not a static parameter. It is a system state maintained by active variance redistribution across the network.

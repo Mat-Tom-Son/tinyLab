@@ -1,0 +1,53 @@
+\section{Related Work}\label{sec:related}
+
+\subsection{Grokking and Phase Transitions}
+
+\textbf{Power et al.~(2022)} first identified grokking as delayed generalization in modular arithmetic, showing that networks can memorize training data for thousands of steps before suddenly generalizing. \textbf{Nanda et al.~(2023)} provided mechanistic interpretations of grokking circuits, showing that specific algorithmic structures emerge during the transition. Our work extends this by showing that grokking is a \emph{homeostatic phase transition}—a shift in equilibrium structure governed by compensatory dynamics.
+
+\textbf{Liu et al.~(2023)} and \textbf{Thilak et al.~(2022)} studied the role of weight decay and regularization in grokking, finding that regularization strength controls the memorization-generalization boundary. We provide a mechanistic account: regularization shapes the equilibrium manifold, and the transition occurs when perturbations destabilize the memorization equilibrium.
+
+\subsection{Mechanistic Interpretability}
+
+\textbf{Elhage et al.~(2021)} introduced the transformer circuits framework, decomposing model behavior into interpretable components. \textbf{Conmy et al.~(2023)} developed automated circuit discovery through activation patching. \textbf{Wang et al.~(2023)} analyzed induction heads as key building blocks. Our work adds a complementary perspective: circuits do not operate independently—they are part of a homeostatic system that actively maintains equilibria through distributed compensation.
+
+\textbf{Olsson et al.~(2022)} studied induction heads and found they emerge abruptly during training. We show that this abrupt emergence is characteristic of phase transitions on equilibrium manifolds, where the system suddenly transitions from one stable state to another.
+
+\subsection{Homeostasis in Biological Neural Networks}
+
+\textbf{Turrigiano and Nelson~(2004)} demonstrated synaptic scaling in biological neurons: when activity is perturbed, neurons adjust synaptic strengths to restore target firing rates. This is Le Chatelier's principle in neuroscience. \textbf{Zenke et al.~(2015)} showed that homeostatic plasticity prevents runaway dynamics in recurrent networks through dual-timescale mechanisms: fast Hebbian plasticity coupled to slow homeostatic regulation.
+
+Our work demonstrates that artificial neural networks implement analogous mechanisms without explicit biological inspiration. The dual-timescale structure emerges from the stability-plasticity constraint, suggesting convergent solutions across biological and artificial systems.
+
+\subsection{Information-Theoretic Constraints in Learning}
+
+\textbf{Tishby and Zaslavsky~(2015)} introduced the Information Bottleneck principle, showing that learning involves compression of inputs while retaining task-relevant information. \textbf{Saxe et al.~(2019)} demonstrated that neural networks undergo distinct phases during training, transitioning from memorization to compression.
+
+\textbf{Shwartz-Ziv and Tishby~(2017)} showed that deep networks exhibit two phases: fitting (increasing mutual information) and compression (decreasing MI while maintaining performance). Our forced attractor finding (Experiment 4) extends this: compression creates geometric constraints that bound the space of achievable equilibria.
+
+\textbf{Kalai et al.~(2023)} proved that hallucinations are inevitable under computational constraints when models must balance recall and calibration. Our layer-0 suppressors (Experiment 1) provide a mechanistic account: the network instantiates this tradeoff at the first bottleneck, where information geometry forces a choice between confident (high VDI) and hedged (low VDI) outputs.
+
+\subsection{Layer-0 Mechanisms and Early-Layer Control}
+
+\textbf{Voita et al.~(2019)} found that early-layer attention heads in transformers serve specialized roles (positional, syntactic) distinct from later layers. \textbf{Michel et al.~(2019)} showed that many attention heads can be pruned without degrading performance, but some early heads are critical.
+
+Our work identifies a specific early-layer motif: layer-0 suppressors that implement factuality-hedging tradeoffs at the information bottleneck. These heads are not just specialized—they are part of a homeostatic control system that regulates downstream computation.
+
+\subsection{Ironic Rebound and Negation}
+
+\textbf{Mann et al.~(2025)} discovered ironic rebound in transformers: instructing "do not think of X" causes middle-layer heads to amplify X-related tokens under cognitive load. This mirrors the White Bear effect from psychology (Wegner et al., 1987).
+
+We integrate this as evidence for Le Chatelier dynamics at inference time: the system compensates for layer-0 suppression by amplifying the suppressed content in middle layers. This is the same mechanism we validate at training time through kill tests (Experiment 3).
+
+\subsection{Dual-Timescale Learning}
+
+\textbf{Sutton~(1992)} introduced temporal-difference learning with multiple timescales for reinforcement learning. \textbf{Kumaran et al.~(2016)} showed that complementary learning systems in the brain operate at fast (hippocampal) and slow (neocortical) timescales.
+
+\textbf{Ororbia and Mali~(2023)} applied dual-timescale optimization to neural networks, showing improved sample efficiency. Our work demonstrates a new application: dual-timescale training enables \emph{homeostatic control} over equilibrium structure, achieving 93\% acceleration of phase transitions while revealing geometric constraints (forced attractors).
+
+\subsection{Equilibrium and Stability in Neural Networks}
+
+\textbf{Frankle and Carbin~(2018)} introduced the lottery ticket hypothesis, showing that sparse subnetworks exist at initialization that can match full network performance. \textbf{Zhou et al.~(2019)} extended this to show that winning tickets emerge early in training.
+
+Our homeostatic framework provides a complementary view: these "winning tickets" may correspond to stable equilibria on the manifold. Networks converge to them because they are attractor basins, not because of lucky initialization alone.
+
+\textbf{Fort et al.~(2020)} studied deep learning dynamics through the lens of dynamical systems, identifying stable and unstable fixed points. Our work extends this by showing that these fixed points are homeostatic equilibria actively maintained through distributed compensation.

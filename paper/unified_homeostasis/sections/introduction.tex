@@ -1,0 +1,37 @@
+\section{Introduction}\label{sec:intro}
+
+Learning systems face a fundamental constraint. They must change in response to new information while maintaining functional stability. This is the stability-plasticity dilemma, and it appears everywhere. In neuroscience, networks must learn new patterns without erasing old ones. In AI, models must adapt to novel tasks without forgetting what they already know. In evolution, organisms must innovate without losing survival-critical functions. The problem is real and it is hard.
+
+The standard view treats stability and plasticity as opposing forces. You pick a point on the Pareto frontier between them. You add regularization to stabilize learning, which crushes plasticity. You increase learning rates to stay plastic, which breaks stability. Architecture matters. Hyperparameters matter. But something fundamental is missing.
+
+What if the solution is not a tradeoff between opposing forces but a system that actively maintains both simultaneously through homeostatic regulation? In biological neural networks, this is how it actually works. The brain maintains homeostasis through dual-timescale mechanisms. Fast synaptic plasticity allows rapid learning. Slow synaptic scaling prevents runaway divergence. The two work together. Fast changes happen within a boundary maintained by slow regulatory loops. This is not compromise. This is design.
+
+\textbf{We propose that artificial neural networks use the same solution.} They implement homeostatic equilibrium through active variance redistribution across components. When part of the network is perturbed, other parts compensate. This compensation is not accidental. It is a coordinated response that preserves some internal quantity and shapes which solutions the network can discover during learning. But here is what we did not expect: these equilibria are not infinitely free. They are constrained by the underlying geometry of the problem.
+
+\subsection{The Key Insight}
+
+Learning appears to be a process of following gradients through weight space. But viewed from the perspective of homeostasis, learning is a process of exploring near an equilibrium manifold. The network sits near a metastable state, resisting change. Perturbations from that state create instability. Compensation acts to restore balance while simultaneously destabilizing the old equilibrium. This is Le Chatelier's principle applied to neural networks. When a system at equilibrium is perturbed, it responds by shifting internal variables in a way that opposes the perturbation. But the space where new equilibria can form is not unlimited. Information-geometric constraints create basins where stable states can exist and walls beyond which they cannot.
+
+\subsection{Four Experiments, One Story}
+
+We test this hypothesis across four experiments, each building on the others to show that homeostasis in neural networks is not just observable but controlled by deep architectural principles.
+
+\paragraph{Experiment 1: Anatomy of the Equilibrium.}
+We identify layer-0 suppressors in transformers as a key component of homeostatic control. These heads sit at the first bottleneck in the network, where information must be compressed. They implement a coalition that downweights confident continuations and boosts hedging tokens, effectively controlling how much the network commits to any particular path. They are positioned exactly where information-theoretic constraints force a homeostatic solution to exist. At a natural set point, they settle to an EDI value of 0.611992, exact to six decimal places across five independent random seeds. This precision is not noise. This is equilibrium.
+
+\paragraph{Experiment 2: The Boundaries of Perturbation.}
+We show that perturbations have limits. Observable-dependent saturation boundaries exist in the learning landscape. You cannot push suppressors arbitrarily far without hitting hard constraints. These boundaries are not arbitrary. They reflect the underlying geometry of the problem. The system resists perturbation up to a point, then the cost of further change becomes prohibitive.
+
+\paragraph{Experiment 3: The Kill Test and Active Compensation.}
+We block the compensation mechanism directly. When we prevent other heads from adjusting their outputs in response to suppressor perturbations, learning either slows dramatically (up to 4.9 times slower) or collapses into brittle non-generalizing solutions. This proves the compensation is active and necessary, not a passive byproduct of optimization. It proves Le Chatelier's principle is operating in silicon. The network does not accept perturbations passively. It pushes back.
+
+\paragraph{Experiment 4: The Geometry of Designability.}
+We design a training regime that explicitly targets a different equilibrium. Using dual-timescale optimization and set-point loss functions, we accelerate homeostatic crystallization by 93 percent while maintaining perfect task performance. This demonstrates that equilibria can be shaped through training design. But when we systematically target different equilibrium values, a surprising pattern emerges. The system can track low targets accurately (VDI 0.45 → final 0.444), but when we target high values (VDI 0.65 → final 0.460), it refuses and settles at a forced attractor around 0.44--0.46. The Phase 1 natural equilibrium at 0.611992 sits above this attractor, outside the reach of homeostatic pressure. This tells us something fundamental: Q is not infinitely designable. It is constrained by information-geometric limits on the space where stable equilibria can form under dual-timescale regulation.
+
+\subsection{Implications}
+
+Together, these experiments tell a single story about the architecture of learning itself. Homeostatic equilibrium is not a quirk of one setup or one task. It is a fundamental principle that emerges when learning systems face the stability-plasticity constraint. And it is not infinitely free. It is shaped by the information geometry of the network and the constraints it faces.
+
+The implications cut across multiple fields. For interpretability, it means understanding circuits requires understanding the equilibrium manifolds they inhabit, not just individual components or gradients. For alignment, it suggests that designing training regimes to move equilibria toward safe attractors is more promising than adding external constraints that get routed around. For architecture, it means dual-timescale mechanisms are not optional features but fundamental design principles, and that real limits exist on what equilibria can be maintained.
+
+This paper presents evidence for all four claims. We show the anatomy, the boundaries, the mechanism, and the geometry of designability. The story builds. The evidence accumulates. By the end, we can say with confidence that neural networks learn through homeostatic phase transitions, that these transitions are governed by information-geometric constraints, and that we can shape them by design within the space of what is possible.

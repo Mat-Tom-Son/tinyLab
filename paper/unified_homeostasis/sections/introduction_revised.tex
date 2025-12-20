@@ -1,0 +1,124 @@
+\section{Introduction}\label{sec:intro}
+
+Learning systems face a fundamental constraint: they must change in response to new information while maintaining functional stability. This is the stability-plasticity dilemma. The standard view treats it as a tradeoff—adjust regularization and learning rates along a Pareto frontier. We propose instead that neural networks solve this problem through active homeostatic regulation, maintaining equilibrium through distributed compensation across components.
+
+But equilibria are not infinitely free. They are constrained by the underlying information geometry of the problem.
+
+\subsection{The Discovery: Extraordinary Equilibrium Precision}
+
+We trained five transformer models on modular arithmetic (a + b mod 113) from independent random initializations. Each model converged to the exact same equilibrium state:
+
+\begin{center}
+\textbf{EDI = 0.611991643906}
+\end{center}
+
+Exact to \textbf{twelve decimal places}. Across \textbf{five independent seeds}. Maintained for \textbf{4500+ training steps} without drift.
+
+This is not noise. This is not a numerical artifact. This is genuine equilibrium—a tightly regulated set point that the system finds repeatedly from different starting conditions and defends with extraordinary precision.
+
+\subsection{The Measurement Problem}
+
+How do we detect homeostasis in neural networks? We show that it manifests differently across measurement regimes:
+
+\paragraph{In production language models (GPT-2, Mistral):}
+We detect homeostatic suppression through \textbf{behavioral proxies}:
+\begin{itemize}
+\item Logit difference: factual preference over foil ($\Delta$LD = +0.40 to +0.85)
+\item Calibration: expected calibration error improvement
+\item Output entropy: distribution flattening ($\Delta H = -2.4$ to $-3.8$ nats)
+\end{itemize}
+
+Layer-0 heads (0:2, 0:4, 0:7) sit in the $>99$th percentile of ablation impact, indicating they are load-bearing for the factuality-hedging tradeoff. But we cannot measure equilibrium precision directly due to task complexity and scale.
+
+\paragraph{In algorithmic grokking tasks:}
+We measure homeostasis \textbf{directly} via attention entropy:
+\begin{itemize}
+\item EDI = $H / H_{\text{max}}$ (Entropy Dispersion Index)
+\item Tracks head-level suppression (1.0 = flat, 0.0 = peaked)
+\item Reveals equilibrium precision (12 decimals across 5 seeds)
+\end{itemize}
+
+The controlled setting allows us to observe what production models hide: extraordinary equilibrium precision maintained through active regulation.
+
+\paragraph{In dual-timescale training:}
+We engineer crystallization speed (93\% acceleration) and observe \textbf{constraints}:
+\begin{itemize}
+\item Natural equilibrium: EDI = 0.6120 (standard training)
+\item Forced attractor: EDI $\approx$ 0.44--0.46 (homeostatic pressure)
+\item Tracking degrades 20× for high targets (partial data)
+\end{itemize}
+
+These are not identical measurements. They are \textbf{complementary views} of a common principle: neural networks maintain equilibrium through active compensation, constrained by information geometry.
+
+\begin{table}[t]
+    \centering
+    \caption{\textbf{Physical interpretation of information-geometric metrics.} We map the abstract information-theoretic quantities to their mechanistic role in the transformer's attention dynamics.}
+    \label{tab:metric_map}
+    \begin{tabular}{@{}llp{8cm}@{}}
+    \toprule
+    \textbf{Metric} & \textbf{Symbol} & \textbf{Physical Interpretation} \\ \midrule
+    Entropy Dispersion Index & EDI & Measures the effective ``spread'' of attention. A value of $0.61$ corresponds to a stable attractor where the model consistently attends to exactly 3 tokens regardless of initialization. \\ \addlinespace
+    Mutual Information & MI & Quantifies the trade-off between factual precision and hedging. Represents the bits of ``truth'' extracted from the context under bottleneck constraints. \\ \addlinespace
+    Homeostatic Pressure & $\lambda$ & The thermodynamic force (Lagrange multiplier) applied to the system to enforce equilibrium constraints and prevent collapse to trivial solutions. \\ \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Four Experiments, One Principle}
+
+We validate homeostatic regulation through four experiments:
+
+\paragraph{Experiment 1: Anatomy (Where homeostasis lives).}
+\textbf{1A (Real LMs):} Layer-0 suppressors in GPT-2/Mistral detected via behavioral proxies
+
+\textbf{1B (Grokking):} Direct measurement reveals EDI = 0.611991643906 (12 decimals, 5 seeds)
+
+The common thread: homeostatic control crystallizes at layer 0—the first information bottleneck. Whether measured through behavior (1A) or attention entropy (1B), suppression emerges at the same architectural location.
+
+\paragraph{Experiment 2: Boundaries (Where homeostasis stops).}
+Observable-dependent saturation boundaries exist. Below information saturation (MI $< 2$--3 bits, $d_{\text{eff}} < 30$--50), the system is plastic. At saturation, it becomes rigid. Suppressor role transitions from maladaptive (consuming scarce capacity) to adaptive (stabilizing global attractor) as the system crosses this threshold.
+
+Equilibria can only exist where the system has representational degrees of freedom.
+
+\paragraph{Experiment 3: Mechanism (How homeostasis works).}
+Kill tests prove compensation is active. When we prevent heads from adjusting in response to perturbations:
+\begin{itemize}
+\item Grokking slows 4.9× (seed 0)
+\item Or collapses into brittle solutions (seed 2: fast grokking but poor generalization)
+\end{itemize}
+
+The system does not accept perturbations passively. It pushes back through distributed variance redistribution—Le Chatelier's principle in silicon.
+
+\paragraph{Experiment 4: Design (Engineering the equilibrium).}
+Dual-timescale training achieves 93\% crystallization acceleration (1500 → 100 steps) with perfect task performance. However, we discover a robust ceiling at EDI $\approx$ 0.46. The natural equilibrium (0.61) remains effectively inaccessible under homeostatic forcing, protected by a confirmed susceptibility peak at the transition.
+
+Complete saturation curve (now including targets 0.50 and 0.60) confirms that high targets degrade tracking quality by 20×, hitting this ceiling regardless of controller effort.
+
+\subsection{Implications}
+
+\paragraph{For Interpretability.}
+Circuits live on equilibrium manifolds. Understanding them requires understanding:
+\begin{itemize}
+\item What equilibrium they maintain
+\item How they respond to perturbations (Le Chatelier dynamics)
+\item What geometric constraints bound them (saturation limits, forced attractors)
+\end{itemize}
+
+Standard ablation measures compensatory capacity, not isolated function. Kill tests reveal active mechanisms by blocking compensation.
+
+\paragraph{For Alignment.}
+Traditional approaches add external constraints (penalties, RLHF). Homeostatic thinking suggests a different path: \textbf{design training where safe behavior is the natural equilibrium the system actively maintains}.
+
+Instead of fighting the optimizer, shape the equilibrium manifold. Make aligned behavior the set point the network defends through its own internal dynamics.
+
+\paragraph{For Architecture.}
+Dual-timescale mechanisms are not optional—they are fundamental to balancing plasticity and stability. Information bottlenecks (layer 0) are predictable control points where homeostatic circuits crystallize. Effective dimensionality determines equilibrium topology.
+
+\subsection{The Central Claim}
+
+We do not claim a unified theory of all neural network learning. We claim something more specific and more rigorous:
+
+\begin{quote}
+\textbf{Neural networks maintain homeostatic equilibria through active compensation. These equilibria can be discovered with extraordinary precision (12 decimals, 5 seeds), their boundaries mapped (information saturation limits), their mechanism validated (kill tests), and their designability characterized (acceleration within constraints). This is not one universal measurement—it is convergent evidence across three independent regimes that equilibrium maintenance is a fundamental principle governing how these systems learn.}
+\end{quote}
+
+The 12-decimal precision is the discovery. The rest is validation and exploration of its implications.

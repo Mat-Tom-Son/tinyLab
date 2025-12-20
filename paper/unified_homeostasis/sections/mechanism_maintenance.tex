@@ -1,0 +1,38 @@
+\section{The Mechanism of Maintenance}\label{sec:mechanism}
+
+How does the system maintain such rigid precision? We propose it is defended by \textbf{active homeostatic compensation}, utilizing Le Chatelier's principle to redistribute variance when perturbed. We validate this mechanism through two complementary stress tests: a training-time "Kill Test" (blocking formation) and a stability-time "Pulse Test" (disturbing equilibrium).
+
+\subsection{Training Dynamics: The Kill Test}
+Building on the homeostatic mechanism validated in [Paper 3], we briefly recap the effect of blocking compensation during learning. In Parity tasks, actively suppressing a key head ($\omega=0.5$) typically accelerates learning by forcing other heads to compensate ("hydra effect"). 
+
+However, when we \textbf{freeze} the compensating heads (Heads 1-3), this acceleration vanishes. In Seed 0, blocking compensation slowed grokking by \textbf{4.9$\times$} (3,200 $\to$ 10,800 steps). In Seed 2, it forced the model into a brittle, non-generalizing solution (Acc $\approx$ 0.50). This confirms that the robust equilibrium is not found by single heads alone, but by a coordinated coalition.
+
+\subsection{Stability Dynamics: The Pulse Test}
+To demonstrate that the equilibrium is \textbf{actively defended} once formed, we conducted a precise "Perturb-and-Recover" experiment on the 12-decimal equilibrium system (Parity Task, Production Seed 1).
+
+\textbf{Protocol:}
+\begin{itemize}
+    \item Train to full grokking (T $\approx$ 42k steps, Acc=1.0).
+    \item At step 45,000, apply a transient suppression pulse ($\omega=0.5$) to Head 0.
+    \item Measure the functional drop and the recovery trajectory.
+\end{itemize}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/pulse_recovery.pdf}
+    \caption{Active Homeostatic Recovery. At step 45,000, a suppression pulse ($\omega=0.5$) applied to Head 0 causes an immediate functional drop (Acc $\to$ 0.77). Upon removal, the system rapidly recovers to the exact functional set-point ($Acc > 0.99$) within 300 steps, demonstrating active defense of the equilibrium.}
+    \label{fig:pulse}
+\end{figure}
+
+\textbf{Result 1: Active Recovery.}
+As shown in Figure~\ref{fig:pulse}, the pulse caused an immediate functional collapse ($Acc: 1.00 \to 0.77$), confirming Head 0's criticality. However, the system did not drift. Upon pulse removal, it rapidly snapped back to the exact functional set-point ($Acc: 0.999$) within 300 steps. The Effective Rank (EDI) remained pinned at its high-entropy set-point ($EDI \approx 0.967$) throughout, suggesting the "geometry" of the solution provided the restoring force.
+
+\textbf{Result 2: Local vs. Global Compensation.}
+We investigated the \emph{source} of this recovery by comparing a "Free" run (all heads adapt) vs. a "Frozen" control (neighbors froze during pulse).
+\begin{itemize}
+    \item \textbf{Baseline (Free):} Accuracy dipped to 0.69 before recovering. The global update caused temporary interference.
+    \item \textbf{Frozen Control:} Accuracy remained perfect ($>0.99$) throughout the pulse.
+\end{itemize}
+
+This counter-intuitive finding reveals that \textbf{local adaptation} (the suppressed head rescaling itself) is more robust than global compensation for transient perturbations. The "dip" in the baseline was caused by neighbors trying to help but creating destructive interference—a high "coordination cost." This highlights a design principle for resilient networks: \emph{modular repair outperforms global optimization} for maintaining specific equilibria.

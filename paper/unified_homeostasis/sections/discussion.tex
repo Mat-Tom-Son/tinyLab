@@ -1,0 +1,112 @@
+\section{Discussion}\label{sec:discussion}
+
+\subsection{Implications for Alignment}
+
+Traditional alignment approaches treat the model as a static optimizer that we must constrain through penalties, filters, or RLHF. Homeostatic thinking suggests a different approach: \textbf{design training regimes where aligned behavior is the natural equilibrium the system actively maintains}.
+
+\paragraph{The Standard Approach.}
+Current methods add constraints:
+\begin{itemize}
+\item Penalize the model if it produces harmful content
+\item Filter training data to remove problematic examples
+\item Use RLHF to steer toward preferred behaviors
+\end{itemize}
+
+These are external pressures. The model learns to route around them or satisfies them superficially while maintaining misaligned representations internally.
+
+\paragraph{The Homeostatic Approach.}
+Instead of constraining the optimizer, shape the equilibrium manifold:
+\begin{enumerate}
+\item \textbf{Identify the current equilibrium:} What VDI value (or other conserved quantity) does the model naturally maintain for safety-relevant circuits?
+
+\item \textbf{Map the boundaries:} Where are the information-saturation limits? What capacity constraints determine the feasible equilibrium space?
+
+\item \textbf{Engineer the attractor:} Use dual-timescale training + homeostatic loss to create a forced attractor at a safe equilibrium. Leverage the system's active compensation mechanisms rather than fighting them.
+
+\item \textbf{Validate stability:} Run kill tests. If you block compensation, does aligned behavior collapse? If not, it's not actively maintained—it's just surface-level compliance.
+\end{enumerate}
+
+\textbf{Example:} If harmful content generation involves layer-0 amplifiers at VDI $\approx$ 0.3, and safe hedging involves suppressors at VDI $\approx$ 0.6, we want to:
+\begin{itemize}
+\item Design training to make VDI = 0.6 the natural attractor
+\item Ensure the system actively compensates to maintain this equilibrium (validated via kill tests)
+\item Verify the forced attractor is stable (robust to perturbations, no escape routes to VDI = 0.3)
+\end{itemize}
+
+This is fundamentally different from adding a penalty for harmful outputs. We are making safe behavior the homeostatic set point that the network defends through its own internal dynamics.
+
+\subsection{Implications for Architecture Design}
+
+\paragraph{Dual-Timescale Mechanisms Are Fundamental.}
+Our results show that dual-timescale training is not an optional optimization trick—it is a fundamental design principle for systems that must balance plasticity and stability. The brain implements this through fast synaptic plasticity coupled to slow homeostatic scaling. Artificial networks should do it deliberately:
+\begin{itemize}
+\item Fast components: Learn task-specific patterns quickly
+\item Slow components: Maintain regulatory boundaries that prevent runaway dynamics
+\end{itemize}
+
+\paragraph{Information Bottlenecks Are Control Points.}
+Layer 0 is where suppressors emerge because it is the tightest information bottleneck. This is predictable from geometry. When designing architectures, the first compression point will be where homeostatic control circuits crystallize. Understanding this allows:
+\begin{itemize}
+\item Intentional placement of regulatory mechanisms
+\item Predictable emergence of equilibrium structures
+\item Targeted interventions at critical control points
+\end{itemize}
+
+\paragraph{Effective Dimensionality Determines Equilibrium Topology.}
+Below $d_{\text{eff}} \approx$ 30--50, suppressors are maladaptive (they consume scarce capacity). Above this threshold, they become adaptive (they stabilize global attractors). This phase transition is predictable from capacity. Architectural choices that affect $d_{\text{eff}}$ will qualitatively change learning dynamics, not just quantitatively.
+
+\subsection{Implications for Interpretability}
+
+\paragraph{Circuits Live on Equilibrium Manifolds.}
+Standard mechanistic interpretability focuses on individual components (attention heads, MLP neurons) or specific pathways (circuits). Our work shows that these components are part of a homeostatic system that actively maintains equilibria. Understanding a circuit requires understanding:
+\begin{itemize}
+\item What equilibrium it is maintaining (what is Q?)
+\item How it responds to perturbations (Le Chatelier dynamics)
+\item What geometric constraints bound it (information saturation, forced attractors)
+\end{itemize}
+
+\paragraph{Ablation Studies Must Account for Compensation.}
+When you ablate a head, the network compensates. Standard ablation assumes independence: "this head contributes X to the output." But if other heads adjust in response, you are measuring the system's \emph{compensatory capacity}, not the head's isolated function. Kill tests (Experiment 3) reveal the active mechanism by blocking compensation.
+
+\paragraph{Interventions Should Target Equilibria, Not Components.}
+Steering a single head's output (e.g., activation addition, representation engineering) may trigger compensation that restores the original equilibrium through other pathways. More effective interventions target the equilibrium itself:
+\begin{itemize}
+\item Change the set point (shift VDI target during training)
+\item Modify the boundaries (adjust information saturation limits)
+\item Reshape the attractor basin (dual-timescale training with homeostatic loss)
+\end{itemize}
+
+\subsection{The White Bear Connection: Inference-Time Dynamics}
+
+The White Bear effect (ironic rebound under negation instructions) is the inference-time manifestation of the same homeostatic principle operating at training time. When you instruct "do not think of X," layer-0 suppressors attempt to dampen X-related tokens, but middle-layer amplifiers compensate by boosting those same tokens. The system fights suppression to maintain equilibrium, just as it fights perturbations during training (Experiment 3).
+
+This suggests Le Chatelier's principle is a general property of how transformers handle constraints, not just a training-time artifact. The network has learned to maintain equilibria, and it applies this learned strategy both during training and at inference.
+
+\subsection{Limitations}
+
+\paragraph{Task Scope.}
+\paragraph{Task Scope: Algorithmic vs. General.}
+We focus on algorithmic tasks (parity, modular arithmetic) and specific factuality-preservation circuits in LLMs. Our claims of "homeostatic regulation" are currently bounded to these domains where precise, discrete solution structures (grokking) or specific factual associations are required. It remains an open question whether similar equilibria govern open-ended tasks like creative writing, reasoning, or dialogue, where the solution space is continuous and higher-dimensional. The "equilibrium" in such tasks may be a dynamic trajectory rather than a fixed point.
+
+\paragraph{Model Scale.}
+Our crystallization experiments use small transformers (2 layers, 2--8 heads, $d_{\text{model}}=64$). Experiment 1 validates layer-0 suppressors in GPT-2 Medium (355M) and Mistral-7B, but we have not tested whether forced attractors persist at billion-parameter scale.
+
+\paragraph{Direct Measurement of Q.}
+We infer that some conserved quantity Q exists based on equilibrium precision and compensation dynamics, but we have not directly measured it. Candidates include mutual information, effective rank, attention budget, or gradient norm ratios. Future work should identify Q explicitly.
+
+\paragraph{Causal Mechanisms.}
+We validate that compensation is active (Experiment 3) and that forced attractors exist (Experiment 4), but we do not fully explain \emph{why} the forced attractor sits at VDI $\approx$ 0.44--0.46. Is this determined by channel capacity? Effective rank? Architectural inductive biases? The mechanism remains partially unexplained.
+
+\subsection{Open Questions}
+
+\begin{enumerate}
+\item \textbf{What is Q mechanistically?} Is it mutual information, effective rank, attention budget, or something else? Can we measure it directly?
+
+\item \textbf{Why 0.44--0.46 specifically?} What conserved quantity forces the attractor to this value under dual-timescale training?
+
+\item \textbf{Does the ceiling move?} Can different architectures reach higher VDI under homeostatic pressure, or is 0.46 a universal limit?
+
+\item \textbf{Does this generalize?} Do forced attractors exist for other tasks, other architectures, other training regimes?
+
+\item \textbf{Can we predict equilibrium location from task structure?} Given a task, can we predict where the natural equilibrium will settle before training?
+\end{enumerate}

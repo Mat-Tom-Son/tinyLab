@@ -1,1 +1,1277 @@
-../data_quad/modular_p97_test.jsonl
+{"prompt": "sum of 91 and 100 is", "target": "78", "a": 91, "b": 100, "result": 78}
+{"prompt": "what is 110 + 43?", "target": "40", "a": 110, "b": 43, "result": 40}
+{"prompt": "what is 62 + 104?", "target": "53", "a": 62, "b": 104, "result": 53}
+{"prompt": "13 + 11 =", "target": "24", "a": 13, "b": 11, "result": 24}
+{"prompt": "what is 104 + 60?", "target": "51", "a": 104, "b": 60, "result": 51}
+{"prompt": "41 plus 75 equals", "target": "3", "a": 41, "b": 75, "result": 3}
+{"prompt": "99 + 26 =", "target": "12", "a": 99, "b": 26, "result": 12}
+{"prompt": "sum of 91 and 57 is", "target": "35", "a": 91, "b": 57, "result": 35}
+{"prompt": "what is 34 + 4?", "target": "38", "a": 34, "b": 4, "result": 38}
+{"prompt": "9 plus 104 equals", "target": "0", "a": 9, "b": 104, "result": 0}
+{"prompt": "89 + 59 =", "target": "35", "a": 89, "b": 59, "result": 35}
+{"prompt": "sum of 5 and 23 is", "target": "28", "a": 5, "b": 23, "result": 28}
+{"prompt": "sum of 78 and 50 is", "target": "15", "a": 78, "b": 50, "result": 15}
+{"prompt": "70 plus 84 equals", "target": "41", "a": 70, "b": 84, "result": 41}
+{"prompt": "sum of 90 and 99 is", "target": "76", "a": 90, "b": 99, "result": 76}
+{"prompt": "45 plus 103 equals", "target": "35", "a": 45, "b": 103, "result": 35}
+{"prompt": "sum of 55 and 11 is", "target": "66", "a": 55, "b": 11, "result": 66}
+{"prompt": "77 plus 41 equals", "target": "5", "a": 77, "b": 41, "result": 5}
+{"prompt": "97 + 87 =", "target": "71", "a": 97, "b": 87, "result": 71}
+{"prompt": "47 plus 72 equals", "target": "6", "a": 47, "b": 72, "result": 6}
+{"prompt": "11 + 72 =", "target": "83", "a": 11, "b": 72, "result": 83}
+{"prompt": "what is 94 + 24?", "target": "5", "a": 94, "b": 24, "result": 5}
+{"prompt": "57 + 71 =", "target": "15", "a": 57, "b": 71, "result": 15}
+{"prompt": "what is 100 + 49?", "target": "36", "a": 100, "b": 49, "result": 36}
+{"prompt": "what is 90 + 41?", "target": "18", "a": 90, "b": 41, "result": 18}
+{"prompt": "49 + 9 =", "target": "58", "a": 49, "b": 9, "result": 58}
+{"prompt": "what is 110 + 112?", "target": "109", "a": 110, "b": 112, "result": 109}
+{"prompt": "what is 68 + 8?", "target": "76", "a": 68, "b": 8, "result": 76}
+{"prompt": "sum of 10 and 95 is", "target": "105", "a": 10, "b": 95, "result": 105}
+{"prompt": "22 plus 43 equals", "target": "65", "a": 22, "b": 43, "result": 65}
+{"prompt": "94 + 105 =", "target": "86", "a": 94, "b": 105, "result": 86}
+{"prompt": "sum of 59 and 50 is", "target": "109", "a": 59, "b": 50, "result": 109}
+{"prompt": "20 + 101 =", "target": "8", "a": 20, "b": 101, "result": 8}
+{"prompt": "2 + 25 =", "target": "27", "a": 2, "b": 25, "result": 27}
+{"prompt": "what is 66 + 28?", "target": "94", "a": 66, "b": 28, "result": 94}
+{"prompt": "sum of 76 and 29 is", "target": "105", "a": 76, "b": 29, "result": 105}
+{"prompt": "14 plus 51 equals", "target": "65", "a": 14, "b": 51, "result": 65}
+{"prompt": "63 + 94 =", "target": "44", "a": 63, "b": 94, "result": 44}
+{"prompt": "sum of 14 and 62 is", "target": "76", "a": 14, "b": 62, "result": 76}
+{"prompt": "48 + 15 =", "target": "63", "a": 48, "b": 15, "result": 63}
+{"prompt": "85 plus 64 equals", "target": "36", "a": 85, "b": 64, "result": 36}
+{"prompt": "what is 72 + 93?", "target": "52", "a": 72, "b": 93, "result": 52}
+{"prompt": "104 + 46 =", "target": "37", "a": 104, "b": 46, "result": 37}
+{"prompt": "5 + 41 =", "target": "46", "a": 5, "b": 41, "result": 46}
+{"prompt": "what is 71 + 92?", "target": "50", "a": 71, "b": 92, "result": 50}
+{"prompt": "22 + 6 =", "target": "28", "a": 22, "b": 6, "result": 28}
+{"prompt": "94 plus 60 equals", "target": "41", "a": 94, "b": 60, "result": 41}
+{"prompt": "what is 96 + 25?", "target": "8", "a": 96, "b": 25, "result": 8}
+{"prompt": "sum of 55 and 110 is", "target": "52", "a": 55, "b": 110, "result": 52}
+{"prompt": "55 + 31 =", "target": "86", "a": 55, "b": 31, "result": 86}
+{"prompt": "what is 110 + 59?", "target": "56", "a": 110, "b": 59, "result": 56}
+{"prompt": "46 + 15 =", "target": "61", "a": 46, "b": 15, "result": 61}
+{"prompt": "6 plus 37 equals", "target": "43", "a": 6, "b": 37, "result": 43}
+{"prompt": "59 + 63 =", "target": "9", "a": 59, "b": 63, "result": 9}
+{"prompt": "33 + 97 =", "target": "17", "a": 33, "b": 97, "result": 17}
+{"prompt": "55 + 59 =", "target": "1", "a": 55, "b": 59, "result": 1}
+{"prompt": "what is 82 + 102?", "target": "71", "a": 82, "b": 102, "result": 71}
+{"prompt": "34 plus 70 equals", "target": "104", "a": 34, "b": 70, "result": 104}
+{"prompt": "what is 101 + 14?", "target": "2", "a": 101, "b": 14, "result": 2}
+{"prompt": "27 plus 39 equals", "target": "66", "a": 27, "b": 39, "result": 66}
+{"prompt": "46 plus 74 equals", "target": "7", "a": 46, "b": 74, "result": 7}
+{"prompt": "what is 66 + 2?", "target": "68", "a": 66, "b": 2, "result": 68}
+{"prompt": "54 plus 78 equals", "target": "19", "a": 54, "b": 78, "result": 19}
+{"prompt": "sum of 78 and 89 is", "target": "54", "a": 78, "b": 89, "result": 54}
+{"prompt": "sum of 80 and 2 is", "target": "82", "a": 80, "b": 2, "result": 82}
+{"prompt": "sum of 48 and 22 is", "target": "70", "a": 48, "b": 22, "result": 70}
+{"prompt": "50 + 4 =", "target": "54", "a": 50, "b": 4, "result": 54}
+{"prompt": "70 + 25 =", "target": "95", "a": 70, "b": 25, "result": 95}
+{"prompt": "what is 78 + 10?", "target": "88", "a": 78, "b": 10, "result": 88}
+{"prompt": "64 plus 84 equals", "target": "35", "a": 64, "b": 84, "result": 35}
+{"prompt": "sum of 21 and 61 is", "target": "82", "a": 21, "b": 61, "result": 82}
+{"prompt": "70 plus 112 equals", "target": "69", "a": 70, "b": 112, "result": 69}
+{"prompt": "what is 95 + 77?", "target": "59", "a": 95, "b": 77, "result": 59}
+{"prompt": "sum of 84 and 9 is", "target": "93", "a": 84, "b": 9, "result": 93}
+{"prompt": "85 + 11 =", "target": "96", "a": 85, "b": 11, "result": 96}
+{"prompt": "43 + 32 =", "target": "75", "a": 43, "b": 32, "result": 75}
+{"prompt": "what is 41 + 1?", "target": "42", "a": 41, "b": 1, "result": 42}
+{"prompt": "0 + 42 =", "target": "42", "a": 0, "b": 42, "result": 42}
+{"prompt": "what is 38 + 83?", "target": "8", "a": 38, "b": 83, "result": 8}
+{"prompt": "73 + 69 =", "target": "29", "a": 73, "b": 69, "result": 29}
+{"prompt": "what is 49 + 31?", "target": "80", "a": 49, "b": 31, "result": 80}
+{"prompt": "60 + 18 =", "target": "78", "a": 60, "b": 18, "result": 78}
+{"prompt": "105 plus 9 equals", "target": "1", "a": 105, "b": 9, "result": 1}
+{"prompt": "what is 10 + 13?", "target": "23", "a": 10, "b": 13, "result": 23}
+{"prompt": "what is 19 + 89?", "target": "108", "a": 19, "b": 89, "result": 108}
+{"prompt": "what is 73 + 78?", "target": "38", "a": 73, "b": 78, "result": 38}
+{"prompt": "86 plus 102 equals", "target": "75", "a": 86, "b": 102, "result": 75}
+{"prompt": "27 + 71 =", "target": "98", "a": 27, "b": 71, "result": 98}
+{"prompt": "55 + 69 =", "target": "11", "a": 55, "b": 69, "result": 11}
+{"prompt": "20 plus 109 equals", "target": "16", "a": 20, "b": 109, "result": 16}
+{"prompt": "79 + 104 =", "target": "70", "a": 79, "b": 104, "result": 70}
+{"prompt": "66 plus 25 equals", "target": "91", "a": 66, "b": 25, "result": 91}
+{"prompt": "35 + 38 =", "target": "73", "a": 35, "b": 38, "result": 73}
+{"prompt": "what is 68 + 52?", "target": "7", "a": 68, "b": 52, "result": 7}
+{"prompt": "69 + 108 =", "target": "64", "a": 69, "b": 108, "result": 64}
+{"prompt": "60 plus 27 equals", "target": "87", "a": 60, "b": 27, "result": 87}
+{"prompt": "what is 39 + 72?", "target": "111", "a": 39, "b": 72, "result": 111}
+{"prompt": "102 plus 31 equals", "target": "20", "a": 102, "b": 31, "result": 20}
+{"prompt": "sum of 73 and 88 is", "target": "48", "a": 73, "b": 88, "result": 48}
+{"prompt": "sum of 42 and 35 is", "target": "77", "a": 42, "b": 35, "result": 77}
+{"prompt": "sum of 72 and 29 is", "target": "101", "a": 72, "b": 29, "result": 101}
+{"prompt": "22 plus 36 equals", "target": "58", "a": 22, "b": 36, "result": 58}
+{"prompt": "sum of 93 and 103 is", "target": "83", "a": 93, "b": 103, "result": 83}
+{"prompt": "what is 17 + 3?", "target": "20", "a": 17, "b": 3, "result": 20}
+{"prompt": "66 plus 102 equals", "target": "55", "a": 66, "b": 102, "result": 55}
+{"prompt": "sum of 16 and 50 is", "target": "66", "a": 16, "b": 50, "result": 66}
+{"prompt": "sum of 110 and 91 is", "target": "88", "a": 110, "b": 91, "result": 88}
+{"prompt": "what is 13 + 58?", "target": "71", "a": 13, "b": 58, "result": 71}
+{"prompt": "59 + 17 =", "target": "76", "a": 59, "b": 17, "result": 76}
+{"prompt": "80 + 8 =", "target": "88", "a": 80, "b": 8, "result": 88}
+{"prompt": "1 plus 111 equals", "target": "112", "a": 1, "b": 111, "result": 112}
+{"prompt": "79 + 97 =", "target": "63", "a": 79, "b": 97, "result": 63}
+{"prompt": "sum of 45 and 6 is", "target": "51", "a": 45, "b": 6, "result": 51}
+{"prompt": "22 plus 108 equals", "target": "17", "a": 22, "b": 108, "result": 17}
+{"prompt": "sum of 34 and 78 is", "target": "112", "a": 34, "b": 78, "result": 112}
+{"prompt": "88 plus 31 equals", "target": "6", "a": 88, "b": 31, "result": 6}
+{"prompt": "sum of 91 and 39 is", "target": "17", "a": 91, "b": 39, "result": 17}
+{"prompt": "4 plus 20 equals", "target": "24", "a": 4, "b": 20, "result": 24}
+{"prompt": "what is 17 + 68?", "target": "85", "a": 17, "b": 68, "result": 85}
+{"prompt": "70 + 31 =", "target": "101", "a": 70, "b": 31, "result": 101}
+{"prompt": "101 + 27 =", "target": "15", "a": 101, "b": 27, "result": 15}
+{"prompt": "63 plus 59 equals", "target": "9", "a": 63, "b": 59, "result": 9}
+{"prompt": "41 plus 86 equals", "target": "14", "a": 41, "b": 86, "result": 14}
+{"prompt": "what is 18 + 112?", "target": "17", "a": 18, "b": 112, "result": 17}
+{"prompt": "sum of 79 and 71 is", "target": "37", "a": 79, "b": 71, "result": 37}
+{"prompt": "38 plus 81 equals", "target": "6", "a": 38, "b": 81, "result": 6}
+{"prompt": "109 + 6 =", "target": "2", "a": 109, "b": 6, "result": 2}
+{"prompt": "7 plus 54 equals", "target": "61", "a": 7, "b": 54, "result": 61}
+{"prompt": "sum of 64 and 10 is", "target": "74", "a": 64, "b": 10, "result": 74}
+{"prompt": "what is 90 + 76?", "target": "53", "a": 90, "b": 76, "result": 53}
+{"prompt": "what is 72 + 31?", "target": "103", "a": 72, "b": 31, "result": 103}
+{"prompt": "90 + 31 =", "target": "8", "a": 90, "b": 31, "result": 8}
+{"prompt": "52 plus 51 equals", "target": "103", "a": 52, "b": 51, "result": 103}
+{"prompt": "what is 75 + 19?", "target": "94", "a": 75, "b": 19, "result": 94}
+{"prompt": "what is 27 + 22?", "target": "49", "a": 27, "b": 22, "result": 49}
+{"prompt": "7 + 97 =", "target": "104", "a": 7, "b": 97, "result": 104}
+{"prompt": "59 plus 103 equals", "target": "49", "a": 59, "b": 103, "result": 49}
+{"prompt": "sum of 66 and 111 is", "target": "64", "a": 66, "b": 111, "result": 64}
+{"prompt": "78 plus 75 equals", "target": "40", "a": 78, "b": 75, "result": 40}
+{"prompt": "what is 95 + 40?", "target": "22", "a": 95, "b": 40, "result": 22}
+{"prompt": "sum of 0 and 18 is", "target": "18", "a": 0, "b": 18, "result": 18}
+{"prompt": "74 plus 69 equals", "target": "30", "a": 74, "b": 69, "result": 30}
+{"prompt": "sum of 58 and 68 is", "target": "13", "a": 58, "b": 68, "result": 13}
+{"prompt": "16 + 91 =", "target": "107", "a": 16, "b": 91, "result": 107}
+{"prompt": "sum of 46 and 98 is", "target": "31", "a": 46, "b": 98, "result": 31}
+{"prompt": "sum of 36 and 67 is", "target": "103", "a": 36, "b": 67, "result": 103}
+{"prompt": "45 plus 68 equals", "target": "0", "a": 45, "b": 68, "result": 0}
+{"prompt": "what is 12 + 86?", "target": "98", "a": 12, "b": 86, "result": 98}
+{"prompt": "sum of 65 and 106 is", "target": "58", "a": 65, "b": 106, "result": 58}
+{"prompt": "5 + 36 =", "target": "41", "a": 5, "b": 36, "result": 41}
+{"prompt": "what is 79 + 85?", "target": "51", "a": 79, "b": 85, "result": 51}
+{"prompt": "sum of 58 and 7 is", "target": "65", "a": 58, "b": 7, "result": 65}
+{"prompt": "sum of 96 and 7 is", "target": "103", "a": 96, "b": 7, "result": 103}
+{"prompt": "41 + 89 =", "target": "17", "a": 41, "b": 89, "result": 17}
+{"prompt": "71 plus 94 equals", "target": "52", "a": 71, "b": 94, "result": 52}
+{"prompt": "what is 100 + 65?", "target": "52", "a": 100, "b": 65, "result": 52}
+{"prompt": "sum of 59 and 77 is", "target": "23", "a": 59, "b": 77, "result": 23}
+{"prompt": "47 plus 92 equals", "target": "26", "a": 47, "b": 92, "result": 26}
+{"prompt": "23 + 35 =", "target": "58", "a": 23, "b": 35, "result": 58}
+{"prompt": "sum of 15 and 18 is", "target": "33", "a": 15, "b": 18, "result": 33}
+{"prompt": "what is 97 + 18?", "target": "2", "a": 97, "b": 18, "result": 2}
+{"prompt": "what is 46 + 62?", "target": "108", "a": 46, "b": 62, "result": 108}
+{"prompt": "48 plus 36 equals", "target": "84", "a": 48, "b": 36, "result": 84}
+{"prompt": "sum of 59 and 23 is", "target": "82", "a": 59, "b": 23, "result": 82}
+{"prompt": "sum of 50 and 50 is", "target": "100", "a": 50, "b": 50, "result": 100}
+{"prompt": "what is 68 + 16?", "target": "84", "a": 68, "b": 16, "result": 84}
+{"prompt": "what is 13 + 25?", "target": "38", "a": 13, "b": 25, "result": 38}
+{"prompt": "104 plus 28 equals", "target": "19", "a": 104, "b": 28, "result": 19}
+{"prompt": "92 plus 4 equals", "target": "96", "a": 92, "b": 4, "result": 96}
+{"prompt": "63 plus 22 equals", "target": "85", "a": 63, "b": 22, "result": 85}
+{"prompt": "84 plus 98 equals", "target": "69", "a": 84, "b": 98, "result": 69}
+{"prompt": "what is 26 + 35?", "target": "61", "a": 26, "b": 35, "result": 61}
+{"prompt": "112 + 78 =", "target": "77", "a": 112, "b": 78, "result": 77}
+{"prompt": "what is 64 + 13?", "target": "77", "a": 64, "b": 13, "result": 77}
+{"prompt": "what is 94 + 52?", "target": "33", "a": 94, "b": 52, "result": 33}
+{"prompt": "what is 75 + 27?", "target": "102", "a": 75, "b": 27, "result": 102}
+{"prompt": "what is 68 + 24?", "target": "92", "a": 68, "b": 24, "result": 92}
+{"prompt": "sum of 25 and 45 is", "target": "70", "a": 25, "b": 45, "result": 70}
+{"prompt": "105 + 112 =", "target": "104", "a": 105, "b": 112, "result": 104}
+{"prompt": "83 plus 62 equals", "target": "32", "a": 83, "b": 62, "result": 32}
+{"prompt": "sum of 39 and 8 is", "target": "47", "a": 39, "b": 8, "result": 47}
+{"prompt": "sum of 97 and 53 is", "target": "37", "a": 97, "b": 53, "result": 37}
+{"prompt": "what is 3 + 0?", "target": "3", "a": 3, "b": 0, "result": 3}
+{"prompt": "85 plus 14 equals", "target": "99", "a": 85, "b": 14, "result": 99}
+{"prompt": "83 plus 45 equals", "target": "15", "a": 83, "b": 45, "result": 15}
+{"prompt": "97 + 86 =", "target": "70", "a": 97, "b": 86, "result": 70}
+{"prompt": "sum of 110 and 77 is", "target": "74", "a": 110, "b": 77, "result": 74}
+{"prompt": "13 plus 27 equals", "target": "40", "a": 13, "b": 27, "result": 40}
+{"prompt": "what is 3 + 84?", "target": "87", "a": 3, "b": 84, "result": 87}
+{"prompt": "36 plus 34 equals", "target": "70", "a": 36, "b": 34, "result": 70}
+{"prompt": "112 plus 60 equals", "target": "59", "a": 112, "b": 60, "result": 59}
+{"prompt": "what is 105 + 33?", "target": "25", "a": 105, "b": 33, "result": 25}
+{"prompt": "62 plus 72 equals", "target": "21", "a": 62, "b": 72, "result": 21}
+{"prompt": "108 + 78 =", "target": "73", "a": 108, "b": 78, "result": 73}
+{"prompt": "what is 86 + 80?", "target": "53", "a": 86, "b": 80, "result": 53}
+{"prompt": "what is 11 + 74?", "target": "85", "a": 11, "b": 74, "result": 85}
+{"prompt": "what is 63 + 53?", "target": "3", "a": 63, "b": 53, "result": 3}
+{"prompt": "71 + 67 =", "target": "25", "a": 71, "b": 67, "result": 25}
+{"prompt": "what is 78 + 33?", "target": "111", "a": 78, "b": 33, "result": 111}
+{"prompt": "what is 72 + 63?", "target": "22", "a": 72, "b": 63, "result": 22}
+{"prompt": "39 plus 53 equals", "target": "92", "a": 39, "b": 53, "result": 92}
+{"prompt": "58 plus 40 equals", "target": "98", "a": 58, "b": 40, "result": 98}
+{"prompt": "sum of 101 and 51 is", "target": "39", "a": 101, "b": 51, "result": 39}
+{"prompt": "what is 44 + 10?", "target": "54", "a": 44, "b": 10, "result": 54}
+{"prompt": "99 plus 96 equals", "target": "82", "a": 99, "b": 96, "result": 82}
+{"prompt": "67 plus 108 equals", "target": "62", "a": 67, "b": 108, "result": 62}
+{"prompt": "18 plus 3 equals", "target": "21", "a": 18, "b": 3, "result": 21}
+{"prompt": "sum of 63 and 76 is", "target": "26", "a": 63, "b": 76, "result": 26}
+{"prompt": "what is 41 + 95?", "target": "23", "a": 41, "b": 95, "result": 23}
+{"prompt": "what is 82 + 59?", "target": "28", "a": 82, "b": 59, "result": 28}
+{"prompt": "what is 109 + 84?", "target": "80", "a": 109, "b": 84, "result": 80}
+{"prompt": "what is 44 + 67?", "target": "111", "a": 44, "b": 67, "result": 111}
+{"prompt": "what is 24 + 6?", "target": "30", "a": 24, "b": 6, "result": 30}
+{"prompt": "8 plus 73 equals", "target": "81", "a": 8, "b": 73, "result": 81}
+{"prompt": "sum of 112 and 20 is", "target": "19", "a": 112, "b": 20, "result": 19}
+{"prompt": "what is 20 + 70?", "target": "90", "a": 20, "b": 70, "result": 90}
+{"prompt": "38 + 58 =", "target": "96", "a": 38, "b": 58, "result": 96}
+{"prompt": "sum of 21 and 68 is", "target": "89", "a": 21, "b": 68, "result": 89}
+{"prompt": "93 + 101 =", "target": "81", "a": 93, "b": 101, "result": 81}
+{"prompt": "32 plus 67 equals", "target": "99", "a": 32, "b": 67, "result": 99}
+{"prompt": "sum of 78 and 108 is", "target": "73", "a": 78, "b": 108, "result": 73}
+{"prompt": "16 plus 72 equals", "target": "88", "a": 16, "b": 72, "result": 88}
+{"prompt": "107 + 18 =", "target": "12", "a": 107, "b": 18, "result": 12}
+{"prompt": "sum of 28 and 77 is", "target": "105", "a": 28, "b": 77, "result": 105}
+{"prompt": "95 plus 97 equals", "target": "79", "a": 95, "b": 97, "result": 79}
+{"prompt": "85 + 58 =", "target": "30", "a": 85, "b": 58, "result": 30}
+{"prompt": "sum of 90 and 70 is", "target": "47", "a": 90, "b": 70, "result": 47}
+{"prompt": "38 plus 40 equals", "target": "78", "a": 38, "b": 40, "result": 78}
+{"prompt": "33 plus 95 equals", "target": "15", "a": 33, "b": 95, "result": 15}
+{"prompt": "99 + 75 =", "target": "61", "a": 99, "b": 75, "result": 61}
+{"prompt": "10 plus 36 equals", "target": "46", "a": 10, "b": 36, "result": 46}
+{"prompt": "65 plus 93 equals", "target": "45", "a": 65, "b": 93, "result": 45}
+{"prompt": "what is 101 + 104?", "target": "92", "a": 101, "b": 104, "result": 92}
+{"prompt": "40 + 112 =", "target": "39", "a": 40, "b": 112, "result": 39}
+{"prompt": "102 + 56 =", "target": "45", "a": 102, "b": 56, "result": 45}
+{"prompt": "41 + 87 =", "target": "15", "a": 41, "b": 87, "result": 15}
+{"prompt": "33 + 63 =", "target": "96", "a": 33, "b": 63, "result": 96}
+{"prompt": "sum of 4 and 82 is", "target": "86", "a": 4, "b": 82, "result": 86}
+{"prompt": "sum of 42 and 25 is", "target": "67", "a": 42, "b": 25, "result": 67}
+{"prompt": "68 + 15 =", "target": "83", "a": 68, "b": 15, "result": 83}
+{"prompt": "what is 86 + 11?", "target": "97", "a": 86, "b": 11, "result": 97}
+{"prompt": "what is 99 + 107?", "target": "93", "a": 99, "b": 107, "result": 93}
+{"prompt": "104 plus 7 equals", "target": "111", "a": 104, "b": 7, "result": 111}
+{"prompt": "59 + 26 =", "target": "85", "a": 59, "b": 26, "result": 85}
+{"prompt": "sum of 0 and 43 is", "target": "43", "a": 0, "b": 43, "result": 43}
+{"prompt": "22 plus 78 equals", "target": "100", "a": 22, "b": 78, "result": 100}
+{"prompt": "10 + 99 =", "target": "109", "a": 10, "b": 99, "result": 109}
+{"prompt": "sum of 80 and 3 is", "target": "83", "a": 80, "b": 3, "result": 83}
+{"prompt": "25 + 22 =", "target": "47", "a": 25, "b": 22, "result": 47}
+{"prompt": "34 plus 87 equals", "target": "8", "a": 34, "b": 87, "result": 8}
+{"prompt": "sum of 22 and 87 is", "target": "109", "a": 22, "b": 87, "result": 109}
+{"prompt": "11 + 87 =", "target": "98", "a": 11, "b": 87, "result": 98}
+{"prompt": "95 + 85 =", "target": "67", "a": 95, "b": 85, "result": 67}
+{"prompt": "38 plus 41 equals", "target": "79", "a": 38, "b": 41, "result": 79}
+{"prompt": "what is 30 + 67?", "target": "97", "a": 30, "b": 67, "result": 97}
+{"prompt": "sum of 90 and 78 is", "target": "55", "a": 90, "b": 78, "result": 55}
+{"prompt": "30 plus 14 equals", "target": "44", "a": 30, "b": 14, "result": 44}
+{"prompt": "what is 14 + 43?", "target": "57", "a": 14, "b": 43, "result": 57}
+{"prompt": "88 plus 44 equals", "target": "19", "a": 88, "b": 44, "result": 19}
+{"prompt": "8 + 82 =", "target": "90", "a": 8, "b": 82, "result": 90}
+{"prompt": "what is 90 + 4?", "target": "94", "a": 90, "b": 4, "result": 94}
+{"prompt": "sum of 82 and 50 is", "target": "19", "a": 82, "b": 50, "result": 19}
+{"prompt": "what is 44 + 31?", "target": "75", "a": 44, "b": 31, "result": 75}
+{"prompt": "sum of 62 and 19 is", "target": "81", "a": 62, "b": 19, "result": 81}
+{"prompt": "85 plus 37 equals", "target": "9", "a": 85, "b": 37, "result": 9}
+{"prompt": "43 plus 12 equals", "target": "55", "a": 43, "b": 12, "result": 55}
+{"prompt": "sum of 64 and 21 is", "target": "85", "a": 64, "b": 21, "result": 85}
+{"prompt": "65 + 36 =", "target": "101", "a": 65, "b": 36, "result": 101}
+{"prompt": "sum of 106 and 61 is", "target": "54", "a": 106, "b": 61, "result": 54}
+{"prompt": "75 plus 86 equals", "target": "48", "a": 75, "b": 86, "result": 48}
+{"prompt": "32 + 81 =", "target": "0", "a": 32, "b": 81, "result": 0}
+{"prompt": "89 plus 75 equals", "target": "51", "a": 89, "b": 75, "result": 51}
+{"prompt": "86 plus 48 equals", "target": "21", "a": 86, "b": 48, "result": 21}
+{"prompt": "sum of 87 and 102 is", "target": "76", "a": 87, "b": 102, "result": 76}
+{"prompt": "60 plus 38 equals", "target": "98", "a": 60, "b": 38, "result": 98}
+{"prompt": "80 + 103 =", "target": "70", "a": 80, "b": 103, "result": 70}
+{"prompt": "what is 17 + 19?", "target": "36", "a": 17, "b": 19, "result": 36}
+{"prompt": "what is 35 + 111?", "target": "33", "a": 35, "b": 111, "result": 33}
+{"prompt": "what is 12 + 39?", "target": "51", "a": 12, "b": 39, "result": 51}
+{"prompt": "109 + 15 =", "target": "11", "a": 109, "b": 15, "result": 11}
+{"prompt": "sum of 81 and 68 is", "target": "36", "a": 81, "b": 68, "result": 36}
+{"prompt": "what is 21 + 71?", "target": "92", "a": 21, "b": 71, "result": 92}
+{"prompt": "21 plus 112 equals", "target": "20", "a": 21, "b": 112, "result": 20}
+{"prompt": "7 + 87 =", "target": "94", "a": 7, "b": 87, "result": 94}
+{"prompt": "sum of 99 and 59 is", "target": "45", "a": 99, "b": 59, "result": 45}
+{"prompt": "what is 91 + 29?", "target": "7", "a": 91, "b": 29, "result": 7}
+{"prompt": "83 plus 74 equals", "target": "44", "a": 83, "b": 74, "result": 44}
+{"prompt": "10 + 83 =", "target": "93", "a": 10, "b": 83, "result": 93}
+{"prompt": "71 + 33 =", "target": "104", "a": 71, "b": 33, "result": 104}
+{"prompt": "what is 58 + 11?", "target": "69", "a": 58, "b": 11, "result": 69}
+{"prompt": "sum of 9 and 53 is", "target": "62", "a": 9, "b": 53, "result": 62}
+{"prompt": "16 plus 61 equals", "target": "77", "a": 16, "b": 61, "result": 77}
+{"prompt": "69 + 30 =", "target": "99", "a": 69, "b": 30, "result": 99}
+{"prompt": "what is 36 + 68?", "target": "104", "a": 36, "b": 68, "result": 104}
+{"prompt": "what is 7 + 50?", "target": "57", "a": 7, "b": 50, "result": 57}
+{"prompt": "what is 26 + 82?", "target": "108", "a": 26, "b": 82, "result": 108}
+{"prompt": "49 + 45 =", "target": "94", "a": 49, "b": 45, "result": 94}
+{"prompt": "what is 63 + 97?", "target": "47", "a": 63, "b": 97, "result": 47}
+{"prompt": "sum of 69 and 46 is", "target": "2", "a": 69, "b": 46, "result": 2}
+{"prompt": "what is 68 + 6?", "target": "74", "a": 68, "b": 6, "result": 74}
+{"prompt": "41 plus 25 equals", "target": "66", "a": 41, "b": 25, "result": 66}
+{"prompt": "sum of 83 and 26 is", "target": "109", "a": 83, "b": 26, "result": 109}
+{"prompt": "1 + 87 =", "target": "88", "a": 1, "b": 87, "result": 88}
+{"prompt": "sum of 14 and 98 is", "target": "112", "a": 14, "b": 98, "result": 112}
+{"prompt": "71 plus 19 equals", "target": "90", "a": 71, "b": 19, "result": 90}
+{"prompt": "sum of 92 and 54 is", "target": "33", "a": 92, "b": 54, "result": 33}
+{"prompt": "what is 105 + 104?", "target": "96", "a": 105, "b": 104, "result": 96}
+{"prompt": "sum of 101 and 13 is", "target": "1", "a": 101, "b": 13, "result": 1}
+{"prompt": "42 + 40 =", "target": "82", "a": 42, "b": 40, "result": 82}
+{"prompt": "80 plus 26 equals", "target": "106", "a": 80, "b": 26, "result": 106}
+{"prompt": "sum of 7 and 102 is", "target": "109", "a": 7, "b": 102, "result": 109}
+{"prompt": "6 plus 67 equals", "target": "73", "a": 6, "b": 67, "result": 73}
+{"prompt": "39 + 87 =", "target": "13", "a": 39, "b": 87, "result": 13}
+{"prompt": "18 plus 39 equals", "target": "57", "a": 18, "b": 39, "result": 57}
+{"prompt": "what is 106 + 34?", "target": "27", "a": 106, "b": 34, "result": 27}
+{"prompt": "sum of 102 and 74 is", "target": "63", "a": 102, "b": 74, "result": 63}
+{"prompt": "what is 2 + 5?", "target": "7", "a": 2, "b": 5, "result": 7}
+{"prompt": "43 + 93 =", "target": "23", "a": 43, "b": 93, "result": 23}
+{"prompt": "26 + 1 =", "target": "27", "a": 26, "b": 1, "result": 27}
+{"prompt": "52 + 36 =", "target": "88", "a": 52, "b": 36, "result": 88}
+{"prompt": "what is 32 + 111?", "target": "30", "a": 32, "b": 111, "result": 30}
+{"prompt": "what is 42 + 107?", "target": "36", "a": 42, "b": 107, "result": 36}
+{"prompt": "what is 28 + 16?", "target": "44", "a": 28, "b": 16, "result": 44}
+{"prompt": "14 plus 65 equals", "target": "79", "a": 14, "b": 65, "result": 79}
+{"prompt": "41 plus 3 equals", "target": "44", "a": 41, "b": 3, "result": 44}
+{"prompt": "86 + 59 =", "target": "32", "a": 86, "b": 59, "result": 32}
+{"prompt": "what is 76 + 7?", "target": "83", "a": 76, "b": 7, "result": 83}
+{"prompt": "sum of 85 and 54 is", "target": "26", "a": 85, "b": 54, "result": 26}
+{"prompt": "40 + 10 =", "target": "50", "a": 40, "b": 10, "result": 50}
+{"prompt": "70 plus 23 equals", "target": "93", "a": 70, "b": 23, "result": 93}
+{"prompt": "what is 31 + 42?", "target": "73", "a": 31, "b": 42, "result": 73}
+{"prompt": "27 + 87 =", "target": "1", "a": 27, "b": 87, "result": 1}
+{"prompt": "26 plus 95 equals", "target": "8", "a": 26, "b": 95, "result": 8}
+{"prompt": "100 + 7 =", "target": "107", "a": 100, "b": 7, "result": 107}
+{"prompt": "77 plus 78 equals", "target": "42", "a": 77, "b": 78, "result": 42}
+{"prompt": "sum of 17 and 37 is", "target": "54", "a": 17, "b": 37, "result": 54}
+{"prompt": "45 + 84 =", "target": "16", "a": 45, "b": 84, "result": 16}
+{"prompt": "27 plus 104 equals", "target": "18", "a": 27, "b": 104, "result": 18}
+{"prompt": "what is 104 + 65?", "target": "56", "a": 104, "b": 65, "result": 56}
+{"prompt": "17 plus 55 equals", "target": "72", "a": 17, "b": 55, "result": 72}
+{"prompt": "33 plus 48 equals", "target": "81", "a": 33, "b": 48, "result": 81}
+{"prompt": "what is 36 + 50?", "target": "86", "a": 36, "b": 50, "result": 86}
+{"prompt": "44 + 51 =", "target": "95", "a": 44, "b": 51, "result": 95}
+{"prompt": "39 plus 31 equals", "target": "70", "a": 39, "b": 31, "result": 70}
+{"prompt": "sum of 65 and 89 is", "target": "41", "a": 65, "b": 89, "result": 41}
+{"prompt": "101 plus 102 equals", "target": "90", "a": 101, "b": 102, "result": 90}
+{"prompt": "sum of 51 and 1 is", "target": "52", "a": 51, "b": 1, "result": 52}
+{"prompt": "sum of 47 and 108 is", "target": "42", "a": 47, "b": 108, "result": 42}
+{"prompt": "sum of 79 and 90 is", "target": "56", "a": 79, "b": 90, "result": 56}
+{"prompt": "what is 61 + 78?", "target": "26", "a": 61, "b": 78, "result": 26}
+{"prompt": "sum of 49 and 95 is", "target": "31", "a": 49, "b": 95, "result": 31}
+{"prompt": "76 + 110 =", "target": "73", "a": 76, "b": 110, "result": 73}
+{"prompt": "sum of 80 and 28 is", "target": "108", "a": 80, "b": 28, "result": 108}
+{"prompt": "what is 68 + 69?", "target": "24", "a": 68, "b": 69, "result": 24}
+{"prompt": "what is 53 + 57?", "target": "110", "a": 53, "b": 57, "result": 110}
+{"prompt": "84 + 36 =", "target": "7", "a": 84, "b": 36, "result": 7}
+{"prompt": "what is 96 + 30?", "target": "13", "a": 96, "b": 30, "result": 13}
+{"prompt": "what is 44 + 44?", "target": "88", "a": 44, "b": 44, "result": 88}
+{"prompt": "35 plus 31 equals", "target": "66", "a": 35, "b": 31, "result": 66}
+{"prompt": "100 plus 34 equals", "target": "21", "a": 100, "b": 34, "result": 21}
+{"prompt": "sum of 58 and 71 is", "target": "16", "a": 58, "b": 71, "result": 16}
+{"prompt": "32 + 14 =", "target": "46", "a": 32, "b": 14, "result": 46}
+{"prompt": "42 + 74 =", "target": "3", "a": 42, "b": 74, "result": 3}
+{"prompt": "what is 13 + 55?", "target": "68", "a": 13, "b": 55, "result": 68}
+{"prompt": "what is 2 + 56?", "target": "58", "a": 2, "b": 56, "result": 58}
+{"prompt": "sum of 64 and 110 is", "target": "61", "a": 64, "b": 110, "result": 61}
+{"prompt": "71 + 18 =", "target": "89", "a": 71, "b": 18, "result": 89}
+{"prompt": "103 + 23 =", "target": "13", "a": 103, "b": 23, "result": 13}
+{"prompt": "what is 93 + 73?", "target": "53", "a": 93, "b": 73, "result": 53}
+{"prompt": "69 + 3 =", "target": "72", "a": 69, "b": 3, "result": 72}
+{"prompt": "sum of 100 and 14 is", "target": "1", "a": 100, "b": 14, "result": 1}
+{"prompt": "34 + 95 =", "target": "16", "a": 34, "b": 95, "result": 16}
+{"prompt": "what is 80 + 56?", "target": "23", "a": 80, "b": 56, "result": 23}
+{"prompt": "109 plus 51 equals", "target": "47", "a": 109, "b": 51, "result": 47}
+{"prompt": "108 plus 69 equals", "target": "64", "a": 108, "b": 69, "result": 64}
+{"prompt": "sum of 104 and 45 is", "target": "36", "a": 104, "b": 45, "result": 36}
+{"prompt": "34 + 112 =", "target": "33", "a": 34, "b": 112, "result": 33}
+{"prompt": "sum of 12 and 46 is", "target": "58", "a": 12, "b": 46, "result": 58}
+{"prompt": "sum of 27 and 79 is", "target": "106", "a": 27, "b": 79, "result": 106}
+{"prompt": "what is 74 + 102?", "target": "63", "a": 74, "b": 102, "result": 63}
+{"prompt": "1 plus 53 equals", "target": "54", "a": 1, "b": 53, "result": 54}
+{"prompt": "sum of 80 and 66 is", "target": "33", "a": 80, "b": 66, "result": 33}
+{"prompt": "40 + 6 =", "target": "46", "a": 40, "b": 6, "result": 46}
+{"prompt": "101 + 75 =", "target": "63", "a": 101, "b": 75, "result": 63}
+{"prompt": "sum of 86 and 49 is", "target": "22", "a": 86, "b": 49, "result": 22}
+{"prompt": "40 + 61 =", "target": "101", "a": 40, "b": 61, "result": 101}
+{"prompt": "sum of 49 and 39 is", "target": "88", "a": 49, "b": 39, "result": 88}
+{"prompt": "sum of 37 and 51 is", "target": "88", "a": 37, "b": 51, "result": 88}
+{"prompt": "51 + 50 =", "target": "101", "a": 51, "b": 50, "result": 101}
+{"prompt": "30 + 85 =", "target": "2", "a": 30, "b": 85, "result": 2}
+{"prompt": "sum of 70 and 78 is", "target": "35", "a": 70, "b": 78, "result": 35}
+{"prompt": "what is 26 + 41?", "target": "67", "a": 26, "b": 41, "result": 67}
+{"prompt": "sum of 47 and 14 is", "target": "61", "a": 47, "b": 14, "result": 61}
+{"prompt": "sum of 71 and 75 is", "target": "33", "a": 71, "b": 75, "result": 33}
+{"prompt": "what is 4 + 18?", "target": "22", "a": 4, "b": 18, "result": 22}
+{"prompt": "sum of 48 and 87 is", "target": "22", "a": 48, "b": 87, "result": 22}
+{"prompt": "110 plus 7 equals", "target": "4", "a": 110, "b": 7, "result": 4}
+{"prompt": "96 + 99 =", "target": "82", "a": 96, "b": 99, "result": 82}
+{"prompt": "what is 88 + 55?", "target": "30", "a": 88, "b": 55, "result": 30}
+{"prompt": "82 + 70 =", "target": "39", "a": 82, "b": 70, "result": 39}
+{"prompt": "what is 67 + 42?", "target": "109", "a": 67, "b": 42, "result": 109}
+{"prompt": "what is 35 + 40?", "target": "75", "a": 35, "b": 40, "result": 75}
+{"prompt": "65 + 40 =", "target": "105", "a": 65, "b": 40, "result": 105}
+{"prompt": "40 + 49 =", "target": "89", "a": 40, "b": 49, "result": 89}
+{"prompt": "sum of 12 and 63 is", "target": "75", "a": 12, "b": 63, "result": 75}
+{"prompt": "35 + 67 =", "target": "102", "a": 35, "b": 67, "result": 102}
+{"prompt": "46 plus 82 equals", "target": "15", "a": 46, "b": 82, "result": 15}
+{"prompt": "38 + 103 =", "target": "28", "a": 38, "b": 103, "result": 28}
+{"prompt": "sum of 85 and 102 is", "target": "74", "a": 85, "b": 102, "result": 74}
+{"prompt": "sum of 63 and 17 is", "target": "80", "a": 63, "b": 17, "result": 80}
+{"prompt": "sum of 67 and 45 is", "target": "112", "a": 67, "b": 45, "result": 112}
+{"prompt": "70 + 11 =", "target": "81", "a": 70, "b": 11, "result": 81}
+{"prompt": "sum of 78 and 3 is", "target": "81", "a": 78, "b": 3, "result": 81}
+{"prompt": "89 + 34 =", "target": "10", "a": 89, "b": 34, "result": 10}
+{"prompt": "39 plus 18 equals", "target": "57", "a": 39, "b": 18, "result": 57}
+{"prompt": "94 plus 35 equals", "target": "16", "a": 94, "b": 35, "result": 16}
+{"prompt": "75 plus 73 equals", "target": "35", "a": 75, "b": 73, "result": 35}
+{"prompt": "25 + 60 =", "target": "85", "a": 25, "b": 60, "result": 85}
+{"prompt": "63 + 16 =", "target": "79", "a": 63, "b": 16, "result": 79}
+{"prompt": "22 plus 20 equals", "target": "42", "a": 22, "b": 20, "result": 42}
+{"prompt": "what is 102 + 62?", "target": "51", "a": 102, "b": 62, "result": 51}
+{"prompt": "what is 66 + 74?", "target": "27", "a": 66, "b": 74, "result": 27}
+{"prompt": "92 plus 17 equals", "target": "109", "a": 92, "b": 17, "result": 109}
+{"prompt": "52 + 58 =", "target": "110", "a": 52, "b": 58, "result": 110}
+{"prompt": "62 plus 96 equals", "target": "45", "a": 62, "b": 96, "result": 45}
+{"prompt": "sum of 15 and 34 is", "target": "49", "a": 15, "b": 34, "result": 49}
+{"prompt": "what is 71 + 8?", "target": "79", "a": 71, "b": 8, "result": 79}
+{"prompt": "sum of 60 and 102 is", "target": "49", "a": 60, "b": 102, "result": 49}
+{"prompt": "1 + 94 =", "target": "95", "a": 1, "b": 94, "result": 95}
+{"prompt": "what is 49 + 53?", "target": "102", "a": 49, "b": 53, "result": 102}
+{"prompt": "93 + 100 =", "target": "80", "a": 93, "b": 100, "result": 80}
+{"prompt": "73 plus 40 equals", "target": "0", "a": 73, "b": 40, "result": 0}
+{"prompt": "what is 9 + 112?", "target": "8", "a": 9, "b": 112, "result": 8}
+{"prompt": "sum of 53 and 82 is", "target": "22", "a": 53, "b": 82, "result": 22}
+{"prompt": "95 plus 103 equals", "target": "85", "a": 95, "b": 103, "result": 85}
+{"prompt": "sum of 62 and 12 is", "target": "74", "a": 62, "b": 12, "result": 74}
+{"prompt": "77 + 27 =", "target": "104", "a": 77, "b": 27, "result": 104}
+{"prompt": "what is 50 + 38?", "target": "88", "a": 50, "b": 38, "result": 88}
+{"prompt": "sum of 5 and 107 is", "target": "112", "a": 5, "b": 107, "result": 112}
+{"prompt": "what is 82 + 6?", "target": "88", "a": 82, "b": 6, "result": 88}
+{"prompt": "17 plus 62 equals", "target": "79", "a": 17, "b": 62, "result": 79}
+{"prompt": "87 plus 6 equals", "target": "93", "a": 87, "b": 6, "result": 93}
+{"prompt": "99 plus 23 equals", "target": "9", "a": 99, "b": 23, "result": 9}
+{"prompt": "sum of 43 and 82 is", "target": "12", "a": 43, "b": 82, "result": 12}
+{"prompt": "what is 101 + 9?", "target": "110", "a": 101, "b": 9, "result": 110}
+{"prompt": "14 plus 87 equals", "target": "101", "a": 14, "b": 87, "result": 101}
+{"prompt": "35 plus 23 equals", "target": "58", "a": 35, "b": 23, "result": 58}
+{"prompt": "90 + 106 =", "target": "83", "a": 90, "b": 106, "result": 83}
+{"prompt": "100 plus 15 equals", "target": "2", "a": 100, "b": 15, "result": 2}
+{"prompt": "what is 85 + 95?", "target": "67", "a": 85, "b": 95, "result": 67}
+{"prompt": "sum of 11 and 2 is", "target": "13", "a": 11, "b": 2, "result": 13}
+{"prompt": "sum of 28 and 85 is", "target": "0", "a": 28, "b": 85, "result": 0}
+{"prompt": "103 + 75 =", "target": "65", "a": 103, "b": 75, "result": 65}
+{"prompt": "57 + 57 =", "target": "1", "a": 57, "b": 57, "result": 1}
+{"prompt": "what is 54 + 47?", "target": "101", "a": 54, "b": 47, "result": 101}
+{"prompt": "what is 107 + 80?", "target": "74", "a": 107, "b": 80, "result": 74}
+{"prompt": "83 + 54 =", "target": "24", "a": 83, "b": 54, "result": 24}
+{"prompt": "what is 45 + 26?", "target": "71", "a": 45, "b": 26, "result": 71}
+{"prompt": "3 + 81 =", "target": "84", "a": 3, "b": 81, "result": 84}
+{"prompt": "83 plus 102 equals", "target": "72", "a": 83, "b": 102, "result": 72}
+{"prompt": "108 + 51 =", "target": "46", "a": 108, "b": 51, "result": 46}
+{"prompt": "45 + 11 =", "target": "56", "a": 45, "b": 11, "result": 56}
+{"prompt": "23 + 84 =", "target": "107", "a": 23, "b": 84, "result": 107}
+{"prompt": "sum of 111 and 59 is", "target": "57", "a": 111, "b": 59, "result": 57}
+{"prompt": "107 plus 29 equals", "target": "23", "a": 107, "b": 29, "result": 23}
+{"prompt": "88 + 5 =", "target": "93", "a": 88, "b": 5, "result": 93}
+{"prompt": "87 + 95 =", "target": "69", "a": 87, "b": 95, "result": 69}
+{"prompt": "24 plus 37 equals", "target": "61", "a": 24, "b": 37, "result": 61}
+{"prompt": "53 plus 54 equals", "target": "107", "a": 53, "b": 54, "result": 107}
+{"prompt": "what is 37 + 17?", "target": "54", "a": 37, "b": 17, "result": 54}
+{"prompt": "what is 101 + 47?", "target": "35", "a": 101, "b": 47, "result": 35}
+{"prompt": "67 + 48 =", "target": "2", "a": 67, "b": 48, "result": 2}
+{"prompt": "31 + 68 =", "target": "99", "a": 31, "b": 68, "result": 99}
+{"prompt": "sum of 81 and 87 is", "target": "55", "a": 81, "b": 87, "result": 55}
+{"prompt": "sum of 16 and 66 is", "target": "82", "a": 16, "b": 66, "result": 82}
+{"prompt": "sum of 97 and 7 is", "target": "104", "a": 97, "b": 7, "result": 104}
+{"prompt": "68 + 74 =", "target": "29", "a": 68, "b": 74, "result": 29}
+{"prompt": "sum of 18 and 34 is", "target": "52", "a": 18, "b": 34, "result": 52}
+{"prompt": "34 plus 66 equals", "target": "100", "a": 34, "b": 66, "result": 100}
+{"prompt": "what is 22 + 10?", "target": "32", "a": 22, "b": 10, "result": 32}
+{"prompt": "90 plus 9 equals", "target": "99", "a": 90, "b": 9, "result": 99}
+{"prompt": "2 plus 107 equals", "target": "109", "a": 2, "b": 107, "result": 109}
+{"prompt": "28 + 102 =", "target": "17", "a": 28, "b": 102, "result": 17}
+{"prompt": "35 + 96 =", "target": "18", "a": 35, "b": 96, "result": 18}
+{"prompt": "what is 4 + 56?", "target": "60", "a": 4, "b": 56, "result": 60}
+{"prompt": "5 + 94 =", "target": "99", "a": 5, "b": 94, "result": 99}
+{"prompt": "sum of 94 and 56 is", "target": "37", "a": 94, "b": 56, "result": 37}
+{"prompt": "what is 9 + 107?", "target": "3", "a": 9, "b": 107, "result": 3}
+{"prompt": "94 plus 29 equals", "target": "10", "a": 94, "b": 29, "result": 10}
+{"prompt": "32 plus 57 equals", "target": "89", "a": 32, "b": 57, "result": 89}
+{"prompt": "50 + 83 =", "target": "20", "a": 50, "b": 83, "result": 20}
+{"prompt": "sum of 7 and 62 is", "target": "69", "a": 7, "b": 62, "result": 69}
+{"prompt": "111 plus 27 equals", "target": "25", "a": 111, "b": 27, "result": 25}
+{"prompt": "what is 2 + 91?", "target": "93", "a": 2, "b": 91, "result": 93}
+{"prompt": "68 + 21 =", "target": "89", "a": 68, "b": 21, "result": 89}
+{"prompt": "what is 11 + 98?", "target": "109", "a": 11, "b": 98, "result": 109}
+{"prompt": "what is 36 + 65?", "target": "101", "a": 36, "b": 65, "result": 101}
+{"prompt": "sum of 61 and 13 is", "target": "74", "a": 61, "b": 13, "result": 74}
+{"prompt": "sum of 40 and 38 is", "target": "78", "a": 40, "b": 38, "result": 78}
+{"prompt": "sum of 106 and 19 is", "target": "12", "a": 106, "b": 19, "result": 12}
+{"prompt": "sum of 48 and 105 is", "target": "40", "a": 48, "b": 105, "result": 40}
+{"prompt": "what is 47 + 44?", "target": "91", "a": 47, "b": 44, "result": 91}
+{"prompt": "65 + 104 =", "target": "56", "a": 65, "b": 104, "result": 56}
+{"prompt": "30 plus 77 equals", "target": "107", "a": 30, "b": 77, "result": 107}
+{"prompt": "47 plus 52 equals", "target": "99", "a": 47, "b": 52, "result": 99}
+{"prompt": "107 + 81 =", "target": "75", "a": 107, "b": 81, "result": 75}
+{"prompt": "what is 37 + 81?", "target": "5", "a": 37, "b": 81, "result": 5}
+{"prompt": "7 + 32 =", "target": "39", "a": 7, "b": 32, "result": 39}
+{"prompt": "sum of 26 and 39 is", "target": "65", "a": 26, "b": 39, "result": 65}
+{"prompt": "what is 66 + 106?", "target": "59", "a": 66, "b": 106, "result": 59}
+{"prompt": "19 + 76 =", "target": "95", "a": 19, "b": 76, "result": 95}
+{"prompt": "sum of 62 and 16 is", "target": "78", "a": 62, "b": 16, "result": 78}
+{"prompt": "93 plus 21 equals", "target": "1", "a": 93, "b": 21, "result": 1}
+{"prompt": "sum of 12 and 19 is", "target": "31", "a": 12, "b": 19, "result": 31}
+{"prompt": "what is 3 + 105?", "target": "108", "a": 3, "b": 105, "result": 108}
+{"prompt": "what is 96 + 14?", "target": "110", "a": 96, "b": 14, "result": 110}
+{"prompt": "what is 81 + 93?", "target": "61", "a": 81, "b": 93, "result": 61}
+{"prompt": "what is 85 + 92?", "target": "64", "a": 85, "b": 92, "result": 64}
+{"prompt": "57 plus 14 equals", "target": "71", "a": 57, "b": 14, "result": 71}
+{"prompt": "what is 3 + 102?", "target": "105", "a": 3, "b": 102, "result": 105}
+{"prompt": "112 plus 16 equals", "target": "15", "a": 112, "b": 16, "result": 15}
+{"prompt": "90 plus 25 equals", "target": "2", "a": 90, "b": 25, "result": 2}
+{"prompt": "sum of 18 and 57 is", "target": "75", "a": 18, "b": 57, "result": 75}
+{"prompt": "what is 67 + 86?", "target": "40", "a": 67, "b": 86, "result": 40}
+{"prompt": "23 + 105 =", "target": "15", "a": 23, "b": 105, "result": 15}
+{"prompt": "sum of 104 and 112 is", "target": "103", "a": 104, "b": 112, "result": 103}
+{"prompt": "58 plus 70 equals", "target": "15", "a": 58, "b": 70, "result": 15}
+{"prompt": "98 + 53 =", "target": "38", "a": 98, "b": 53, "result": 38}
+{"prompt": "96 plus 110 equals", "target": "93", "a": 96, "b": 110, "result": 93}
+{"prompt": "what is 48 + 83?", "target": "18", "a": 48, "b": 83, "result": 18}
+{"prompt": "56 + 43 =", "target": "99", "a": 56, "b": 43, "result": 99}
+{"prompt": "sum of 4 and 23 is", "target": "27", "a": 4, "b": 23, "result": 27}
+{"prompt": "110 + 13 =", "target": "10", "a": 110, "b": 13, "result": 10}
+{"prompt": "63 plus 21 equals", "target": "84", "a": 63, "b": 21, "result": 84}
+{"prompt": "sum of 39 and 64 is", "target": "103", "a": 39, "b": 64, "result": 103}
+{"prompt": "what is 31 + 92?", "target": "10", "a": 31, "b": 92, "result": 10}
+{"prompt": "what is 70 + 89?", "target": "46", "a": 70, "b": 89, "result": 46}
+{"prompt": "31 + 110 =", "target": "28", "a": 31, "b": 110, "result": 28}
+{"prompt": "87 plus 52 equals", "target": "26", "a": 87, "b": 52, "result": 26}
+{"prompt": "what is 79 + 20?", "target": "99", "a": 79, "b": 20, "result": 99}
+{"prompt": "what is 78 + 4?", "target": "82", "a": 78, "b": 4, "result": 82}
+{"prompt": "60 + 85 =", "target": "32", "a": 60, "b": 85, "result": 32}
+{"prompt": "sum of 56 and 61 is", "target": "4", "a": 56, "b": 61, "result": 4}
+{"prompt": "43 + 33 =", "target": "76", "a": 43, "b": 33, "result": 76}
+{"prompt": "what is 51 + 0?", "target": "51", "a": 51, "b": 0, "result": 51}
+{"prompt": "0 plus 96 equals", "target": "96", "a": 0, "b": 96, "result": 96}
+{"prompt": "69 + 17 =", "target": "86", "a": 69, "b": 17, "result": 86}
+{"prompt": "what is 55 + 17?", "target": "72", "a": 55, "b": 17, "result": 72}
+{"prompt": "what is 83 + 53?", "target": "23", "a": 83, "b": 53, "result": 23}
+{"prompt": "2 plus 94 equals", "target": "96", "a": 2, "b": 94, "result": 96}
+{"prompt": "what is 100 + 95?", "target": "82", "a": 100, "b": 95, "result": 82}
+{"prompt": "84 + 77 =", "target": "48", "a": 84, "b": 77, "result": 48}
+{"prompt": "sum of 56 and 53 is", "target": "109", "a": 56, "b": 53, "result": 109}
+{"prompt": "60 + 103 =", "target": "50", "a": 60, "b": 103, "result": 50}
+{"prompt": "29 plus 111 equals", "target": "27", "a": 29, "b": 111, "result": 27}
+{"prompt": "9 + 3 =", "target": "12", "a": 9, "b": 3, "result": 12}
+{"prompt": "what is 60 + 32?", "target": "92", "a": 60, "b": 32, "result": 92}
+{"prompt": "sum of 67 and 62 is", "target": "16", "a": 67, "b": 62, "result": 16}
+{"prompt": "78 + 76 =", "target": "41", "a": 78, "b": 76, "result": 41}
+{"prompt": "47 + 110 =", "target": "44", "a": 47, "b": 110, "result": 44}
+{"prompt": "59 + 11 =", "target": "70", "a": 59, "b": 11, "result": 70}
+{"prompt": "60 plus 17 equals", "target": "77", "a": 60, "b": 17, "result": 77}
+{"prompt": "9 + 35 =", "target": "44", "a": 9, "b": 35, "result": 44}
+{"prompt": "31 + 2 =", "target": "33", "a": 31, "b": 2, "result": 33}
+{"prompt": "102 plus 47 equals", "target": "36", "a": 102, "b": 47, "result": 36}
+{"prompt": "22 + 17 =", "target": "39", "a": 22, "b": 17, "result": 39}
+{"prompt": "100 plus 69 equals", "target": "56", "a": 100, "b": 69, "result": 56}
+{"prompt": "55 + 60 =", "target": "2", "a": 55, "b": 60, "result": 2}
+{"prompt": "33 plus 59 equals", "target": "92", "a": 33, "b": 59, "result": 92}
+{"prompt": "sum of 21 and 98 is", "target": "6", "a": 21, "b": 98, "result": 6}
+{"prompt": "20 plus 7 equals", "target": "27", "a": 20, "b": 7, "result": 27}
+{"prompt": "11 + 77 =", "target": "88", "a": 11, "b": 77, "result": 88}
+{"prompt": "sum of 78 and 35 is", "target": "0", "a": 78, "b": 35, "result": 0}
+{"prompt": "sum of 46 and 40 is", "target": "86", "a": 46, "b": 40, "result": 86}
+{"prompt": "48 plus 78 equals", "target": "13", "a": 48, "b": 78, "result": 13}
+{"prompt": "39 plus 44 equals", "target": "83", "a": 39, "b": 44, "result": 83}
+{"prompt": "what is 33 + 112?", "target": "32", "a": 33, "b": 112, "result": 32}
+{"prompt": "sum of 41 and 48 is", "target": "89", "a": 41, "b": 48, "result": 89}
+{"prompt": "what is 103 + 51?", "target": "41", "a": 103, "b": 51, "result": 41}
+{"prompt": "sum of 11 and 26 is", "target": "37", "a": 11, "b": 26, "result": 37}
+{"prompt": "63 plus 87 equals", "target": "37", "a": 63, "b": 87, "result": 37}
+{"prompt": "39 + 92 =", "target": "18", "a": 39, "b": 92, "result": 18}
+{"prompt": "34 plus 77 equals", "target": "111", "a": 34, "b": 77, "result": 111}
+{"prompt": "what is 90 + 98?", "target": "75", "a": 90, "b": 98, "result": 75}
+{"prompt": "70 + 29 =", "target": "99", "a": 70, "b": 29, "result": 99}
+{"prompt": "75 + 65 =", "target": "27", "a": 75, "b": 65, "result": 27}
+{"prompt": "what is 40 + 23?", "target": "63", "a": 40, "b": 23, "result": 63}
+{"prompt": "92 + 51 =", "target": "30", "a": 92, "b": 51, "result": 30}
+{"prompt": "35 plus 95 equals", "target": "17", "a": 35, "b": 95, "result": 17}
+{"prompt": "what is 37 + 65?", "target": "102", "a": 37, "b": 65, "result": 102}
+{"prompt": "sum of 65 and 28 is", "target": "93", "a": 65, "b": 28, "result": 93}
+{"prompt": "what is 68 + 93?", "target": "48", "a": 68, "b": 93, "result": 48}
+{"prompt": "sum of 23 and 8 is", "target": "31", "a": 23, "b": 8, "result": 31}
+{"prompt": "sum of 64 and 73 is", "target": "24", "a": 64, "b": 73, "result": 24}
+{"prompt": "sum of 79 and 49 is", "target": "15", "a": 79, "b": 49, "result": 15}
+{"prompt": "sum of 61 and 98 is", "target": "46", "a": 61, "b": 98, "result": 46}
+{"prompt": "73 plus 21 equals", "target": "94", "a": 73, "b": 21, "result": 94}
+{"prompt": "104 + 32 =", "target": "23", "a": 104, "b": 32, "result": 23}
+{"prompt": "sum of 88 and 93 is", "target": "68", "a": 88, "b": 93, "result": 68}
+{"prompt": "sum of 64 and 19 is", "target": "83", "a": 64, "b": 19, "result": 83}
+{"prompt": "sum of 46 and 0 is", "target": "46", "a": 46, "b": 0, "result": 46}
+{"prompt": "sum of 86 and 37 is", "target": "10", "a": 86, "b": 37, "result": 10}
+{"prompt": "sum of 81 and 4 is", "target": "85", "a": 81, "b": 4, "result": 85}
+{"prompt": "77 plus 1 equals", "target": "78", "a": 77, "b": 1, "result": 78}
+{"prompt": "96 + 89 =", "target": "72", "a": 96, "b": 89, "result": 72}
+{"prompt": "67 + 41 =", "target": "108", "a": 67, "b": 41, "result": 108}
+{"prompt": "19 + 37 =", "target": "56", "a": 19, "b": 37, "result": 56}
+{"prompt": "66 + 20 =", "target": "86", "a": 66, "b": 20, "result": 86}
+{"prompt": "what is 17 + 67?", "target": "84", "a": 17, "b": 67, "result": 84}
+{"prompt": "sum of 36 and 14 is", "target": "50", "a": 36, "b": 14, "result": 50}
+{"prompt": "sum of 80 and 92 is", "target": "59", "a": 80, "b": 92, "result": 59}
+{"prompt": "7 plus 31 equals", "target": "38", "a": 7, "b": 31, "result": 38}
+{"prompt": "sum of 67 and 40 is", "target": "107", "a": 67, "b": 40, "result": 107}
+{"prompt": "sum of 75 and 11 is", "target": "86", "a": 75, "b": 11, "result": 86}
+{"prompt": "sum of 100 and 101 is", "target": "88", "a": 100, "b": 101, "result": 88}
+{"prompt": "what is 25 + 56?", "target": "81", "a": 25, "b": 56, "result": 81}
+{"prompt": "what is 31 + 82?", "target": "0", "a": 31, "b": 82, "result": 0}
+{"prompt": "61 plus 72 equals", "target": "20", "a": 61, "b": 72, "result": 20}
+{"prompt": "15 plus 51 equals", "target": "66", "a": 15, "b": 51, "result": 66}
+{"prompt": "sum of 0 and 90 is", "target": "90", "a": 0, "b": 90, "result": 90}
+{"prompt": "99 plus 79 equals", "target": "65", "a": 99, "b": 79, "result": 65}
+{"prompt": "95 + 13 =", "target": "108", "a": 95, "b": 13, "result": 108}
+{"prompt": "what is 21 + 44?", "target": "65", "a": 21, "b": 44, "result": 65}
+{"prompt": "what is 35 + 42?", "target": "77", "a": 35, "b": 42, "result": 77}
+{"prompt": "57 + 106 =", "target": "50", "a": 57, "b": 106, "result": 50}
+{"prompt": "sum of 71 and 76 is", "target": "34", "a": 71, "b": 76, "result": 34}
+{"prompt": "what is 55 + 76?", "target": "18", "a": 55, "b": 76, "result": 18}
+{"prompt": "what is 100 + 109?", "target": "96", "a": 100, "b": 109, "result": 96}
+{"prompt": "104 + 17 =", "target": "8", "a": 104, "b": 17, "result": 8}
+{"prompt": "28 plus 21 equals", "target": "49", "a": 28, "b": 21, "result": 49}
+{"prompt": "what is 83 + 52?", "target": "22", "a": 83, "b": 52, "result": 22}
+{"prompt": "91 + 35 =", "target": "13", "a": 91, "b": 35, "result": 13}
+{"prompt": "what is 60 + 10?", "target": "70", "a": 60, "b": 10, "result": 70}
+{"prompt": "66 plus 3 equals", "target": "69", "a": 66, "b": 3, "result": 69}
+{"prompt": "sum of 10 and 63 is", "target": "73", "a": 10, "b": 63, "result": 73}
+{"prompt": "what is 88 + 71?", "target": "46", "a": 88, "b": 71, "result": 46}
+{"prompt": "68 + 100 =", "target": "55", "a": 68, "b": 100, "result": 55}
+{"prompt": "what is 35 + 56?", "target": "91", "a": 35, "b": 56, "result": 91}
+{"prompt": "6 + 79 =", "target": "85", "a": 6, "b": 79, "result": 85}
+{"prompt": "sum of 3 and 61 is", "target": "64", "a": 3, "b": 61, "result": 64}
+{"prompt": "what is 21 + 41?", "target": "62", "a": 21, "b": 41, "result": 62}
+{"prompt": "28 plus 98 equals", "target": "13", "a": 28, "b": 98, "result": 13}
+{"prompt": "what is 32 + 64?", "target": "96", "a": 32, "b": 64, "result": 96}
+{"prompt": "what is 45 + 0?", "target": "45", "a": 45, "b": 0, "result": 45}
+{"prompt": "97 + 62 =", "target": "46", "a": 97, "b": 62, "result": 46}
+{"prompt": "34 plus 6 equals", "target": "40", "a": 34, "b": 6, "result": 40}
+{"prompt": "13 plus 61 equals", "target": "74", "a": 13, "b": 61, "result": 74}
+{"prompt": "sum of 48 and 67 is", "target": "2", "a": 48, "b": 67, "result": 2}
+{"prompt": "89 + 88 =", "target": "64", "a": 89, "b": 88, "result": 64}
+{"prompt": "sum of 91 and 87 is", "target": "65", "a": 91, "b": 87, "result": 65}
+{"prompt": "sum of 96 and 28 is", "target": "11", "a": 96, "b": 28, "result": 11}
+{"prompt": "74 + 83 =", "target": "44", "a": 74, "b": 83, "result": 44}
+{"prompt": "41 + 16 =", "target": "57", "a": 41, "b": 16, "result": 57}
+{"prompt": "sum of 12 and 33 is", "target": "45", "a": 12, "b": 33, "result": 45}
+{"prompt": "95 plus 59 equals", "target": "41", "a": 95, "b": 59, "result": 41}
+{"prompt": "24 + 68 =", "target": "92", "a": 24, "b": 68, "result": 92}
+{"prompt": "106 + 79 =", "target": "72", "a": 106, "b": 79, "result": 72}
+{"prompt": "what is 68 + 68?", "target": "23", "a": 68, "b": 68, "result": 23}
+{"prompt": "74 plus 13 equals", "target": "87", "a": 74, "b": 13, "result": 87}
+{"prompt": "30 + 111 =", "target": "28", "a": 30, "b": 111, "result": 28}
+{"prompt": "what is 97 + 108?", "target": "92", "a": 97, "b": 108, "result": 92}
+{"prompt": "what is 64 + 12?", "target": "76", "a": 64, "b": 12, "result": 76}
+{"prompt": "64 + 6 =", "target": "70", "a": 64, "b": 6, "result": 70}
+{"prompt": "sum of 67 and 47 is", "target": "1", "a": 67, "b": 47, "result": 1}
+{"prompt": "what is 46 + 81?", "target": "14", "a": 46, "b": 81, "result": 14}
+{"prompt": "94 + 104 =", "target": "85", "a": 94, "b": 104, "result": 85}
+{"prompt": "sum of 87 and 108 is", "target": "82", "a": 87, "b": 108, "result": 82}
+{"prompt": "what is 84 + 10?", "target": "94", "a": 84, "b": 10, "result": 94}
+{"prompt": "62 + 37 =", "target": "99", "a": 62, "b": 37, "result": 99}
+{"prompt": "sum of 30 and 53 is", "target": "83", "a": 30, "b": 53, "result": 83}
+{"prompt": "41 plus 67 equals", "target": "108", "a": 41, "b": 67, "result": 108}
+{"prompt": "44 plus 6 equals", "target": "50", "a": 44, "b": 6, "result": 50}
+{"prompt": "sum of 0 and 6 is", "target": "6", "a": 0, "b": 6, "result": 6}
+{"prompt": "sum of 79 and 50 is", "target": "16", "a": 79, "b": 50, "result": 16}
+{"prompt": "58 + 99 =", "target": "44", "a": 58, "b": 99, "result": 44}
+{"prompt": "43 plus 71 equals", "target": "1", "a": 43, "b": 71, "result": 1}
+{"prompt": "82 plus 58 equals", "target": "27", "a": 82, "b": 58, "result": 27}
+{"prompt": "sum of 89 and 27 is", "target": "3", "a": 89, "b": 27, "result": 3}
+{"prompt": "sum of 25 and 26 is", "target": "51", "a": 25, "b": 26, "result": 51}
+{"prompt": "what is 98 + 23?", "target": "8", "a": 98, "b": 23, "result": 8}
+{"prompt": "sum of 54 and 109 is", "target": "50", "a": 54, "b": 109, "result": 50}
+{"prompt": "96 + 46 =", "target": "29", "a": 96, "b": 46, "result": 29}
+{"prompt": "what is 60 + 108?", "target": "55", "a": 60, "b": 108, "result": 55}
+{"prompt": "sum of 27 and 92 is", "target": "6", "a": 27, "b": 92, "result": 6}
+{"prompt": "sum of 18 and 51 is", "target": "69", "a": 18, "b": 51, "result": 69}
+{"prompt": "80 plus 43 equals", "target": "10", "a": 80, "b": 43, "result": 10}
+{"prompt": "42 + 98 =", "target": "27", "a": 42, "b": 98, "result": 27}
+{"prompt": "sum of 101 and 10 is", "target": "111", "a": 101, "b": 10, "result": 111}
+{"prompt": "what is 58 + 38?", "target": "96", "a": 58, "b": 38, "result": 96}
+{"prompt": "47 + 33 =", "target": "80", "a": 47, "b": 33, "result": 80}
+{"prompt": "sum of 59 and 24 is", "target": "83", "a": 59, "b": 24, "result": 83}
+{"prompt": "what is 96 + 78?", "target": "61", "a": 96, "b": 78, "result": 61}
+{"prompt": "44 + 95 =", "target": "26", "a": 44, "b": 95, "result": 26}
+{"prompt": "73 + 59 =", "target": "19", "a": 73, "b": 59, "result": 19}
+{"prompt": "what is 43 + 61?", "target": "104", "a": 43, "b": 61, "result": 104}
+{"prompt": "what is 104 + 40?", "target": "31", "a": 104, "b": 40, "result": 31}
+{"prompt": "sum of 18 and 7 is", "target": "25", "a": 18, "b": 7, "result": 25}
+{"prompt": "what is 109 + 21?", "target": "17", "a": 109, "b": 21, "result": 17}
+{"prompt": "45 plus 58 equals", "target": "103", "a": 45, "b": 58, "result": 103}
+{"prompt": "what is 90 + 39?", "target": "16", "a": 90, "b": 39, "result": 16}
+{"prompt": "sum of 47 and 98 is", "target": "32", "a": 47, "b": 98, "result": 32}
+{"prompt": "what is 96 + 34?", "target": "17", "a": 96, "b": 34, "result": 17}
+{"prompt": "10 + 16 =", "target": "26", "a": 10, "b": 16, "result": 26}
+{"prompt": "62 plus 60 equals", "target": "9", "a": 62, "b": 60, "result": 9}
+{"prompt": "52 plus 91 equals", "target": "30", "a": 52, "b": 91, "result": 30}
+{"prompt": "sum of 28 and 64 is", "target": "92", "a": 28, "b": 64, "result": 92}
+{"prompt": "what is 97 + 26?", "target": "10", "a": 97, "b": 26, "result": 10}
+{"prompt": "sum of 106 and 97 is", "target": "90", "a": 106, "b": 97, "result": 90}
+{"prompt": "what is 107 + 65?", "target": "59", "a": 107, "b": 65, "result": 59}
+{"prompt": "what is 104 + 35?", "target": "26", "a": 104, "b": 35, "result": 26}
+{"prompt": "99 + 66 =", "target": "52", "a": 99, "b": 66, "result": 52}
+{"prompt": "sum of 78 and 7 is", "target": "85", "a": 78, "b": 7, "result": 85}
+{"prompt": "what is 75 + 43?", "target": "5", "a": 75, "b": 43, "result": 5}
+{"prompt": "0 + 27 =", "target": "27", "a": 0, "b": 27, "result": 27}
+{"prompt": "63 plus 25 equals", "target": "88", "a": 63, "b": 25, "result": 88}
+{"prompt": "102 plus 86 equals", "target": "75", "a": 102, "b": 86, "result": 75}
+{"prompt": "what is 6 + 49?", "target": "55", "a": 6, "b": 49, "result": 55}
+{"prompt": "what is 36 + 105?", "target": "28", "a": 36, "b": 105, "result": 28}
+{"prompt": "27 + 63 =", "target": "90", "a": 27, "b": 63, "result": 90}
+{"prompt": "sum of 83 and 67 is", "target": "37", "a": 83, "b": 67, "result": 37}
+{"prompt": "55 plus 96 equals", "target": "38", "a": 55, "b": 96, "result": 38}
+{"prompt": "16 + 86 =", "target": "102", "a": 16, "b": 86, "result": 102}
+{"prompt": "74 + 17 =", "target": "91", "a": 74, "b": 17, "result": 91}
+{"prompt": "87 plus 101 equals", "target": "75", "a": 87, "b": 101, "result": 75}
+{"prompt": "63 plus 30 equals", "target": "93", "a": 63, "b": 30, "result": 93}
+{"prompt": "45 + 54 =", "target": "99", "a": 45, "b": 54, "result": 99}
+{"prompt": "sum of 105 and 71 is", "target": "63", "a": 105, "b": 71, "result": 63}
+{"prompt": "what is 50 + 13?", "target": "63", "a": 50, "b": 13, "result": 63}
+{"prompt": "what is 63 + 0?", "target": "63", "a": 63, "b": 0, "result": 63}
+{"prompt": "86 plus 56 equals", "target": "29", "a": 86, "b": 56, "result": 29}
+{"prompt": "15 plus 81 equals", "target": "96", "a": 15, "b": 81, "result": 96}
+{"prompt": "5 plus 61 equals", "target": "66", "a": 5, "b": 61, "result": 66}
+{"prompt": "38 plus 55 equals", "target": "93", "a": 38, "b": 55, "result": 93}
+{"prompt": "what is 84 + 20?", "target": "104", "a": 84, "b": 20, "result": 104}
+{"prompt": "25 plus 100 equals", "target": "12", "a": 25, "b": 100, "result": 12}
+{"prompt": "37 plus 98 equals", "target": "22", "a": 37, "b": 98, "result": 22}
+{"prompt": "16 plus 81 equals", "target": "97", "a": 16, "b": 81, "result": 97}
+{"prompt": "what is 4 + 0?", "target": "4", "a": 4, "b": 0, "result": 4}
+{"prompt": "sum of 48 and 1 is", "target": "49", "a": 48, "b": 1, "result": 49}
+{"prompt": "sum of 112 and 55 is", "target": "54", "a": 112, "b": 55, "result": 54}
+{"prompt": "98 + 59 =", "target": "44", "a": 98, "b": 59, "result": 44}
+{"prompt": "57 plus 107 equals", "target": "51", "a": 57, "b": 107, "result": 51}
+{"prompt": "73 plus 97 equals", "target": "57", "a": 73, "b": 97, "result": 57}
+{"prompt": "sum of 93 and 1 is", "target": "94", "a": 93, "b": 1, "result": 94}
+{"prompt": "50 plus 103 equals", "target": "40", "a": 50, "b": 103, "result": 40}
+{"prompt": "40 plus 53 equals", "target": "93", "a": 40, "b": 53, "result": 93}
+{"prompt": "what is 10 + 7?", "target": "17", "a": 10, "b": 7, "result": 17}
+{"prompt": "what is 40 + 44?", "target": "84", "a": 40, "b": 44, "result": 84}
+{"prompt": "what is 47 + 67?", "target": "1", "a": 47, "b": 67, "result": 1}
+{"prompt": "57 plus 87 equals", "target": "31", "a": 57, "b": 87, "result": 31}
+{"prompt": "sum of 28 and 0 is", "target": "28", "a": 28, "b": 0, "result": 28}
+{"prompt": "95 plus 78 equals", "target": "60", "a": 95, "b": 78, "result": 60}
+{"prompt": "what is 3 + 48?", "target": "51", "a": 3, "b": 48, "result": 51}
+{"prompt": "what is 32 + 36?", "target": "68", "a": 32, "b": 36, "result": 68}
+{"prompt": "32 plus 112 equals", "target": "31", "a": 32, "b": 112, "result": 31}
+{"prompt": "44 plus 28 equals", "target": "72", "a": 44, "b": 28, "result": 72}
+{"prompt": "50 plus 78 equals", "target": "15", "a": 50, "b": 78, "result": 15}
+{"prompt": "sum of 66 and 83 is", "target": "36", "a": 66, "b": 83, "result": 36}
+{"prompt": "28 plus 105 equals", "target": "20", "a": 28, "b": 105, "result": 20}
+{"prompt": "32 + 28 =", "target": "60", "a": 32, "b": 28, "result": 60}
+{"prompt": "68 plus 27 equals", "target": "95", "a": 68, "b": 27, "result": 95}
+{"prompt": "5 plus 69 equals", "target": "74", "a": 5, "b": 69, "result": 74}
+{"prompt": "55 plus 52 equals", "target": "107", "a": 55, "b": 52, "result": 107}
+{"prompt": "15 + 76 =", "target": "91", "a": 15, "b": 76, "result": 91}
+{"prompt": "101 + 76 =", "target": "64", "a": 101, "b": 76, "result": 64}
+{"prompt": "sum of 23 and 9 is", "target": "32", "a": 23, "b": 9, "result": 32}
+{"prompt": "111 + 55 =", "target": "53", "a": 111, "b": 55, "result": 53}
+{"prompt": "35 + 110 =", "target": "32", "a": 35, "b": 110, "result": 32}
+{"prompt": "what is 106 + 65?", "target": "58", "a": 106, "b": 65, "result": 58}
+{"prompt": "97 plus 14 equals", "target": "111", "a": 97, "b": 14, "result": 111}
+{"prompt": "59 plus 78 equals", "target": "24", "a": 59, "b": 78, "result": 24}
+{"prompt": "48 plus 18 equals", "target": "66", "a": 48, "b": 18, "result": 66}
+{"prompt": "sum of 106 and 89 is", "target": "82", "a": 106, "b": 89, "result": 82}
+{"prompt": "sum of 26 and 0 is", "target": "26", "a": 26, "b": 0, "result": 26}
+{"prompt": "3 plus 67 equals", "target": "70", "a": 3, "b": 67, "result": 70}
+{"prompt": "59 plus 88 equals", "target": "34", "a": 59, "b": 88, "result": 34}
+{"prompt": "sum of 25 and 75 is", "target": "100", "a": 25, "b": 75, "result": 100}
+{"prompt": "what is 23 + 63?", "target": "86", "a": 23, "b": 63, "result": 86}
+{"prompt": "34 + 36 =", "target": "70", "a": 34, "b": 36, "result": 70}
+{"prompt": "22 plus 46 equals", "target": "68", "a": 22, "b": 46, "result": 68}
+{"prompt": "89 + 111 =", "target": "87", "a": 89, "b": 111, "result": 87}
+{"prompt": "what is 110 + 14?", "target": "11", "a": 110, "b": 14, "result": 11}
+{"prompt": "sum of 81 and 20 is", "target": "101", "a": 81, "b": 20, "result": 101}
+{"prompt": "sum of 51 and 31 is", "target": "82", "a": 51, "b": 31, "result": 82}
+{"prompt": "14 + 102 =", "target": "3", "a": 14, "b": 102, "result": 3}
+{"prompt": "sum of 96 and 79 is", "target": "62", "a": 96, "b": 79, "result": 62}
+{"prompt": "sum of 36 and 20 is", "target": "56", "a": 36, "b": 20, "result": 56}
+{"prompt": "sum of 98 and 100 is", "target": "85", "a": 98, "b": 100, "result": 85}
+{"prompt": "30 plus 51 equals", "target": "81", "a": 30, "b": 51, "result": 81}
+{"prompt": "what is 51 + 99?", "target": "37", "a": 51, "b": 99, "result": 37}
+{"prompt": "5 + 88 =", "target": "93", "a": 5, "b": 88, "result": 93}
+{"prompt": "what is 52 + 98?", "target": "37", "a": 52, "b": 98, "result": 37}
+{"prompt": "sum of 44 and 78 is", "target": "9", "a": 44, "b": 78, "result": 9}
+{"prompt": "what is 6 + 7?", "target": "13", "a": 6, "b": 7, "result": 13}
+{"prompt": "18 + 54 =", "target": "72", "a": 18, "b": 54, "result": 72}
+{"prompt": "62 plus 35 equals", "target": "97", "a": 62, "b": 35, "result": 97}
+{"prompt": "21 plus 53 equals", "target": "74", "a": 21, "b": 53, "result": 74}
+{"prompt": "80 + 12 =", "target": "92", "a": 80, "b": 12, "result": 92}
+{"prompt": "84 + 51 =", "target": "22", "a": 84, "b": 51, "result": 22}
+{"prompt": "53 + 60 =", "target": "0", "a": 53, "b": 60, "result": 0}
+{"prompt": "what is 5 + 25?", "target": "30", "a": 5, "b": 25, "result": 30}
+{"prompt": "sum of 79 and 11 is", "target": "90", "a": 79, "b": 11, "result": 90}
+{"prompt": "21 plus 69 equals", "target": "90", "a": 21, "b": 69, "result": 90}
+{"prompt": "100 plus 21 equals", "target": "8", "a": 100, "b": 21, "result": 8}
+{"prompt": "10 plus 102 equals", "target": "112", "a": 10, "b": 102, "result": 112}
+{"prompt": "111 plus 20 equals", "target": "18", "a": 111, "b": 20, "result": 18}
+{"prompt": "what is 1 + 45?", "target": "46", "a": 1, "b": 45, "result": 46}
+{"prompt": "81 plus 36 equals", "target": "4", "a": 81, "b": 36, "result": 4}
+{"prompt": "62 plus 1 equals", "target": "63", "a": 62, "b": 1, "result": 63}
+{"prompt": "what is 102 + 35?", "target": "24", "a": 102, "b": 35, "result": 24}
+{"prompt": "what is 79 + 111?", "target": "77", "a": 79, "b": 111, "result": 77}
+{"prompt": "what is 64 + 7?", "target": "71", "a": 64, "b": 7, "result": 71}
+{"prompt": "what is 107 + 53?", "target": "47", "a": 107, "b": 53, "result": 47}
+{"prompt": "23 plus 48 equals", "target": "71", "a": 23, "b": 48, "result": 71}
+{"prompt": "37 plus 110 equals", "target": "34", "a": 37, "b": 110, "result": 34}
+{"prompt": "92 + 42 =", "target": "21", "a": 92, "b": 42, "result": 21}
+{"prompt": "what is 18 + 109?", "target": "14", "a": 18, "b": 109, "result": 14}
+{"prompt": "48 + 40 =", "target": "88", "a": 48, "b": 40, "result": 88}
+{"prompt": "what is 0 + 58?", "target": "58", "a": 0, "b": 58, "result": 58}
+{"prompt": "what is 6 + 44?", "target": "50", "a": 6, "b": 44, "result": 50}
+{"prompt": "sum of 40 and 13 is", "target": "53", "a": 40, "b": 13, "result": 53}
+{"prompt": "what is 110 + 51?", "target": "48", "a": 110, "b": 51, "result": 48}
+{"prompt": "91 + 109 =", "target": "87", "a": 91, "b": 109, "result": 87}
+{"prompt": "what is 13 + 43?", "target": "56", "a": 13, "b": 43, "result": 56}
+{"prompt": "7 + 41 =", "target": "48", "a": 7, "b": 41, "result": 48}
+{"prompt": "36 plus 46 equals", "target": "82", "a": 36, "b": 46, "result": 82}
+{"prompt": "sum of 70 and 94 is", "target": "51", "a": 70, "b": 94, "result": 51}
+{"prompt": "73 + 31 =", "target": "104", "a": 73, "b": 31, "result": 104}
+{"prompt": "38 plus 31 equals", "target": "69", "a": 38, "b": 31, "result": 69}
+{"prompt": "what is 91 + 108?", "target": "86", "a": 91, "b": 108, "result": 86}
+{"prompt": "99 + 76 =", "target": "62", "a": 99, "b": 76, "result": 62}
+{"prompt": "sum of 29 and 58 is", "target": "87", "a": 29, "b": 58, "result": 87}
+{"prompt": "sum of 49 and 80 is", "target": "16", "a": 49, "b": 80, "result": 16}
+{"prompt": "104 plus 5 equals", "target": "109", "a": 104, "b": 5, "result": 109}
+{"prompt": "sum of 30 and 60 is", "target": "90", "a": 30, "b": 60, "result": 90}
+{"prompt": "87 plus 78 equals", "target": "52", "a": 87, "b": 78, "result": 52}
+{"prompt": "sum of 40 and 96 is", "target": "23", "a": 40, "b": 96, "result": 23}
+{"prompt": "39 + 55 =", "target": "94", "a": 39, "b": 55, "result": 94}
+{"prompt": "22 + 60 =", "target": "82", "a": 22, "b": 60, "result": 82}
+{"prompt": "what is 111 + 63?", "target": "61", "a": 111, "b": 63, "result": 61}
+{"prompt": "sum of 107 and 72 is", "target": "66", "a": 107, "b": 72, "result": 66}
+{"prompt": "15 + 58 =", "target": "73", "a": 15, "b": 58, "result": 73}
+{"prompt": "16 plus 83 equals", "target": "99", "a": 16, "b": 83, "result": 99}
+{"prompt": "what is 112 + 59?", "target": "58", "a": 112, "b": 59, "result": 58}
+{"prompt": "sum of 19 and 53 is", "target": "72", "a": 19, "b": 53, "result": 72}
+{"prompt": "15 + 2 =", "target": "17", "a": 15, "b": 2, "result": 17}
+{"prompt": "what is 96 + 20?", "target": "3", "a": 96, "b": 20, "result": 3}
+{"prompt": "what is 43 + 46?", "target": "89", "a": 43, "b": 46, "result": 89}
+{"prompt": "sum of 80 and 46 is", "target": "13", "a": 80, "b": 46, "result": 13}
+{"prompt": "96 plus 94 equals", "target": "77", "a": 96, "b": 94, "result": 77}
+{"prompt": "what is 1 + 15?", "target": "16", "a": 1, "b": 15, "result": 16}
+{"prompt": "what is 76 + 78?", "target": "41", "a": 76, "b": 78, "result": 41}
+{"prompt": "what is 94 + 92?", "target": "73", "a": 94, "b": 92, "result": 73}
+{"prompt": "88 plus 77 equals", "target": "52", "a": 88, "b": 77, "result": 52}
+{"prompt": "sum of 43 and 97 is", "target": "27", "a": 43, "b": 97, "result": 27}
+{"prompt": "102 + 0 =", "target": "102", "a": 102, "b": 0, "result": 102}
+{"prompt": "what is 78 + 86?", "target": "51", "a": 78, "b": 86, "result": 51}
+{"prompt": "63 plus 60 equals", "target": "10", "a": 63, "b": 60, "result": 10}
+{"prompt": "22 + 98 =", "target": "7", "a": 22, "b": 98, "result": 7}
+{"prompt": "41 + 36 =", "target": "77", "a": 41, "b": 36, "result": 77}
+{"prompt": "53 plus 65 equals", "target": "5", "a": 53, "b": 65, "result": 5}
+{"prompt": "what is 35 + 47?", "target": "82", "a": 35, "b": 47, "result": 82}
+{"prompt": "9 plus 110 equals", "target": "6", "a": 9, "b": 110, "result": 6}
+{"prompt": "sum of 50 and 68 is", "target": "5", "a": 50, "b": 68, "result": 5}
+{"prompt": "what is 19 + 23?", "target": "42", "a": 19, "b": 23, "result": 42}
+{"prompt": "sum of 110 and 4 is", "target": "1", "a": 110, "b": 4, "result": 1}
+{"prompt": "what is 73 + 39?", "target": "112", "a": 73, "b": 39, "result": 112}
+{"prompt": "30 + 102 =", "target": "19", "a": 30, "b": 102, "result": 19}
+{"prompt": "sum of 77 and 107 is", "target": "71", "a": 77, "b": 107, "result": 71}
+{"prompt": "what is 10 + 70?", "target": "80", "a": 10, "b": 70, "result": 80}
+{"prompt": "sum of 14 and 56 is", "target": "70", "a": 14, "b": 56, "result": 70}
+{"prompt": "sum of 81 and 71 is", "target": "39", "a": 81, "b": 71, "result": 39}
+{"prompt": "what is 90 + 7?", "target": "97", "a": 90, "b": 7, "result": 97}
+{"prompt": "66 plus 50 equals", "target": "3", "a": 66, "b": 50, "result": 3}
+{"prompt": "1 + 39 =", "target": "40", "a": 1, "b": 39, "result": 40}
+{"prompt": "10 plus 58 equals", "target": "68", "a": 10, "b": 58, "result": 68}
+{"prompt": "what is 109 + 1?", "target": "110", "a": 109, "b": 1, "result": 110}
+{"prompt": "sum of 45 and 95 is", "target": "27", "a": 45, "b": 95, "result": 27}
+{"prompt": "66 + 33 =", "target": "99", "a": 66, "b": 33, "result": 99}
+{"prompt": "sum of 43 and 56 is", "target": "99", "a": 43, "b": 56, "result": 99}
+{"prompt": "what is 93 + 66?", "target": "46", "a": 93, "b": 66, "result": 46}
+{"prompt": "110 + 99 =", "target": "96", "a": 110, "b": 99, "result": 96}
+{"prompt": "sum of 18 and 110 is", "target": "15", "a": 18, "b": 110, "result": 15}
+{"prompt": "sum of 57 and 43 is", "target": "100", "a": 57, "b": 43, "result": 100}
+{"prompt": "38 + 57 =", "target": "95", "a": 38, "b": 57, "result": 95}
+{"prompt": "sum of 34 and 68 is", "target": "102", "a": 34, "b": 68, "result": 102}
+{"prompt": "45 plus 62 equals", "target": "107", "a": 45, "b": 62, "result": 107}
+{"prompt": "103 plus 95 equals", "target": "85", "a": 103, "b": 95, "result": 85}
+{"prompt": "what is 97 + 11?", "target": "108", "a": 97, "b": 11, "result": 108}
+{"prompt": "what is 29 + 69?", "target": "98", "a": 29, "b": 69, "result": 98}
+{"prompt": "sum of 37 and 91 is", "target": "15", "a": 37, "b": 91, "result": 15}
+{"prompt": "45 plus 98 equals", "target": "30", "a": 45, "b": 98, "result": 30}
+{"prompt": "75 plus 90 equals", "target": "52", "a": 75, "b": 90, "result": 52}
+{"prompt": "81 plus 107 equals", "target": "75", "a": 81, "b": 107, "result": 75}
+{"prompt": "84 plus 70 equals", "target": "41", "a": 84, "b": 70, "result": 41}
+{"prompt": "sum of 95 and 35 is", "target": "17", "a": 95, "b": 35, "result": 17}
+{"prompt": "what is 60 + 88?", "target": "35", "a": 60, "b": 88, "result": 35}
+{"prompt": "11 + 100 =", "target": "111", "a": 11, "b": 100, "result": 111}
+{"prompt": "89 plus 90 equals", "target": "66", "a": 89, "b": 90, "result": 66}
+{"prompt": "5 + 86 =", "target": "91", "a": 5, "b": 86, "result": 91}
+{"prompt": "86 plus 22 equals", "target": "108", "a": 86, "b": 22, "result": 108}
+{"prompt": "83 + 106 =", "target": "76", "a": 83, "b": 106, "result": 76}
+{"prompt": "35 + 78 =", "target": "0", "a": 35, "b": 78, "result": 0}
+{"prompt": "sum of 82 and 67 is", "target": "36", "a": 82, "b": 67, "result": 36}
+{"prompt": "sum of 17 and 43 is", "target": "60", "a": 17, "b": 43, "result": 60}
+{"prompt": "sum of 58 and 61 is", "target": "6", "a": 58, "b": 61, "result": 6}
+{"prompt": "34 plus 11 equals", "target": "45", "a": 34, "b": 11, "result": 45}
+{"prompt": "sum of 97 and 101 is", "target": "85", "a": 97, "b": 101, "result": 85}
+{"prompt": "9 + 96 =", "target": "105", "a": 9, "b": 96, "result": 105}
+{"prompt": "86 + 31 =", "target": "4", "a": 86, "b": 31, "result": 4}
+{"prompt": "9 + 105 =", "target": "1", "a": 9, "b": 105, "result": 1}
+{"prompt": "26 plus 106 equals", "target": "19", "a": 26, "b": 106, "result": 19}
+{"prompt": "what is 11 + 69?", "target": "80", "a": 11, "b": 69, "result": 80}
+{"prompt": "what is 73 + 71?", "target": "31", "a": 73, "b": 71, "result": 31}
+{"prompt": "8 plus 27 equals", "target": "35", "a": 8, "b": 27, "result": 35}
+{"prompt": "22 plus 93 equals", "target": "2", "a": 22, "b": 93, "result": 2}
+{"prompt": "77 plus 0 equals", "target": "77", "a": 77, "b": 0, "result": 77}
+{"prompt": "sum of 72 and 102 is", "target": "61", "a": 72, "b": 102, "result": 61}
+{"prompt": "what is 69 + 14?", "target": "83", "a": 69, "b": 14, "result": 83}
+{"prompt": "sum of 84 and 79 is", "target": "50", "a": 84, "b": 79, "result": 50}
+{"prompt": "7 plus 30 equals", "target": "37", "a": 7, "b": 30, "result": 37}
+{"prompt": "8 plus 32 equals", "target": "40", "a": 8, "b": 32, "result": 40}
+{"prompt": "sum of 45 and 53 is", "target": "98", "a": 45, "b": 53, "result": 98}
+{"prompt": "what is 108 + 50?", "target": "45", "a": 108, "b": 50, "result": 45}
+{"prompt": "what is 8 + 94?", "target": "102", "a": 8, "b": 94, "result": 102}
+{"prompt": "what is 78 + 69?", "target": "34", "a": 78, "b": 69, "result": 34}
+{"prompt": "106 + 76 =", "target": "69", "a": 106, "b": 76, "result": 69}
+{"prompt": "83 plus 110 equals", "target": "80", "a": 83, "b": 110, "result": 80}
+{"prompt": "8 plus 54 equals", "target": "62", "a": 8, "b": 54, "result": 62}
+{"prompt": "31 plus 63 equals", "target": "94", "a": 31, "b": 63, "result": 94}
+{"prompt": "what is 43 + 2?", "target": "45", "a": 43, "b": 2, "result": 45}
+{"prompt": "what is 27 + 60?", "target": "87", "a": 27, "b": 60, "result": 87}
+{"prompt": "22 + 50 =", "target": "72", "a": 22, "b": 50, "result": 72}
+{"prompt": "sum of 70 and 63 is", "target": "20", "a": 70, "b": 63, "result": 20}
+{"prompt": "sum of 104 and 18 is", "target": "9", "a": 104, "b": 18, "result": 9}
+{"prompt": "95 + 109 =", "target": "91", "a": 95, "b": 109, "result": 91}
+{"prompt": "what is 80 + 65?", "target": "32", "a": 80, "b": 65, "result": 32}
+{"prompt": "105 + 103 =", "target": "95", "a": 105, "b": 103, "result": 95}
+{"prompt": "what is 100 + 112?", "target": "99", "a": 100, "b": 112, "result": 99}
+{"prompt": "61 + 37 =", "target": "98", "a": 61, "b": 37, "result": 98}
+{"prompt": "41 plus 40 equals", "target": "81", "a": 41, "b": 40, "result": 81}
+{"prompt": "sum of 65 and 109 is", "target": "61", "a": 65, "b": 109, "result": 61}
+{"prompt": "sum of 38 and 51 is", "target": "89", "a": 38, "b": 51, "result": 89}
+{"prompt": "what is 56 + 68?", "target": "11", "a": 56, "b": 68, "result": 11}
+{"prompt": "sum of 0 and 35 is", "target": "35", "a": 0, "b": 35, "result": 35}
+{"prompt": "what is 54 + 107?", "target": "48", "a": 54, "b": 107, "result": 48}
+{"prompt": "sum of 23 and 98 is", "target": "8", "a": 23, "b": 98, "result": 8}
+{"prompt": "what is 8 + 56?", "target": "64", "a": 8, "b": 56, "result": 64}
+{"prompt": "58 + 16 =", "target": "74", "a": 58, "b": 16, "result": 74}
+{"prompt": "sum of 30 and 112 is", "target": "29", "a": 30, "b": 112, "result": 29}
+{"prompt": "what is 69 + 89?", "target": "45", "a": 69, "b": 89, "result": 45}
+{"prompt": "what is 70 + 46?", "target": "3", "a": 70, "b": 46, "result": 3}
+{"prompt": "sum of 58 and 104 is", "target": "49", "a": 58, "b": 104, "result": 49}
+{"prompt": "what is 24 + 12?", "target": "36", "a": 24, "b": 12, "result": 36}
+{"prompt": "34 plus 30 equals", "target": "64", "a": 34, "b": 30, "result": 64}
+{"prompt": "109 plus 29 equals", "target": "25", "a": 109, "b": 29, "result": 25}
+{"prompt": "13 + 59 =", "target": "72", "a": 13, "b": 59, "result": 72}
+{"prompt": "what is 2 + 15?", "target": "17", "a": 2, "b": 15, "result": 17}
+{"prompt": "78 plus 42 equals", "target": "7", "a": 78, "b": 42, "result": 7}
+{"prompt": "94 plus 62 equals", "target": "43", "a": 94, "b": 62, "result": 43}
+{"prompt": "what is 7 + 37?", "target": "44", "a": 7, "b": 37, "result": 44}
+{"prompt": "14 + 22 =", "target": "36", "a": 14, "b": 22, "result": 36}
+{"prompt": "79 + 89 =", "target": "55", "a": 79, "b": 89, "result": 55}
+{"prompt": "64 + 28 =", "target": "92", "a": 64, "b": 28, "result": 92}
+{"prompt": "10 plus 105 equals", "target": "2", "a": 10, "b": 105, "result": 2}
+{"prompt": "what is 36 + 24?", "target": "60", "a": 36, "b": 24, "result": 60}
+{"prompt": "67 + 8 =", "target": "75", "a": 67, "b": 8, "result": 75}
+{"prompt": "what is 40 + 43?", "target": "83", "a": 40, "b": 43, "result": 83}
+{"prompt": "what is 26 + 68?", "target": "94", "a": 26, "b": 68, "result": 94}
+{"prompt": "112 plus 97 equals", "target": "96", "a": 112, "b": 97, "result": 96}
+{"prompt": "20 + 36 =", "target": "56", "a": 20, "b": 36, "result": 56}
+{"prompt": "65 + 5 =", "target": "70", "a": 65, "b": 5, "result": 70}
+{"prompt": "what is 77 + 85?", "target": "49", "a": 77, "b": 85, "result": 49}
+{"prompt": "sum of 27 and 65 is", "target": "92", "a": 27, "b": 65, "result": 92}
+{"prompt": "sum of 27 and 88 is", "target": "2", "a": 27, "b": 88, "result": 2}
+{"prompt": "sum of 36 and 5 is", "target": "41", "a": 36, "b": 5, "result": 41}
+{"prompt": "what is 15 + 95?", "target": "110", "a": 15, "b": 95, "result": 110}
+{"prompt": "what is 49 + 22?", "target": "71", "a": 49, "b": 22, "result": 71}
+{"prompt": "sum of 105 and 66 is", "target": "58", "a": 105, "b": 66, "result": 58}
+{"prompt": "sum of 58 and 42 is", "target": "100", "a": 58, "b": 42, "result": 100}
+{"prompt": "what is 8 + 89?", "target": "97", "a": 8, "b": 89, "result": 97}
+{"prompt": "what is 14 + 30?", "target": "44", "a": 14, "b": 30, "result": 44}
+{"prompt": "sum of 93 and 78 is", "target": "58", "a": 93, "b": 78, "result": 58}
+{"prompt": "sum of 94 and 84 is", "target": "65", "a": 94, "b": 84, "result": 65}
+{"prompt": "sum of 97 and 71 is", "target": "55", "a": 97, "b": 71, "result": 55}
+{"prompt": "what is 7 + 96?", "target": "103", "a": 7, "b": 96, "result": 103}
+{"prompt": "sum of 105 and 80 is", "target": "72", "a": 105, "b": 80, "result": 72}
+{"prompt": "67 + 80 =", "target": "34", "a": 67, "b": 80, "result": 34}
+{"prompt": "59 plus 68 equals", "target": "14", "a": 59, "b": 68, "result": 14}
+{"prompt": "sum of 61 and 46 is", "target": "107", "a": 61, "b": 46, "result": 107}
+{"prompt": "what is 51 + 41?", "target": "92", "a": 51, "b": 41, "result": 92}
+{"prompt": "what is 62 + 56?", "target": "5", "a": 62, "b": 56, "result": 5}
+{"prompt": "sum of 95 and 61 is", "target": "43", "a": 95, "b": 61, "result": 43}
+{"prompt": "14 + 6 =", "target": "20", "a": 14, "b": 6, "result": 20}
+{"prompt": "13 + 76 =", "target": "89", "a": 13, "b": 76, "result": 89}
+{"prompt": "27 + 68 =", "target": "95", "a": 27, "b": 68, "result": 95}
+{"prompt": "what is 59 + 2?", "target": "61", "a": 59, "b": 2, "result": 61}
+{"prompt": "what is 68 + 65?", "target": "20", "a": 68, "b": 65, "result": 20}
+{"prompt": "sum of 35 and 26 is", "target": "61", "a": 35, "b": 26, "result": 61}
+{"prompt": "what is 68 + 60?", "target": "15", "a": 68, "b": 60, "result": 15}
+{"prompt": "83 plus 61 equals", "target": "31", "a": 83, "b": 61, "result": 31}
+{"prompt": "sum of 82 and 89 is", "target": "58", "a": 82, "b": 89, "result": 58}
+{"prompt": "104 + 99 =", "target": "90", "a": 104, "b": 99, "result": 90}
+{"prompt": "sum of 19 and 20 is", "target": "39", "a": 19, "b": 20, "result": 39}
+{"prompt": "78 + 20 =", "target": "98", "a": 78, "b": 20, "result": 98}
+{"prompt": "what is 31 + 7?", "target": "38", "a": 31, "b": 7, "result": 38}
+{"prompt": "what is 70 + 43?", "target": "0", "a": 70, "b": 43, "result": 0}
+{"prompt": "sum of 96 and 112 is", "target": "95", "a": 96, "b": 112, "result": 95}
+{"prompt": "sum of 40 and 42 is", "target": "82", "a": 40, "b": 42, "result": 82}
+{"prompt": "sum of 34 and 57 is", "target": "91", "a": 34, "b": 57, "result": 91}
+{"prompt": "74 + 61 =", "target": "22", "a": 74, "b": 61, "result": 22}
+{"prompt": "10 plus 30 equals", "target": "40", "a": 10, "b": 30, "result": 40}
+{"prompt": "47 plus 102 equals", "target": "36", "a": 47, "b": 102, "result": 36}
+{"prompt": "sum of 4 and 62 is", "target": "66", "a": 4, "b": 62, "result": 66}
+{"prompt": "sum of 9 and 87 is", "target": "96", "a": 9, "b": 87, "result": 96}
+{"prompt": "sum of 33 and 21 is", "target": "54", "a": 33, "b": 21, "result": 54}
+{"prompt": "8 + 60 =", "target": "68", "a": 8, "b": 60, "result": 68}
+{"prompt": "what is 91 + 56?", "target": "34", "a": 91, "b": 56, "result": 34}
+{"prompt": "sum of 102 and 71 is", "target": "60", "a": 102, "b": 71, "result": 60}
+{"prompt": "10 + 33 =", "target": "43", "a": 10, "b": 33, "result": 43}
+{"prompt": "1 plus 4 equals", "target": "5", "a": 1, "b": 4, "result": 5}
+{"prompt": "31 plus 105 equals", "target": "23", "a": 31, "b": 105, "result": 23}
+{"prompt": "85 plus 36 equals", "target": "8", "a": 85, "b": 36, "result": 8}
+{"prompt": "what is 33 + 41?", "target": "74", "a": 33, "b": 41, "result": 74}
+{"prompt": "what is 80 + 35?", "target": "2", "a": 80, "b": 35, "result": 2}
+{"prompt": "85 + 33 =", "target": "5", "a": 85, "b": 33, "result": 5}
+{"prompt": "3 plus 5 equals", "target": "8", "a": 3, "b": 5, "result": 8}
+{"prompt": "sum of 49 and 2 is", "target": "51", "a": 49, "b": 2, "result": 51}
+{"prompt": "what is 9 + 32?", "target": "41", "a": 9, "b": 32, "result": 41}
+{"prompt": "32 + 65 =", "target": "97", "a": 32, "b": 65, "result": 97}
+{"prompt": "35 + 106 =", "target": "28", "a": 35, "b": 106, "result": 28}
+{"prompt": "what is 17 + 61?", "target": "78", "a": 17, "b": 61, "result": 78}
+{"prompt": "65 + 52 =", "target": "4", "a": 65, "b": 52, "result": 4}
+{"prompt": "75 plus 4 equals", "target": "79", "a": 75, "b": 4, "result": 79}
+{"prompt": "what is 63 + 58?", "target": "8", "a": 63, "b": 58, "result": 8}
+{"prompt": "54 plus 16 equals", "target": "70", "a": 54, "b": 16, "result": 70}
+{"prompt": "112 + 85 =", "target": "84", "a": 112, "b": 85, "result": 84}
+{"prompt": "sum of 97 and 43 is", "target": "27", "a": 97, "b": 43, "result": 27}
+{"prompt": "sum of 57 and 96 is", "target": "40", "a": 57, "b": 96, "result": 40}
+{"prompt": "45 plus 22 equals", "target": "67", "a": 45, "b": 22, "result": 67}
+{"prompt": "103 plus 41 equals", "target": "31", "a": 103, "b": 41, "result": 31}
+{"prompt": "what is 29 + 18?", "target": "47", "a": 29, "b": 18, "result": 47}
+{"prompt": "100 + 2 =", "target": "102", "a": 100, "b": 2, "result": 102}
+{"prompt": "105 plus 94 equals", "target": "86", "a": 105, "b": 94, "result": 86}
+{"prompt": "109 + 57 =", "target": "53", "a": 109, "b": 57, "result": 53}
+{"prompt": "sum of 78 and 21 is", "target": "99", "a": 78, "b": 21, "result": 99}
+{"prompt": "30 + 80 =", "target": "110", "a": 30, "b": 80, "result": 110}
+{"prompt": "61 plus 39 equals", "target": "100", "a": 61, "b": 39, "result": 100}
+{"prompt": "87 + 107 =", "target": "81", "a": 87, "b": 107, "result": 81}
+{"prompt": "sum of 76 and 57 is", "target": "20", "a": 76, "b": 57, "result": 20}
+{"prompt": "38 + 48 =", "target": "86", "a": 38, "b": 48, "result": 86}
+{"prompt": "23 plus 106 equals", "target": "16", "a": 23, "b": 106, "result": 16}
+{"prompt": "sum of 79 and 80 is", "target": "46", "a": 79, "b": 80, "result": 46}
+{"prompt": "68 + 103 =", "target": "58", "a": 68, "b": 103, "result": 58}
+{"prompt": "what is 95 + 74?", "target": "56", "a": 95, "b": 74, "result": 56}
+{"prompt": "18 + 69 =", "target": "87", "a": 18, "b": 69, "result": 87}
+{"prompt": "what is 18 + 26?", "target": "44", "a": 18, "b": 26, "result": 44}
+{"prompt": "what is 111 + 4?", "target": "2", "a": 111, "b": 4, "result": 2}
+{"prompt": "what is 77 + 26?", "target": "103", "a": 77, "b": 26, "result": 103}
+{"prompt": "110 plus 31 equals", "target": "28", "a": 110, "b": 31, "result": 28}
+{"prompt": "sum of 10 and 3 is", "target": "13", "a": 10, "b": 3, "result": 13}
+{"prompt": "sum of 70 and 52 is", "target": "9", "a": 70, "b": 52, "result": 9}
+{"prompt": "106 plus 13 equals", "target": "6", "a": 106, "b": 13, "result": 6}
+{"prompt": "sum of 12 and 47 is", "target": "59", "a": 12, "b": 47, "result": 59}
+{"prompt": "11 + 47 =", "target": "58", "a": 11, "b": 47, "result": 58}
+{"prompt": "82 plus 29 equals", "target": "111", "a": 82, "b": 29, "result": 111}
+{"prompt": "sum of 34 and 104 is", "target": "25", "a": 34, "b": 104, "result": 25}
+{"prompt": "what is 8 + 45?", "target": "53", "a": 8, "b": 45, "result": 53}
+{"prompt": "sum of 34 and 81 is", "target": "2", "a": 34, "b": 81, "result": 2}
+{"prompt": "44 + 66 =", "target": "110", "a": 44, "b": 66, "result": 110}
+{"prompt": "sum of 52 and 71 is", "target": "10", "a": 52, "b": 71, "result": 10}
+{"prompt": "sum of 16 and 24 is", "target": "40", "a": 16, "b": 24, "result": 40}
+{"prompt": "2 + 93 =", "target": "95", "a": 2, "b": 93, "result": 95}
+{"prompt": "what is 70 + 95?", "target": "52", "a": 70, "b": 95, "result": 52}
+{"prompt": "46 plus 112 equals", "target": "45", "a": 46, "b": 112, "result": 45}
+{"prompt": "sum of 86 and 95 is", "target": "68", "a": 86, "b": 95, "result": 68}
+{"prompt": "what is 0 + 9?", "target": "9", "a": 0, "b": 9, "result": 9}
+{"prompt": "what is 76 + 101?", "target": "64", "a": 76, "b": 101, "result": 64}
+{"prompt": "sum of 78 and 23 is", "target": "101", "a": 78, "b": 23, "result": 101}
+{"prompt": "23 + 47 =", "target": "70", "a": 23, "b": 47, "result": 70}
+{"prompt": "sum of 110 and 62 is", "target": "59", "a": 110, "b": 62, "result": 59}
+{"prompt": "what is 54 + 24?", "target": "78", "a": 54, "b": 24, "result": 78}
+{"prompt": "111 plus 76 equals", "target": "74", "a": 111, "b": 76, "result": 74}
+{"prompt": "sum of 28 and 94 is", "target": "9", "a": 28, "b": 94, "result": 9}
+{"prompt": "88 + 33 =", "target": "8", "a": 88, "b": 33, "result": 8}
+{"prompt": "sum of 111 and 39 is", "target": "37", "a": 111, "b": 39, "result": 37}
+{"prompt": "92 + 72 =", "target": "51", "a": 92, "b": 72, "result": 51}
+{"prompt": "43 plus 30 equals", "target": "73", "a": 43, "b": 30, "result": 73}
+{"prompt": "what is 90 + 74?", "target": "51", "a": 90, "b": 74, "result": 51}
+{"prompt": "15 + 48 =", "target": "63", "a": 15, "b": 48, "result": 63}
+{"prompt": "73 plus 68 equals", "target": "28", "a": 73, "b": 68, "result": 28}
+{"prompt": "sum of 25 and 102 is", "target": "14", "a": 25, "b": 102, "result": 14}
+{"prompt": "sum of 110 and 53 is", "target": "50", "a": 110, "b": 53, "result": 50}
+{"prompt": "72 plus 65 equals", "target": "24", "a": 72, "b": 65, "result": 24}
+{"prompt": "38 + 21 =", "target": "59", "a": 38, "b": 21, "result": 59}
+{"prompt": "104 plus 39 equals", "target": "30", "a": 104, "b": 39, "result": 30}
+{"prompt": "104 + 78 =", "target": "69", "a": 104, "b": 78, "result": 69}
+{"prompt": "sum of 0 and 53 is", "target": "53", "a": 0, "b": 53, "result": 53}
+{"prompt": "65 plus 88 equals", "target": "40", "a": 65, "b": 88, "result": 40}
+{"prompt": "sum of 22 and 105 is", "target": "14", "a": 22, "b": 105, "result": 14}
+{"prompt": "sum of 63 and 4 is", "target": "67", "a": 63, "b": 4, "result": 67}
+{"prompt": "42 + 62 =", "target": "104", "a": 42, "b": 62, "result": 104}
+{"prompt": "what is 16 + 19?", "target": "35", "a": 16, "b": 19, "result": 35}
+{"prompt": "49 plus 36 equals", "target": "85", "a": 49, "b": 36, "result": 85}
+{"prompt": "sum of 92 and 105 is", "target": "84", "a": 92, "b": 105, "result": 84}
+{"prompt": "111 plus 49 equals", "target": "47", "a": 111, "b": 49, "result": 47}
+{"prompt": "38 + 77 =", "target": "2", "a": 38, "b": 77, "result": 2}
+{"prompt": "108 plus 98 equals", "target": "93", "a": 108, "b": 98, "result": 93}
+{"prompt": "77 + 96 =", "target": "60", "a": 77, "b": 96, "result": 60}
+{"prompt": "what is 98 + 95?", "target": "80", "a": 98, "b": 95, "result": 80}
+{"prompt": "what is 16 + 68?", "target": "84", "a": 16, "b": 68, "result": 84}
+{"prompt": "what is 104 + 56?", "target": "47", "a": 104, "b": 56, "result": 47}
+{"prompt": "sum of 98 and 71 is", "target": "56", "a": 98, "b": 71, "result": 56}
+{"prompt": "what is 1 + 75?", "target": "76", "a": 1, "b": 75, "result": 76}
+{"prompt": "what is 80 + 24?", "target": "104", "a": 80, "b": 24, "result": 104}
+{"prompt": "sum of 36 and 51 is", "target": "87", "a": 36, "b": 51, "result": 87}
+{"prompt": "sum of 76 and 81 is", "target": "44", "a": 76, "b": 81, "result": 44}
+{"prompt": "67 + 97 =", "target": "51", "a": 67, "b": 97, "result": 51}
+{"prompt": "sum of 86 and 45 is", "target": "18", "a": 86, "b": 45, "result": 18}
+{"prompt": "55 + 37 =", "target": "92", "a": 55, "b": 37, "result": 92}
+{"prompt": "what is 55 + 89?", "target": "31", "a": 55, "b": 89, "result": 31}
+{"prompt": "sum of 9 and 23 is", "target": "32", "a": 9, "b": 23, "result": 32}
+{"prompt": "86 plus 53 equals", "target": "26", "a": 86, "b": 53, "result": 26}
+{"prompt": "61 plus 23 equals", "target": "84", "a": 61, "b": 23, "result": 84}
+{"prompt": "98 + 75 =", "target": "60", "a": 98, "b": 75, "result": 60}
+{"prompt": "23 plus 22 equals", "target": "45", "a": 23, "b": 22, "result": 45}
+{"prompt": "sum of 90 and 110 is", "target": "87", "a": 90, "b": 110, "result": 87}
+{"prompt": "what is 22 + 18?", "target": "40", "a": 22, "b": 18, "result": 40}
+{"prompt": "sum of 15 and 101 is", "target": "3", "a": 15, "b": 101, "result": 3}
+{"prompt": "6 + 93 =", "target": "99", "a": 6, "b": 93, "result": 99}
+{"prompt": "what is 109 + 65?", "target": "61", "a": 109, "b": 65, "result": 61}
+{"prompt": "13 plus 20 equals", "target": "33", "a": 13, "b": 20, "result": 33}
+{"prompt": "71 plus 62 equals", "target": "20", "a": 71, "b": 62, "result": 20}
+{"prompt": "73 plus 99 equals", "target": "59", "a": 73, "b": 99, "result": 59}
+{"prompt": "20 plus 6 equals", "target": "26", "a": 20, "b": 6, "result": 26}
+{"prompt": "what is 31 + 90?", "target": "8", "a": 31, "b": 90, "result": 8}
+{"prompt": "52 + 54 =", "target": "106", "a": 52, "b": 54, "result": 106}
+{"prompt": "sum of 57 and 102 is", "target": "46", "a": 57, "b": 102, "result": 46}
+{"prompt": "what is 84 + 68?", "target": "39", "a": 84, "b": 68, "result": 39}
+{"prompt": "sum of 62 and 13 is", "target": "75", "a": 62, "b": 13, "result": 75}
+{"prompt": "84 plus 85 equals", "target": "56", "a": 84, "b": 85, "result": 56}
+{"prompt": "what is 108 + 35?", "target": "30", "a": 108, "b": 35, "result": 30}
+{"prompt": "what is 38 + 10?", "target": "48", "a": 38, "b": 10, "result": 48}
+{"prompt": "what is 78 + 16?", "target": "94", "a": 78, "b": 16, "result": 94}
+{"prompt": "sum of 81 and 44 is", "target": "12", "a": 81, "b": 44, "result": 12}
+{"prompt": "108 plus 1 equals", "target": "109", "a": 108, "b": 1, "result": 109}
+{"prompt": "35 + 85 =", "target": "7", "a": 35, "b": 85, "result": 7}
+{"prompt": "what is 20 + 27?", "target": "47", "a": 20, "b": 27, "result": 47}
+{"prompt": "38 plus 45 equals", "target": "83", "a": 38, "b": 45, "result": 83}
+{"prompt": "20 + 80 =", "target": "100", "a": 20, "b": 80, "result": 100}
+{"prompt": "what is 66 + 59?", "target": "12", "a": 66, "b": 59, "result": 12}
+{"prompt": "what is 93 + 23?", "target": "3", "a": 93, "b": 23, "result": 3}
+{"prompt": "57 plus 41 equals", "target": "98", "a": 57, "b": 41, "result": 98}
+{"prompt": "72 plus 43 equals", "target": "2", "a": 72, "b": 43, "result": 2}
+{"prompt": "95 + 3 =", "target": "98", "a": 95, "b": 3, "result": 98}
+{"prompt": "sum of 30 and 93 is", "target": "10", "a": 30, "b": 93, "result": 10}
+{"prompt": "45 + 70 =", "target": "2", "a": 45, "b": 70, "result": 2}
+{"prompt": "104 + 10 =", "target": "1", "a": 104, "b": 10, "result": 1}
+{"prompt": "what is 82 + 26?", "target": "108", "a": 82, "b": 26, "result": 108}
+{"prompt": "30 plus 66 equals", "target": "96", "a": 30, "b": 66, "result": 96}
+{"prompt": "sum of 9 and 67 is", "target": "76", "a": 9, "b": 67, "result": 76}
+{"prompt": "38 plus 92 equals", "target": "17", "a": 38, "b": 92, "result": 17}
+{"prompt": "what is 58 + 18?", "target": "76", "a": 58, "b": 18, "result": 76}
+{"prompt": "sum of 45 and 83 is", "target": "15", "a": 45, "b": 83, "result": 15}
+{"prompt": "sum of 4 and 73 is", "target": "77", "a": 4, "b": 73, "result": 77}
+{"prompt": "sum of 33 and 23 is", "target": "56", "a": 33, "b": 23, "result": 56}
+{"prompt": "what is 8 + 12?", "target": "20", "a": 8, "b": 12, "result": 20}
+{"prompt": "111 + 45 =", "target": "43", "a": 111, "b": 45, "result": 43}
+{"prompt": "what is 47 + 2?", "target": "49", "a": 47, "b": 2, "result": 49}
+{"prompt": "99 plus 29 equals", "target": "15", "a": 99, "b": 29, "result": 15}
+{"prompt": "31 plus 95 equals", "target": "13", "a": 31, "b": 95, "result": 13}
+{"prompt": "80 plus 85 equals", "target": "52", "a": 80, "b": 85, "result": 52}
+{"prompt": "what is 99 + 87?", "target": "73", "a": 99, "b": 87, "result": 73}
+{"prompt": "92 plus 89 equals", "target": "68", "a": 92, "b": 89, "result": 68}
+{"prompt": "39 plus 15 equals", "target": "54", "a": 39, "b": 15, "result": 54}
+{"prompt": "what is 55 + 1?", "target": "56", "a": 55, "b": 1, "result": 56}
+{"prompt": "67 + 2 =", "target": "69", "a": 67, "b": 2, "result": 69}
+{"prompt": "what is 23 + 78?", "target": "101", "a": 23, "b": 78, "result": 101}
+{"prompt": "35 + 55 =", "target": "90", "a": 35, "b": 55, "result": 90}
+{"prompt": "105 plus 81 equals", "target": "73", "a": 105, "b": 81, "result": 73}
+{"prompt": "77 plus 50 equals", "target": "14", "a": 77, "b": 50, "result": 14}
+{"prompt": "24 plus 91 equals", "target": "2", "a": 24, "b": 91, "result": 2}
+{"prompt": "what is 92 + 7?", "target": "99", "a": 92, "b": 7, "result": 99}
+{"prompt": "88 + 36 =", "target": "11", "a": 88, "b": 36, "result": 11}
+{"prompt": "10 + 39 =", "target": "49", "a": 10, "b": 39, "result": 49}
+{"prompt": "what is 93 + 108?", "target": "88", "a": 93, "b": 108, "result": 88}
+{"prompt": "sum of 99 and 12 is", "target": "111", "a": 99, "b": 12, "result": 111}
+{"prompt": "sum of 101 and 85 is", "target": "73", "a": 101, "b": 85, "result": 73}
+{"prompt": "what is 38 + 80?", "target": "5", "a": 38, "b": 80, "result": 5}
+{"prompt": "97 + 19 =", "target": "3", "a": 97, "b": 19, "result": 3}
+{"prompt": "sum of 30 and 42 is", "target": "72", "a": 30, "b": 42, "result": 72}
+{"prompt": "what is 51 + 57?", "target": "108", "a": 51, "b": 57, "result": 108}
+{"prompt": "what is 53 + 76?", "target": "16", "a": 53, "b": 76, "result": 16}
+{"prompt": "sum of 23 and 65 is", "target": "88", "a": 23, "b": 65, "result": 88}
+{"prompt": "sum of 52 and 101 is", "target": "40", "a": 52, "b": 101, "result": 40}
+{"prompt": "92 + 19 =", "target": "111", "a": 92, "b": 19, "result": 111}
+{"prompt": "what is 65 + 83?", "target": "35", "a": 65, "b": 83, "result": 35}
+{"prompt": "what is 40 + 34?", "target": "74", "a": 40, "b": 34, "result": 74}
+{"prompt": "what is 55 + 12?", "target": "67", "a": 55, "b": 12, "result": 67}
+{"prompt": "sum of 14 and 72 is", "target": "86", "a": 14, "b": 72, "result": 86}
+{"prompt": "sum of 33 and 85 is", "target": "5", "a": 33, "b": 85, "result": 5}
+{"prompt": "11 plus 64 equals", "target": "75", "a": 11, "b": 64, "result": 75}
+{"prompt": "41 + 108 =", "target": "36", "a": 41, "b": 108, "result": 36}
+{"prompt": "112 + 9 =", "target": "8", "a": 112, "b": 9, "result": 8}
+{"prompt": "what is 33 + 4?", "target": "37", "a": 33, "b": 4, "result": 37}
+{"prompt": "95 plus 99 equals", "target": "81", "a": 95, "b": 99, "result": 81}
+{"prompt": "what is 6 + 72?", "target": "78", "a": 6, "b": 72, "result": 78}
+{"prompt": "10 + 9 =", "target": "19", "a": 10, "b": 9, "result": 19}
+{"prompt": "sum of 102 and 17 is", "target": "6", "a": 102, "b": 17, "result": 6}
+{"prompt": "27 + 99 =", "target": "13", "a": 27, "b": 99, "result": 13}
+{"prompt": "sum of 83 and 80 is", "target": "50", "a": 83, "b": 80, "result": 50}
+{"prompt": "what is 52 + 49?", "target": "101", "a": 52, "b": 49, "result": 101}
+{"prompt": "89 + 76 =", "target": "52", "a": 89, "b": 76, "result": 52}
+{"prompt": "sum of 91 and 16 is", "target": "107", "a": 91, "b": 16, "result": 107}
+{"prompt": "sum of 42 and 57 is", "target": "99", "a": 42, "b": 57, "result": 99}
+{"prompt": "what is 80 + 4?", "target": "84", "a": 80, "b": 4, "result": 84}
+{"prompt": "11 plus 48 equals", "target": "59", "a": 11, "b": 48, "result": 59}
+{"prompt": "what is 54 + 99?", "target": "40", "a": 54, "b": 99, "result": 40}
+{"prompt": "18 plus 11 equals", "target": "29", "a": 18, "b": 11, "result": 29}
+{"prompt": "sum of 77 and 84 is", "target": "48", "a": 77, "b": 84, "result": 48}
+{"prompt": "what is 66 + 69?", "target": "22", "a": 66, "b": 69, "result": 22}
+{"prompt": "what is 105 + 90?", "target": "82", "a": 105, "b": 90, "result": 82}
+{"prompt": "6 plus 33 equals", "target": "39", "a": 6, "b": 33, "result": 39}
+{"prompt": "38 + 39 =", "target": "77", "a": 38, "b": 39, "result": 77}
+{"prompt": "87 plus 60 equals", "target": "34", "a": 87, "b": 60, "result": 34}
+{"prompt": "49 + 98 =", "target": "34", "a": 49, "b": 98, "result": 34}
+{"prompt": "what is 52 + 5?", "target": "57", "a": 52, "b": 5, "result": 57}
+{"prompt": "what is 14 + 2?", "target": "16", "a": 14, "b": 2, "result": 16}
+{"prompt": "55 + 9 =", "target": "64", "a": 55, "b": 9, "result": 64}
+{"prompt": "13 plus 50 equals", "target": "63", "a": 13, "b": 50, "result": 63}
+{"prompt": "14 plus 92 equals", "target": "106", "a": 14, "b": 92, "result": 106}
+{"prompt": "what is 48 + 90?", "target": "25", "a": 48, "b": 90, "result": 25}
+{"prompt": "110 + 79 =", "target": "76", "a": 110, "b": 79, "result": 76}
+{"prompt": "31 plus 24 equals", "target": "55", "a": 31, "b": 24, "result": 55}
+{"prompt": "22 + 61 =", "target": "83", "a": 22, "b": 61, "result": 83}
+{"prompt": "40 + 32 =", "target": "72", "a": 40, "b": 32, "result": 72}
+{"prompt": "sum of 49 and 37 is", "target": "86", "a": 49, "b": 37, "result": 86}
+{"prompt": "61 + 31 =", "target": "92", "a": 61, "b": 31, "result": 92}
+{"prompt": "101 + 25 =", "target": "13", "a": 101, "b": 25, "result": 13}
+{"prompt": "23 plus 16 equals", "target": "39", "a": 23, "b": 16, "result": 39}
+{"prompt": "what is 110 + 2?", "target": "112", "a": 110, "b": 2, "result": 112}
+{"prompt": "0 + 106 =", "target": "106", "a": 0, "b": 106, "result": 106}
+{"prompt": "40 plus 37 equals", "target": "77", "a": 40, "b": 37, "result": 77}
+{"prompt": "85 + 49 =", "target": "21", "a": 85, "b": 49, "result": 21}
+{"prompt": "what is 65 + 14?", "target": "79", "a": 65, "b": 14, "result": 79}
+{"prompt": "31 + 108 =", "target": "26", "a": 31, "b": 108, "result": 26}
+{"prompt": "what is 60 + 93?", "target": "40", "a": 60, "b": 93, "result": 40}
+{"prompt": "what is 79 + 1?", "target": "80", "a": 79, "b": 1, "result": 80}
+{"prompt": "101 + 77 =", "target": "65", "a": 101, "b": 77, "result": 65}
+{"prompt": "94 + 25 =", "target": "6", "a": 94, "b": 25, "result": 6}
+{"prompt": "103 + 92 =", "target": "82", "a": 103, "b": 92, "result": 82}
+{"prompt": "what is 28 + 93?", "target": "8", "a": 28, "b": 93, "result": 8}
+{"prompt": "81 plus 42 equals", "target": "10", "a": 81, "b": 42, "result": 10}
+{"prompt": "3 plus 95 equals", "target": "98", "a": 3, "b": 95, "result": 98}
+{"prompt": "what is 87 + 32?", "target": "6", "a": 87, "b": 32, "result": 6}
+{"prompt": "73 plus 30 equals", "target": "103", "a": 73, "b": 30, "result": 103}
+{"prompt": "33 plus 82 equals", "target": "2", "a": 33, "b": 82, "result": 2}
+{"prompt": "what is 31 + 79?", "target": "110", "a": 31, "b": 79, "result": 110}
+{"prompt": "13 plus 66 equals", "target": "79", "a": 13, "b": 66, "result": 79}
+{"prompt": "4 plus 36 equals", "target": "40", "a": 4, "b": 36, "result": 40}
+{"prompt": "sum of 4 and 68 is", "target": "72", "a": 4, "b": 68, "result": 72}
+{"prompt": "what is 61 + 19?", "target": "80", "a": 61, "b": 19, "result": 80}
+{"prompt": "sum of 85 and 69 is", "target": "41", "a": 85, "b": 69, "result": 41}
+{"prompt": "what is 12 + 68?", "target": "80", "a": 12, "b": 68, "result": 80}
+{"prompt": "79 + 8 =", "target": "87", "a": 79, "b": 8, "result": 87}
+{"prompt": "107 plus 44 equals", "target": "38", "a": 107, "b": 44, "result": 38}
+{"prompt": "sum of 98 and 13 is", "target": "111", "a": 98, "b": 13, "result": 111}
+{"prompt": "14 + 97 =", "target": "111", "a": 14, "b": 97, "result": 111}
+{"prompt": "what is 106 + 88?", "target": "81", "a": 106, "b": 88, "result": 81}
+{"prompt": "what is 20 + 26?", "target": "46", "a": 20, "b": 26, "result": 46}
+{"prompt": "sum of 32 and 41 is", "target": "73", "a": 32, "b": 41, "result": 73}
+{"prompt": "what is 35 + 57?", "target": "92", "a": 35, "b": 57, "result": 92}
+{"prompt": "what is 39 + 99?", "target": "25", "a": 39, "b": 99, "result": 25}
+{"prompt": "107 plus 58 equals", "target": "52", "a": 107, "b": 58, "result": 52}
+{"prompt": "3 plus 70 equals", "target": "73", "a": 3, "b": 70, "result": 73}
+{"prompt": "sum of 16 and 16 is", "target": "32", "a": 16, "b": 16, "result": 32}
+{"prompt": "sum of 92 and 80 is", "target": "59", "a": 92, "b": 80, "result": 59}

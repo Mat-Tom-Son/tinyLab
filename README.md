@@ -6,7 +6,9 @@ Paper PDF: `paper/main.pdf` | Archive: https://zenodo.org/records/17524770
 
 Key idea: circuits that implement the factuality vs hedging tradeoff crystallize at the first bottleneck (layer 0). We validate this prediction with dual observables (power: ΔLD; information: calibration), random head baselines, cross‑architecture checks, path mediation, and now geometric signatures.
 
-New in this repo: a preregistered Stage‑1A pilot on **early‑layer synchronization control of induction‑head emergence** (“developmental interpretability”). The preregistration PDF lives at `docs/prereg_stage1a/prereg_stage1a.pdf` and is backed by small‑model utilities for variance‑dampening (VDI), Task‑B weekday modular addition data, circularity measurements, and per‑head α‑scaling hooks.
+New in this repo: a preregistered Stage‑1A pilot on **early‑layer synchronization control of induction‑head emergence** ("developmental interpretability"). The preregistration PDF lives at `docs/prereg_stage1a/prereg_stage1a.pdf` and is backed by small‑model utilities for variance‑dampening (VDI), Task‑B weekday modular addition data, circularity measurements, and per‑head α‑scaling hooks.
+
+**NEW: Developmental Monitoring Framework** for phase-transition control. Track the crystallization of Layer-0 "Gatekeepers" during training via: (A) VDI "snap" detection, (B) homeostatic kill testing (Le Chatelier compensation), and (C) MI saturation boundaries. See [docs/PHASE_TRANSITION_CONTROL.md](docs/PHASE_TRANSITION_CONTROL.md) for implementation details and [docs/DEVELOPMENTAL_MONITORING.md](docs/DEVELOPMENTAL_MONITORING.md) for usage guide.
 
 ## Highlights
 

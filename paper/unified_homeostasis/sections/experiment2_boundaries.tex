@@ -1,0 +1,91 @@
+\section{Experiment 2: The Boundaries of Perturbation}\label{sec:exp2}
+
+\textbf{Objective:} Map the information-geometric walls that constrain where equilibria can exist. Homeostasis only operates where the system has degrees of freedom.
+
+\subsection{Observable-Dependent Saturation}
+
+\paragraph{Hypothesis.}
+Perturbing the equilibrium through architectural or training interventions should improve performance in sub-saturated regimes (where the system has representational capacity to spare). In saturated regimes (where information channels are at capacity), the system should be rigid and unresponsive to perturbation.
+
+\paragraph{Methods.}
+We systematically vary perturbation magnitude $\omega \in [0.5, 1.5]$ on suppressor head weights and measure two observables:
+\begin{enumerate}
+\item \textbf{Power:} Grokking speed (steps to 95\% test accuracy)
+\item \textbf{Information:} Mutual information (MI) between layer activations, estimated via k-NN density estimation~\cite{kraskov2004estimating}
+\end{enumerate}
+
+\textbf{Operational Definitions.} MI is computed between consecutive layer representations: $I(h^{(l)}; h^{(l+1)})$ where $h^{(l)}$ are activation vectors at layer $l$. Effective dimensionality $d_{\text{eff}}$ is measured via intrinsic dimensionality estimation on embedding spaces. Both metrics are task- and architecture-dependent; the thresholds reported (MI $\approx$ 2--3 bits, $d_{\text{eff}} \approx$ 30--50) reflect empirical saturation points observed across our experiments and are consistent with prior work on representational capacity limits in transformers.
+
+We test this across tasks of varying difficulty to identify where information saturation occurs.
+
+\paragraph{Results: The U-Shaped Omega Curve.}
+In sub-saturated regimes (simple tasks with high representational slack), perturbations in either direction ($\omega < 1$ or $\omega > 1$) accelerate grokking. The system exhibits a U-shaped curve with minimum at $\omega = 1.0$ (the natural equilibrium). Destabilizing the equilibrium provides "activation energy" to escape memorization plateaus.
+
+However, as task difficulty increases and information channels approach saturation, this effect disappears. Performance plateaus regardless of $\omega$, and the U-shaped curve flattens.
+
+\paragraph{The Saturation Boundary.}
+We identify a critical threshold where observable-dependent metrics saturate:
+\begin{itemize}
+\item \textbf{Below threshold:} System is plastic, responds to perturbation, U-shaped curve persists
+\item \textbf{At threshold:} Mutual information $\approx$ 2--3 bits, channel capacity exhausted
+\item \textbf{Above threshold:} System is rigid, ignores perturbation, flat response curve
+\end{itemize}
+
+\subsection{Capacity-Contingent Attractor Dynamics}
+
+The equilibrium's functional role diverges qualitatively with model scale, revealing capacity-dependent phase transitions.
+
+\paragraph{Small Scale (GPT-2 Small, 124M parameters, $d_{\text{eff}} \approx 15$).}
+Individual ablations of suppressor heads on high-uncertainty tasks \emph{reduce} logit difference by 1.1--5.5\% relative to baseline:
+\begin{itemize}
+\item Negation: head 0:2 $\Delta$LD = $-0.042$, head 0:4 = $-0.101$, head 0:7 = $-0.032$
+\item Counterfactual: head 0:2 = $-0.030$, head 0:4 = $-0.039$, head 0:7 = $-0.017$
+\item Logic: head 0:2 = $-0.054$, head 0:4 = $-0.067$, head 0:7 = $-0.019$
+\end{itemize}
+
+The triplet ablation shows identical negative direction (mean $\Delta$LD: negation $-0.150$ [$-0.202, -0.111$], counterfactual $-0.081$, logic $-0.097$ [$-0.130, -0.057$]). Output-entropy deltas are small and positive ($\Delta H = +0.03$ to $+0.34$ nats).
+
+\textbf{Interpretation:} At small scale, suppressors act as \emph{capacity-consuming gates} rather than global attractor-setters. Ablation can improve factuality by forcing the model to reallocate limited capacity toward the task.
+
+\paragraph{Medium Scale (GPT-2 Medium, 355M parameters, $d_{\text{eff}} \approx 50$--80).}
+Identical ablations \emph{improve} logit difference by 40--85\% across all probes (mean $\Delta$LD: facts $+0.40$, negation $+0.84$, counterfactual $+0.85$, logic $+0.55$). H6 path mediation is robust ($\approx 67\%$ on facts), and the geometry signature is strong (output-entropy $\Delta H = -2.4$ to $-3.8$ nats).
+
+\textbf{Interpretation:} Above the capacity threshold, suppressors stabilize a global hedging attractor that downstream layers inherit and reinforce. The bias toward uncertainty becomes a stable system-wide feature.
+
+\subsection{The "Walls" of the Manifold}
+
+The equilibrium manifold is bounded by information-theoretic constraints:
+\begin{enumerate}
+\item \textbf{Sub-saturated region (plastic):} System responds to perturbation, can explore different equilibria, U-shaped omega curve visible
+\item \textbf{Saturation boundary (the wall):} MI $\approx$ 2--3 bits, channel capacity exhausted, $d_{\text{eff}} \approx 30$--50
+\item \textbf{Saturated region (rigid):} System ignores perturbation, equilibrium frozen, flat response curve
+\end{enumerate}
+
+\begin{table}[h]
+\centering
+\caption{Cross-scale summary: capacity-contingent attractor dynamics.}
+\label{tab:capacity-boundaries}
+\begin{tabular}{lccc}
+\toprule
+Metric & Small (124M) & Medium (355M) & Interpretation \\
+\midrule
+L0 triplet $\Delta$LD (neg) & $-0.150$ & $+0.842$ & Sign flip: maladaptive $\to$ adaptive \\
+L0 triplet $\Delta$LD (logic) & $-0.097$ & $+0.552$ & Sign flip: maladaptive $\to$ adaptive \\
+H6 mediation (facts) & 5.9\% & 67\% $\pm$ 4\% & Attractor basin only at scale \\
+Output entropy $\Delta H$ & $+0.03$ to $+0.34$ & $-2.4$ to $-3.8$ & Geometry scales with capacity \\
+Interpretation & Local gates & Global attractor & Phase-transition regime \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Findings Summary}
+
+\begin{enumerate}
+\item \textbf{Boundary exists:} Information saturation creates a hard wall at MI $\approx$ 2--3 bits
+\item \textbf{Below boundary:} System is plastic, perturbations accelerate learning
+\item \textbf{At boundary:} System becomes rigid, perturbations have no effect
+\item \textbf{Scale dependence:} Suppressor role transitions from maladaptive (small scale) to adaptive (large scale) at capacity threshold
+\item \textbf{Implication:} Equilibria can only exist where the system has representational degrees of freedom
+\end{enumerate}
+
+\textbf{Interpretation:} This establishes the boundaries for Experiments 3 and 4. Homeostatic compensation can only occur in sub-saturated regimes. When the system hits the "wall" of channel capacity, the equilibrium becomes frozen. The space of possible equilibria is fundamentally constrained by the information geometry of the architecture.

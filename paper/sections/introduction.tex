@@ -5,6 +5,19 @@ Information bottleneck theory predicts that dimensionality compression—and thu
 \paragraph{A narrow doorway.}
 Imagine a transformer as a multi‑storey building. At ground level, raw tokens enter through a narrow doorway—layer~0—where the representation is compressed and rotated before any higher‑level “thinking” occurs. Choices made at this doorway are hard to undo: early rotations constrain every floor above. This physical metaphor anchors why bottleneck theory makes falsifiable predictions about early layers and motivates our focus on layer~0.
 
+\begin{table}[t]
+    \centering
+    \caption{\textbf{Physical interpretation of information-geometric metrics.} We map the abstract information-theoretic quantities to their mechanistic role in the transformer's attention dynamics.}
+    \label{tab:metric_map}
+    \begin{tabular}{@{}llp{8cm}@{}}
+    \toprule
+    \textbf{Metric} & \textbf{Symbol} & \textbf{Physical Interpretation} \\ \midrule
+    Entropy Dispersion Index & EDI & Measures the effective ``spread'' of attention. A value of $0.61$ corresponds to a stable attractor where the model consistently attends to exactly 3 tokens regardless of initialization. \\ \addlinespace
+    Mutual Information & MI & Quantifies the trade-off between factual precision and hedging. Represents the bits of ``truth'' extracted from the context under bottleneck constraints. \\ \addlinespace
+    Homeostatic Pressure & $\lambda$ & The thermodynamic force (Lagrange multiplier) applied to the system to enforce equilibrium constraints and prevent collapse to trivial solutions. \\ \bottomrule
+    \end{tabular}
+\end{table}
+
 We identify and characterize a family of circuits we call \emph{layer-0 suppressors}.
 Suppressors are small coalitions of attention heads in the very first transformer layer that systematically down-weight factual continuations and boost uncertainty markers or meta-commentary.
 They are not idiosyncratic: ablating them recovers as much as $0.85$ logit-difference points on factual, negation, and counterfactual probes, and analogous motifs appear in both GPT-2 Medium (355\,M) and Mistral-7B despite their architectural differences.

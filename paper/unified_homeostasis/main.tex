@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\title{Homeostatic Phase Transitions in Neural Network Learning:\\How Information Geometry Constrains Learning Dynamics}
+\author{Mat Thompson\\Independent Researcher, Raleigh, NC}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present a unified physical framework for neural network learning. Building on the anatomical discovery of Layer-0 Suppressors~\cite{thompson2025layer0}, we demonstrate that these circuits act as homeostatic regulators. Through rigorous Kill Tests, we prove these mechanisms follow Le Chatelier's principle: active variance redistribution protects the system state against perturbation~\cite{thompson2025compensation}. Using a dual-observable methodology developed to rigorously falsify spurious resonances~\cite{thompson2025timescale}, we uncover a 12-decimal precision equilibrium ($EDI = 0.61199...$) maintained across random seeds. Finally, we demonstrate that this equilibrium can be engineered: targeting it explicitly accelerates circuit crystallization by 93\%, transforming homeostasis from a theoretical curiosity into a practical control lever.
+\end{abstract}
+
+\input{sections/introduction_slim}
+\input{sections/12_decimal_discovery}
+\input{sections/mechanism_maintenance}
+\input{sections/geometric_limits}
+\input{sections/engineering_control}
+\input{sections/synthesis}
+\input{sections/discussion}
+\input{sections/related_work}
+\input{sections/future_work}
+\input{sections/conclusion}
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{../references}
+
+\end{document}

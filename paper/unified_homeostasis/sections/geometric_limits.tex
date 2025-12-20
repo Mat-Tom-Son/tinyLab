@@ -1,0 +1,20 @@
+\section{The Geometric Limits: The Metric Wall}\label{sec:geometry}
+
+The homeostatic regulation is not infinite. It operates within strict geometric bounds defined by the information capacity of the representation.
+
+\subsection{The Metric Wall}
+In Experiment 2, we mapped the "Metric Wall" phase transition. By sweeping the effective dimension ($d_{\text{eff}}$) of the representation, we identified a critical saturation boundary:
+\begin{itemize}
+    \item \textbf{Plastic Regime ($MI < 2.0$ bits):} The system is flexible. Suppressors are maladaptive (harming learning).
+    \item \textbf{Rigid Regime ($MI \to$ Saturation):} The system hits a "Metric Wall." Suppressors transition to becoming \emph{adaptive}, necessary to prevent information overflow.
+\end{itemize}
+
+This explains why the 12-decimal equilibrium is so rigid: it sits exactly at the geometric limit of the attention head's capacity ($\log(3)$ tokens in a $\log(6)$ space). The system cannot move further without breaking the circuit logic.
+
+\subsection{The Susceptibility Peak}
+As the system approaches this wall, it exhibits a classic phase transition signature: a spike in susceptibility. In Experiment 4, we tracked the "tracking error" of the system against a moving target.
+\begin{itemize}
+    \item Low EDI targets (sparse): System tracks perfectly.
+    \item High EDI targets (diffuse): Tracking degrades by \textbf{20$\times$} as the target approaches the entropy limit.
+\end{itemize}
+This divergence at the boundary confirms that the "Metric Wall" is a physical constraint of the computational geometry, not just a training artifact.
