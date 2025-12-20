@@ -14,11 +14,11 @@ where $k > 0$ is the relaxation rate, $Q^*$ is the equilibrium set point, and $\
 This equation unifies our observations:
 
 \begin{itemize}
-    \item \textbf{Transformer Crystallization (Section~\ref{sec:anomaly}):} $Q = \text{EDI}$, the Entropy Dispersion Index. We observe $Q^* = 0.611991643906$ across five seeds. The sharp transition from $Q \approx 0.42$ (pre-grokking) to $Q^*$ represents crossing a phase boundary.
+    \item \textbf{Transformer Crystallization (Section~\ref{sec:anomaly}):} $Q = \text{EDI}$, the Entropy Dispersion Index. We observe $Q^* = 0.611991643906$ across five seeds. The sharp transition ($Q \approx 0.42$ pre-grokking, then $Q^*$) represents crossing a phase boundary.
     
-    \item \textbf{Le Chatelier Compensation (Section~\ref{sec:mechanism}):} When Head 0 is perturbed ($\eta \neq 0$), other heads adjust their contribution to restore EDI. The compensation score (0.13 ± 0.03) quantifies $k$—the strength of the restoring force.
+    \item \textbf{Le Chatelier Compensation (Section~\ref{sec:mechanism}):} When Head 0 is perturbed ($\eta \neq 0$), other heads adjust their contribution to restore EDI. The compensation score ($0.13 \pm 0.03$) quantifies $k$, the strength of the restoring force.
     
-    \item \textbf{Forced Attractors:} Under dual-timescale training with explicit homeostatic loss, the system finds a new equilibrium depending on timescale separation. Testing EDI targets across 0.45–0.65, we find \textbf{29$\times$ saturation} for high targets under standard parameters ($\Delta = 0.137$ vs 0.027). However, timescale ablation reveals the attractor is \textit{timescale-dependent}:
+    \item \textbf{Forced Attractors:} Under dual-timescale training with explicit homeostatic loss, the system finds a new equilibrium depending on timescale separation. Testing EDI targets across 0.45–0.65, we find that high targets fail to track (the system converges to $\sim$0.46 regardless of target). However, timescale ablation reveals the attractor is \textit{timescale-dependent}:
     
     \begin{center}
     \begin{tabular}{lcc}
@@ -33,16 +33,16 @@ This equation unifies our observations:
     \end{tabular}
     \end{center}
     
-    \noindent Critically, at slow\_lr = 0.50, individual seeds reach $Q^* = 0.61$---the natural equilibrium. The ``wall'' is not architectural: with appropriate controller tuning, the system can access the full range of equilibria. This transforms the forced attractor from a fundamental constraint into an engineering parameter.
+    \noindent Critically, at slow\_lr = 0.50, individual seeds reach $Q^* = 0.61$: the natural equilibrium. The ``wall'' is not architectural: with appropriate controller tuning, the system can access the full range of equilibria. This transforms the forced attractor from a fundamental constraint into an engineering parameter.
 \end{itemize}
 
 \paragraph{Predictions.}
 The model makes testable predictions:
 \begin{enumerate}
-    \item \textbf{Exponential relaxation:} After perturbation, recovery should follow $Q(t) - Q^* \propto e^{-kt}$. (Prediction; not yet tested quantitatively.)
+    \item \textbf{Exponential relaxation:} After perturbation, recovery should follow $Q(t) - Q^* \propto e^{-kt}$. (Prediction; not yet tested quantitatively. This represents a straightforward validation target for future work with minimal compute overhead.)
     \item \textbf{Equilibrium universality:} Different random seeds (same architecture/task) converge to identical $Q^*$ (confirmed to 12 decimals).
     \item \textbf{Geometric constraints:} The set of achievable $Q^*$ is bounded by architecture, not just optimizer settings.
 \end{enumerate}
 
 \paragraph{Connection to Thermodynamics.}
-Equation~\ref{eq:homeostasis} is equivalent to Newton's law of cooling, where a system exchanges ``heat'' with a ``reservoir'' at temperature $Q^*$. In neural networks, $Q$ represents information-geometric state (entropy, effective rank), and $Q^*$ emerges from the interaction of task requirements and architectural capacity. The Le Chatelier response—perturbations trigger compensatory changes—is precisely how physical systems maintain equilibrium under external forcing.
+Equation~\ref{eq:homeostasis} is equivalent to Newton's law of cooling, where a system exchanges ``heat'' with a ``reservoir'' at temperature $Q^*$. In neural networks, $Q$ represents information-geometric state (entropy, effective rank), and $Q^*$ emerges from the interaction of task requirements and architectural capacity. The Le Chatelier response (perturbations trigger compensatory changes) is precisely how physical systems maintain equilibrium under external forcing.

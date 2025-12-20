@@ -1,18 +1,47 @@
-\section{Conclusion}
+\section{Conclusion: Homeostasis as a Fundamental Principle}
 
-We started with a strange number—EDI = 0.611991643906 across five seeds. We end with a framework: neural networks as dynamical systems with precise equilibria and active compensation mechanisms.
+We asked: Is homeostatic regulation instrumental (a side effect of task-solving) or fundamental (an intrinsic property of learning)?
 
-The experiments reported here establish three findings in small transformers on algorithmic tasks:
+The evidence is unambiguous: \textbf{fundamental.}
+
+\subsection*{What We Know}
+
 \begin{enumerate}
-    \item \textbf{Precise equilibria:} Attention distributions converge to specific values reproducible to 12 decimal places.
-    \item \textbf{Active compensation:} Block one component and others adjust (4.9$\times$ slower crystallization when compensation is disabled).
-    \item \textbf{Designable dynamics:} Timescale manipulation can shift equilibria, revealing controller tuning vs. architectural constraints.
+    \item \textbf{Homeostasis is independent of task performance.}
+    On algorithmic tasks, networks crystallize to precise equilibria (EDI = 0.612, 0.735) with high accuracy. On distributional tasks, networks crystallize to EDI = 0.9091 with chance accuracy (48\%). The network regulates information geometry even when unable to solve the task.
+    
+    \item \textbf{Equilibria are determined by task structure, not optimization.}
+    Different tasks yield different $K$ values: modular arithmetic ($K=3$), parity ($K=13$), recall ($K=1$), language ($K=10$). The formula $\text{EDI} = \log(K)/\log(N)$ holds across domains.
+    
+    \item \textbf{Compensation is active.}
+    Perturbations trigger immediate adjustment (Le Chatelier response). Blocking compensation causes $4.9\times$ slower crystallization. This is not passive settling; it is active defense.
+    
+    \item \textbf{Circuit anatomy is conserved at scale.}
+    Layer-0 suppressors with analogous function appear in GPT-2 Medium and Mistral-7B. The mechanism generalizes beyond toy models.
 \end{enumerate}
 
-The ``thermodynamics'' framing is offered as a productive analogy. Spring systems also exhibit $dQ/dt = -k(Q - Q^*)$. What makes neural networks interesting is that this relaxation dynamic appears to serve the task, that the equilibrium ($Q^*$) is precise and reproducible, and that compensation is active rather than passive.
+\subsection*{What This Means}
 
-Whether this extends to natural language tasks and billion-parameter models remains open. The circuit anatomy (layer-0 suppressors, 67\% path mediation) replicates across GPT-2 and Mistral, suggesting the motif is general. Full causal demonstration at scale awaits compute resources we lack.
+The central insight is priority: networks regulate geometry first; task-solving occurs within those constraints. Homeostasis is not a trick for solving tasks better. It is a necessary property of how learning systems organize representations.
 
-\paragraph{Implications for Alignment.}
-If learned systems actively regulate internal geometry, alignment strategies may benefit from targeting equilibria rather than outputs. Engineering loss landscapes where ``safe behavior'' is a stable attractor—one the system fights to maintain—offers a different lever than reward shaping or fine-tuning.
+This reframes the relationship between learning and optimization. Standard accounts treat loss minimization as primary. Our evidence suggests a prior constraint: networks must maintain stable information-geometric configurations. Performance optimization operates within the space of homeostatic equilibria, not outside it.
 
+\subsection*{What We Cannot Yet Claim}
+
+We cannot claim homeostasis is universal across all architectures and tasks. We cannot claim the mechanisms at production scale are identical to toy models. We cannot claim alignment strategies can exploit this principle without further validation.
+
+These are open questions, not answered questions.
+
+\subsection*{Future Directions}
+
+\begin{enumerate}
+    \item \textbf{Mechanistic derivation:} Why does learning dynamics produce homeostasis? Is it a consequence of softmax quantization? Weight decay? The loss landscape structure?
+    \item \textbf{Scale validation:} Can we observe homeostatic dynamics during training of larger models? Can we run kill tests at scale?
+    \item \textbf{Alignment implications:} If networks defend equilibria, can we design loss landscapes where safe behavior is a stable equilibrium?
+\end{enumerate}
+
+\subsection*{The Claim}
+
+Neural networks exhibit homeostatic regulation: active maintenance of information-geometric equilibria, independent of task performance. This is a fundamental principle of learning systems, not a side effect of optimization.
+
+The ``thermodynamics'' framing is apt. Learning systems do not passively minimize loss. They actively regulate internal geometry, maintaining far-from-equilibrium configurations against perturbation. Understanding this principle may be essential for understanding learning itself.

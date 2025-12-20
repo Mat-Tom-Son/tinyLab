@@ -1,0 +1,21 @@
+{
+  "n_subjects": 30,
+  "n_verbs": 20,
+  "n_objects": 30,
+  "n_locations": 20,
+  "vocab_size": 104,
+  "d_model": 64,
+  "n_layers": 2,
+  "n_heads": 4,
+  "d_mlp": 128,
+  "max_seq_len": 14,
+  "batch_size": 256,
+  "n_steps": 5000,
+  "lr": 0.001,
+  "weight_decay": 1.0,
+  "log_every": 500,
+  "checkpoint_every": 1000,
+  "device": "auto",
+  "seed": 2,
+  "output_dir": "outputs/synthetic_language_5k"
+}

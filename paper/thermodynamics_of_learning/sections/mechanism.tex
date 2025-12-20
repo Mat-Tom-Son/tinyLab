@@ -5,19 +5,20 @@ A crystal is static. A homeostat is active. How do we know which one we found?
 We poked it.
 
 \subsection{The Pulse Test}
-We took a crystallized model (Seed 1) and injected a "suppression pulse" into Head 0, artificially damping its variance ($\omega=0.5$). The result is shown in Figure~\ref{fig:pulse}.
+We took a crystallized model (Seed 1) and injected a ``suppression pulse'' into Head 0, artificially damping its variance ($\omega=0.5$). The result is shown in Figure~\ref{fig:pulse}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/pulse_recovery.pdf}
-    \caption{Active Homeostatic Recovery based on Le Chatelier's Principle. The system ("Head 0") is pulsed at step 45k. Accuracy dips (red region) but recovers immediately as other heads compensate.}
+    \caption{Active Homeostatic Recovery. The system is pulsed at step 45k. Accuracy dips (red region) but recovers immediately as other heads compensate.}
     \label{fig:pulse}
 \end{figure}
 
 The result was unambiguous. The accuracy dipped to 0.77, then snapped back to 1.00 \textbf{while the pulse was still active}. The other heads (1, 2, 3) shifted their own EDI to compensate~\cite{thompson2025compensation}.
 
 \subsection{The Kill Test}
-To prove this was coordination, we froze the other heads and pulsed Head 0 again.
-\textbf{Result:} No recovery. The system remained broken.
+To test whether this was coordination, we froze the other heads and pulsed Head 0 again.
+\textbf{Result:} No recovery. The system remained broken. Crystallization takes $4.9\times$ longer when compensation is disabled.
 
-This is \textbf{Le Chatelier's Principle}: "When a system at equilibrium is subjected to change, it adjusts itself to counteract the effect of the applied change." We are seeing standard thermodynamic regulation in a matrix multiplication engine.
+This demonstrates Le Chatelier's response in this regime: when we perturb one component, others compensate. This proves compensation is active in this system. Whether all transformers do this, or whether mechanisms at scale are identical, remains to be tested. But the \textit{mechanism works} where we can measure it.
+

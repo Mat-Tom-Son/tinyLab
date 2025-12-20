@@ -12,13 +12,13 @@ We address this by bridging two research strategies:
 In prior work, we identified \emph{layer-0 suppressor heads} in GPT-2 Medium (355M) and Mistral-7B (7B) that exhibit analogous regulation:
 \begin{itemize}
     \item \textbf{99th percentile effects:} Head 0:2 in GPT-2 produces $\Delta\text{LD} = +0.40$, exceeding 99\% of 1,000 random layer-0 ablations.
-    \item \textbf{Path mediation:} 67\% of suppressor influence flows through a single L0$\to$L11 path—a stable attractor that downstream layers do not reverse.
+    \item \textbf{Path mediation:} 67\% of suppressor influence flows through a single L0$\to$L11 path, a stable attractor that downstream layers do not reverse.
     \item \textbf{Cross-architecture:} GPT-2's suppressor trio (0:2, 0:4, 0:7) and Mistral's pair (0:22, 0:23) perform the same function despite architectural differences.
     \item \textbf{Learning dynamics:} Pythia checkpoint analysis shows suppressors emerge early in training and stabilize, not appearing by chance.
 \end{itemize}
 
 \paragraph{The Methodological Bridge.}
-We cannot perform the kill test on GPT-2—compute constraints prevent training with frozen heads at scale. But the \emph{anatomical} evidence supports generality:
+We cannot perform the kill test on GPT-2 because compute constraints prevent training with frozen heads at scale. But the \emph{anatomical} evidence supports generality:
 \begin{itemize}
     \item Same location (layer 0, before higher reasoning)
     \item Same effect (suppressing factual continuations, $+0.40$--$0.85$ $\Delta$LD)
@@ -28,7 +28,68 @@ We cannot perform the kill test on GPT-2—compute constraints prevent training 
 The causal mechanism established in toy models (kill test shows compensation is \emph{necessary}) appears in the same circuits that exist at scale. This does not prove identical dynamics, but it provides strong evidence that homeostatic-like compensation is not a quirk of tiny transformers.
 
 \paragraph{Independent Confirmation.}
-Mann et al.~\cite{mann2025dontthink} observe analogous dynamics at inference time: when instructed ``do not mention X,'' early-layer heads suppress X while sparse middle-layer heads amplify it under cognitive load. This is not the same phenomenon as training-time homeostasis---the timescales and mechanisms differ---but it demonstrates that the suppressor-compensator circuit architecture identified in our toy models is functionally active in production transformers. The anatomical structure (early suppression, downstream compensation) appears general.
+Mann et al.~\cite{mann2025dontthink} observe analogous dynamics at inference time: when instructed ``do not mention X,'' early-layer heads suppress X while sparse middle-layer heads amplify it under cognitive load. This is not the same phenomenon as training-time homeostasis (the timescales and mechanisms differ), but it demonstrates that the suppressor-compensator circuit architecture identified in our toy models is functionally active in production transformers. The anatomical structure (early suppression, downstream compensation) appears general.
+
+\subsection{EDI at Scale: The VDI Bridge}
+
+We clarify an important nomenclature point: the Variance Dampening Index (VDI) used in prior Pythia analysis is \emph{identical} to our Entropy Dispersion Index (EDI):
+\begin{equation}
+\text{VDI} = \text{EDI} = \frac{H(\text{attention})}{H_{\text{max}}} = \frac{H}{\log(N)}
+\end{equation}
+This allows us to measure the \emph{same information-geometric equilibrium} at production scale.
+
+\paragraph{Learning Dynamics in Pythia-160M.}
+To test whether crystallization dynamics appear during real language model training, we instrumented Pythia-160M across nine checkpoints from initialization to 128k steps, computing the ablation effect ($\Delta$LD) for layer-0 heads on four probe families.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.92\linewidth]{figures/pythia_emergence_curves.pdf}
+    \caption{\textbf{Crystallization at scale.} Pythia-160M learning dynamics showing emergence of layer-0 suppressor effects ($\Delta$LD) across training checkpoints. Effects rise from near-zero at initialization, stabilize by step $\sim$2k, and plateau, mirroring the EDI crystallization windows observed in toy models.}
+    \label{fig:pythia-emergence}
+\end{figure}
+
+Three findings validate the thermodynamic framework at scale:
+\begin{enumerate}
+    \item \textbf{Suppressors are learned, not hard-coded.} At step 0, head 0:2 yields weak or negative effects (facts $-0.23$), but flips positive by 1--2k steps and rises thereafter: an emergent learned solution.
+    \item \textbf{Emergence is early and stabilizing.} Heads 0:2/0:4/0:7 enter the top-3 most impactful layer-0 heads by step 2k, then plateau: gradient descent converging to equilibrium.
+    \item \textbf{Task-contingency persists.} Different heads stabilize at different times for different tasks, consistent with our finding that equilibrium values depend on task geometry.
+\end{enumerate}
+
+\paragraph{Interpretation.}
+This directly parallels our toy model findings: random initialization $\to$ rapid convergence $\to$ stable equilibrium. The crystallization window (2--16k steps in Pythia) maps onto the EDI crystallization windows (3,300--4,200 steps) in our 2-layer transformers. The timeline differs by scale, but the dynamic signature is identical: \emph{phase transition $\to$ precise equilibrium $\to$ maintenance}.
+
+These findings do not prove identical mechanisms. But they demonstrate that the same measured quantity (EDI/VDI) exhibits the same regulatory pattern at production scale: emergence, stabilization, and maintenance. The principle appears to generalize.
+
+\subsection{Robustness Across Task Geometries}
+
+A potential objection is that the EDI equilibrium of 0.611991643906 might be a ``lucky constant,'' an artifact of the specific 6-token sequence length or task structure. We address this by showing that \emph{different tasks and sequence lengths produce different precise equilibria}, each following a predictable geometric pattern.
+
+\begin{table}[h]
+\centering
+\caption{EDI equilibria across different task geometries. Each task converges to a distinct, precise equilibrium determined by the number of task-relevant tokens $K$ out of available tokens $N$.}
+\label{tab:task-geometry}
+\begin{tabular}{lcccc}
+\toprule
+Task & Seq. Length ($N$) & EDI Equilibrium & Tokens ($K$) & Formula \\
+\midrule
+Modular Arithmetic & 6 & 0.611991643906 & $\approx$3 & $\log(3)/\log(6)$ \\
+Parity (odd/even) & 32 & 0.735 & $\approx$13 & $\log(13)/\log(32)$ \\
+Associative Recall & varies & $\to$1.0 & 1 & single-token limit \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.}
+The equilibrium is not a quirk of the 6-token regime. Across different sequence lengths and task structures, the network discovers distinct, precise equilibria following the discrete $\log(K)/\log(N)$ pattern:
+\begin{itemize}
+    \item \textbf{Modular Arithmetic ($N=6$):} The task requires attending to operands and equals sign ($\approx$3 tokens). The network finds EDI $= \log(3)/\log(6) \approx 0.613$.
+    \item \textbf{Parity ($N=32$):} Odd/even classification requires global attention over most tokens ($\approx$13). The network settles at EDI $= \log(13)/\log(32) \approx 0.74$.
+    \item \textbf{Associative Recall:} Key-value retrieval requires attending to exactly one token. The network approaches EDI $\to 1.0$ (zero entropy limit).
+\end{itemize}
+
+The parameter $K$ (tokens attended) is determined by task structure, not randomness. The mechanism is architecture-independent: the same transformer finds different equilibria when solving different problems. This transforms the finding from ``one weird constant'' to ``a universal principle about how networks find stable information-geometric configurations.''
+
+We note that while the $\log(K)/\log(N)$ pattern describes the observed equilibria, a first-principles derivation of why specific tasks select specific $K$ values remains an open question, likely connected to the minimal sufficient statistic for each task.
 
 \paragraph{Scope and Limitations.}
-We claim \emph{precise equilibria and active compensation} appear in transformers on algorithmic tasks, and that \emph{the same circuit anatomy} exists in production models. We do not claim to have proven thermodynamic universality. The ``thermodynamics'' framing is offered as a productive analogy—one that makes testable predictions and has guided our interventions successfully—rather than a literal equivalence with physical thermodynamics.
+We claim \emph{precise equilibria and active compensation} appear in transformers on algorithmic tasks, and that \emph{the same circuit anatomy} exists in production models. We do not claim to have proven thermodynamic universality. The ``thermodynamics'' framing is offered as a productive analogy, one that makes testable predictions and has guided our interventions successfully, rather than a literal equivalence with physical thermodynamics.

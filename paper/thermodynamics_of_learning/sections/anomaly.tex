@@ -1,6 +1,6 @@
 \section{The Anomaly}\label{sec:anomaly}
 
-We trained five standard Transformers on the Parity Task ($p=113$). We expected them to solve it. We did not expect them to become identical.
+We now test Prediction 1 (Spontaneous Convergence; see Section 1.1). We trained five standard Transformers on the Parity Task ($p=113$). We expected them to solve it. We did not expect them to become identical.
 
 \subsection{12 Digits of Precision}
 
@@ -17,10 +17,10 @@ This looked less like "learning" and more like a \textbf{phase transition}: wate
 Such extraordinary precision demands extraordinary evidence. We verified the result across multiple dimensions:
 
 \paragraph{Temporal Stability.}
-The equilibrium is not a fleeting snapshot. Each seed maintains EDI = 0.611991643906 from step $\sim$5000 through step 9500 (the end of training)---over 4500 steps with \textbf{zero drift}. The EDI standard deviation across heads is 0.000000 at equilibrium, indicating perfect synchronization.
+The equilibrium is not a fleeting snapshot. Each seed maintains EDI = 0.611991643906 from step $\sim$5000 through step 9500 (the end of training): over 4500 steps with \textbf{zero drift}. The EDI standard deviation across heads is 0.000000 at equilibrium, indicating perfect synchronization.
 
 \paragraph{Seed Independence.}
-Each of the five seeds begins with independent random initializations. They traverse different loss landscape trajectories during the memorization phase (steps 0--3000), yet all converge to the identical equilibrium. This is not overfitting to a single initialization---it is attraction to a universal fixed point.
+Each of the five seeds begins with independent random initializations. They traverse different loss landscape trajectories during the memorization phase (steps 0--3000), yet all converge to the identical equilibrium. This is not overfitting to a single initialization; it is attraction to a universal fixed point.
 
 \paragraph{Numerical Precision.}
-We verified computations using float64 precision. The 12-decimal agreement is not a numerical artifact---it reflects genuine convergence to within machine epsilon of the attractor. The value $\log(3)/\log(6) \approx 0.6131$ is close to our observed equilibrium, suggesting a discrete ``3-of-6'' attention structure.
+We verified computations using float64 precision. The 12-decimal agreement is not a numerical artifact; it reflects genuine convergence to within machine epsilon of the attractor. The value $\log(3)/\log(6) \approx 0.6131$ is close to our observed equilibrium, suggesting a discrete ``3-of-6'' attention structure.

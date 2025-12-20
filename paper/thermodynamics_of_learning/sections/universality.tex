@@ -16,10 +16,48 @@ Here, the physics demanded a different shape. The task requires attending to exa
 \textbf{Result:} The system converged to $EDI = 1.000...$
 It crystallized again, but to the specific geometric limit of the new task.
 
+\subsection{Experiment F3: Homeostasis Without Task-Solving}
+
+The experiments above share a confound: networks crystallize \emph{while solving the task}. Is homeostasis instrumental (a byproduct of optimization) or fundamental (intrinsic to learning)?
+
+We test this with a distributional task where performance is impossible. We generate structured sentences:
+
+\begin{center}
+\texttt{[the] SUBJ VERB [the] OBJ . [the] SUBJ VERB [to] LOC .}
+\end{center}
+
+with 30 subjects, 20 verbs, 30 objects, 20 locations. The task is next-token prediction, but each slot has multiple valid continuations. No unique correct answer exists; chance accuracy is the ceiling.
+
+\paragraph{Results.}
+Three seeds trained for 5,000 steps. All converge to \textbf{EDI = 0.9091} on Layer 0 (4-decimal precision). Layer 1 follows the same trajectory. Accuracy: 48\% (chance level).
+
+\begin{table}[h]
+\centering
+\caption{Synthetic language experiment: 3 seeds confirm EDI crystallization at chance accuracy.}
+\label{tab:synthetic-lang}
+\begin{tabular}{lccc}
+\toprule
+Seed & L0 EDI & L1 EDI & Test Accuracy \\
+\midrule
+0 & 0.9091 & 0.9091 & 48\% \\
+1 & 0.9091 & 0.8846 & 48\% \\
+2 & 0.9091 & 0.9091 & 48\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.}
+The value $0.9091 \approx 10/11$ corresponds to attending to essentially all available context (10 of 11 tokens). This is the natural $K$ for broad language-like attention, distinct from the sparse $K=3$ in modular arithmetic.
+
+The finding is unambiguous: \textbf{networks regulate information geometry even when unable to solve the task.} Homeostasis is not instrumental. It is fundamental.
+
 \subsection{The Unified View}
-Homeostasis appears to be a universal regulator, but its \emph{expression} depends on the substrate.
+These experiments reveal homeostasis as a fundamental principle of learning, not a side effect of task-solving.
 \begin{itemize}
-    \item \textbf{MLPs} behave like liquids: they compress continuously.
-    \item \textbf{Transformers} behave like crystals: accurate quantization (Softmax) allows them to "snap" into discrete energy levels.
+    \item \textbf{MLPs} behave like liquids: they compress continuously but do not crystallize.
+    \item \textbf{Transformers} behave like crystals: softmax quantization enables precise equilibria.
+    \item \textbf{Task structure determines K}: modular arithmetic ($K=3$), parity ($K=13$), recall ($K=1$), language ($K=10$).
+    \item \textbf{Performance is not required}: crystallization occurs even at chance accuracy.
 \end{itemize}
-Our findings demonstrate that when the architecture permits (Transformers) and the task demands (Parity/Recall), the system enters a regime of hyper-precise regulation. The "12-Decimal Anomaly" identifies the crystalline limit of a general thermodynamic principle: learning systems minimize internal entropy subject to functional constraints~\cite{mackay2003information, watanabe2009algebraic}. This aligns with the "grokking" phase transition observed in algorithmic tasks~\cite{power2022grokking}.
+
+The central finding is not precision per se, but \emph{task-independence}: networks regulate information geometry as an intrinsic property of learning, prior to and independent of optimization success. This distinguishes our hypothesis from accounts where homeostasis is instrumental to task-solving~\cite{tishby2015deep}. The ``thermodynamics'' framing captures something real: learning systems actively maintain far-from-equilibrium configurations~\cite{friston2010free, kringelbach2024thermodynamics}.

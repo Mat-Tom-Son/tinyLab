@@ -1,26 +1,64 @@
-\section{Introduction: The Physics of Intelligence}
+\section{Introduction}
 
 Your body maintains a temperature of 37$^\circ$C. It doesn't drift. It doesn't fluctuate randomly. If you walk into a sauna, you sweat. If you jump into a lake, you shiver. You represent a \textbf{homeostatic system}: a system that actively expends energy to maintain a stable internal state against environmental perturbations.
 
 Neural networks are supposed to be different. We are told they are passive function approximators, sliding down loss landscapes like marbles in a bowl. But what if they aren't?
 
-What if neural networks are actually homeostatic systems?
+We hypothesize that neural networks exhibit homeostatic regulation: actively maintaining information-geometric equilibria and defending them against perturbation. This paper presents early evidence for this hypothesis.
 
-In this paper, we present evidence that deep learning systems exhibit \textbf{active regulation} of their own internal geometry. We show that they find precise, stable set-points--"temperatures" of information processing--and defend them against interference.
+\subsection{The Hypothesis and Its Predictions}
 
-\subsection{The Evidence for Physics}
+If homeostasis is fundamental to learning systems, we should observe specific signatures:
+\begin{enumerate}
+    \item \textbf{Spontaneous convergence:} Systems should find precise equilibria without explicit design.
+    \item \textbf{Active compensation:} Perturbations should trigger compensatory responses from other components.
+    \item \textbf{Conserved architecture:} Similar regulatory circuits should appear across scales and architectures.
+\end{enumerate}
 
-Our investigation began with an anomaly. Training simple Transformers on modular arithmetic~\cite{thompson2025layer0}, we found they didn't just converge to "good accuracy." They converged to a mathematical constant. Across five independent random seeds, every single model landed on the exact same Entropy Dispersion Index (EDI) to \textbf{12 decimal places}~\cite{thompson2025timescale}.
+We test these predictions in transformers on algorithmic tasks, a regime where we have maximal experimental control. We then ask whether the same circuit signatures appear at production scale.
 
-This is not statistics. This is crystallization.
+\subsection{The Critical Question: Instrumental or Fundamental?}
 
-To understand this, we need to move beyond "loss minimization" and talk about \textbf{The Thermodynamics of Learning}~\cite{tishby2015deep}. We propose that learning involves a trade-off between two forces:
+A deeper question underlies this work: Is homeostatic regulation \emph{instrumental} (a side effect of task-solving) or \emph{fundamental} (an intrinsic property of learning)?
+
+If instrumental, networks should regulate information geometry only when it helps performance. If fundamental, networks should regulate geometry even when it does not help, or when performance is impossible.
+
+We test this directly. In addition to algorithmic tasks (where networks achieve high accuracy), we train on a distributional language task where networks cannot exceed chance performance. If homeostasis is fundamental, EDI should crystallize regardless of accuracy.
+
+The result is unambiguous: networks converge to EDI = 0.9091 with 48\% accuracy (chance level). Homeostasis is not a side effect of optimization. It is prior to it.
+
+
+
+\subsection{Why Toy Models (And Why That's Not a Weakness)}
+
+A valid objection: ``You're testing five random seeds on mod-2 parity. Why should anyone care?''
+
+We care because the alternative (testing at scale) is impossible with current resources. We cannot freeze GPT-2 attention heads during training. We cannot run the kill test at Mistral scale. So we make a deliberate choice: \textit{sacrifice scale to gain mechanism}.
+
+In toy models, we can run interventional experiments (freeze heads, perturb components, measure direct effects). At scale, we can identify circuits and measure effects, but we cannot intervene causally during training.
+
+Our strategy: Use toy models to prove the mechanism works in a controlled regime. Use production models to ask whether similar circuits appear at scale. Neither alone proves universality. Together, they constitute early evidence worth taking seriously.
+
+This is not weakness. It is strategy. And it is why the evidence we present (kill tests, precise measurements, cross-architecture validation) carries weight despite the small-model setting.
+
+\subsection{What This Paper Claims (And What It Does Not)}
+
+We claim:
 \begin{itemize}
-    \item \textbf{Plasticity}: The drive to minimize error (Encoding information).
-    \item \textbf{Homeostasis}: The drive to maintain representational stability (Entropy regulation)~\cite{schrodinger1944life, friston2010free}.
+    \item Homeostatic dynamics appear spontaneously in transformers on algorithmic tasks (empirically demonstrated)
+    \item Compensation is active, not passive; blocking it degrades learning (causally demonstrated)
+    \item Homeostasis is independent of task performance: networks crystallize even at chance accuracy (empirically demonstrated)
+    \item Similar circuit anatomy exists at production scale (observationally demonstrated)
 \end{itemize}
 
-When these forces balance, the system enters a stable phase. We call this the \textbf{12-Decimal Equilibrium}.
+We do \textbf{not} claim:
+\begin{itemize}
+    \item Homeostasis is necessary for all learning
+    \item The mechanisms at scale are identical to toy models
+    \item We have proven universality
+\end{itemize}
 
-We define the \textbf{crystallization window} as the training interval from the first detection of EDI standard deviation $< 0.001$ (onset of inter-head agreement) to EDI std $< 0.0001$ (crystallization complete). This window captures the phase transition from disordered pre-grokking dynamics to crystalline equilibrium.
+The ``thermodynamics'' framing is offered as productive analogy: one that makes testable predictions and has guided our experiments. It is not a claim of literal equivalence with physical thermodynamics.
+
+We define the \textbf{crystallization window} as the training interval between first detection of EDI standard deviation $<0.001$ (onset of inter-head agreement) and EDI std $<0.0001$ (crystallization complete). This window captures the phase transition between disordered pre-grokking dynamics and crystalline equilibrium.
 
