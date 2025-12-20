@@ -1,0 +1,18 @@
+\section{Conclusion}
+
+We started with a strange number—EDI = 0.611991643906 across five seeds. We end with a framework: neural networks as dynamical systems with precise equilibria and active compensation mechanisms.
+
+The experiments reported here establish three findings in small transformers on algorithmic tasks:
+\begin{enumerate}
+    \item \textbf{Precise equilibria:} Attention distributions converge to specific values reproducible to 12 decimal places.
+    \item \textbf{Active compensation:} Block one component and others adjust (4.9$\times$ slower crystallization when compensation is disabled).
+    \item \textbf{Designable dynamics:} Timescale manipulation can shift equilibria, revealing controller tuning vs. architectural constraints.
+\end{enumerate}
+
+The ``thermodynamics'' framing is offered as a productive analogy. Spring systems also exhibit $dQ/dt = -k(Q - Q^*)$. What makes neural networks interesting is that this relaxation dynamic appears to serve the task, that the equilibrium ($Q^*$) is precise and reproducible, and that compensation is active rather than passive.
+
+Whether this extends to natural language tasks and billion-parameter models remains open. The circuit anatomy (layer-0 suppressors, 67\% path mediation) replicates across GPT-2 and Mistral, suggesting the motif is general. Full causal demonstration at scale awaits compute resources we lack.
+
+\paragraph{Implications for Alignment.}
+If learned systems actively regulate internal geometry, alignment strategies may benefit from targeting equilibria rather than outputs. Engineering loss landscapes where ``safe behavior'' is a stable attractor—one the system fights to maintain—offers a different lever than reward shaping or fine-tuning.
+

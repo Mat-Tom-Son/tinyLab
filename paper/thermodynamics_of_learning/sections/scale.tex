@@ -1,0 +1,34 @@
+\section{Cross-Scale Validation}\label{sec:scale}
+
+A natural objection arises: these experiments use 2-layer, 4-head transformers on algorithmic tasks. Why should we believe the dynamics generalize to billion-parameter models trained on language?
+
+We address this by bridging two research strategies:
+\begin{enumerate}
+    \item \textbf{Toy models} enable causal intervention (kill tests, timescale ablation) that establish mechanism.
+    \item \textbf{Production models} provide observational evidence that the same circuit motif exists at scale.
+\end{enumerate}
+
+\paragraph{Evidence from GPT-2 and Mistral-7B.}
+In prior work, we identified \emph{layer-0 suppressor heads} in GPT-2 Medium (355M) and Mistral-7B (7B) that exhibit analogous regulation:
+\begin{itemize}
+    \item \textbf{99th percentile effects:} Head 0:2 in GPT-2 produces $\Delta\text{LD} = +0.40$, exceeding 99\% of 1,000 random layer-0 ablations.
+    \item \textbf{Path mediation:} 67\% of suppressor influence flows through a single L0$\to$L11 path—a stable attractor that downstream layers do not reverse.
+    \item \textbf{Cross-architecture:} GPT-2's suppressor trio (0:2, 0:4, 0:7) and Mistral's pair (0:22, 0:23) perform the same function despite architectural differences.
+    \item \textbf{Learning dynamics:} Pythia checkpoint analysis shows suppressors emerge early in training and stabilize, not appearing by chance.
+\end{itemize}
+
+\paragraph{The Methodological Bridge.}
+We cannot perform the kill test on GPT-2—compute constraints prevent training with frozen heads at scale. But the \emph{anatomical} evidence supports generality:
+\begin{itemize}
+    \item Same location (layer 0, before higher reasoning)
+    \item Same effect (suppressing factual continuations, $+0.40$--$0.85$ $\Delta$LD)
+    \item Same geometric signature (output entropy drops $\Delta H = -2.4$ to $-3.8$ nats)
+\end{itemize}
+
+The causal mechanism established in toy models (kill test shows compensation is \emph{necessary}) appears in the same circuits that exist at scale. This does not prove identical dynamics, but it provides strong evidence that homeostatic-like compensation is not a quirk of tiny transformers.
+
+\paragraph{Independent Confirmation.}
+Mann et al.~\cite{mann2025dontthink} observe analogous dynamics at inference time: when instructed ``do not mention X,'' early-layer heads suppress X while sparse middle-layer heads amplify it under cognitive load. This is not the same phenomenon as training-time homeostasis---the timescales and mechanisms differ---but it demonstrates that the suppressor-compensator circuit architecture identified in our toy models is functionally active in production transformers. The anatomical structure (early suppression, downstream compensation) appears general.
+
+\paragraph{Scope and Limitations.}
+We claim \emph{precise equilibria and active compensation} appear in transformers on algorithmic tasks, and that \emph{the same circuit anatomy} exists in production models. We do not claim to have proven thermodynamic universality. The ``thermodynamics'' framing is offered as a productive analogy—one that makes testable predictions and has guided our interventions successfully—rather than a literal equivalence with physical thermodynamics.

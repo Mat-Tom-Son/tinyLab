@@ -1,0 +1,26 @@
+\section{Introduction: The Physics of Intelligence}
+
+Your body maintains a temperature of 37$^\circ$C. It doesn't drift. It doesn't fluctuate randomly. If you walk into a sauna, you sweat. If you jump into a lake, you shiver. You represent a \textbf{homeostatic system}: a system that actively expends energy to maintain a stable internal state against environmental perturbations.
+
+Neural networks are supposed to be different. We are told they are passive function approximators, sliding down loss landscapes like marbles in a bowl. But what if they aren't?
+
+What if neural networks are actually homeostatic systems?
+
+In this paper, we present evidence that deep learning systems exhibit \textbf{active regulation} of their own internal geometry. We show that they find precise, stable set-points--"temperatures" of information processing--and defend them against interference.
+
+\subsection{The Evidence for Physics}
+
+Our investigation began with an anomaly. Training simple Transformers on modular arithmetic~\cite{thompson2025layer0}, we found they didn't just converge to "good accuracy." They converged to a mathematical constant. Across five independent random seeds, every single model landed on the exact same Entropy Dispersion Index (EDI) to \textbf{12 decimal places}~\cite{thompson2025timescale}.
+
+This is not statistics. This is crystallization.
+
+To understand this, we need to move beyond "loss minimization" and talk about \textbf{The Thermodynamics of Learning}~\cite{tishby2015deep}. We propose that learning involves a trade-off between two forces:
+\begin{itemize}
+    \item \textbf{Plasticity}: The drive to minimize error (Encoding information).
+    \item \textbf{Homeostasis}: The drive to maintain representational stability (Entropy regulation)~\cite{schrodinger1944life, friston2010free}.
+\end{itemize}
+
+When these forces balance, the system enters a stable phase. We call this the \textbf{12-Decimal Equilibrium}.
+
+We define the \textbf{crystallization window} as the training interval from the first detection of EDI standard deviation $< 0.001$ (onset of inter-head agreement) to EDI std $< 0.0001$ (crystallization complete). This window captures the phase transition from disordered pre-grokking dynamics to crystalline equilibrium.
+

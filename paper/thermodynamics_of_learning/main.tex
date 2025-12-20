@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\hypersetup{
+    pdftitle={The Thermodynamics of Learning},
+    pdfauthor={Mat Thompson},
+    pdfsubject={Neural Network Dynamics},
+    pdfkeywords={Homeostasis, Grokking, Transformers, Physics of Learning},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+\usepackage{booktabs}
+\usepackage{natbib}
+
+\title{\textbf{The Thermodynamics of Learning:}\\ Homeostatic Regulation in Neural Networks}
+\author{Mat Thompson}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Neural networks are typically viewed as loss minimizers. We propose they also function as \textbf{regulators}---actively maintaining specific information-geometric equilibria. In small transformers on algorithmic tasks, we observe a 12-decimal precision constant ($\text{EDI} = 0.611991...$) across independent training runs, defended via compensatory dynamics when perturbed. Attempting to force alternative equilibria reveals \textbf{29$\times$ saturation} for high targets; timescale ablation shows this constraint is controller tuning, not architecture. We bridge these toy-model causal experiments to production models (GPT-2 Medium, Mistral-7B), where the same layer-0 suppressor circuit appears with $>$99th-percentile effects and 67\% path mediation. The ``thermodynamics'' framing is offered as productive analogy: systems that don't just minimize loss but regulate internal geometry. Full generalization to natural language awaits scale experiments we cannot yet perform.
+\end{abstract}
+
+
+\input{sections/intro}
+\input{sections/methods}
+\input{sections/anomaly}
+\input{sections/framework}
+\input{sections/mechanism}
+\input{sections/universality}
+\input{sections/related_work}
+\input{sections/scale}
+\input{sections/conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

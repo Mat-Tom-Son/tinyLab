@@ -99,7 +99,8 @@ class TransformerBlock(nn.Module):
         layer_head_config: Dict[Tuple[int, int], float] | None = None,
         attn_mask: torch.Tensor | None = None,
         return_activations: bool = False,
-    ) -> torch.Tensor | Tuple[torch.Tensor, torch.Tensor]:
+        return_attention_scores: bool = False,
+    ) -> torch.Tensor | Tuple[torch.Tensor, torch.Tensor] | Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         # x: [batch, seq, d_model]
         bsz, seq_len, _ = x.shape
 
@@ -132,6 +133,9 @@ class TransformerBlock(nn.Module):
         # MLP
         x = x + self.mlp(self.ln2(x))
 
+        if return_attention_scores:
+            return x, attn_scores
+
         if return_activations:
             return x, pre_attn
         return x
@@ -163,7 +167,8 @@ class GrokkingTransformer(nn.Module):
         input_ids: torch.Tensor,
         layer_head_config: Dict[Tuple[int, int], float] | None = None,
         return_layer_activations: bool = False,
-    ) -> torch.Tensor | Tuple[torch.Tensor, Dict[int, torch.Tensor]]:
+        return_attention_scores: bool = False,
+    ) -> torch.Tensor | Tuple[torch.Tensor, Dict[int, torch.Tensor]] | Tuple[torch.Tensor, Dict[int, torch.Tensor]]:
         bsz, seq_len = input_ids.shape
         device = input_ids.device
 
@@ -173,8 +178,15 @@ class GrokkingTransformer(nn.Module):
         attn_mask = self.attn_mask[:, :, :seq_len, :seq_len]
 
         layer_acts = {}
+        layer_scores = {}
         for layer_idx, block in enumerate(self.blocks):
-            if return_layer_activations:
+            if return_attention_scores:
+                x, scores = block(
+                   x, layer_idx, layer_head_config, attn_mask,
+                   return_attention_scores=True
+                )
+                layer_scores[layer_idx] = scores
+            elif return_layer_activations:
                 x, pre_attn = block(
                     x, layer_idx, layer_head_config, attn_mask,
                     return_activations=True
@@ -186,6 +198,8 @@ class GrokkingTransformer(nn.Module):
         x = self.ln_f(x)
         logits = self.unembed(x)
 
+        if return_attention_scores:
+            return logits, layer_scores
         if return_layer_activations:
             return logits, layer_acts
         return logits

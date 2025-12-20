@@ -1,0 +1,247 @@
+┌────────────────────────────────────────────────────────────────────────────┐
+│                    DEVELOPMENTAL MONITORING FRAMEWORK                       │
+│                  Tracking Layer-0 Gatekeeper Crystallization                │
+└────────────────────────────────────────────────────────────────────────────┘
+
+                              ┌──────────────┐
+                              │  TRAINING    │
+                              │    LOOP      │
+                              └───────┬──────┘
+                                      │
+                      ┌───────────────┴───────────────┐
+                      │   Step % monitor_interval?   │
+                      └───────────────┬───────────────┘
+                                      │ YES
+                      ┌───────────────▼───────────────┐
+                      │  CHECKPOINT RECORDING         │
+                      │  monitor.record_checkpoint()  │
+                      └───────────────┬───────────────┘
+                                      │
+        ┌─────────────────────────────┼─────────────────────────────┐
+        │                             │                             │
+        ▼                             ▼                             ▼
+┌───────────────┐             ┌───────────────┐           ┌────────────────┐
+│  A. VDI SNAP  │             │ B. KILL TEST  │           │ C. MI BOUNDARY │
+│   DETECTION   │             │   (Le Chat.)  │           │   SATURATION   │
+└───────┬───────┘             └───────┬───────┘           └────────┬───────┘
+        │                             │                             │
+        │ Measure attention           │ Apply ω perturbations       │ Estimate MI
+        │ entropy per head            │ to target head              │ from layer acts
+        │                             │                             │
+        ▼                             ▼                             ▼
+┌───────────────┐             ┌───────────────┐           ┌────────────────┐
+│ VDI = H/H_max │             │ ω ∈ [0.5,1.5] │           │ MI / Capacity  │
+│               │             │               │           │                │
+│ • Entropy     │             │ For each ω:   │           │ • Gaussian est │
+│ • Variance    │             │ • Measure VDI │           │ • Capacity calc│
+│ • VDI/head    │             │ • Check Δ     │           │ • Ratio        │
+└───────┬───────┘             │ • Count comp  │           └────────┬───────┘
+        │                     └───────┬───────┘                    │
+        │                             │                            │
+        ▼                             ▼                            ▼
+┌───────────────┐             ┌───────────────┐           ┌────────────────┐
+│ SNAP METRICS  │             │ COMPENSATION  │           │ SATURATION     │
+│               │             │   SIGNATURE   │           │    PHASE       │
+│ • Velocity    │             │               │           │                │
+│ • Acceleration│             │ • ω < 1: ↑VDI │           │ <80%: Healthy  │
+│ • Mean VDI    │             │ • ω > 1: ↓VDI │           │ 80-90%: Window │
+│ • Std         │             │ • Count heads │           │ >90%: Saturated│
+└───────┬───────┘             │ • Strength    │           └────────┬───────┘
+        │                     └───────┬───────┘                    │
+        │                             │                            │
+        └─────────────────────────────┼────────────────────────────┘
+                                      │
+                      ┌───────────────▼───────────────┐
+                      │    CHECKPOINT ANALYSIS        │
+                      └───────────────┬───────────────┘
+                                      │
+                ┌─────────────────────┴─────────────────────┐
+                │                                           │
+                ▼                                           ▼
+        ┌───────────────┐                          ┌───────────────┐
+        │ SNAP DETECTED?│                          │ PHASE CLASSIFY│
+        │               │                          │               │
+        │ d²VDI/dt² < -ε│                          │ • pre_snap    │
+        │ + stabilize   │                          │ • snap_window │
+        └───────┬───────┘                          │ • post_snap   │
+                │                                  └───────────────┘
+                ▼
+        ┌───────────────┐
+        │   ALERT!      │
+        │ 🔔 SNAP at    │
+        │   step XXXX   │
+        └───────┬───────┘
+                │
+                ▼
+        ┌───────────────┐
+        │ OPTIONAL:     │
+        │ Intervention  │
+        │ • Reduce LR   │
+        │ • Early stop  │
+        │ • Log event   │
+        └───────────────┘
+
+
+════════════════════════════════════════════════════════════════════════════
+                           VDI TRAJECTORY OVER TIME
+════════════════════════════════════════════════════════════════════════════
+
+VDI  ▲
+1.0  │                               ┌─────────────────────────────────────
+     │                              /  Post-Snap: Stable, Low Variance
+0.8  │                             /   (Structured Bottleneck)
+     │                            /
+0.6  │ ┌─────┐                   /
+     │ │     │ Pre-Snap:        /
+0.4  │ │  ●  │ Noisy, High     /  ← SNAP POINT
+     │ │ ● ● │ Variance       ● (Negative Acceleration)
+0.2  │ │● ● ●│               /
+     │ │ ●  ●│              /
+0.0  └─┴─────┴─────────────┴──────────────────────────────────────────────►
+     0       1000        2000       3000        4000        5000   Steps
+
+
+════════════════════════════════════════════════════════════════════════════
+                        LE CHATELIER COMPENSATION
+════════════════════════════════════════════════════════════════════════════
+
+         ω=0.5              ω=1.0              ω=1.5
+        (Weaken)          (Baseline)         (Strengthen)
+           ▼                  ▼                  ▼
+
+Head-0:  ↓ VDI            Normal VDI          ↑ VDI
+         (Less           (Equilibrium)        (More
+       suppressive)                          suppressive)
+
+         ┌─────┐            ┌─────┐            ┌─────┐
+Head-1:  │  ↑  │            │  ─  │            │  ↓  │  ← COMPENSATE
+         └─────┘            └─────┘            └─────┘    (Inverse)
+
+         ┌─────┐            ┌─────┐            ┌─────┐
+Head-2:  │  ↑  │            │  ─  │            │  ↓  │  ← COMPENSATE
+         └─────┘            └─────┘            └─────┘    (Inverse)
+
+         ┌─────┐            ┌─────┐            ┌─────┐
+Head-3:  │  ↑  │            │  ─  │            │  ↓  │  ← COMPENSATE
+         └─────┘            └─────┘            └─────┘    (Inverse)
+
+Result: System restores equilibrium via distributed compensation
+
+
+════════════════════════════════════════════════════════════════════════════
+                       MI SATURATION BOUNDARIES
+════════════════════════════════════════════════════════════════════════════
+
+MI      ▲
+(bits)  │                              ┌──────────────────────────────
+        │                             / SATURATED (>90%)
+        │                            /  ⚠️  Brittle Attractor Risk
+Cap ────┼───────────────────────────┼───────────────────────────────────
+        │                          /
+        │                         / APPROACHING (80-90%)
+        │                        /  ⚠️  Crystallization Window
+        │                       /
+0.8Cap ─┼──────────────────────┼──────────────────────────────────────
+        │                     /
+        │                    /  HEALTHY (<80%)
+        │                   /   ✅ Room for Learning
+        │                  /
+        │                 ●
+        │               ● ●
+        │             ● ●
+        │           ● ●
+        │         ● ●
+        │       ● ●
+        │     ●●
+0.0     └─────────────────────────────────────────────────────────────►
+        0      1000     2000     3000     4000     5000   Steps
+
+
+════════════════════════════════════════════════════════════════════════════
+                           OUTPUT JSON STRUCTURE
+════════════════════════════════════════════════════════════════════════════
+
+developmental_trajectory.json
+├── target_head: [0, 0]
+├── omega_sweep: [0.5, 1.0, 1.5]
+├── snap_result:
+│   ├── detected: true
+│   ├── step: 2543
+│   └── confidence: 0.87
+├── vdi_history: [
+│   │   {step: 500, mean_vdi: 0.68, velocity: -0.0002, accel: -0.0015},
+│   │   {step: 1000, mean_vdi: 0.65, velocity: -0.0003, accel: -0.0018},
+│   │   ...
+│   └── ]
+├── checkpoints: [
+│   │   {
+│   │     step: 500,
+│   │     developmental_phase: "pre_snap",
+│   │     vdi_mean: 0.68,
+│   │     kill_test: {
+│   │       le_chatelier_detected: false,
+│   │       compensation_score: 0.003
+│   │     },
+│   │     mi: {
+│   │       estimate: 4.2,
+│   │       saturation_ratio: 0.65,
+│   │       phase: "healthy"
+│   │     }
+│   │   },
+│   │   ...
+│   └── ]
+└── summary:
+    ├── snap_detected: true
+    ├── snap_step: 2543
+    ├── compensation_by_phase: {
+    │   ├── pre_crystallization: 0.002,
+    │   ├── window: 0.012,
+    │   └── stability: 0.018
+    │   }
+    ├── le_chatelier_confirmed: true
+    └── saturation_warning: false
+
+
+════════════════════════════════════════════════════════════════════════════
+                               USAGE FLOW
+════════════════════════════════════════════════════════════════════════════
+
+1. SETUP
+   ├── Install: Already in tinyLab repo
+   ├── Import: from lab.src.components.developmental_monitor import ...
+   └── Initialize: monitor = DevelopmentalMonitor(model, target_head=(0,0))
+
+2. TRAINING LOOP
+   ├── Normal training step
+   ├── if step % 500 == 0:
+   │   ├── checkpoint = monitor.record_checkpoint(...)
+   │   ├── Check snap: detect_vdi_snap(monitor.vdi_history)
+   │   └── Alert if snap detected
+   └── Continue training
+
+3. POST-TRAINING
+   ├── Analyze: summary = monitor.analyze_trajectory()
+   ├── Save: monitor.save_trajectory(output_path)
+   └── Visualize: python visualize_developmental_trajectory.py <path>
+
+4. INTERPRETATION
+   ├── Check summary.snap_detected
+   ├── Review compensation_by_phase
+   ├── Verify MI saturation < 90%
+   └── Compare across omega conditions
+
+
+════════════════════════════════════════════════════════════════════════════
+                            KEY TAKEAWAYS
+════════════════════════════════════════════════════════════════════════════
+
+✅ VDI "Snap" detects Layer-0 crystallization via negative acceleration
+✅ Le Chatelier compensation confirms distributed homeostatic regulation
+✅ MI saturation provides early warning for brittle attractors
+✅ All three metrics integrated into single DevelopmentalMonitor class
+✅ Real-time detection during training, with optional interventions
+✅ Rich diagnostics: JSON export + 5 diagnostic plots
+✅ Validated on parity task, ready for Stage-1B grokking experiments
+
+🎯 Goal: Catch the "Snap" to control developmental timing and ensure
+         structural alignment before the Fast Loop begins to reason.

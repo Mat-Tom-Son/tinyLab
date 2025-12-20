@@ -1,0 +1,23 @@
+\section{Methods}\label{sec:methods}
+
+\subsection{Architectures and Tasks}
+We verified our hypothesis across two distinct architectures and two tasks, designed to probe the geometric limits of learning dynamics.
+
+\paragraph{Transformers (F2 Parity \& Recall).} 
+Our primary testbed was a 2-layer Transformer ($d_{model}=64, n_{heads}=4$) trained on the mod-2 Parity task ($p=113$, sequence lengths $6-14$) and an Associative Recall task (Key-Value retrieval, 10 pairs). We used the `AdamW` optimizer with high weight decay ($1.0$) to punish memorization and force generalization (grokking). The Parity task requires integrating information from multiple tokens (high entropy), while Recall requires attending to a single token (low entropy).
+
+\paragraph{Multi-Layer Perceptrons (F1).}
+To test for universality, we trained 3-layer MLPs ($d_{hidden}=256$) on the same Parity dataset. MLPs lack the "softmax" quantization mechanism of attention heads, serving as a control group for "fluid" vs "crystalline" dynamics.
+
+\subsection{Metrics: Measuring Order}
+To quantify the "thermodynamic state" of the networks, we tracked two primary order parameters:
+
+\paragraph{Entropy Dispersion Index (EDI).}
+For Transformers, we devised the EDI to measure the sparsity of attention patterns. An EDI of $1.0$ indicates perfect focus on a single token (Zero Entropy limit for the task), while lower values indicate diffuse attention.
+\[ EDI = \frac{1}{\log(N)} \sum_h H(A_h) \]
+where $H(A_h)$ is the Shannon entropy of the attention weights.
+
+\paragraph{Effective Rank (ER).}
+For MLPs, which have no attention weights, we computed the Effective Rank of the weight matrices $W$. ER measures the spectral entropy of the singular values $\sigma_k$:
+\[ ER(W) = \exp\left(-\sum_k p_k \log p_k\right), \quad p_k = \frac{\sigma_k}{\sum_i \sigma_i} \]
+This tells us the effective dimensionality of the information flow. A drop in ER signals compression (freezing).

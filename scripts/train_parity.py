@@ -92,7 +92,7 @@ class TransformerBlock(nn.Module):
         layer_idx: int,
         layer_head_config: Dict[Tuple[int, int], float] | None = None,
         attn_mask: torch.Tensor | None = None,
-    ) -> torch.Tensor:
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
         bsz, seq_len, _ = x.shape
 
         # Self-attention
@@ -120,7 +120,7 @@ class TransformerBlock(nn.Module):
 
         # MLP
         x = x + self.mlp(self.ln2(x))
-        return x
+        return x, attn_weights
 
 
 class ParityTransformer(nn.Module):
@@ -149,7 +149,7 @@ class ParityTransformer(nn.Module):
         self,
         input_ids: torch.Tensor,
         layer_head_config: Dict[Tuple[int, int], float] | None = None,
-    ) -> torch.Tensor:
+    ) -> Tuple[torch.Tensor, List[torch.Tensor]]:
         bsz, seq_len = input_ids.shape
         device = input_ids.device
 
@@ -158,15 +158,17 @@ class ParityTransformer(nn.Module):
 
         attn_mask = self.attn_mask[:, :, :seq_len, :seq_len]
 
+        all_attn_weights = []
         for layer_idx, block in enumerate(self.blocks):
-            x = block(x, layer_idx, layer_head_config, attn_mask)
+            x, attn_weights = block(x, layer_idx, layer_head_config, attn_mask)
+            all_attn_weights.append(attn_weights)
 
         x = self.ln_f(x)
 
         # Classify from last token (CLS position)
         logits = self.classifier(x[:, -1, :])  # [batch, 2]
 
-        return logits
+        return logits, all_attn_weights
 
 
 def load_parity_data(path: Path) -> List[Dict]:
@@ -234,7 +236,7 @@ def compute_accuracy(
             batch = data[i:i+batch_size]
             input_ids, targets = prepare_batch(batch, cfg, device)
 
-            logits = model(input_ids, layer_head_config)
+            logits, _ = model(input_ids, layer_head_config)
             preds = logits.argmax(dim=-1)
 
             correct += (preds == targets).sum().item()
@@ -272,6 +274,8 @@ def train_parity(args: argparse.Namespace, cfg: ParityConfig):
 
     # Layer-head config
     layer_head_config: Dict[Tuple[int, int], float] = {}
+    
+    # Initial config (pre-pulse)
     if abs(args.omega - 1.0) > 1e-6:
         layer_head_config[(0, int(args.head))] = float(args.omega)
 
@@ -296,7 +300,9 @@ def train_parity(args: argparse.Namespace, cfg: ParityConfig):
     metrics_f = metrics_path.open("w", encoding="utf-8")
 
     print(f"\n[parity] Starting {run_name} on {device}")
-    print(f"[parity] omega={args.omega}, head={args.head}, steps={cfg.n_steps}")
+    print(f"[parity] base_omega={args.omega}, head={args.head}, steps={cfg.n_steps}")
+    if args.pulse_start and args.pulse_end:
+        print(f"[parity] Pulse active: steps {args.pulse_start}-{args.pulse_end}, mag={args.pulse_magnitude}")
     print(f"[parity] layer_head_config={layer_head_config}\n")
 
     # Phase tracking
@@ -304,6 +310,19 @@ def train_parity(args: argparse.Namespace, cfg: ParityConfig):
     start_time = time.time()
 
     for step in range(1, cfg.n_steps + 1):
+        # Update pulse state
+        if args.pulse_start and args.pulse_end:
+            if args.pulse_start <= step <= args.pulse_end:
+                 # Apply pulse
+                 layer_head_config[(0, int(args.pulse_head))] = float(args.pulse_magnitude)
+            else:
+                 # Revert to base omega
+                 if abs(args.omega - 1.0) > 1e-6:
+                     layer_head_config[(0, int(args.head))] = float(args.omega)
+                 else:
+                     # Remove if it was default 1.0 (unless it's the same head and we want to be explicit)
+                     # For simplicity, just set it to omega
+                     layer_head_config[(0, int(args.head))] = float(args.omega)
         model.train()
 
         # Sample batch
@@ -312,7 +331,7 @@ def train_parity(args: argparse.Namespace, cfg: ParityConfig):
         input_ids, targets = prepare_batch(batch, cfg, device)
 
         # Forward
-        logits = model(input_ids, layer_head_config)
+        logits, all_attn_weights = model(input_ids, layer_head_config)
         loss = F.cross_entropy(logits, targets)
 
         # Backward
@@ -320,6 +339,29 @@ def train_parity(args: argparse.Namespace, cfg: ParityConfig):
         loss.backward()
         if cfg.grad_clip:
             torch.nn.utils.clip_grad_norm_(model.parameters(), cfg.grad_clip)
+
+        # B1: Freeze others logic
+        if args.freeze_others and args.pulse_start and args.pulse_end:
+             if args.pulse_start <= step <= args.pulse_end:
+                 # Freeze all heads in Layer 0 except pulse_head
+                 target_h = args.pulse_head
+                 d_head = cfg.d_model // cfg.n_heads
+                 block0 = model.blocks[0]
+                 
+                 for h_idx in range(cfg.n_heads):
+                     if h_idx == target_h: continue
+                     
+                     s = h_idx * d_head
+                     e = (h_idx + 1) * d_head
+                     
+                     # Zero Q,K,V grads (output dim 0)
+                     if block0.W_q.weight.grad is not None: block0.W_q.weight.grad[s:e, :] = 0
+                     if block0.W_k.weight.grad is not None: block0.W_k.weight.grad[s:e, :] = 0
+                     if block0.W_v.weight.grad is not None: block0.W_v.weight.grad[s:e, :] = 0
+                     
+                     # Zero O grads (input dim 1)
+                     if block0.W_o.weight.grad is not None: block0.W_o.weight.grad[:, s:e] = 0
+
         opt.step()
 
         # Logging
@@ -346,6 +388,35 @@ def train_parity(args: argparse.Namespace, cfg: ParityConfig):
                 "T_grok": T_grok,
                 "elapsed_s": elapsed,
             }
+
+            # Add EDI/ER metrics
+            if all_attn_weights:
+                # Compute on the training batch
+                # Takes the first batch element for simplicity or mean across batch
+                # Let's do mean L0H0 entropy/EDI
+                try:
+                    # all_attn_weights is list of [B, H, T, T]
+                    # Layer 0
+                    l0_attn = all_attn_weights[0] # [B, H, T, T]
+                    
+                    # Normalize by log(t+1) - Correct definition D
+                    seq_len = l0_attn.shape[-1]
+                    idx = torch.arange(1, seq_len + 1, device=device).float()
+                    h_max = torch.log(idx).view(1, 1, -1)
+                    h_max[0, 0, 0] = 1.0 # Avoid div/0 or log(1)=0 issues if any
+                    
+                    # Compute EDI for ALL heads in Layer 0
+                    # Entropy = -sum p log p
+                    p = l0_attn + 1e-9
+                    entropy = -(p * torch.log(p)).sum(dim=-1) # [B, H, T]
+                    edi = entropy / h_max # [B, H, T]
+                    
+                    # Log mean EDI per head
+                    for h_idx in range(cfg.n_heads):
+                        msg[f"L0H{h_idx}_EDI"] = edi[:, h_idx, :].mean().item()
+                    
+                except Exception as e:
+                    pass # Don't crash logging
 
             print(
                 f"[step {step:5d}] loss={loss.item():.4f}, "
@@ -378,9 +449,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--omega", type=float, required=True, help="Head scaling factor")
     parser.add_argument("--head", type=int, required=True, help="Layer-0 head to scale")
     parser.add_argument("--steps", type=int, default=10000, help="Training steps")
+    # Pulse args
+    parser.add_argument("--pulse-start", type=int, default=None, help="Step to start perturbation pulse")
+    parser.add_argument("--pulse-end", type=int, default=None, help="Step to end perturbation pulse")
+    parser.add_argument("--pulse-magnitude", type=float, default=0.5, help="Magnitude of pulse (omega value)")
+    parser.add_argument("--pulse-head", type=int, default=0, help="Head to perturb (defaults to --head if same)")
+    
     parser.add_argument("--device", type=str, default="auto", help="Device")
     parser.add_argument("--data-dir", type=str, default="data_parity", help="Data directory")
     parser.add_argument("--tag", type=str, default="", help="Optional run name suffix (e.g., medium)")
+    parser.add_argument("--wd", type=float, default=1.0, help="Weight decay")
+    parser.add_argument("--freeze-others", action="store_true", help="Freeze other heads during pulse")
     return parser.parse_args()
 
 
@@ -388,6 +467,7 @@ def main():
     args = parse_args()
     cfg = ParityConfig(
         n_steps=args.steps,
+        weight_decay=args.wd,
         device=args.device,
         data_path_train=f"{args.data_dir}/parity_train.jsonl",
         data_path_test=f"{args.data_dir}/parity_test.jsonl"
